@@ -1,0 +1,157 @@
+object frmDialogNCR: TfrmDialogNCR
+  Left = 0
+  Top = 0
+  Caption = 'Nota de Credito'
+  ClientHeight = 197
+  ClientWidth = 360
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnClose = FormClose
+  OnKeyDown = FormKeyDown
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object dxLayoutControl1: TdxLayoutControl
+    Left = 0
+    Top = 0
+    Width = 360
+    Height = 197
+    Align = alClient
+    TabOrder = 0
+    AutoContentSizes = [acsWidth, acsHeight]
+    LookAndFeel = dmAppActions.lnfWeb
+    object btcancelar: TcxButton
+      Left = 274
+      Top = 161
+      Width = 75
+      Height = 25
+      Caption = 'Cancelar'
+      ModalResult = 2
+      TabOrder = 5
+    end
+    object btaceptar: TcxButton
+      Left = 193
+      Top = 161
+      Width = 75
+      Height = 25
+      Caption = 'Aceptar'
+      ModalResult = 1
+      TabOrder = 4
+    end
+    object edvalor: TcxCurrencyEdit
+      Left = 86
+      Top = 63
+      Enabled = False
+      Properties.Alignment.Horz = taRightJustify
+      Properties.DisplayFormat = '0.00;(0.00)'
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      TabOrder = 1
+      Width = 125
+    end
+    object CbConcepto: TcxExtLookupComboBox
+      Left = 86
+      Top = 36
+      RepositoryItem = DM.elcConceptoNotas
+      Properties.CharCase = ecUpperCase
+      Properties.OnChange = CbConceptoPropertiesChange
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      Style.ButtonStyle = btsHotFlat
+      Style.PopupBorderStyle = epbsSingle
+      TabOrder = 0
+      Width = 250
+    end
+    object cxAutorizacion: TcxMaskEdit
+      Left = 86
+      Top = 117
+      Enabled = False
+      Properties.Alignment.Horz = taLeftJustify
+      Properties.MaxLength = 10
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      TabOrder = 3
+      Width = 265
+    end
+    object cbExtCajero: TcxExtLookupComboBox
+      Left = 86
+      Top = 90
+      RepositoryItem = DM.elcUsuarioSucursal
+      Enabled = False
+      Properties.CharCase = ecUpperCase
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      Style.ButtonStyle = btsHotFlat
+      Style.PopupBorderStyle = epbsSingle
+      TabOrder = 2
+      Width = 145
+    end
+    object dxLayoutControl1Group_Root: TdxLayoutGroup
+      ShowCaption = False
+      Hidden = True
+      ShowBorder = False
+      object dxLayoutControl1Group1: TdxLayoutGroup
+        Caption = 'Datos de la Nota de Credito'
+        object dxLayoutControl1Item2: TdxLayoutItem
+          AutoAligns = [aaVertical]
+          Caption = 'Concepto'
+          Control = CbConcepto
+          ControlOptions.ShowBorder = False
+        end
+        object dxLayoutControl1Item1: TdxLayoutItem
+          AutoAligns = [aaVertical]
+          Caption = 'Monto'
+          Control = edvalor
+          ControlOptions.ShowBorder = False
+        end
+        object dxLayoutControl1Item4: TdxLayoutItem
+          Caption = 'Cajero'
+          Control = cbExtCajero
+          ControlOptions.ShowBorder = False
+        end
+        object dxLayoutControl1Item3: TdxLayoutItem
+          Caption = 'Autorizaci'#243'n'
+          Control = cxAutorizacion
+          ControlOptions.ShowBorder = False
+        end
+      end
+      object dxLayoutControl1Group2: TdxLayoutGroup
+        AutoAligns = []
+        AlignHorz = ahRight
+        AlignVert = avBottom
+        Caption = 'Botones'
+        ShowCaption = False
+        LayoutDirection = ldHorizontal
+        ShowBorder = False
+        object dxLayoutControl1Item6: TdxLayoutItem
+          Caption = 'cxButton2'
+          ShowCaption = False
+          Control = btaceptar
+          ControlOptions.ShowBorder = False
+        end
+        object dxLayoutControl1Item5: TdxLayoutItem
+          Caption = 'cxButton1'
+          ShowCaption = False
+          Control = btcancelar
+          ControlOptions.ShowBorder = False
+        end
+      end
+    end
+  end
+  object dsDatos: TDataSource
+    DataSet = frmPuntoVenta.mdPago
+    Left = 12
+    Top = 151
+  end
+end

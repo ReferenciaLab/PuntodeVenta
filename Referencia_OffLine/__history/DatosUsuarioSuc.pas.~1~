@@ -1,0 +1,70 @@
+unit DatosUsuarioSuc;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DatosModule, cxStyles, cxCustomData, cxGraphics, cxFilter, cxData,
+  cxDataStorage, cxEdit, DB, cxDBData, Menus, cxLookAndFeelPainters, dxPSGlbl,
+  dxPSUtl, dxPSEngn, dxPrnPg, dxBkgnd, dxWrap, dxPrnDev, dxPSCompsProvider,
+  dxPSFillPatterns, dxPSEdgePatterns, cxCurrencyEdit, cxDBEdit, cxContainer,
+  cxTextEdit, cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit,
+  cxDBLookupComboBox, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
+  ABSMain, JvStringHolder, StdActns, ActnList, ADODB, cxGridCustomPopupMenu,
+  cxGridPopupMenu, dxPSContainerLnk, dxPSdxLCLnk, dxPSCore, dxPScxCommon,
+  dxPScxGridLnk, JvComponentBase, JvFormPlacement, ExtCtrls, dxLayoutControl,
+  StdCtrls, cxButtons, cxGridLevel, cxClasses, cxControls, cxGridCustomView,
+  cxGrid, cxPC, JvExControls, JvComponent, JvEnterTab, cxintl;
+
+type
+  TfrmDatosUsuarioSuc = class(TfrmDatosModule)
+    qrUsuarioSucursal: TADOQuery;
+    lcDatosGroup1: TdxLayoutGroup;
+    cxDBLookupComboBox1: TcxDBLookupComboBox;
+    lcDatosItem1: TdxLayoutItem;
+    qrUsuarioSucursalUserID: TStringField;
+    qrUsuarioSucursalSucursalID: TStringField;
+    tvDatosSucursalID: TcxGridDBColumn;
+    qrUsuarioSucursalRecId: TIntegerField;
+    procedure qrUsuarioSucursalNewRecord(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure BuscarData(user : string);
+
+  end;
+
+var
+  frmDatosUsuarioSuc: TfrmDatosUsuarioSuc;
+  pUser : String;
+
+implementation
+uses DataModule;
+{$R *.dfm}
+
+procedure TfrmDatosUsuarioSuc.BuscarData(user: string);
+begin
+ qrUsuarioSucursal.Close;
+ qrUsuarioSucursal.Parameters[0].Value := user;
+ qrUsuarioSucursal.Open;
+
+ pUser := user;
+end;
+
+procedure TfrmDatosUsuarioSuc.FormCreate(Sender: TObject);
+begin
+  inherited;
+  DM.qrSucursal.Close;
+  DM.qrSucursal.Open;
+end;
+
+procedure TfrmDatosUsuarioSuc.qrUsuarioSucursalNewRecord(DataSet: TDataSet);
+begin
+  inherited;
+  qrUsuarioSucursalUserId.Value := pUser;
+  qrUsuarioSucursalRECID.Value := DM.Get_Secuencia_Id();
+end;
+
+end.

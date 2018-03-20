@@ -1,0 +1,186 @@
+unit DatosClienteDomicilio;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DatosModule, cxStyles, cxCustomData, cxGraphics, cxFilter, cxData,
+  cxDataStorage, cxEdit, DB, cxDBData, Menus, cxLookAndFeelPainters, dxPSGlbl,
+  dxPSUtl, dxPSEngn, dxPrnPg, dxBkgnd, dxWrap, dxPrnDev, dxPSCompsProvider,
+  dxPSFillPatterns, dxPSEdgePatterns, ABSMain, JvStringHolder, StdActns,
+  ActnList, ADODB, cxGridCustomPopupMenu, cxGridPopupMenu, dxPSContainerLnk,
+  dxPSdxLCLnk, dxPSCore, dxPScxCommon, dxPScxGridLnk, JvComponentBase,
+  JvFormPlacement, ExtCtrls, dxLayoutControl, StdCtrls, cxButtons, cxGridLevel,
+  cxClasses, cxControls, cxGridCustomView, cxGridCustomTableView,
+  cxGridTableView, cxGridDBTableView, cxGrid, cxPC, JvExControls, JvComponent,
+  JvEnterTab, cxMaskEdit, cxSpinEdit, cxDBEdit, cxContainer, cxTextEdit,
+  cxCheckBox, cxintl, cxImageComboBox, cxDropDownEdit, cxCalendar, cxMemo,
+  cxLookupEdit, cxDBLookupEdit, cxDBExtLookupComboBox;
+
+type
+  TfrmDatosClienteDomicilio = class(TfrmDatosModule)
+    qrClienteDomicilio: TADOQuery;
+    lcDatosGroup1: TdxLayoutGroup;
+    EdClienteDom: TcxDBTextEdit;
+    lcDatosItem1: TdxLayoutItem;
+    EdNombre: TcxDBTextEdit;
+    lcDatosItem2: TdxLayoutItem;
+    cbExtDocumento: TcxExtLookupComboBox;
+    lcDatosItem3: TdxLayoutItem;
+    lcDatosItem7: TdxLayoutItem;
+    lcDatosItem4: TdxLayoutItem;
+    lcDatosGroup2: TdxLayoutGroup;
+    cxDBMemo1: TcxDBMemo;
+    lcDatosItem5: TdxLayoutItem;
+    EdFechaBorn: TcxDBDateEdit;
+    CbSexo: TcxDBImageComboBox;
+    lcDatosItem6: TdxLayoutItem;
+    lcDatosGroup4: TdxLayoutGroup;
+    lcDatosItem8: TdxLayoutItem;
+    mskTelResidencia: TcxDBMaskEdit;
+    lcDatosItem9: TdxLayoutItem;
+    lcDatosGroup5: TdxLayoutGroup;
+    mskTelCelular: TcxDBMaskEdit;
+    lcDatosItem10: TdxLayoutItem;
+    mskTelOficina: TcxDBMaskEdit;
+    lcDatosGroup7: TdxLayoutGroup;
+    lcDatosItem11: TdxLayoutItem;
+    EdEmail: TcxDBTextEdit;
+    lcDatosGroup6: TdxLayoutGroup;
+    EdCedula: TcxDBMaskEdit;
+    tvDatosCteDomID: TcxGridDBColumn;
+    tvDatosTipo_Documento: TcxGridDBColumn;
+    tvDatosDocumento: TcxGridDBColumn;
+    tvDatosNombre: TcxGridDBColumn;
+    tvDatosDireccion: TcxGridDBColumn;
+    tvDatosFecha_Nacimiento: TcxGridDBColumn;
+    tvDatosClienteID: TcxGridDBColumn;
+    tvDatosTel_Oficina: TcxGridDBColumn;
+    tvDatosTel_Residencia: TcxGridDBColumn;
+    tvDatosTel_Celular: TcxGridDBColumn;
+    tvDatosEmail: TcxGridDBColumn;
+    tvDatosUserID: TcxGridDBColumn;
+    btPaciente: TcxButton;
+    lcDatosGroup3: TdxLayoutGroup;
+    lcDatosGroup8: TdxLayoutGroup;
+    qrClienteDomDet: TADOQuery;
+    dsDatosTran: TDataSource;
+    lcDatosGroup9: TdxLayoutGroup;
+    GridTransacciones: TcxGrid;
+    cxGridDBTableView1: TcxGridDBTableView;
+    cxGridLevel1: TcxGridLevel;
+    qrClienteDomDetCteDomID: TIntegerField;
+    qrClienteDomDetCteDomDet: TIntegerField;
+    qrClienteDomDetMuestrano: TStringField;
+    qrClienteDomDetFecha: TDateTimeField;
+    qrClienteDomDetHora: TStringField;
+    qrClienteDomDetResultado_Via: TStringField;
+    qrClienteDomDetUsuario_Toma: TStringField;
+    qrClienteDomDetObservacion: TStringField;
+    qrClienteDomDetRefrecid: TLargeintField;
+    cxGridDBTableView1CteDomID: TcxGridDBColumn;
+    cxGridDBTableView1CteDomDet: TcxGridDBColumn;
+    cxGridDBTableView1Muestrano: TcxGridDBColumn;
+    cxGridDBTableView1Fecha: TcxGridDBColumn;
+    cxGridDBTableView1Hora: TcxGridDBColumn;
+    cxGridDBTableView1Resultado_Via: TcxGridDBColumn;
+    cxGridDBTableView1Usuario_Toma: TcxGridDBColumn;
+    cxGridDBTableView1Observacion: TcxGridDBColumn;
+    cxGridDBTableView1Refrecid: TcxGridDBColumn;
+    lcDatosItem12: TdxLayoutItem;
+    dxLayoutControl1Item2: TdxLayoutItem;
+    qrClienteDomicilioCteDomID: TIntegerField;
+    qrClienteDomicilioTipo_Documento: TIntegerField;
+    qrClienteDomicilioDocumento: TStringField;
+    qrClienteDomicilioNombre: TStringField;
+    qrClienteDomicilioSexo: TSmallintField;
+    qrClienteDomicilioDireccion: TStringField;
+    qrClienteDomicilioFecha_Nacimiento: TDateTimeField;
+    qrClienteDomicilioClienteID: TStringField;
+    qrClienteDomicilioTel_Oficina: TStringField;
+    qrClienteDomicilioTel_Residencia: TStringField;
+    qrClienteDomicilioTel_Celular: TStringField;
+    qrClienteDomicilioEmail: TStringField;
+    qrClienteDomicilioUserID: TStringField;
+    dxLayoutControl1Item1: TdxLayoutItem;
+    btTransacciones: TcxButton;
+    dxLayoutControl1Item3: TdxLayoutItem;
+    bteliminar: TcxButton;
+    dxLayoutControl1Item4: TdxLayoutItem;
+    btcancelar: TcxButton;
+    btgrabar: TcxButton;
+    dxLayoutControl1Item5: TdxLayoutItem;
+    btimprimir: TcxButton;
+    dxLayoutControl1Item6: TdxLayoutItem;
+    procedure qrClienteDomicilioAfterPost(DataSet: TDataSet);
+    procedure qrClienteDomicilioNewRecord(DataSet: TDataSet);
+    procedure qrClienteDomicilioBeforePost(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmDatosClienteDomicilio: TfrmDatosClienteDomicilio;
+
+implementation
+
+uses DataModule, Main;
+
+{$R *.dfm}
+
+procedure TfrmDatosClienteDomicilio.FormCreate(Sender: TObject);
+begin
+  inherited;
+  DM.qrParametro.close;
+  DM.qrParametro.open;
+
+  DM.qrDocumento.Close;
+  DM.qrDocumento.Open;
+//  EdTarjetaId.Properties.ReadOnly := DM.qrParametroAutoNumerarTarjetas.Value;
+end;
+
+procedure TfrmDatosClienteDomicilio.qrClienteDomicilioAfterPost(
+  DataSet: TDataSet);
+begin
+  inherited;
+  qrClienteDomicilio.Refresh;
+end;
+
+procedure TfrmDatosClienteDomicilio.qrClienteDomicilioBeforePost(
+  DataSet: TDataSet);
+begin
+  inherited;
+{  If (qrTarjetaDescuento.State = dsInsert) Or
+     (qrTarjetaDescuento.State = dsEdit) Then
+    If (qrTarjetaDescuentoTarjetaID.IsNull) Or
+       (qrTarjetaDescuentoTarjetaID.Value = '')Then
+      AutoKeyField := 'TarjetaID';
+
+  DM.qrParametro.close;
+  DM.qrParametro.open;
+
+  if (qrTarjetaDescuento.State = dsInsert) and (DM.qrParametroAutoNumerarTarjetas.Value) then
+  begin
+//   qrTarjetaDescuentoTarjetaID.Value := formatfloat('00',strtofloat(DM.CurSucursal)) + '-' +
+   qrTarjetaDescuentoTarjetaID.Value := Copy(DM.CurSucursal, 1, 2) + '-' +
+                                        formatfloat('0000',DM.qrParametroSecuenciaTarjetas.asfloat);
+
+   DM.qrParametro.edit;
+   DM.qrParametroSecuenciaTarjetas.Value := DM.qrParametroSecuenciaTarjetas.Value + 1;
+   DM.qrParametro.Post;
+}
+end;
+
+procedure TfrmDatosClienteDomicilio.qrClienteDomicilioNewRecord(
+  DataSet: TDataSet);
+begin
+  inherited;
+//  qrTarjetaDescuentoBono.Value := False;
+//  qrTarjetaDescuentoNumeroUnico.Value := False;
+//  qrTarjetaDescuentoNumeroObligatorio.Value := False;
+end;
+
+end.

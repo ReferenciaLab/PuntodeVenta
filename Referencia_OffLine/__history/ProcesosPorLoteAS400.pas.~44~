@@ -1,0 +1,633 @@
+unit ProcesosPorLoteAS400;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Menus, cxLookAndFeelPainters, dxLayoutControl, StdCtrls, cxButtons,
+  cxCurrencyEdit, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar, ADODB, DB,
+  cxContainer, cxEdit, cxGroupBox, cxRadioGroup, cxControls, pptypes, ppReport,
+  ppCtrls, ppBands, ppClass, ppVar, ppPrnabl, ppCache, ppComm, ppRelatv, ppProd,
+  cxGraphics, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,StrUtils;
+
+type
+  TfrmProcesosPorLoteAS400 = class(TForm)
+    dxLayoutControl3: TdxLayoutControl;
+    rgTipoCorte: TcxRadioGroup;
+    edfechacorte: TcxDateEdit;
+    btaceptarcuadre: TcxButton;
+    btcancelarcuadre: TcxButton;
+    dxLayoutGroup2: TdxLayoutGroup;
+    GroupParametros: TdxLayoutGroup;
+    dxLayoutItem1: TdxLayoutItem;
+    dxLayoutControl3Item2: TdxLayoutItem;
+    GroupSaldo: TdxLayoutGroup;
+    botonescuadre: TdxLayoutGroup;
+    dxLayoutControl3Item31: TdxLayoutItem;
+    dxLayoutControl3Item10: TdxLayoutItem;
+    Label2: TLabel;
+    qrEntradaPaciente: TADOQuery;
+    qrEntradaPacienteENTRADAID: TStringField;
+    qrEntradaPacienteHORAENTRADA: TStringField;
+    qrEntradaPacienteORIGEN: TStringField;
+    qrEntradaPacienteCLIENTEID: TStringField;
+    qrEntradaPacientePACIENTEID: TStringField;
+    qrEntradaPacienteDOCTORID: TStringField;
+    qrEntradaPacientePOLIZAID: TStringField;
+    qrEntradaPacienteENCLINICA: TIntegerField;
+    qrEntradaPacienteRECORDCLINICA: TStringField;
+    qrEntradaPacienteNUMEROHABITACION: TStringField;
+    qrEntradaPacienteRESULTADOPACIENTE: TIntegerField;
+    qrEntradaPacienteRESULTADODOCTOR: TIntegerField;
+    qrEntradaPacienteHORAPROMETIDA: TStringField;
+    qrEntradaPacienteFLEBOTOMISTAID: TStringField;
+    qrEntradaPacientePROYECTOID: TStringField;
+    qrEntradaPacienteRECORDID: TIntegerField;
+    qrEntradaPacienteBRUTO: TBCDField;
+    qrEntradaPacienteDESCUENTO: TBCDField;
+    qrEntradaPacienteSUBTOTAL: TBCDField;
+    qrEntradaPacienteNETO: TBCDField;
+    qrEntradaPacienteTOTALPAGADO: TBCDField;
+    qrEntradaPacienteCOBERTURAPORC: TBCDField;
+    qrEntradaPacienteCOBERTURASEGURO: TBCDField;
+    qrEntradaPacienteCOBERTURAVALOR: TBCDField;
+    qrEntradaPacienteCOBERTURAMONTOPRECONFIRMADO: TBCDField;
+    qrEntradaPacienteDESCUENTOPORC: TBCDField;
+    qrEntradaPacienteDESCUENTOVALOR: TBCDField;
+    qrEntradaPacienteDESCUENTOBONO: TBCDField;
+    qrEntradaPacienteGASTOSVARIOS: TBCDField;
+    qrEntradaPacienteTASA: TBCDField;
+    qrEntradaPacienteNOMBREPACIENTE: TStringField;
+    qrEntradaPacienteTELEFONOS: TStringField;
+    qrEntradaPacienteTELEFONO2: TStringField;
+    qrEntradaPacienteEMAIL: TStringField;
+    qrEntradaPacienteCLIENTENOMBRE: TStringField;
+    qrEntradaPacienteSUCURSALID: TStringField;
+    qrEntradaPacienteUSERID: TStringField;
+    qrEntradaPacienteCOBROID: TStringField;
+    qrEntradaPacientePRIORIDAD: TIntegerField;
+    qrEntradaPacienteFAX: TStringField;
+    qrEntradaPacienteTIPODOCUMENTO: TIntegerField;
+    qrEntradaPacienteAPROBACIONNO: TStringField;
+    qrEntradaPacienteAPROBACIONPOR: TStringField;
+    qrEntradaPacienteCOBERTURARECHAZADA: TIntegerField;
+    qrEntradaPacienteCOBERTURACONFIRMADA: TIntegerField;
+    qrEntradaPacienteCOBERTURAPRECONFIRMADA: TIntegerField;
+    qrEntradaPacienteMUESTRANO: TStringField;
+    qrEntradaPacienteMONEDAID: TStringField;
+    qrEntradaPacienteCOBERTURAEXPPORC: TIntegerField;
+    qrEntradaPacienteEDADPACIENTE: TIntegerField;
+    qrEntradaPacienteSEXO: TIntegerField;
+    qrEntradaPacienteNOMBREDOCTOR: TStringField;
+    qrEntradaPacientePUBLICARINTERNET: TIntegerField;
+    qrEntradaPacienteCARNET: TStringField;
+    qrEntradaPacientePUBLICARINTERNETDOCTOR: TIntegerField;
+    qrEntradaPacienteCUADREGLOBAL: TStringField;
+    qrEntradaPacienteCUADREUSUARIO: TStringField;
+    qrEntradaPacienteDESCAUTORIZADOPOR: TStringField;
+    qrEntradaPacienteNOAS400: TIntegerField;
+    qrEntradaPacienteNOAXAPTA: TIntegerField;
+    qrEntradaPacienteNOFACTURA: TIntegerField;
+    qrEntradaPacienteFACTEXTERIOR: TIntegerField;
+    qrEntradaPacienteHOLD: TIntegerField;
+    qrEntradaPacienteREPMUESTRA: TIntegerField;
+    qrEntradaPacienteENTRADAIDANT: TStringField;
+    qrEntradaPacienteTIPOENTRADA: TStringField;
+    qrEntradaPacienteFORMADEPAGO: TStringField;
+    qrEntradaPacienteDESCUENTOCARD: TStringField;
+    qrEntradaPacienteDESCUENTOTEXTO: TStringField;
+    qrEntradaPacienteACUERDOPROPIO: TIntegerField;
+    qrEntradaPacienteCLIENTEPADRE: TStringField;
+    qrEntradaPacienteDESCUENTOPLANID: TStringField;
+    qrEntradaPacienteHORAREGISTRO: TStringField;
+    qrEntradaPacienteESTATUS: TIntegerField;
+    qrEntradaPacienteTIPOCLIENTEAS400: TIntegerField;
+    qrEntradaPacienteCLASECREDITO: TStringField;
+    qrEntradaPacienteCARNETNUMERO: TStringField;
+    qrEntradaPacienteCLIENTEPADREAXAPTA: TStringField;
+    qrEntradaPacientePACIENTEIDAXAPTA: TStringField;
+    qrEntradaPacienteCLIENTEIDAXAPTA: TStringField;
+    qrEntradaPacienteDOCTORIDAXAPTA: TStringField;
+    qrEntradaPacienteDATAAREAID: TStringField;
+    qrEntradaPacienteNOTA: TStringField;
+    qrEntradaPacienteDIRECCION: TStringField;
+    qrEntradaPacienteNCFTYPEID: TStringField;
+    qrEntradaPacienteNCFID: TStringField;
+    qrEntradaPacienteNCFNAME: TStringField;
+    qrEntradaPacienteTotalPendiente: TBCDField;
+    qrEntradaPacienteFECHA: TDateTimeField;
+    qrEntradaPacienteFECHADEALTA: TDateTimeField;
+    qrEntradaPacienteFECHAENTRADA: TDateTimeField;
+    qrEntradaPacienteFECHAREGISTRO: TDateTimeField;
+    qrEntradaPacienteFECHAPROMETIDA: TDateTimeField;
+    qrEntradaPacienteFECHAASEGURADORA: TDateTimeField;
+    qrEntradaPacienteCUADRADO: TIntegerField;
+    qrEntradaPacienteTRANSFERIDO: TIntegerField;
+    qrEntradaPacienteSUCURSAL: TIntegerField;
+    qrEntradaPacienteNUMEROINTERNET: TIntegerField;
+    qrEntradaPacienteRESULTADOCLIENTE: TIntegerField;
+    qrEntradaPacientePUBLICARINTERNETCLIENTE: TIntegerField;
+    dsEntradaPaciente: TDataSource;
+    qrEntradaPacienteTRANSFERENCIA: TStringField;
+    qrEntradaPacienteGRUPOPRECIO: TStringField;
+    qrEntradaPacienteGRUPODESCUENTOLINEA: TStringField;
+    qrEntradaPacienteGRUPODESCUENTOTOTAL: TStringField;
+    qrEntradaPacienteDetalle: TADOQuery;
+    dsEntradaPacienteDetalle: TDataSource;
+    qrEntradaPacienteDetallePRUEBAID: TStringField;
+    qrEntradaPacienteDetalleCOMBOPRUEBAID: TStringField;
+    qrEntradaPacienteDetalleCODIGOAUTORIZACION: TStringField;
+    qrEntradaPacienteDetalleDESCRIPCION: TStringField;
+    qrEntradaPacienteDetalleCODIGOCUPID: TStringField;
+    qrEntradaPacienteDetalleMUESTRAANT: TStringField;
+    qrEntradaPacienteDetalleCOBERTURAAPLICA: TIntegerField;
+    qrEntradaPacienteDetalleDESCRIPCIONCUP: TStringField;
+    qrEntradaPacienteDetalleREFRECID: TIntegerField;
+    qrEntradaPacienteDetalleSECUENCIA: TIntegerField;
+    qrEntradaPacienteDetalleFLEBOTOMISTAID: TStringField;
+    qrEntradaPacienteDetalleCOMENTARIOMUESTRA: TStringField;
+    qrEntradaPacienteDetalleUNIDADMUESTRA: TStringField;
+    qrEntradaPacienteDetalleSECUENCIAACT: TIntegerField;
+    qrEntradaPacienteDetallePRECIO: TBCDField;
+    qrEntradaPacienteDetalleDESCUENTO: TBCDField;
+    qrEntradaPacienteDetalleDESCUENTOEXTRA: TBCDField;
+    qrEntradaPacienteDetalleTOTALLINEA: TBCDField;
+    qrEntradaPacienteDetalleCOMENTARIO: TStringField;
+    qrEntradaPacienteDetalleTIPOPRUEBA: TStringField;
+    qrEntradaPacienteDetalleTIPOAS400: TStringField;
+    qrEntradaPacienteDetalleCODIGOAS400: TStringField;
+    qrEntradaPacienteDetalleMEDIOAS400: TStringField;
+    qrEntradaPacienteDetalleDESCPCT: TBCDField;
+    qrEntradaPacienteDetalleCOBERTURAESPECIAL: TBCDField;
+    qrEntradaPacienteDetalleCOBERTURAESPECIALPORC: TBCDField;
+    qrEntradaPacienteDetalleCOBERTURAAPLICADA: TBCDField;
+    qrEntradaPacienteDetalleDESCUENTOAPLICADO: TBCDField;
+    qrEntradaPacienteDetalleFACTURAR: TIntegerField;
+    qrEntradaPacienteDetalleSELECCIONAR: TIntegerField;
+    qrEntradaPacienteDetalleMUESTRANO: TStringField;
+    qrEntradaPacienteDetalleCOBERTURAEXPPORC: TIntegerField;
+    qrEntradaPacienteDetalleURGENTE: TIntegerField;
+    qrEntradaPacienteDetalleREPMUESTRA: TIntegerField;
+    qrEntradaPacienteDetalleFECHAENTREGA: TDateTimeField;
+    qrEntradaPacienteDetalleHORAENTREGA: TStringField;
+    qrEntradaPacienteDetalleESTATUS: TStringField;
+    qrEntradaPacienteDetalleDESCUENTOLINEAAPLICADO: TBCDField;
+    qrEntradaPacienteDetalleCUADRADO: TIntegerField;
+    qrEntradaPacienteDetalleTRANSFERIDO: TIntegerField;
+    qrEntradaPacienteDetallePASARAXAPTA: TIntegerField;
+    qrEntradaPacienteDetalleCOMBO: TIntegerField;
+    qrEntradaPacienteDetalleADICIONAL: TBCDField;
+    qrEntradaPacienteDetalleREPREALIZADA: TIntegerField;
+    qrEntradaPacienteDetalleREPMUESTRANO: TStringField;
+    qrEntradaPacienteDetalleTIENEACUERDOPRECIO: TIntegerField;
+    qrEntradaPacienteDetalleTIENEACUERDODESCUENTO: TIntegerField;
+    qrEntradaPacienteDetalleCUADREGLOBAL: TStringField;
+    qrEntradaPacienteDetalleCUADREUSUARIO: TStringField;
+    qrEntradaPacienteDetalleEXTERIOR: TIntegerField;
+    qrEntradaPacienteDetalleLDRDEPARTAMENTOID: TStringField;
+    qrEntradaPacienteDetalleDATAAREAID: TStringField;
+    qrEntradaPacienteDetalleRECID: TIntegerField;
+    qrEntradaPacienteFROM_CLINICA: TIntegerField;
+    qrEntradaPacienteSINPRFILTER: TIntegerField;
+    qrEntradaPacienteDetallePRECIOCOMBO: TBCDField;
+    qrEntradaPacienteDetalleSINPRFILTER: TIntegerField;
+    qrEntradaPacienteDetalleFROM_CLINICA: TIntegerField;
+    qrEntradaPacienteDetalleREFRECID_POS: TIntegerField;
+    qrEntradaPacienteDetalleENTRADAID_POS: TStringField;
+    qrEntradaPacienteDetalleMUESTRANO_POS: TStringField;
+    LcSucursales: TcxLookupComboBox;
+    dxLayoutControl3Item1: TdxLayoutItem;
+    dxLayoutControl3Group2: TdxLayoutGroup;
+    qrEntradaPacienteENTRADAID_REF: TStringField;
+    qrEntradaPacienteFECHANACIMIENTO: TDateTimeField;
+    qrEntradaPacienteCOD_CASO: TStringField;
+    qrEntradaPacienteSTNOTAC: TStringField;
+    qrEntradaPacienteUSRNOTAC: TStringField;
+    qrEntradaPacienteCOD_DIAG: TStringField;
+    qrEntradaPacienteDetalleNCR_ESTATUS: TBooleanField;
+    qrEntradaPacienteRECID: TLargeintField;
+    procedure FormShow(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure Buscar_Ordenes_TELEFONOS;
+    procedure Insertar_Usuario_New(usuario: string; clave: string; name: string; cedula: string;
+                                              cliente: string; tipo: string; actual: string);
+    procedure Procesar_Usuario_New;
+    procedure Buscar_Paciente;
+    Procedure Buscar_Grupo_Pac(Grupo: string);
+    Function  Crear_Clave(cedularnc : String) : Integer;
+    Function  Crear_Usuario(nombre : String) : String;
+    Function Buscar_User_Internet(_customer : String) : Boolean;
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+
+    procedure Run;
+    Procedure Buscar_Orden;
+
+    Var qfindPacientes,qfindGrupoPac,qFindEntrada       : TADOQuery;
+  end;
+
+var
+  frmProcesosPorLoteAS400: TfrmProcesosPorLoteAS400;
+
+Implementation
+
+Uses ActionsDM, DataModule, Main,UInterfaseAs400;
+
+{$R *.dfm}
+
+
+procedure TfrmProcesosPorLoteAS400.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (key = Vk_Down) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+  if (key = 13) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+  if (key = Vk_Up)  then
+     PostMessage(Handle, Wm_NextDlgCtl, 1, 0);
+  if (key = 27) then
+  begin
+   Close;
+  end;
+end;
+
+
+procedure TfrmProcesosPorLoteAS400.FormShow(Sender: TObject);
+begin
+  if Not dm.PingHost('10.0.0.1',5) then
+  begin
+     ShowMessage('Servidor de As400 aún no está disponible.');
+  end;
+end;
+
+procedure TfrmProcesosPorLoteAS400.Run;
+begin
+ showmodal;
+ if ModalResult = mrOk then
+  begin
+{    if Not dm.PingHost('10.0.0.1',5) then
+    begin
+       ShowMessage('Servidor de As400 aún no está disponible.');
+       Exit;
+    end;
+    if (Trim(edfechaCorte.Text) ='') or (Trim(LcSucursales.Text) ='') then
+    begin
+       ShowMessage('Fecha de Corte ó Sucursal NO pueden estar en Blanco.');
+       Exit;
+    end;
+   if MessageDlg('Seguro Que Desea Realizar El Proceso?', mtWarning, [mbYes,mbNo], 0) = mrYes then
+    begin
+      Buscar_Orden;
+    end
+    Else
+    DM.Info('La Operacion Fue Abortada por el Usuario.!!!');
+}
+      Buscar_Orden;
+  end;
+end;
+
+
+procedure TfrmProcesosPorLoteAS400.Buscar_Orden;
+Var Tipo : String;
+begin
+// Buscar_Ordenes_Telefonos;
+ With qrEntradaPaciente,sql do
+ begin
+    Close;
+    Clear;
+//  Text := ' SELECT * FROM dbo.ptEntradapaciente (nolock) Where '+
+//          ' Fecha between '+#39+'20110628'+#39+' and  '+#39+'20110628'+#39+'  And HoraEntrada between '+#39+'09:00:00'+#39+' And '+#39+'13:00:00'+#39+' And DataAreaID='+#39+DM.CurEmpresa+#39+
+//          ' ORDER BY SucursalId,Muestrano ';
+
+    Text := ' SELECT * FROM ptEntradapaciente Where '+
+    //        Sucursalid='+#39+LcSucursales.EditingValue+#39+
+    //      ' And
+            ' Fecha='+#39+FormatDateTime('yyyymmdd', edFechaCorte.date)+#39+' And DataAreaID='+#39+DM.CurEmpresa+#39+
+            ' ORDER BY SucursalId, Muestrano ';
+    Open;
+    if Not isEmpty then
+    begin
+         First;
+         While Not Eof Do
+         Begin
+            qrEntradapacienteDetalle.Close;
+            qrEntradapacienteDetalle.SQL.Clear;
+            qrEntradapacienteDetalle.sql.Text := ' SELECT * FROM ptEntradapacienteDetalle (nolock) Where Refrecid='+inttostr(FieldByName('RecID').value)+
+            ' And DataAreaID='+#39+DM.CurEmpresa+#39+' ORDER BY PruebaID ';
+            qrEntradapacienteDetalle.Open;
+            if not qrEntradaPacienteDetalle.isEmpty then
+            begin
+                         If ((qrEntradaPacientePublicarInternet.Value = 1) OR (qrEntradaPacientePublicarInternet.Value = 0))
+                           and (not((qrEntradaPacientePacienteId.Value ='00029127') or (qrEntradaPacientePacienteId.Value ='00008805') or
+                                   (qrEntradaPacientePacienteId.Value ='00018822') or (qrEntradaPacientePacienteId.Value ='00029448') or
+                                   (qrEntradaPacientePacienteId.Value ='00006242'))) Then
+                         Begin
+                           If Not Buscar_User_Internet(qrEntradaPacientePacienteId.Value) Then
+                           Begin
+                                if dm.PingHost('10.0.0.1',1) then
+                                begin
+                                   Buscar_Paciente;
+                                   InterfaseAS400.Buscar_Cedula_Internet(qfindPacientes.FieldByName('Identificacion').AsString);
+                                   If (InterfaseAS400.User_Internet_AS400 <> '') And (InterfaseAS400.Clave_Internet_AS400 <> '') Then
+                                   Begin
+                                      If (qfindPacientes.FieldByName('GrupoCliente').AsString = DM.qrParametroGrupoAcc.Value) Or
+                                         (qfindPacientes.FieldByName('GrupoCliente').AsString = DM.qrParametroGrupoEmp.Value) Or
+                                         (qfindPacientes.FieldByName('GrupoCliente').AsString = DM.qrParametroGrupoVip.Value) Or
+                                         (qfindPacientes.FieldByName('GrupoCliente').AsString = DM.qrParametroGrupoPriv.Value) Then
+                                        Tipo := 'P'
+                                      Else
+                                        Tipo := 'C';
+
+                                       Insertar_Usuario_New(DM.Cortar_Char(' ', InterfaseAS400.User_Internet_AS400),
+                                                            FormatFloat('000000', StrToInt(DM.Cortar_Char(' ', InterfaseAS400.Clave_Internet_AS400))),
+                                                            qfindPacientes.FieldByName('Nombre').AsString,
+                                                            qfindPacientes.FieldByName('Identificacion').AsString,
+                                                            qrEntradaPacientePacienteId.Value, Tipo, 'N');
+                                   end
+                                   Else
+                                     Procesar_Usuario_New;
+                                end;
+                           end;
+                         end;
+
+                    if (qrEntradaPacienteFROM_CLINICA.Value <> 1) then
+                    Begin
+             //Generando los Labels de la Toma de Muestra.
+            //             Generar_Labels;
+                      if Dm.PingHost('10.0.0.1',1) then
+                      begin
+                         Try
+                           InterfaseAS400.ASConnection.Close;
+                           InterfaseAS400.ASConnection.Open;
+
+                           //Insertando las Pruebas en el AS-400.
+                           InterfaseAS400.MandarPruebaAS400(qrEntradaPacienteMuestraNo.Value, qrEntradaPacientePacienteId.Value);
+                           InterfaseAS400.ASConnection.Close;
+                         Except
+                           Raise exception.CreateFmt(' Existe un Problema de Comunicacion Con el Servidor AS-400. '+ #13 +
+                                                     ' Por Favor, LLame al Departamento de Computos. '+ #13 +
+                                                     ' ó Intentelo Nuevamente.!!!', []);
+                         End;
+                      end;
+                    End;
+
+            end;
+            Next;
+         end;
+    end;
+ end;
+  DM.Info('Fin Proceso Actualización por Lotes al AS400.');
+end;
+
+Function TfrmProcesosPorLoteAS400.Buscar_User_Internet(_customer : String) : Boolean;
+Var
+ qinter  : TAdoQuery;
+begin
+  qinter := DM.NewQuery;
+  qinter.Close;
+  qinter.SQL.Text := ' SELECT * FROM PTUsuariosInternet (nolock) '+
+                     ' WHERE ClienteId = ' + #39 + _customer + #39 +
+                     ' AND Tipo = ' + #39 + 'P' + #39 +
+                     ' AND DataAreaId = ' + #39 + DM.CurEmpresa + #39;
+  qinter.Open;
+
+  if (qinter.RecordCount > 0) then
+    result := True
+  else
+    result := False;
+  FreeAndNil(qinter);
+end;
+procedure TfrmProcesosPorLoteAS400.Insertar_Usuario_New(usuario: string; clave: string; name: string; cedula: string;
+                                              cliente: string; tipo: string; actual: string);
+var
+ qinsert : TADOQuery;
+begin
+     qinsert := DM.NewQuery;
+     qinsert.Close;
+     qinsert.SQL.Text := ' INSERT INTO PTUsuariosInternet(UsuarioInternet, ClaveInternet, Nombre, Identificacion, '+
+                         ' ClienteId, Tipo, Actualizado, DataAreaId, RecId) VALUES (:0,:1,:2,:3,:4,:5,:6,:7,:8)';
+     qinsert.Parameters[0].Value := usuario;
+     qinsert.Parameters[1].Value := clave;
+     qinsert.Parameters[2].Value := name;
+     qinsert.Parameters[3].Value := cedula;
+     qinsert.Parameters[4].Value := cliente;
+     qinsert.Parameters[5].Value := tipo;
+     qinsert.Parameters[6].Value := 'N';
+     qinsert.Parameters[7].Value := qrEntradaPacienteDATAAREAID.Value;
+     qinsert.Parameters[8].Value := qrEntradaPacienteRECID.Value;
+     qinsert.ExecSQL;
+     FreeAndNil(qinsert);
+end;
+procedure TfrmProcesosPorLoteAS400.Procesar_Usuario_New;
+Var
+  Valor : Boolean;
+  Pass2, Clave : Integer;
+  Limpio, Usuario, Useralt, Tipo : String;
+begin
+  DM.qrParametro.Close;
+  DM.qrParametro.Open;
+
+  //Eliminando los Guiones de la Cedula - RNC del Cliente.
+  Limpio  := DM.Cortar_Char('-', qfindPacientes.FieldByName('Identificacion').AsString);
+
+  //Creando la Clave de Internet.
+  Clave :=  Crear_Clave(Copy(Limpio, 1, 11));
+
+  //Creando el Usuario de Internet.
+  Usuario :=  Crear_Usuario(qfindPacientes.FieldByName('Nombre').AsString);
+
+  //Creando el Usuario Alternativo. 6 Digitos o Menos.
+  If ( Length(Usuario) > 6 ) Then
+    Useralt := Copy(Usuario, 1, 6)
+  Else
+    Useralt := Usuario;
+
+  //Creando el Usuario Alternativo. 4 Digitos de la Clave.
+  Pass2 := StrToInt( RightStr (IntToStr (Clave), 4) );
+{
+  If Not Valida_Usuario(Usuario) then
+    Begin
+      //Creando el Usuario Alternativo (Useralt + Pass2).
+      Usuario := Useralt + IntToStr(Pass2);
+      While Not Valida_Usuario(Usuario) do
+       Begin
+         Pass2 := Pass2 + 1;
+         Usuario := Useralt + IntToStr(Pass2);
+         Next;
+       End;
+    End;
+}
+      if dm.PingHost('10.0.0.1',1) then
+      begin
+        If Not InterfaseAS400.Buscar_Usuario_Internet(Usuario) then
+          Begin
+            //Creando el Usuario Alternativo (Useralt + Pass2).
+            Usuario := Useralt + IntToStr(Pass2);
+            While Not InterfaseAS400.Buscar_Usuario_Internet(Usuario) do
+             Begin
+               Pass2 := Pass2 + 1;
+               Usuario := Useralt + IntToStr(Pass2);
+               Next;
+             End;
+          End;
+      end;
+
+  If (qfindPacientes.FieldByName('GrupoCliente').AsString = DM.qrParametroGrupoAcc.Value) Or
+     (qfindPacientes.FieldByName('GrupoCliente').AsString = DM.qrParametroGrupoEmp.Value) Or
+     (qfindPacientes.FieldByName('GrupoCliente').AsString = DM.qrParametroGrupoVip.Value) Or
+     (qfindPacientes.FieldByName('GrupoCliente').AsString = DM.qrParametroGrupoPriv.Value) Then
+   Tipo := 'P'
+ Else
+   Tipo := 'C';
+
+//  Insertar_Usuario(Usuario, IntToStr(Clave),
+  Insertar_Usuario_New(Usuario, FormatFloat('000000', Clave),
+                       qfindPacientes.FieldByName('Nombre').AsString,
+                       qfindPacientes.FieldByName('Identificacion').AsString,
+                       qrEntradaPacientePacienteId.Value, Tipo, 'N');
+end;
+Function TfrmProcesosPorLoteAS400.Crear_Clave(cedularnc : String) : Integer;
+Var
+  Numero  : Double;
+  Valor   : Int64;
+//  Valor   : Integer;
+  Texto   : String; //AnsiString;
+begin
+  //Cargando la Cedula - RNC.
+//  Valor := StrToInt(cedularnc);
+  Valor := StrToInt64(cedularnc);
+
+  //Obteniendo el Numero Unico (Alejandro Espinosa Curiel).
+  Numero := ((Valor * 180) / 360) * 3.1416;
+
+  //Obteniendo la Parte Entera del Numero Unico.
+  Valor := Trunc(Numero);
+
+  //Tomando las 1ras 6 Posiciones del Entero.
+  Texto := RightStr(IntToStr(Valor), 6);
+//  Texto := AnsiRightStr(IntToStr(Valor), 6);
+
+  //Asignando la Clave Obtenida.
+  Result := StrToInt(Texto);
+end;
+Function TfrmProcesosPorLoteAS400.Crear_Usuario(nombre : String) : String;
+Var
+  Texto : String;
+  Valor, Largo, Blanco : Integer;
+begin
+{
+  Largo := Length(nombre);
+
+  Blanco := AnsiPos(' ', nombre);
+//  Blanco := AnsiPos(#32, nombre);
+
+  If (Largo > 10) Then
+    Begin
+      If (Blanco > 1) Then
+        Begin
+         Valor := Blanco - 1;
+
+         If (Valor > 9) Then
+           Texto := Copy(nombre, 1, 10)
+         Else
+           Texto := Copy(nombre, 1, Valor);
+        End
+      Else
+        Texto := Copy(nombre, 1, 10);
+    End
+  Else
+    Texto := nombre;
+
+  Result := Texto;
+}
+  Largo := Length(nombre);
+
+  Blanco := AnsiPos(' ', nombre);
+//  Blanco := AnsiPos(#32, nombre);
+
+  If (Largo > 8) Then
+    Begin
+      If (Blanco > 1) Then
+        Begin
+         Valor := Blanco - 1;
+
+         If (Valor > 7) Then
+           Texto := Copy(nombre, 1, 8)
+         Else
+           Texto := Copy(nombre, 1, Valor);
+        End
+      Else
+        Texto := Copy(nombre, 1, 8);
+    End
+  Else
+    Texto := nombre;
+
+  Result := Texto;
+end;
+procedure TfrmProcesosPorLoteAS400.Buscar_Paciente;
+begin
+  qfindPacientes := DM.Find_Ldr('Select * from PTCliente (nolock) Where ClienteID = :pac', qrEntradaPacientePacienteId.Value);
+
+  //Buscando los Datos del Grupo del Paciente.
+  Buscar_Grupo_Pac(qfindPacientes.FieldByName('GrupoCliente').AsString);
+end;
+
+//Buscando los Datos del Grupo del Paciente.
+Procedure TfrmProcesosPorLoteAS400.Buscar_Grupo_Pac(Grupo: string);
+begin
+ qfindGrupoPac := DM.Find_Ldr('SELECT * FROM PTGrupoCliente (nolock) WHERE GrupoCliente = :grp', Grupo);
+end;
+procedure TfrmProcesosPorLoteAS400.Buscar_Ordenes_Telefonos;
+Var _record : integer;
+begin
+  If dm.PingHost('10.0.0.1',1) then
+    Begin
+      Try
+        InterfaseAS400.ASConnection.Close;
+        InterfaseAS400.ASConnection.Open;
+        //Buscando las Entradas del AS-400.
+        InterfaseAS400.qrASBADPHONE.Close;
+        InterfaseAS400.qrASBADPHONE.Open;
+        _record := InterfaseAS400.qrASBADPHONE.RecordCount;
+        If (InterfaseAS400.qrASBADPHONE.RecordCount > 0) then
+        Begin
+            InterfaseAS400.qrASBADPHONE.First;
+            while Not InterfaseAS400.qrASBADPHONE.Eof do
+            begin
+              InterfaseAS400.qrSqlEncabezado.Close;
+              InterfaseAS400.qrSQLEncabezado.Parameters.ParamByName('MuestraNo').Value := FormatFloat('00000000000',InterfaseAS400.qrASBADPHONEIN6NUM.Value);
+              InterfaseAS400.qrSQLEncabezado.Open;
+              If Not InterfaseAS400.qrSqlEncabezado.Eof then
+              Begin
+                  InterfaseAS400.qrASBADPHONE.Edit;
+//              qfindEntrada := DM.Find_Ldr('Select * from PTEntradaPaciente Where Muestrano = :mue', FormatFloat('00000000000',InterfaseAS400.qrASBADPHONEIN6NUM.Value));
+                  if Trim(InterfaseAS400.qrSQLEncabezadoTelefono.AsString)=EmptyStr then
+                      InterfaseAS400.qrASBADPHONEIN6TEL.Asstring :=  '0'
+                  else
+                  Begin
+                      if Copy(InterfaseAS400.qrSQLEncabezadoTelefono.AsString,1,10)<>'8098615545' Then
+                        InterfaseAS400.qrASBADPHONEIN6TEL.Asstring :=  Copy(InterfaseAS400.qrSQLEncabezadoTelefono.AsString,1,10)
+                      else
+                        InterfaseAS400.qrASBADPHONEIN6TEL.Asstring :=  '0';
+                  end;
+//                  InterfaseAS400.CambiarTelefonoAS400(FormatFloat('00000000000',InterfaseAS400.qrASBADPHONEIN6NUM.Value));
+                  InterfaseAS400.qrASBADPHONE.Post;
+              end;
+              InterfaseAS400.qrASBADPHONE.Next;
+            end;
+        end;
+      Except
+        Raise exception.CreateFmt(' Existe un Problema de Comunicacion Con el Servidor AS-400. '+ #13 +
+                                  ' Por Favor, LLame al Departamento de Computos. '+ #13 +
+                                  ' ó Intentelo Nuevamente.!!!'+'  '+FormatFloat('00000000000',InterfaseAS400.qrASBADPHONEIN6NUM.Value), []);
+      End;
+    End;
+end;
+
+END.
+
+
+

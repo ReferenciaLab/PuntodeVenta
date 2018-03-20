@@ -1,0 +1,87 @@
+  FECHA      HORA      USUARIO            PROCESO        MENSAJE
+========== ======== =============== ==================== ====================================
+22/09/2008 10:35:35 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(1.5.1.1) No se pudo actualizar, No hay datos en la DB
+22/09/2008 10:38:09 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(1.5.1.1) No se pudo actualizar, No hay datos en la DB
+22/09/2008 11:09:39 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(1.5.1.1) No se pudo actualizar, No hay datos en la DB
+22/09/2008 11:31:21 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(1.5.1.1) No se pudo actualizar, No hay datos en la DB
+22/09/2008 12:33:32 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(1.5.1.1) No se pudo actualizar, No hay datos en la DB
+22/09/2008 12:53:32 NEWVERSION     NEWVERSION           Versión LABORATORIO(1.5.1.1) de la Aplicación Actualizada Exitosamente
+22/09/2008 13:24:55 NEWVERSION     NEWVERSION           Versión LABORATORIO(1.5.1.1) de la Aplicación Actualizada Exitosamente
+22/09/2008 17:55:35 NEWVERSION     NEWVERSION           Versión LABORATORIO(1.5.1.1) de la Aplicación Actualizada Exitosamente
+22/09/2008 18:08:07 NEWVERSION     NEWVERSION           Versión LABORATORIO(1.5.1.2) de la Aplicación Actualizada Exitosamente
+02/10/2008 18:44:10 NEWVERSION     NEWVERSION           Versión LABORATORIO(1.5.1.3) de la Aplicación Actualizada Exitosamente
+28/01/2009 12:15:01 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(1.2.3.4) No se pudo actualizar, No hay datos en la DB
+28/01/2009 13:19:00 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(1.2.3.4) No se pudo actualizar, No hay datos en la DB
+28/01/2009 13:19:06 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(3.0.1.2) No se pudo actualizar
+28/01/2009 13:19:06 NEWVERSION     NEWVERSION           3.0.1.1 --> 3.0.1.2
+28/01/2009 17:47:50 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.2) de la Aplicación Actualizada Exitosamente
+22/04/2009 09:16:41 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.1) de la Aplicación Actualizada Exitosamente
+23/04/2009 07:44:50 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.1) de la Aplicación Actualizada Exitosamente
+23/04/2009 07:46:31 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.2) de la Aplicación Actualizada Exitosamente
+29/04/2009 08:18:07 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.2) de la Aplicación Actualizada Exitosamente
+10/05/2009 17:04:31 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.2) de la Aplicación Actualizada Exitosamente
+10/05/2009 17:15:44 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.2) de la Aplicación Actualizada Exitosamente
+10/05/2009 17:17:00 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.3) de la Aplicación Actualizada Exitosamente
+16/05/2009 11:32:04 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.3) de la Aplicación Actualizada Exitosamente
+22/06/2009 10:00:43 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.6) de la Aplicación Actualizada Exitosamente
+22/06/2009 10:01:49 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.7) de la Aplicación Actualizada Exitosamente
+11/08/2009 08:34:38 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.10) de la Aplicación Actualizada Exitosamente
+11/10/2009 19:00:44 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.13) de la Aplicación Actualizada Exitosamente
+11/10/2009 19:01:54 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.14) de la Aplicación Actualizada Exitosamente
+16/02/2010 10:29:04 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.17) de la Aplicación Actualizada Exitosamente
+01/08/2010 21:58:21 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.19) de la Aplicación Actualizada Exitosamente
+02/08/2010 09:22:29 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.22) de la Aplicación Actualizada Exitosamente
+01/04/2011 16:18:05 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(3.0.1.28,LABORATORIO) No se pudo actualizar, No hay datos en la DB
+01/04/2011 16:22:24 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(3.0.1.28,LABORATORIO) No se pudo actualizar, No hay datos en la DB
+04/04/2011 17:25:30 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.28) de la Aplicación Actualizada Exitosamente
+04/04/2011 17:25:49 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.29) de la Aplicación Actualizada Exitosamente
+04/04/2011 17:26:14 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.28) de la Aplicación Actualizada Exitosamente
+04/04/2011 17:26:34 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.29) de la Aplicación Actualizada Exitosamente
+04/04/2011 17:27:05 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.28) de la Aplicación Actualizada Exitosamente
+04/04/2011 17:45:40 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.29) de la Aplicación Actualizada Exitosamente
+04/04/2011 17:50:58 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.28) de la Aplicación Actualizada Exitosamente
+04/04/2011 17:51:15 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.29) de la Aplicación Actualizada Exitosamente
+04/04/2011 17:51:38 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.28) de la Aplicación Actualizada Exitosamente
+04/04/2011 17:52:06 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.29) de la Aplicación Actualizada Exitosamente
+04/04/2011 18:00:09 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(3.0.1.28) No se pudo actualizar
+04/04/2011 18:00:09 NEWVERSION     NEWVERSION           3.0.1.29 --> 3.0.1.28
+04/04/2011 18:00:25 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.28) de la Aplicación Actualizada Exitosamente
+04/04/2011 18:02:17 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.29) de la Aplicación Actualizada Exitosamente
+04/04/2011 18:02:39 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.28) de la Aplicación Actualizada Exitosamente
+04/04/2011 18:06:23 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(3.0.1.28) No se pudo actualizar
+04/04/2011 18:06:23 NEWVERSION     NEWVERSION           3.0.1.29 --> 3.0.1.28
+04/04/2011 18:24:11 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(3.0.1.28) No se pudo actualizar
+04/04/2011 18:24:11 NEWVERSION     NEWVERSION           3.0.1.29 --> 3.0.1.28
+04/04/2011 18:24:42 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.28) de la Aplicación Actualizada Exitosamente
+04/04/2011 18:24:58 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.29) de la Aplicación Actualizada Exitosamente
+04/04/2011 18:33:54 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.28) de la Aplicación Actualizada Exitosamente
+04/04/2011 18:34:18 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.29) de la Aplicación Actualizada Exitosamente
+04/04/2011 18:34:44 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.28) de la Aplicación Actualizada Exitosamente
+04/04/2011 18:36:06 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.29) de la Aplicación Actualizada Exitosamente
+04/04/2011 18:44:30 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.29) de la Aplicación Actualizada Exitosamente
+04/04/2011 18:45:18 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.28) de la Aplicación Actualizada Exitosamente
+04/04/2011 18:54:43 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(3.0.1.29) No se pudo actualizar
+04/04/2011 18:54:43 NEWVERSION     NEWVERSION           3.0.1.30 --> 3.0.1.29
+04/04/2011 18:55:22 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.29) de la Aplicación Actualizada Exitosamente
+04/04/2011 18:56:59 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.28) de la Aplicación Actualizada Exitosamente
+04/04/2011 18:57:16 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.29) de la Aplicación Actualizada Exitosamente
+04/04/2011 19:09:43 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.29) de la Aplicación Actualizada Exitosamente
+04/04/2011 19:22:51 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.29) de la Aplicación Actualizada Exitosamente
+07/04/2011 13:16:47 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(3.0.1.30) No se pudo actualizar
+07/04/2011 13:16:47 NEWVERSION     NEWVERSION           3.0.1.30 --> 3.0.1.30
+06/10/2011 10:10:19 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.31) de la Aplicación Actualizada Exitosamente
+31/12/2011 23:08:12 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(3.0.1.35) No se pudo actualizar, No hay datos en la DB
+11/01/2012 18:58:47 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.40) de la Aplicación Actualizada Exitosamente
+20/03/2012 21:05:47 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.42) de la Aplicación Actualizada Exitosamente
+03/05/2012 16:59:08 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.43) de la Aplicación Actualizada Exitosamente
+03/05/2012 17:29:03 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.43) de la Aplicación Actualizada Exitosamente
+03/05/2012 17:43:39 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.43) de la Aplicación Actualizada Exitosamente
+03/05/2012 18:37:39 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.43) de la Aplicación Actualizada Exitosamente
+06/06/2012 20:12:40 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(3.0.1.43) No se pudo actualizar
+06/06/2012 20:12:40 NEWVERSION     NEWVERSION           3.0.1.44 --> 3.0.1.43
+08/06/2012 10:10:54 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(3.0.1.43) No se pudo actualizar
+08/06/2012 10:10:54 NEWVERSION     NEWVERSION           3.0.1.44 --> 3.0.1.43
+12/06/2012 13:00:00 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.44) de la Aplicación Actualizada Exitosamente
+14/06/2012 16:42:52 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.43) de la Aplicación Actualizada Exitosamente
+01/10/2012 11:35:53 NEWVERSION     NEWVERSION           Versión LABORATORIO(3.0.1.43) de la Aplicación Actualizada Exitosamente
+01/10/2012 11:47:56 NEWVERSION     NEWVERSION           Error--> Versión LABORATORIO(3.0.1.44) No se pudo actualizar, No hay datos en la DB

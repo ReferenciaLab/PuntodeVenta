@@ -1,0 +1,1849 @@
+
+CREATE TABLE [dbo].[PTENTRADAPACIENTE] (
+  [ENTRADAID] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__ENTRA__31AFD52A] DEFAULT '' NOT NULL,
+  [FECHA] datetime CONSTRAINT [DF__PTENTRADA__FECHA__32A3F963] DEFAULT '1900-01-01 00:00:00.000' NULL,
+  [HORAENTRADA] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__HORAE__33981D9C] DEFAULT '' NULL,
+  [PACIENTEID] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__PACIE__348C41D5] DEFAULT '' NULL,
+  [CLIENTEID] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__CLIEN__3580660E] DEFAULT '' NULL,
+  [DOCTORID] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__DOCTO__36748A47] DEFAULT '' NULL,
+  [POLIZAID] varchar(80) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__POLIZ__3768AE80] DEFAULT '' NULL,
+  [ENCLINICA] int CONSTRAINT [DF__PTENTRADA__ENCLI__385CD2B9] DEFAULT (0) NULL,
+  [RECORDCLINICA] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__RECOR__3950F6F2] DEFAULT '' NULL,
+  [NUMEROHABITACION] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__NUMER__3A451B2B] DEFAULT '' NULL,
+  [FECHAENTRADA] datetime CONSTRAINT [DF__PTENTRADA__FECHA__3B393F64] DEFAULT '1900-01-01 00:00:00.000' NULL,
+  [FECHADEALTA] datetime CONSTRAINT [DF__PTENTRADA__FECHA__3C2D639D] DEFAULT '1900-01-01 00:00:00.000' NULL,
+  [FECHAPROMETIDA] datetime CONSTRAINT [DF__PTENTRADA__FECHA__3D2187D6] DEFAULT '1900-01-01 00:00:00.000' NULL,
+  [HORAPROMETIDA] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__HORAP__3E15AC0F] DEFAULT '' NULL,
+  [FLEBOTOMISTAID] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__FLEBO__3F09D048] DEFAULT '' NULL,
+  [NOTA] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADAP__NOTA__3FFDF481] DEFAULT '' NULL,
+  [PROYECTOID] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__PROYE__40F218BA] DEFAULT '' NULL,
+  [RECORDID] int CONSTRAINT [DF__PTENTRADA__RECOR__41E63CF3] DEFAULT (0) NULL,
+  [BRUTO] numeric(28, 12) CONSTRAINT [DF__PTENTRADA__BRUTO__42DA612C] DEFAULT (0) NULL,
+  [DESCUENTO] numeric(28, 12) CONSTRAINT [DF__PTENTRADA__DESCU__43CE8565] DEFAULT (0) NULL,
+  [SUBTOTAL] numeric(28, 12) CONSTRAINT [DF__PTENTRADA__SUBTO__44C2A99E] DEFAULT (0) NULL,
+  [NETO] numeric(28, 12) CONSTRAINT [DF__PTENTRADAP__NETO__45B6CDD7] DEFAULT (0) NULL,
+  [NOMBREPACIENTE] varchar(80) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__NOMBR__46AAF210] DEFAULT '' NULL,
+  [DIRECCION] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__DIREC__479F1649] DEFAULT '' NULL,
+  [TELEFONOS] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__TELEF__48933A82] DEFAULT '' NULL,
+  [TELEFONO2] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__TELEF__49875EBB] DEFAULT '' NULL,
+  [EMAIL] varchar(80) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__EMAIL__4A7B82F4] DEFAULT '' NULL,
+  [CLIENTENOMBRE] varchar(80) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__CLIEN__4B6FA72D] DEFAULT '' NULL,
+  [SUCURSALID] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__SUCUR__4C63CB66] DEFAULT '' NULL,
+  [USERID] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__USERI__4D57EF9F] DEFAULT '' NULL,
+  [COBROID] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__COBRO__4E4C13D8] DEFAULT '' NULL,
+  [TOTALPAGADO] numeric(28, 12) CONSTRAINT [DF__PTENTRADA__TOTAL__4F403811] DEFAULT (0) NULL,
+  [PRIORIDAD] int CONSTRAINT [DF__PTENTRADA__PRIOR__50345C4A] DEFAULT (0) NULL,
+  [FAX] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADAPA__FAX__51288083] DEFAULT '' NULL,
+  [COBERTURAPORC] numeric(28, 12) CONSTRAINT [DF__PTENTRADA__COBER__521CA4BC] DEFAULT (0) NULL,
+  [COBERTURASEGURO] numeric(28, 12) CONSTRAINT [DF__PTENTRADA__COBER__5310C8F5] DEFAULT (0) NULL,
+  [COBERTURAVALOR] numeric(28, 12) CONSTRAINT [DF__PTENTRADA__COBER__5404ED2E] DEFAULT (0) NULL,
+  [DESCUENTOPORC] numeric(28, 12) CONSTRAINT [DF__PTENTRADA__DESCU__54F91167] DEFAULT (0) NULL,
+  [DESCUENTOVALOR] numeric(28, 12) CONSTRAINT [DF__PTENTRADA__DESCU__55ED35A0] DEFAULT (0) NULL,
+  [DESCUENTOBONO] numeric(28, 12) CONSTRAINT [DF__PTENTRADA__DESCU__56E159D9] DEFAULT (0) NULL,
+  [ORIGEN] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__ORIGE__57D57E12] DEFAULT '' NULL,
+  [APROBACIONNO] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__APROB__58C9A24B] DEFAULT '' NULL,
+  [APROBACIONPOR] varchar(80) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__APROB__59BDC684] DEFAULT '' NULL,
+  [COBERTURARECHAZADA] int CONSTRAINT [DF__PTENTRADA__COBER__5AB1EABD] DEFAULT (0) NULL,
+  [COBERTURACONFIRMADA] int CONSTRAINT [DF__PTENTRADA__COBER__5BA60EF6] DEFAULT (0) NULL,
+  [FECHAASEGURADORA] datetime CONSTRAINT [DF__PTENTRADA__FECHA__5C9A332F] DEFAULT '1900-01-01 00:00:00.000' NULL,
+  [MUESTRANO] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__MUEST__5D8E5768] DEFAULT '' NOT NULL,
+  [MONEDAID] varchar(3) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__MONED__5E827BA1] DEFAULT '' NULL,
+  [COBERTURAEXPPORC] int CONSTRAINT [DF__PTENTRADA__COBER__5F769FDA] DEFAULT (0) NULL,
+  [EDADPACIENTE] int CONSTRAINT [DF__PTENTRADA__EDADP__606AC413] DEFAULT (0) NULL,
+  [NOMBREDOCTOR] varchar(80) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__NOMBR__615EE84C] DEFAULT '' NULL,
+  [PUBLICARINTERNET] int CONSTRAINT [DF__PTENTRADA__PUBLI__62530C85] DEFAULT (0) NULL,
+  [CARNET] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__CARNE__634730BE] DEFAULT '' NULL,
+  [PUBLICARINTERNETDOCTOR] int CONSTRAINT [DF__PTENTRADA__PUBLI__643B54F7] DEFAULT (0) NULL,
+  [CUADREGLOBAL] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__CUADR__652F7930] DEFAULT '' NULL,
+  [CUADREUSUARIO] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__CUADR__66239D69] DEFAULT '' NULL,
+  [DESCAUTORIZADOPOR] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__DESCA__6717C1A2] DEFAULT '' NULL,
+  [GASTOSVARIOS] numeric(28, 12) CONSTRAINT [DF__PTENTRADA__GASTO__680BE5DB] DEFAULT (0) NULL,
+  [NOAS400] int CONSTRAINT [DF__PTENTRADA__NOAS4__69000A14] DEFAULT (0) NULL,
+  [NOAXAPTA] int CONSTRAINT [DF__PTENTRADA__NOAXA__69F42E4D] DEFAULT (0) NULL,
+  [NOFACTURA] int CONSTRAINT [DF__PTENTRADA__NOFAC__6AE85286] DEFAULT (0) NULL,
+  [FACTEXTERIOR] int CONSTRAINT [DF__PTENTRADA__FACTE__6BDC76BF] DEFAULT (0) NULL,
+  [HOLD] int CONSTRAINT [DF__PTENTRADAP__HOLD__6CD09AF8] DEFAULT (0) NULL,
+  [REPMUESTRA] int CONSTRAINT [DF__PTENTRADA__REPMU__6DC4BF31] DEFAULT (0) NULL,
+  [ENTRADAIDANT] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__ENTRA__6EB8E36A] DEFAULT '' NULL,
+  [TIPOENTRADA] varchar(2) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__TIPOE__6FAD07A3] DEFAULT '' NULL,
+  [FORMADEPAGO] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__FORMA__70A12BDC] DEFAULT '' NULL,
+  [DESCUENTOCARD] varchar(30) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__DESCU__71955015] DEFAULT '' NULL,
+  [DESCUENTOTEXTO] varchar(30) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__DESCU__7289744E] DEFAULT '' NULL,
+  [ACUERDOPROPIO] int CONSTRAINT [DF__PTENTRADA__ACUER__737D9887] DEFAULT (0) NULL,
+  [CLIENTEPADRE] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__CLIEN__7471BCC0] DEFAULT '' NULL,
+  [DESCUENTOPLANID] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__DESCU__7565E0F9] DEFAULT '' NULL,
+  [FECHAREGISTRO] datetime CONSTRAINT [DF__PTENTRADA__FECHA__765A0532] DEFAULT '1900-01-01 00:00:00.000' NULL,
+  [HORAREGISTRO] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__HORAR__774E296B] DEFAULT '' NULL,
+  [TASA] numeric(28, 12) CONSTRAINT [DF__PTENTRADAP__TASA__78424DA4] DEFAULT (0) NULL,
+  [ESTATUS] int CONSTRAINT [DF__PTENTRADA__ESTAT__793671DD] DEFAULT (0) NULL,
+  [TIPOCLIENTEAS400] int CONSTRAINT [DF__PTENTRADA__TIPOC__7A2A9616] DEFAULT (0) NULL,
+  [CLASECREDITO] varchar(5) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__CLASE__7B1EBA4F] DEFAULT '' NULL,
+  [CARNETNUMERO] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__CARNE__7C12DE88] DEFAULT '' NULL,
+  [CLIENTEPADREAXAPTA] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__CLIEN__7D0702C1] DEFAULT '' NULL,
+  [PACIENTEIDAXAPTA] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__PACIE__7DFB26FA] DEFAULT '' NULL,
+  [CLIENTEIDAXAPTA] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__CLIEN__7EEF4B33] DEFAULT '' NULL,
+  [DOCTORIDAXAPTA] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__DOCTO__7FE36F6C] DEFAULT '' NULL,
+  [NCFTYPEID] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__NCFTY__00D793A5] DEFAULT '' NULL,
+  [NCFID] varchar(19) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__NCFID__01CBB7DE] DEFAULT '' NULL,
+  [NCFNAME] varchar(80) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__NCFNA__02BFDC17] DEFAULT '' NULL,
+  [SEXO] int CONSTRAINT [DF__PTENTRADAP__SEXO__03B40050] DEFAULT (0) NULL,
+  [CUADRADO] int CONSTRAINT [DF__PTENTRADA__CUADR__04A82489] DEFAULT (0) NULL,
+  [TRANSFERIDO] int CONSTRAINT [DF__PTENTRADA__TRANS__059C48C2] DEFAULT (0) NULL,
+  [SUCURSAL] int CONSTRAINT [DF__PTENTRADA__SUCUR__06906CFB] DEFAULT (0) NULL,
+  [NUMEROINTERNET] int CONSTRAINT [DF__PTENTRADA__NUMER__07849134] DEFAULT (0) NULL,
+  [PUBLICARINTERNETCLIENTE] int CONSTRAINT [DF__PTENTRADA__PUBLI__0878B56D] DEFAULT (0) NULL,
+  [COBERTURAPRECONFIRMADA] int CONSTRAINT [DF__PTENTRADA__COBER__096CD9A6] DEFAULT (0) NULL,
+  [COBERTURAMONTOPRECONFIRMADO] numeric(28, 12) CONSTRAINT [DF__PTENTRADA__COBER__0A60FDDF] DEFAULT (0) NULL,
+  [TRANSFERENCIA] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__TRANS__0B552218] DEFAULT '' NULL,
+  [GRUPOPRECIO] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__GRUPO__0C494651] DEFAULT '' NULL,
+  [TIPODOCUMENTO] int CONSTRAINT [DF__PTENTRADA__TIPOD__0D3D6A8A] DEFAULT (0) NULL,
+  [GRUPODESCUENTOLINEA] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__GRUPO__0E318EC3] DEFAULT '' NULL,
+  [GRUPODESCUENTOTOTAL] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__GRUPO__0F25B2FC] DEFAULT '' NULL,
+  [RESULTADOCLIENTE] int CONSTRAINT [DF__PTENTRADA__RESUL__1019D735] DEFAULT (0) NULL,
+  [RESULTADODOCTOR] int CONSTRAINT [DF__PTENTRADA__RESUL__110DFB6E] DEFAULT (0) NULL,
+  [RESULTADOPACIENTE] int CONSTRAINT [DF__PTENTRADA__RESUL__12021FA7] DEFAULT (0) NULL,
+  [DATAAREAID] varchar(3) COLLATE SQL_Latin1_General_CP1_CI_AS CONSTRAINT [DF__PTENTRADA__DATAA__12F643E0] DEFAULT 'dat' NOT NULL,
+  [RECID] int NOT NULL,
+  [msrepl_tran_version] uniqueidentifier CONSTRAINT [MSrepl_tran_version_default_7960EE3F_D260_49F9_8E43_946027C05D5A_817606897] DEFAULT newid() NOT NULL,
+  CONSTRAINT [I_50128PTENTRADAPACIENTEIDX1] PRIMARY KEY CLUSTERED ([DATAAREAID], [RECID]),
+  CONSTRAINT [CK__PTENTRADA__RECID__13EA6819] CHECK NOT FOR REPLICATION ([RECID]<>(0))
+)
+ON [PRIMARY]
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX [I_50128PTENTRADAPACIENTEIDX] ON [dbo].[PTENTRADAPACIENTE]
+  ([DATAAREAID], [ENTRADAID])
+WITH (
+  PAD_INDEX = OFF,
+  IGNORE_DUP_KEY = OFF,
+  DROP_EXISTING = OFF,
+  STATISTICS_NORECOMPUTE = OFF,
+  SORT_IN_TEMPDB = OFF,
+  ONLINE = OFF,
+  ALLOW_ROW_LOCKS = ON,
+  ALLOW_PAGE_LOCKS = ON)
+ON [PRIMARY]
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX [I_50128PTENTRADAPACIENTEIDX2] ON [dbo].[PTENTRADAPACIENTE]
+  ([DATAAREAID], [MUESTRANO])
+WITH (
+  PAD_INDEX = OFF,
+  IGNORE_DUP_KEY = OFF,
+  DROP_EXISTING = OFF,
+  STATISTICS_NORECOMPUTE = OFF,
+  SORT_IN_TEMPDB = OFF,
+  ONLINE = OFF,
+  ALLOW_ROW_LOCKS = ON,
+  ALLOW_PAGE_LOCKS = ON)
+ON [PRIMARY]
+GO
+
+CREATE TRIGGER [dbo].[trg_MSsync_ins_PTENTRADAPACIENTE] ON [dbo].[PTENTRADAPACIENTE]
+WITH EXECUTE AS 'repllinkproxy'
+FOR INSERT
+NOT FOR REPLICATION
+AS
+    declare @rc int
+                ,@retcode int
+                ,@connect_string nvarchar(300)
+                ,@islocalpublisher bit 
+                ,@rpc_proc nvarchar(500)
+                ,@update_mode_id int
+                ,@bitmap varbinary(4000)
+                ,@version_guid uniqueidentifier
+                ,@trigger_op char(10)  
+                ,@failover_mode_id int
+                ,@queue_server sysname
+                ,@queue_id sysname
+                ,@tran_id varchar(255)
+                ,@subscriber sysname
+                ,@subscriber_db sysname 
+                ,@partial_cmd bit
+                ,@start_offset int
+                ,@end_offset int
+                ,@vb_buffer varbinary(8000)
+                ,@vb_bufferlen int        
+             
+    declare       @c1 varchar(20)     ,@c2 datetime     ,@c3 varchar(20)     ,@c4 varchar(10)     ,@c5 varchar(10)     ,@c6 varchar(10)     ,@c7 varchar(80)     ,@c8 int     ,@c9 varchar(20)     ,@c10 varchar(20)     ,@c11 datetime     ,@c12 datetime     ,@c13 datetime     ,@c14 varchar(20)     ,@c15 varchar(10)     ,@c16 varchar(255)     ,@c17 varchar(10)     ,@c18 int     ,@c19 numeric(28,12)     ,@c20 numeric(28,12)     ,@c21 numeric(28,12)     ,@c22 numeric(28,12)     ,@c23 varchar(80)     ,@c24 varchar(255)     ,@c25 varchar(20)     ,@c26 varchar(20)     ,@c27 varchar(80)     ,@c28 varchar(80)     ,@c29 varchar(10)     ,@c30 varchar(10)     ,@c31 varchar(10)     ,@c32 numeric(28,12)     ,@c33 int     ,@c34 varchar(20)     ,@c35 numeric(28,12)     ,@c36 numeric(28,12)     ,@c37 numeric(28,12)     ,@c38 numeric(28,12)     ,@c39 numeric(28,12)     ,@c40 numeric(28,12)     ,@c41 varchar(10)     ,@c42 varchar(20)     ,@c43 varchar(80)     ,@c44 int     ,@c45 int     ,@c46 datetime     ,@c47 varchar(20)     ,@c48 varchar(3)     ,@c49 int     ,@c50 int     ,@c51 varchar(80)     ,@c52 int     ,@c53 varchar(20)     ,@c54 int     ,@c55 varchar(20)     ,@c56 varchar(20)     ,@c57 varchar(10)     ,@c58 numeric(28,12)     ,@c59 int     ,@c60 int     ,@c61 int     ,@c62 int     ,@c63 int     ,@c64 int     ,@c65 varchar(20)     ,@c66 varchar(2)     ,@c67 varchar(10)     ,@c68 varchar(30)     ,@c69 varchar(30)     ,@c70 int     ,@c71 varchar(10)     ,@c72 varchar(10)     ,@c73 datetime     ,@c74 varchar(20)     ,@c75 numeric(28,12)     ,@c76 int     ,@c77 int     ,@c78 varchar(5)     ,@c79 varchar(10)     ,@c80 varchar(10)     ,@c81 varchar(10)     ,@c82 varchar(10)     ,@c83 varchar(10)     ,@c84 varchar(10)     ,@c85 varchar(19)     ,@c86 varchar(80)     ,@c87 int     ,@c88 int     ,@c89 int     ,@c90 int     ,@c91 int     ,@c92 int     ,@c93 int     ,@c94 numeric(28,12)     ,@c95 varchar(10)     ,@c96 varchar(10)     ,@c97 int     ,@c98 varchar(10)     ,@c99 varchar(10)     ,@c100 int     ,@c101 int     ,@c102 int     ,@c103 varchar(3)     ,@c104 int     ,@c105 uniqueidentifier 
+
+    select @rc = @@rowcount
+            ,@subscriber = @@servername
+            ,@subscriber_db = db_name() 
+            ,@version_guid = newid()
+    if @rc = 0 
+        return 
+    set nocount on  
+    if Objectproperty(@@procid,'TriggerInsertOrder') != 1    
+    begin
+        declare @trigname sysname
+        select @trigname = object_name(@@procid)
+
+        raiserror (21128, 16, 1, @trigname)
+        goto FAILURE
+    end  
+    select @update_mode_id = update_mode
+            ,@queue_server = queue_server
+            ,@queue_id = queue_id
+            ,@failover_mode_id = failover_mode        
+    from dbo.MSsubscription_agents where id = 1  
+    --
+    -- initialize and validate based on update mode
+    --
+    if (@update_mode_id = 1 or (@update_mode_id in (3,5) and @failover_mode_id = 0))
+    begin
+        exec @retcode = sys.sp_getpublisherlink @@procid, @connect_string output, @islocalpublisher output  
+        if @retcode <>0 or @@error <> 0 
+            goto FAILURE
+    end 
+    else if (@update_mode_id in (2,4) or (@update_mode_id in (3,5) and @failover_mode_id = 1))
+    begin
+        if (@queue_id is NULL) 
+            goto FAILURE
+    end 
+    else if @update_mode_id = 0
+    begin
+        raiserror (21757, 16, 1)
+        goto FAILURE
+    end
+    else
+    begin
+        raiserror(21561, 16, 1, 'update_mode', @update_mode_id)
+        goto FAILURE
+    end  
+    --
+    -- set queue prefix for MSMQ cases
+    --
+    if (@update_mode_id in (2,3))
+    begin
+        select @queue_id = N'DIRECT=OS:' + @queue_server + N'\PRIVATE$\' + @queue_id 
+    end 
+    --
+    -- Decide if we should start a distributed transaction or local transaction
+    -- based on update mode, failover state and islocalpublisher
+    --  
+    if (@update_mode_id = 1 and @islocalpublisher = 1)
+        or (@update_mode_id = 3 and @failover_mode_id = 0 and @islocalpublisher = 1) 
+        or (@update_mode_id = 4) 
+        or (@update_mode_id = 5 and @failover_mode_id = 0 and @islocalpublisher = 1) 
+        or (@update_mode_id = 5 and @failover_mode_id = 1)  
+    begin
+        BEGIN TRAN 
+    end
+    else
+    begin
+        SET XACT_ABORT ON
+        BEGIN DISTRIBUTED TRAN
+    end  
+    --
+    -- save the transaction token for later use
+    --
+    exec sys.sp_getbindtoken @out_token = @tran_id OUTPUT , @for_xp_flag = 1   
+    --
+    -- Are we doing single or multi row trigger update 
+    --
+    if (@rc = 1)
+    begin 
+        --
+        -- single row trigger update
+        --  
+        select 
+          @c1     = [ENTRADAID]
+             ,@c2     = [FECHA]
+             ,@c3     = [HORAENTRADA]
+             ,@c4     = [PACIENTEID]
+             ,@c5     = [CLIENTEID]
+             ,@c6     = [DOCTORID]
+             ,@c7     = [POLIZAID]
+             ,@c8     = [ENCLINICA]
+             ,@c9     = [RECORDCLINICA]
+             ,@c10     = [NUMEROHABITACION]
+             ,@c11     = [FECHAENTRADA]
+             ,@c12     = [FECHADEALTA]
+             ,@c13     = [FECHAPROMETIDA]
+             ,@c14     = [HORAPROMETIDA]
+             ,@c15     = [FLEBOTOMISTAID]
+             ,@c16     = [NOTA]
+             ,@c17     = [PROYECTOID]
+             ,@c18     = [RECORDID]
+             ,@c19     = [BRUTO]
+             ,@c20     = [DESCUENTO]
+             ,@c21     = [SUBTOTAL]
+             ,@c22     = [NETO]
+             ,@c23     = [NOMBREPACIENTE]
+             ,@c24     = [DIRECCION]
+             ,@c25     = [TELEFONOS]
+             ,@c26     = [TELEFONO2]
+             ,@c27     = [EMAIL]
+             ,@c28     = [CLIENTENOMBRE]
+             ,@c29     = [SUCURSALID]
+             ,@c30     = [USERID]
+             ,@c31     = [COBROID]
+             ,@c32     = [TOTALPAGADO]
+             ,@c33     = [PRIORIDAD]
+             ,@c34     = [FAX]
+             ,@c35     = [COBERTURAPORC]
+             ,@c36     = [COBERTURASEGURO]
+             ,@c37     = [COBERTURAVALOR]
+             ,@c38     = [DESCUENTOPORC]
+             ,@c39     = [DESCUENTOVALOR]
+             ,@c40     = [DESCUENTOBONO]
+             ,@c41     = [ORIGEN]
+             ,@c42     = [APROBACIONNO]
+             ,@c43     = [APROBACIONPOR]
+             ,@c44     = [COBERTURARECHAZADA]
+             ,@c45     = [COBERTURACONFIRMADA]
+             ,@c46     = [FECHAASEGURADORA]
+             ,@c47     = [MUESTRANO]
+             ,@c48     = [MONEDAID]
+             ,@c49     = [COBERTURAEXPPORC]
+             ,@c50     = [EDADPACIENTE]
+             ,@c51     = [NOMBREDOCTOR]
+             ,@c52     = [PUBLICARINTERNET]
+             ,@c53     = [CARNET]
+             ,@c54     = [PUBLICARINTERNETDOCTOR]
+             ,@c55     = [CUADREGLOBAL]
+             ,@c56     = [CUADREUSUARIO]
+             ,@c57     = [DESCAUTORIZADOPOR]
+             ,@c58     = [GASTOSVARIOS]
+             ,@c59     = [NOAS400]
+             ,@c60     = [NOAXAPTA]
+             ,@c61     = [NOFACTURA]
+             ,@c62     = [FACTEXTERIOR]
+             ,@c63     = [HOLD]
+             ,@c64     = [REPMUESTRA]
+             ,@c65     = [ENTRADAIDANT]
+             ,@c66     = [TIPOENTRADA]
+             ,@c67     = [FORMADEPAGO]
+             ,@c68     = [DESCUENTOCARD]
+             ,@c69     = [DESCUENTOTEXTO]
+             ,@c70     = [ACUERDOPROPIO]
+             ,@c71     = [CLIENTEPADRE]
+             ,@c72     = [DESCUENTOPLANID]
+             ,@c73     = [FECHAREGISTRO]
+             ,@c74     = [HORAREGISTRO]
+             ,@c75     = [TASA]
+             ,@c76     = [ESTATUS]
+             ,@c77     = [TIPOCLIENTEAS400]
+             ,@c78     = [CLASECREDITO]
+             ,@c79     = [CARNETNUMERO]
+             ,@c80     = [CLIENTEPADREAXAPTA]
+             ,@c81     = [PACIENTEIDAXAPTA]
+             ,@c82     = [CLIENTEIDAXAPTA]
+             ,@c83     = [DOCTORIDAXAPTA]
+             ,@c84     = [NCFTYPEID]
+             ,@c85     = [NCFID]
+             ,@c86     = [NCFNAME]
+             ,@c87     = [SEXO]
+             ,@c88     = [CUADRADO]
+             ,@c89     = [TRANSFERIDO]
+             ,@c90     = [SUCURSAL]
+             ,@c91     = [NUMEROINTERNET]
+             ,@c92     = [PUBLICARINTERNETCLIENTE]
+             ,@c93     = [COBERTURAPRECONFIRMADA]
+             ,@c94     = [COBERTURAMONTOPRECONFIRMADO]
+             ,@c95     = [TRANSFERENCIA]
+             ,@c96     = [GRUPOPRECIO]
+             ,@c97     = [TIPODOCUMENTO]
+             ,@c98     = [GRUPODESCUENTOLINEA]
+             ,@c99     = [GRUPODESCUENTOTOTAL]
+             ,@c100     = [RESULTADOCLIENTE]
+             ,@c101     = [RESULTADODOCTOR]
+             ,@c102     = [RESULTADOPACIENTE]
+             ,@c103     = [DATAAREAID]
+             ,@c104     = [RECID]
+             ,@c105     = [msrepl_tran_version]
+              
+        from inserted  
+        if (@update_mode_id = 1) or (@update_mode_id in (3, 5) and @failover_mode_id = 0)
+        begin 
+            -- 
+            -- immediate mode 
+            --  
+            select @rpc_proc = @connect_string + N'.' + N'[dbo].[sp_MSsync_ins_PTENTRADAPACIENTE_1]' 
+            exec @retcode = @rpc_proc @subscriber, @subscriber_db,
+                                     @c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9,@c10,@c11,@c12,@c13,@c14,@c15,@c16,@c17,@c18,@c19,@c20,@c21,@c22,@c23,@c24,@c25,@c26,@c27,@c28,@c29,@c30,@c31,@c32,@c33,@c34,@c35,@c36,@c37,@c38,@c39,@c40,@c41,@c42,@c43,@c44,@c45,@c46,@c47,@c48,@c49,@c50,@c51,@c52,@c53,@c54,@c55,@c56,@c57,@c58,@c59,@c60,@c61,@c62,@c63,@c64,@c65,@c66,@c67,@c68,@c69,@c70,@c71,@c72,@c73,@c74,@c75,@c76,@c77,@c78,@c79,@c80,@c81,@c82,@c83,@c84,@c85,@c86,@c87,@c88,@c89,@c90,@c91,@c92,@c93,@c94,@c95,@c96,@c97,@c98,@c99,@c100,@c101,@c102,@c103,@c104,@c105 
+ 
+            if (@@error != 0 or @retcode != 0)
+            begin 
+                if (@retcode = -2)
+                    exec sys.sp_MSreplraiserror 21064
+                else if @retcode = 5
+                    exec sys.sp_MSreplraiserror 20515
+                else
+                    exec sys.sp_MSreplraiserror 21054
+                    goto FAILURE 
+            end
+        end 
+        else
+        begin
+            --
+            -- handle queued cases
+            -- 
+            if (@update_mode_id in (2,3))
+            begin 
+                exec @retcode = sys.sp_replsendtoqueue @queue_id, @tran_id, N'Real_001', N'11', N'ins', N'sp_MSsync_ins_PTENTRADAPACIENTE_1', @subscriber, @subscriber_db, 
+                     @c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9,@c10,@c11,@c12,@c13,@c14,@c15,@c16,@c17,@c18,@c19,@c20,@c21,@c22,@c23,@c24,@c25,@c26,@c27,@c28,@c29,@c30,@c31,@c32,@c33,@c34,@c35,@c36,@c37,@c38,@c39,@c40,@c41,@c42,@c43,@c44,@c45,@c46,@c47,@c48,@c49,@c50,@c51,@c52,@c53,@c54,@c55,@c56,@c57,@c58,@c59,@c60,@c61,@c62,@c63,@c64,@c65,@c66,@c67,@c68,@c69,@c70,@c71,@c72,@c73,@c74,@c75,@c76,@c77,@c78,@c79,@c80,@c81,@c82,@c83,@c84,@c85,@c86,@c87,@c88,@c89,@c90,@c91,@c92,@c93,@c94,@c95,@c96,@c97,@c98,@c99,@c100,@c101,@c102,@c103,@c104,@c105 
+ 
+            end
+            else if (@update_mode_id in (4,5))
+            begin
+                select @partial_cmd = 1, @start_offset = 0, @end_offset = 0
+                while (@partial_cmd != 0)
+                begin 
+                    exec @retcode = sys.sp_replwritetovarbin @start_offset, @end_offset output, @vb_buffer output, @vb_bufferlen output, N'SER02', N'AXLR', N'Real_001', @tran_id, N'11', N'ins', N'sp_MSsync_ins_PTENTRADAPACIENTE_1', @subscriber, @subscriber_db, 
+                     @c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9,@c10,@c11,@c12,@c13,@c14,@c15,@c16,@c17,@c18,@c19,@c20,@c21,@c22,@c23,@c24,@c25,@c26,@c27,@c28,@c29,@c30,@c31,@c32,@c33,@c34,@c35,@c36,@c37,@c38,@c39,@c40,@c41,@c42,@c43,@c44,@c45,@c46,@c47,@c48,@c49,@c50,@c51,@c52,@c53,@c54,@c55,@c56,@c57,@c58,@c59,@c60,@c61,@c62,@c63,@c64,@c65,@c66,@c67,@c68,@c69,@c70,@c71,@c72,@c73,@c74,@c75,@c76,@c77,@c78,@c79,@c80,@c81,@c82,@c83,@c84,@c85,@c86,@c87,@c88,@c89,@c90,@c91,@c92,@c93,@c94,@c95,@c96,@c97,@c98,@c99,@c100,@c101,@c102,@c103,@c104,@c105 
+ 
+                    if @@error != 0 or @retcode != 0 
+                    begin 
+                        exec sys.sp_MSreplraiserror 21052
+                        goto FAILURE 
+                    end 
+                    select @partial_cmd = case when (@end_offset > 0) then 1 else 0 end            
+                    exec @retcode = sys.sp_MSsendtosqlqueue @@procid, N'SER02', N'AXLR', N'Real_001', N'dbo', @tran_id, @vb_buffer, @vb_bufferlen, 1, @partial_cmd  
+                    if @@error != 0 or @retcode != 0 
+                    begin 
+                        exec sys.sp_MSreplraiserror 21052
+                        goto FAILURE 
+                    end
+                    select @start_offset = @end_offset
+                end
+            end 
+            if @@error <>0 or @retcode <> 0 
+            begin 
+                exec sys.sp_MSreplraiserror 21052
+                goto FAILURE 
+            end
+        end
+     
+    end -- end of single row trigger update  
+    else
+    begin 
+        --
+        -- start of multirow row trigger update 
+        --  
+        declare rpl_ins_cursor CURSOR LOCAL FAST_FORWARD FOR select 
+          [ENTRADAID]
+    ,[FECHA]
+    ,[HORAENTRADA]
+    ,[PACIENTEID]
+    ,[CLIENTEID]
+    ,[DOCTORID]
+    ,[POLIZAID]
+    ,[ENCLINICA]
+    ,[RECORDCLINICA]
+    ,[NUMEROHABITACION]
+    ,[FECHAENTRADA]
+    ,[FECHADEALTA]
+    ,[FECHAPROMETIDA]
+    ,[HORAPROMETIDA]
+    ,[FLEBOTOMISTAID]
+    ,[NOTA]
+    ,[PROYECTOID]
+    ,[RECORDID]
+    ,[BRUTO]
+    ,[DESCUENTO]
+    ,[SUBTOTAL]
+    ,[NETO]
+    ,[NOMBREPACIENTE]
+    ,[DIRECCION]
+    ,[TELEFONOS]
+    ,[TELEFONO2]
+    ,[EMAIL]
+    ,[CLIENTENOMBRE]
+    ,[SUCURSALID]
+    ,[USERID]
+    ,[COBROID]
+    ,[TOTALPAGADO]
+    ,[PRIORIDAD]
+    ,[FAX]
+    ,[COBERTURAPORC]
+    ,[COBERTURASEGURO]
+    ,[COBERTURAVALOR]
+    ,[DESCUENTOPORC]
+    ,[DESCUENTOVALOR]
+    ,[DESCUENTOBONO]
+    ,[ORIGEN]
+    ,[APROBACIONNO]
+    ,[APROBACIONPOR]
+    ,[COBERTURARECHAZADA]
+    ,[COBERTURACONFIRMADA]
+    ,[FECHAASEGURADORA]
+    ,[MUESTRANO]
+    ,[MONEDAID]
+    ,[COBERTURAEXPPORC]
+    ,[EDADPACIENTE]
+    ,[NOMBREDOCTOR]
+    ,[PUBLICARINTERNET]
+    ,[CARNET]
+    ,[PUBLICARINTERNETDOCTOR]
+    ,[CUADREGLOBAL]
+    ,[CUADREUSUARIO]
+    ,[DESCAUTORIZADOPOR]
+    ,[GASTOSVARIOS]
+    ,[NOAS400]
+    ,[NOAXAPTA]
+    ,[NOFACTURA]
+    ,[FACTEXTERIOR]
+    ,[HOLD]
+    ,[REPMUESTRA]
+    ,[ENTRADAIDANT]
+    ,[TIPOENTRADA]
+    ,[FORMADEPAGO]
+    ,[DESCUENTOCARD]
+    ,[DESCUENTOTEXTO]
+    ,[ACUERDOPROPIO]
+    ,[CLIENTEPADRE]
+    ,[DESCUENTOPLANID]
+    ,[FECHAREGISTRO]
+    ,[HORAREGISTRO]
+    ,[TASA]
+    ,[ESTATUS]
+    ,[TIPOCLIENTEAS400]
+    ,[CLASECREDITO]
+    ,[CARNETNUMERO]
+    ,[CLIENTEPADREAXAPTA]
+    ,[PACIENTEIDAXAPTA]
+    ,[CLIENTEIDAXAPTA]
+    ,[DOCTORIDAXAPTA]
+    ,[NCFTYPEID]
+    ,[NCFID]
+    ,[NCFNAME]
+    ,[SEXO]
+    ,[CUADRADO]
+    ,[TRANSFERIDO]
+    ,[SUCURSAL]
+    ,[NUMEROINTERNET]
+    ,[PUBLICARINTERNETCLIENTE]
+    ,[COBERTURAPRECONFIRMADA]
+    ,[COBERTURAMONTOPRECONFIRMADO]
+    ,[TRANSFERENCIA]
+    ,[GRUPOPRECIO]
+    ,[TIPODOCUMENTO]
+    ,[GRUPODESCUENTOLINEA]
+    ,[GRUPODESCUENTOTOTAL]
+    ,[RESULTADOCLIENTE]
+    ,[RESULTADODOCTOR]
+    ,[RESULTADOPACIENTE]
+    ,[DATAAREAID]
+    ,[RECID]
+    ,[msrepl_tran_version]
+     
+ 
+            from inserted for read only
+        open rpl_ins_cursor 
+         fetch next from rpl_ins_cursor into 
+          @c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9,@c10,@c11,@c12,@c13,@c14,@c15,@c16,@c17,@c18,@c19,@c20,@c21,@c22,@c23,@c24,@c25,@c26,@c27,@c28,@c29,@c30,@c31,@c32,@c33,@c34,@c35,@c36,@c37,@c38,@c39,@c40,@c41,@c42,@c43,@c44,@c45,@c46,@c47,@c48,@c49,@c50,@c51,@c52,@c53,@c54,@c55,@c56,@c57,@c58,@c59,@c60,@c61,@c62,@c63,@c64,@c65,@c66,@c67,@c68,@c69,@c70,@c71,@c72,@c73,@c74,@c75,@c76,@c77,@c78,@c79,@c80,@c81,@c82,@c83,@c84,@c85,@c86,@c87,@c88,@c89,@c90,@c91,@c92,@c93,@c94,@c95,@c96,@c97,@c98,@c99,@c100,@c101,@c102,@c103,@c104,@c105 
+ 
+        while (@@fetch_status != -1)
+        begin  
+        if (@update_mode_id = 1) or (@update_mode_id in (3, 5) and @failover_mode_id = 0)
+        begin 
+            -- 
+            -- immediate mode 
+            --  
+            select @rpc_proc = @connect_string + N'.' + N'[dbo].[sp_MSsync_ins_PTENTRADAPACIENTE_1]' 
+            exec @retcode = @rpc_proc @subscriber, @subscriber_db,
+                                         @c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9,@c10,@c11,@c12,@c13,@c14,@c15,@c16,@c17,@c18,@c19,@c20,@c21,@c22,@c23,@c24,@c25,@c26,@c27,@c28,@c29,@c30,@c31,@c32,@c33,@c34,@c35,@c36,@c37,@c38,@c39,@c40,@c41,@c42,@c43,@c44,@c45,@c46,@c47,@c48,@c49,@c50,@c51,@c52,@c53,@c54,@c55,@c56,@c57,@c58,@c59,@c60,@c61,@c62,@c63,@c64,@c65,@c66,@c67,@c68,@c69,@c70,@c71,@c72,@c73,@c74,@c75,@c76,@c77,@c78,@c79,@c80,@c81,@c82,@c83,@c84,@c85,@c86,@c87,@c88,@c89,@c90,@c91,@c92,@c93,@c94,@c95,@c96,@c97,@c98,@c99,@c100,@c101,@c102,@c103,@c104,@c105 
+ 
+            if (@@error != 0 or @retcode != 0)
+            begin 
+                if (@retcode = -2)
+                    exec sys.sp_MSreplraiserror 21064
+                else if @retcode = 5
+                    exec sys.sp_MSreplraiserror 20515
+                else
+                    exec sys.sp_MSreplraiserror 21054
+                    goto FAILURE 
+            end
+        end 
+        else
+        begin
+            --
+            -- handle queued cases
+            -- 
+            if (@update_mode_id in (2,3))
+            begin 
+                exec @retcode = sys.sp_replsendtoqueue @queue_id, @tran_id, N'Real_001', N'11', N'ins', N'sp_MSsync_ins_PTENTRADAPACIENTE_1', @subscriber, @subscriber_db, 
+                         @c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9,@c10,@c11,@c12,@c13,@c14,@c15,@c16,@c17,@c18,@c19,@c20,@c21,@c22,@c23,@c24,@c25,@c26,@c27,@c28,@c29,@c30,@c31,@c32,@c33,@c34,@c35,@c36,@c37,@c38,@c39,@c40,@c41,@c42,@c43,@c44,@c45,@c46,@c47,@c48,@c49,@c50,@c51,@c52,@c53,@c54,@c55,@c56,@c57,@c58,@c59,@c60,@c61,@c62,@c63,@c64,@c65,@c66,@c67,@c68,@c69,@c70,@c71,@c72,@c73,@c74,@c75,@c76,@c77,@c78,@c79,@c80,@c81,@c82,@c83,@c84,@c85,@c86,@c87,@c88,@c89,@c90,@c91,@c92,@c93,@c94,@c95,@c96,@c97,@c98,@c99,@c100,@c101,@c102,@c103,@c104,@c105 
+ 
+            end
+            else if (@update_mode_id in (4,5))
+            begin
+                select @partial_cmd = 1, @start_offset = 0, @end_offset = 0
+                while (@partial_cmd != 0)
+                begin 
+                    exec @retcode = sys.sp_replwritetovarbin @start_offset, @end_offset output, @vb_buffer output, @vb_bufferlen output, N'SER02', N'AXLR', N'Real_001', @tran_id, N'11', N'ins', N'sp_MSsync_ins_PTENTRADAPACIENTE_1', @subscriber, @subscriber_db, 
+                         @c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9,@c10,@c11,@c12,@c13,@c14,@c15,@c16,@c17,@c18,@c19,@c20,@c21,@c22,@c23,@c24,@c25,@c26,@c27,@c28,@c29,@c30,@c31,@c32,@c33,@c34,@c35,@c36,@c37,@c38,@c39,@c40,@c41,@c42,@c43,@c44,@c45,@c46,@c47,@c48,@c49,@c50,@c51,@c52,@c53,@c54,@c55,@c56,@c57,@c58,@c59,@c60,@c61,@c62,@c63,@c64,@c65,@c66,@c67,@c68,@c69,@c70,@c71,@c72,@c73,@c74,@c75,@c76,@c77,@c78,@c79,@c80,@c81,@c82,@c83,@c84,@c85,@c86,@c87,@c88,@c89,@c90,@c91,@c92,@c93,@c94,@c95,@c96,@c97,@c98,@c99,@c100,@c101,@c102,@c103,@c104,@c105 
+ 
+                    if @@error != 0 or @retcode != 0 
+                    begin 
+                        exec sys.sp_MSreplraiserror 21052
+                        goto FAILURE 
+                    end 
+                    select @partial_cmd = case when (@end_offset > 0) then 1 else 0 end            
+                    exec @retcode = sys.sp_MSsendtosqlqueue @@procid, N'SER02', N'AXLR', N'Real_001', N'dbo', @tran_id, @vb_buffer, @vb_bufferlen, 1, @partial_cmd  
+                    if @@error != 0 or @retcode != 0 
+                    begin 
+                        exec sys.sp_MSreplraiserror 21052
+                        goto FAILURE 
+                    end
+                    select @start_offset = @end_offset
+                end
+            end 
+            if @@error <>0 or @retcode <> 0 
+            begin 
+                exec sys.sp_MSreplraiserror 21052
+                goto FAILURE 
+            end
+        end
+     
+             fetch next from rpl_ins_cursor into 
+              @c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9,@c10,@c11,@c12,@c13,@c14,@c15,@c16,@c17,@c18,@c19,@c20,@c21,@c22,@c23,@c24,@c25,@c26,@c27,@c28,@c29,@c30,@c31,@c32,@c33,@c34,@c35,@c36,@c37,@c38,@c39,@c40,@c41,@c42,@c43,@c44,@c45,@c46,@c47,@c48,@c49,@c50,@c51,@c52,@c53,@c54,@c55,@c56,@c57,@c58,@c59,@c60,@c61,@c62,@c63,@c64,@c65,@c66,@c67,@c68,@c69,@c70,@c71,@c72,@c73,@c74,@c75,@c76,@c77,@c78,@c79,@c80,@c81,@c82,@c83,@c84,@c85,@c86,@c87,@c88,@c89,@c90,@c91,@c92,@c93,@c94,@c95,@c96,@c97,@c98,@c99,@c100,@c101,@c102,@c103,@c104,@c105 
+ 
+        end  -- cursor while loop 
+        close rpl_ins_cursor
+        deallocate rpl_ins_cursor  
+    end -- end of multi row trigger update  
+    if (@@trancount > 0)
+        commit tran
+    return 
+
+FAILURE:
+    if (@@trancount > 0)
+    begin
+        exec sys.sp_MSreplraiserror 20512
+        rollback tran
+    end
+GO
+
+CREATE TRIGGER [dbo].[trg_MSsync_upd_PTENTRADAPACIENTE] ON [dbo].[PTENTRADAPACIENTE]
+WITH EXECUTE AS 'repllinkproxy'
+FOR UPDATE
+NOT FOR REPLICATION
+AS
+    declare @rc int
+                ,@retcode int
+                ,@connect_string nvarchar(300)
+                ,@islocalpublisher bit 
+                ,@rpc_proc nvarchar(500)
+                ,@update_mode_id int
+                ,@bitmap varbinary(4000)
+                ,@version_guid uniqueidentifier
+                ,@trigger_op char(10)  
+                ,@failover_mode_id int
+                ,@queue_server sysname
+                ,@queue_id sysname
+                ,@tran_id varchar(255)
+                ,@subscriber sysname
+                ,@subscriber_db sysname 
+                ,@partial_cmd bit
+                ,@start_offset int
+                ,@end_offset int
+                ,@vb_buffer varbinary(8000)
+                ,@vb_bufferlen int        
+             
+    declare       @c1 varchar(20)     ,@c2 datetime     ,@c3 varchar(20)     ,@c4 varchar(10)     ,@c5 varchar(10)     ,@c6 varchar(10)     ,@c7 varchar(80)     ,@c8 int     ,@c9 varchar(20)     ,@c10 varchar(20)     ,@c11 datetime     ,@c12 datetime     ,@c13 datetime     ,@c14 varchar(20)     ,@c15 varchar(10)     ,@c16 varchar(255)     ,@c17 varchar(10)     ,@c18 int     ,@c19 numeric(28,12)     ,@c20 numeric(28,12)     ,@c21 numeric(28,12)     ,@c22 numeric(28,12)     ,@c23 varchar(80)     ,@c24 varchar(255)     ,@c25 varchar(20)     ,@c26 varchar(20)     ,@c27 varchar(80)     ,@c28 varchar(80)     ,@c29 varchar(10)     ,@c30 varchar(10)     ,@c31 varchar(10)     ,@c32 numeric(28,12)     ,@c33 int     ,@c34 varchar(20)     ,@c35 numeric(28,12)     ,@c36 numeric(28,12)     ,@c37 numeric(28,12)     ,@c38 numeric(28,12)     ,@c39 numeric(28,12)     ,@c40 numeric(28,12)     ,@c41 varchar(10)     ,@c42 varchar(20)     ,@c43 varchar(80)     ,@c44 int     ,@c45 int     ,@c46 datetime     ,@c47 varchar(20)     ,@c48 varchar(3)     ,@c49 int     ,@c50 int     ,@c51 varchar(80)     ,@c52 int     ,@c53 varchar(20)     ,@c54 int     ,@c55 varchar(20)     ,@c56 varchar(20)     ,@c57 varchar(10)     ,@c58 numeric(28,12)     ,@c59 int     ,@c60 int     ,@c61 int     ,@c62 int     ,@c63 int     ,@c64 int     ,@c65 varchar(20)     ,@c66 varchar(2)     ,@c67 varchar(10)     ,@c68 varchar(30)     ,@c69 varchar(30)     ,@c70 int     ,@c71 varchar(10)     ,@c72 varchar(10)     ,@c73 datetime     ,@c74 varchar(20)     ,@c75 numeric(28,12)     ,@c76 int     ,@c77 int     ,@c78 varchar(5)     ,@c79 varchar(10)     ,@c80 varchar(10)     ,@c81 varchar(10)     ,@c82 varchar(10)     ,@c83 varchar(10)     ,@c84 varchar(10)     ,@c85 varchar(19)     ,@c86 varchar(80)     ,@c87 int     ,@c88 int     ,@c89 int     ,@c90 int     ,@c91 int     ,@c92 int     ,@c93 int     ,@c94 numeric(28,12)     ,@c95 varchar(10)     ,@c96 varchar(10)     ,@c97 int     ,@c98 varchar(10)     ,@c99 varchar(10)     ,@c100 int     ,@c101 int     ,@c102 int     ,@c103 varchar(3)     ,@c104 int     ,@c105 uniqueidentifier 
+    declare       @c1_old varchar(20)     ,@c2_old datetime     ,@c3_old varchar(20)     ,@c4_old varchar(10)     ,@c5_old varchar(10)     ,@c6_old varchar(10)     ,@c7_old varchar(80)     ,@c8_old int     ,@c9_old varchar(20)     ,@c10_old varchar(20)     ,@c11_old datetime     ,@c12_old datetime     ,@c13_old datetime     ,@c14_old varchar(20)     ,@c15_old varchar(10)     ,@c16_old varchar(255)     ,@c17_old varchar(10)     ,@c18_old int     ,@c19_old numeric(28,12)     ,@c20_old numeric(28,12)     ,@c21_old numeric(28,12)     ,@c22_old numeric(28,12)     ,@c23_old varchar(80)     ,@c24_old varchar(255)     ,@c25_old varchar(20)     ,@c26_old varchar(20)     ,@c27_old varchar(80)     ,@c28_old varchar(80)     ,@c29_old varchar(10)     ,@c30_old varchar(10)     ,@c31_old varchar(10)     ,@c32_old numeric(28,12)     ,@c33_old int     ,@c34_old varchar(20)     ,@c35_old numeric(28,12)     ,@c36_old numeric(28,12)     ,@c37_old numeric(28,12)     ,@c38_old numeric(28,12)     ,@c39_old numeric(28,12)     ,@c40_old numeric(28,12)     ,@c41_old varchar(10)     ,@c42_old varchar(20)     ,@c43_old varchar(80)     ,@c44_old int     ,@c45_old int     ,@c46_old datetime     ,@c47_old varchar(20)     ,@c48_old varchar(3)     ,@c49_old int     ,@c50_old int     ,@c51_old varchar(80)     ,@c52_old int     ,@c53_old varchar(20)     ,@c54_old int     ,@c55_old varchar(20)     ,@c56_old varchar(20)     ,@c57_old varchar(10)     ,@c58_old numeric(28,12)     ,@c59_old int     ,@c60_old int     ,@c61_old int     ,@c62_old int     ,@c63_old int     ,@c64_old int     ,@c65_old varchar(20)     ,@c66_old varchar(2)     ,@c67_old varchar(10)     ,@c68_old varchar(30)     ,@c69_old varchar(30)     ,@c70_old int     ,@c71_old varchar(10)     ,@c72_old varchar(10)     ,@c73_old datetime     ,@c74_old varchar(20)     ,@c75_old numeric(28,12)     ,@c76_old int     ,@c77_old int     ,@c78_old varchar(5)     ,@c79_old varchar(10)     ,@c80_old varchar(10)     ,@c81_old varchar(10)     ,@c82_old varchar(10)     ,@c83_old varchar(10)     ,@c84_old varchar(10)     ,@c85_old varchar(19)     ,@c86_old varchar(80)     ,@c87_old int     ,@c88_old int     ,@c89_old int     ,@c90_old int     ,@c91_old int     ,@c92_old int     ,@c93_old int     ,@c94_old numeric(28,12)     ,@c95_old varchar(10)     ,@c96_old varchar(10)     ,@c97_old int     ,@c98_old varchar(10)     ,@c99_old varchar(10)     ,@c100_old int     ,@c101_old int     ,@c102_old int     ,@c103_old varchar(3)     ,@c104_old int     ,@c105_old uniqueidentifier 
+
+    select @rc = @@rowcount
+            ,@subscriber = @@servername
+            ,@subscriber_db = db_name() 
+            ,@version_guid = newid()
+    if @rc = 0 
+        return 
+    set nocount on  
+    select @bitmap = columns_updated() 
+     
+    -- set the bit for msrepl_tran_version 
+    select @bitmap = substring(@bitmap, 1, 13) + (convert(binary(1), substring(@bitmap, 14, 1) | convert(tinyint,1))) + substring(@bitmap, 15, 0)  
+    -- trigger nesting check
+    -- error = -1, nested call = 1, not a nested call = 0
+    exec @retcode = sys.sp_check_sync_trigger @@procid, @trigger_op OUTPUT, N'dbo' 
+    if (@retcode = -1)
+        goto FAILURE 
+    if (@retcode = 1)
+        return  
+    if Objectproperty(@@procid,'TriggerUpdateOrder') != 1    
+    begin
+        declare @trigname sysname
+        select @trigname = object_name(@@procid)
+
+        raiserror (21129, 16, 1, @trigname)
+        goto FAILURE
+    end  
+    select @update_mode_id = update_mode
+            ,@queue_server = queue_server
+            ,@queue_id = queue_id
+            ,@failover_mode_id = failover_mode        
+    from dbo.MSsubscription_agents where id = 1  
+    --
+    -- initialize and validate based on update mode
+    --
+    if (@update_mode_id = 1 or (@update_mode_id in (3,5) and @failover_mode_id = 0))
+    begin
+        exec @retcode = sys.sp_getpublisherlink @@procid, @connect_string output, @islocalpublisher output  
+        if @retcode <>0 or @@error <> 0 
+            goto FAILURE
+    end 
+    else if (@update_mode_id in (2,4) or (@update_mode_id in (3,5) and @failover_mode_id = 1))
+    begin
+        if (@queue_id is NULL) 
+            goto FAILURE
+    end 
+    else if @update_mode_id = 0
+    begin
+        raiserror (21757, 16, 1)
+        goto FAILURE
+    end
+    else
+    begin
+        raiserror(21561, 16, 1, 'update_mode', @update_mode_id)
+        goto FAILURE
+    end  
+    --
+    -- set queue prefix for MSMQ cases
+    --
+    if (@update_mode_id in (2,3))
+    begin
+        select @queue_id = N'DIRECT=OS:' + @queue_server + N'\PRIVATE$\' + @queue_id 
+    end 
+    --
+    -- Decide if we should start a distributed transaction or local transaction
+    -- based on update mode, failover state and islocalpublisher
+    --  
+    if (@update_mode_id = 1 and @islocalpublisher = 1)
+        or (@update_mode_id = 3 and @failover_mode_id = 0 and @islocalpublisher = 1) 
+        or (@update_mode_id = 4) 
+        or (@update_mode_id = 5 and @failover_mode_id = 0 and @islocalpublisher = 1) 
+        or (@update_mode_id = 5 and @failover_mode_id = 1)  
+    begin
+        BEGIN TRAN 
+    end
+    else
+    begin
+        SET XACT_ABORT ON
+        BEGIN DISTRIBUTED TRAN
+    end  
+    --
+    -- save the transaction token for later use
+    --
+    exec sys.sp_getbindtoken @out_token = @tran_id OUTPUT , @for_xp_flag = 1   
+    --
+    -- Are we doing single or multi row trigger update 
+    --
+    if (@rc = 1)
+    begin 
+        --
+        -- single row trigger update
+        --  
+        select 
+          @c1     = case substring(@bitmap,1,1) & 1 when 1 then [ENTRADAID]  else NULL end
+             ,@c2     = case substring(@bitmap,1,1) & 2 when 2 then [FECHA]  else NULL end
+             ,@c3     = case substring(@bitmap,1,1) & 4 when 4 then [HORAENTRADA]  else NULL end
+             ,@c4     = case substring(@bitmap,1,1) & 8 when 8 then [PACIENTEID]  else NULL end
+             ,@c5     = case substring(@bitmap,1,1) & 16 when 16 then [CLIENTEID]  else NULL end
+             ,@c6     = case substring(@bitmap,1,1) & 32 when 32 then [DOCTORID]  else NULL end
+             ,@c7     = case substring(@bitmap,1,1) & 64 when 64 then [POLIZAID]  else NULL end
+             ,@c8     = case substring(@bitmap,1,1) & 128 when 128 then [ENCLINICA]  else NULL end
+             ,@c9     = case substring(@bitmap,2,1) & 1 when 1 then [RECORDCLINICA]  else NULL end
+             ,@c10     = case substring(@bitmap,2,1) & 2 when 2 then [NUMEROHABITACION]  else NULL end
+             ,@c11     = case substring(@bitmap,2,1) & 4 when 4 then [FECHAENTRADA]  else NULL end
+             ,@c12     = case substring(@bitmap,2,1) & 8 when 8 then [FECHADEALTA]  else NULL end
+             ,@c13     = case substring(@bitmap,2,1) & 16 when 16 then [FECHAPROMETIDA]  else NULL end
+             ,@c14     = case substring(@bitmap,2,1) & 32 when 32 then [HORAPROMETIDA]  else NULL end
+             ,@c15     = case substring(@bitmap,2,1) & 64 when 64 then [FLEBOTOMISTAID]  else NULL end
+             ,@c16     = case substring(@bitmap,2,1) & 128 when 128 then [NOTA]  else NULL end
+             ,@c17     = case substring(@bitmap,3,1) & 1 when 1 then [PROYECTOID]  else NULL end
+             ,@c18     = case substring(@bitmap,3,1) & 2 when 2 then [RECORDID]  else NULL end
+             ,@c19     = case substring(@bitmap,3,1) & 4 when 4 then [BRUTO]  else NULL end
+             ,@c20     = case substring(@bitmap,3,1) & 8 when 8 then [DESCUENTO]  else NULL end
+             ,@c21     = case substring(@bitmap,3,1) & 16 when 16 then [SUBTOTAL]  else NULL end
+             ,@c22     = case substring(@bitmap,3,1) & 32 when 32 then [NETO]  else NULL end
+             ,@c23     = case substring(@bitmap,3,1) & 64 when 64 then [NOMBREPACIENTE]  else NULL end
+             ,@c24     = case substring(@bitmap,3,1) & 128 when 128 then [DIRECCION]  else NULL end
+             ,@c25     = case substring(@bitmap,4,1) & 1 when 1 then [TELEFONOS]  else NULL end
+             ,@c26     = case substring(@bitmap,4,1) & 2 when 2 then [TELEFONO2]  else NULL end
+             ,@c27     = case substring(@bitmap,4,1) & 4 when 4 then [EMAIL]  else NULL end
+             ,@c28     = case substring(@bitmap,4,1) & 8 when 8 then [CLIENTENOMBRE]  else NULL end
+             ,@c29     = case substring(@bitmap,4,1) & 16 when 16 then [SUCURSALID]  else NULL end
+             ,@c30     = case substring(@bitmap,4,1) & 32 when 32 then [USERID]  else NULL end
+             ,@c31     = case substring(@bitmap,4,1) & 64 when 64 then [COBROID]  else NULL end
+             ,@c32     = case substring(@bitmap,4,1) & 128 when 128 then [TOTALPAGADO]  else NULL end
+             ,@c33     = case substring(@bitmap,5,1) & 1 when 1 then [PRIORIDAD]  else NULL end
+             ,@c34     = case substring(@bitmap,5,1) & 2 when 2 then [FAX]  else NULL end
+             ,@c35     = case substring(@bitmap,5,1) & 4 when 4 then [COBERTURAPORC]  else NULL end
+             ,@c36     = case substring(@bitmap,5,1) & 8 when 8 then [COBERTURASEGURO]  else NULL end
+             ,@c37     = case substring(@bitmap,5,1) & 16 when 16 then [COBERTURAVALOR]  else NULL end
+             ,@c38     = case substring(@bitmap,5,1) & 32 when 32 then [DESCUENTOPORC]  else NULL end
+             ,@c39     = case substring(@bitmap,5,1) & 64 when 64 then [DESCUENTOVALOR]  else NULL end
+             ,@c40     = case substring(@bitmap,5,1) & 128 when 128 then [DESCUENTOBONO]  else NULL end
+             ,@c41     = case substring(@bitmap,6,1) & 1 when 1 then [ORIGEN]  else NULL end
+             ,@c42     = case substring(@bitmap,6,1) & 2 when 2 then [APROBACIONNO]  else NULL end
+             ,@c43     = case substring(@bitmap,6,1) & 4 when 4 then [APROBACIONPOR]  else NULL end
+             ,@c44     = case substring(@bitmap,6,1) & 8 when 8 then [COBERTURARECHAZADA]  else NULL end
+             ,@c45     = case substring(@bitmap,6,1) & 16 when 16 then [COBERTURACONFIRMADA]  else NULL end
+             ,@c46     = case substring(@bitmap,6,1) & 32 when 32 then [FECHAASEGURADORA]  else NULL end
+             ,@c47     = case substring(@bitmap,6,1) & 64 when 64 then [MUESTRANO]  else NULL end
+             ,@c48     = case substring(@bitmap,6,1) & 128 when 128 then [MONEDAID]  else NULL end
+             ,@c49     = case substring(@bitmap,7,1) & 1 when 1 then [COBERTURAEXPPORC]  else NULL end
+             ,@c50     = case substring(@bitmap,7,1) & 2 when 2 then [EDADPACIENTE]  else NULL end
+             ,@c51     = case substring(@bitmap,7,1) & 4 when 4 then [NOMBREDOCTOR]  else NULL end
+             ,@c52     = case substring(@bitmap,7,1) & 8 when 8 then [PUBLICARINTERNET]  else NULL end
+             ,@c53     = case substring(@bitmap,7,1) & 16 when 16 then [CARNET]  else NULL end
+             ,@c54     = case substring(@bitmap,7,1) & 32 when 32 then [PUBLICARINTERNETDOCTOR]  else NULL end
+             ,@c55     = case substring(@bitmap,7,1) & 64 when 64 then [CUADREGLOBAL]  else NULL end
+             ,@c56     = case substring(@bitmap,7,1) & 128 when 128 then [CUADREUSUARIO]  else NULL end
+             ,@c57     = case substring(@bitmap,8,1) & 1 when 1 then [DESCAUTORIZADOPOR]  else NULL end
+             ,@c58     = case substring(@bitmap,8,1) & 2 when 2 then [GASTOSVARIOS]  else NULL end
+             ,@c59     = case substring(@bitmap,8,1) & 4 when 4 then [NOAS400]  else NULL end
+             ,@c60     = case substring(@bitmap,8,1) & 8 when 8 then [NOAXAPTA]  else NULL end
+             ,@c61     = case substring(@bitmap,8,1) & 16 when 16 then [NOFACTURA]  else NULL end
+             ,@c62     = case substring(@bitmap,8,1) & 32 when 32 then [FACTEXTERIOR]  else NULL end
+             ,@c63     = case substring(@bitmap,8,1) & 64 when 64 then [HOLD]  else NULL end
+             ,@c64     = case substring(@bitmap,8,1) & 128 when 128 then [REPMUESTRA]  else NULL end
+             ,@c65     = case substring(@bitmap,9,1) & 1 when 1 then [ENTRADAIDANT]  else NULL end
+             ,@c66     = case substring(@bitmap,9,1) & 2 when 2 then [TIPOENTRADA]  else NULL end
+             ,@c67     = case substring(@bitmap,9,1) & 4 when 4 then [FORMADEPAGO]  else NULL end
+             ,@c68     = case substring(@bitmap,9,1) & 8 when 8 then [DESCUENTOCARD]  else NULL end
+             ,@c69     = case substring(@bitmap,9,1) & 16 when 16 then [DESCUENTOTEXTO]  else NULL end
+             ,@c70     = case substring(@bitmap,9,1) & 32 when 32 then [ACUERDOPROPIO]  else NULL end
+             ,@c71     = case substring(@bitmap,9,1) & 64 when 64 then [CLIENTEPADRE]  else NULL end
+             ,@c72     = case substring(@bitmap,9,1) & 128 when 128 then [DESCUENTOPLANID]  else NULL end
+             ,@c73     = case substring(@bitmap,10,1) & 1 when 1 then [FECHAREGISTRO]  else NULL end
+             ,@c74     = case substring(@bitmap,10,1) & 2 when 2 then [HORAREGISTRO]  else NULL end
+             ,@c75     = case substring(@bitmap,10,1) & 4 when 4 then [TASA]  else NULL end
+             ,@c76     = case substring(@bitmap,10,1) & 8 when 8 then [ESTATUS]  else NULL end
+             ,@c77     = case substring(@bitmap,10,1) & 16 when 16 then [TIPOCLIENTEAS400]  else NULL end
+             ,@c78     = case substring(@bitmap,10,1) & 32 when 32 then [CLASECREDITO]  else NULL end
+             ,@c79     = case substring(@bitmap,10,1) & 64 when 64 then [CARNETNUMERO]  else NULL end
+             ,@c80     = case substring(@bitmap,10,1) & 128 when 128 then [CLIENTEPADREAXAPTA]  else NULL end
+             ,@c81     = case substring(@bitmap,11,1) & 1 when 1 then [PACIENTEIDAXAPTA]  else NULL end
+             ,@c82     = case substring(@bitmap,11,1) & 2 when 2 then [CLIENTEIDAXAPTA]  else NULL end
+             ,@c83     = case substring(@bitmap,11,1) & 4 when 4 then [DOCTORIDAXAPTA]  else NULL end
+             ,@c84     = case substring(@bitmap,11,1) & 8 when 8 then [NCFTYPEID]  else NULL end
+             ,@c85     = case substring(@bitmap,11,1) & 16 when 16 then [NCFID]  else NULL end
+             ,@c86     = case substring(@bitmap,11,1) & 32 when 32 then [NCFNAME]  else NULL end
+             ,@c87     = case substring(@bitmap,11,1) & 64 when 64 then [SEXO]  else NULL end
+             ,@c88     = case substring(@bitmap,11,1) & 128 when 128 then [CUADRADO]  else NULL end
+             ,@c89     = case substring(@bitmap,12,1) & 1 when 1 then [TRANSFERIDO]  else NULL end
+             ,@c90     = case substring(@bitmap,12,1) & 2 when 2 then [SUCURSAL]  else NULL end
+             ,@c91     = case substring(@bitmap,12,1) & 4 when 4 then [NUMEROINTERNET]  else NULL end
+             ,@c92     = case substring(@bitmap,12,1) & 8 when 8 then [PUBLICARINTERNETCLIENTE]  else NULL end
+             ,@c93     = case substring(@bitmap,12,1) & 16 when 16 then [COBERTURAPRECONFIRMADA]  else NULL end
+             ,@c94     = case substring(@bitmap,12,1) & 32 when 32 then [COBERTURAMONTOPRECONFIRMADO]  else NULL end
+             ,@c95     = case substring(@bitmap,12,1) & 64 when 64 then [TRANSFERENCIA]  else NULL end
+             ,@c96     = case substring(@bitmap,12,1) & 128 when 128 then [GRUPOPRECIO]  else NULL end
+             ,@c97     = case substring(@bitmap,13,1) & 1 when 1 then [TIPODOCUMENTO]  else NULL end
+             ,@c98     = case substring(@bitmap,13,1) & 2 when 2 then [GRUPODESCUENTOLINEA]  else NULL end
+             ,@c99     = case substring(@bitmap,13,1) & 4 when 4 then [GRUPODESCUENTOTOTAL]  else NULL end
+             ,@c100     = case substring(@bitmap,13,1) & 8 when 8 then [RESULTADOCLIENTE]  else NULL end
+             ,@c101     = case substring(@bitmap,13,1) & 16 when 16 then [RESULTADODOCTOR]  else NULL end
+             ,@c102     = case substring(@bitmap,13,1) & 32 when 32 then [RESULTADOPACIENTE]  else NULL end
+             ,@c103     = case substring(@bitmap,13,1) & 64 when 64 then [DATAAREAID]  else NULL end
+             ,@c104     = case substring(@bitmap,13,1) & 128 when 128 then [RECID]  else NULL end
+             ,@c105     = case substring(@bitmap,14,1) & 1 when 1 then [msrepl_tran_version]  else NULL end
+              
+        from inserted  
+        select 
+          @c1_old = [ENTRADAID]
+             ,@c2_old = [FECHA]
+             ,@c3_old = [HORAENTRADA]
+             ,@c4_old = [PACIENTEID]
+             ,@c5_old = [CLIENTEID]
+             ,@c6_old = [DOCTORID]
+             ,@c7_old = [POLIZAID]
+             ,@c8_old = [ENCLINICA]
+             ,@c9_old = [RECORDCLINICA]
+             ,@c10_old = [NUMEROHABITACION]
+             ,@c11_old = [FECHAENTRADA]
+             ,@c12_old = [FECHADEALTA]
+             ,@c13_old = [FECHAPROMETIDA]
+             ,@c14_old = [HORAPROMETIDA]
+             ,@c15_old = [FLEBOTOMISTAID]
+             ,@c16_old = [NOTA]
+             ,@c17_old = [PROYECTOID]
+             ,@c18_old = [RECORDID]
+             ,@c19_old = [BRUTO]
+             ,@c20_old = [DESCUENTO]
+             ,@c21_old = [SUBTOTAL]
+             ,@c22_old = [NETO]
+             ,@c23_old = [NOMBREPACIENTE]
+             ,@c24_old = [DIRECCION]
+             ,@c25_old = [TELEFONOS]
+             ,@c26_old = [TELEFONO2]
+             ,@c27_old = [EMAIL]
+             ,@c28_old = [CLIENTENOMBRE]
+             ,@c29_old = [SUCURSALID]
+             ,@c30_old = [USERID]
+             ,@c31_old = [COBROID]
+             ,@c32_old = [TOTALPAGADO]
+             ,@c33_old = [PRIORIDAD]
+             ,@c34_old = [FAX]
+             ,@c35_old = [COBERTURAPORC]
+             ,@c36_old = [COBERTURASEGURO]
+             ,@c37_old = [COBERTURAVALOR]
+             ,@c38_old = [DESCUENTOPORC]
+             ,@c39_old = [DESCUENTOVALOR]
+             ,@c40_old = [DESCUENTOBONO]
+             ,@c41_old = [ORIGEN]
+             ,@c42_old = [APROBACIONNO]
+             ,@c43_old = [APROBACIONPOR]
+             ,@c44_old = [COBERTURARECHAZADA]
+             ,@c45_old = [COBERTURACONFIRMADA]
+             ,@c46_old = [FECHAASEGURADORA]
+             ,@c47_old = [MUESTRANO]
+             ,@c48_old = [MONEDAID]
+             ,@c49_old = [COBERTURAEXPPORC]
+             ,@c50_old = [EDADPACIENTE]
+             ,@c51_old = [NOMBREDOCTOR]
+             ,@c52_old = [PUBLICARINTERNET]
+             ,@c53_old = [CARNET]
+             ,@c54_old = [PUBLICARINTERNETDOCTOR]
+             ,@c55_old = [CUADREGLOBAL]
+             ,@c56_old = [CUADREUSUARIO]
+             ,@c57_old = [DESCAUTORIZADOPOR]
+             ,@c58_old = [GASTOSVARIOS]
+             ,@c59_old = [NOAS400]
+             ,@c60_old = [NOAXAPTA]
+             ,@c61_old = [NOFACTURA]
+             ,@c62_old = [FACTEXTERIOR]
+             ,@c63_old = [HOLD]
+             ,@c64_old = [REPMUESTRA]
+             ,@c65_old = [ENTRADAIDANT]
+             ,@c66_old = [TIPOENTRADA]
+             ,@c67_old = [FORMADEPAGO]
+             ,@c68_old = [DESCUENTOCARD]
+             ,@c69_old = [DESCUENTOTEXTO]
+             ,@c70_old = [ACUERDOPROPIO]
+             ,@c71_old = [CLIENTEPADRE]
+             ,@c72_old = [DESCUENTOPLANID]
+             ,@c73_old = [FECHAREGISTRO]
+             ,@c74_old = [HORAREGISTRO]
+             ,@c75_old = [TASA]
+             ,@c76_old = [ESTATUS]
+             ,@c77_old = [TIPOCLIENTEAS400]
+             ,@c78_old = [CLASECREDITO]
+             ,@c79_old = [CARNETNUMERO]
+             ,@c80_old = [CLIENTEPADREAXAPTA]
+             ,@c81_old = [PACIENTEIDAXAPTA]
+             ,@c82_old = [CLIENTEIDAXAPTA]
+             ,@c83_old = [DOCTORIDAXAPTA]
+             ,@c84_old = [NCFTYPEID]
+             ,@c85_old = [NCFID]
+             ,@c86_old = [NCFNAME]
+             ,@c87_old = [SEXO]
+             ,@c88_old = [CUADRADO]
+             ,@c89_old = [TRANSFERIDO]
+             ,@c90_old = [SUCURSAL]
+             ,@c91_old = [NUMEROINTERNET]
+             ,@c92_old = [PUBLICARINTERNETCLIENTE]
+             ,@c93_old = [COBERTURAPRECONFIRMADA]
+             ,@c94_old = [COBERTURAMONTOPRECONFIRMADO]
+             ,@c95_old = [TRANSFERENCIA]
+             ,@c96_old = [GRUPOPRECIO]
+             ,@c97_old = [TIPODOCUMENTO]
+             ,@c98_old = [GRUPODESCUENTOLINEA]
+             ,@c99_old = [GRUPODESCUENTOTOTAL]
+             ,@c100_old = [RESULTADOCLIENTE]
+             ,@c101_old = [RESULTADODOCTOR]
+             ,@c102_old = [RESULTADOPACIENTE]
+             ,@c103_old = [DATAAREAID]
+             ,@c104_old = [RECID]
+             ,@c105_old = [msrepl_tran_version]
+              
+        from deleted    select @c103 = case substring(@bitmap,13,1) & 64 when 64 then @c103 else @c103_old end
+     ,
+    @c104 = case substring(@bitmap,13,1) & 128 when 128 then @c104 else @c104_old end
+     
+        if not update (msrepl_tran_version)
+        begin
+            select @c105 = @version_guid 
+            update [dbo].[PTENTRADAPACIENTE] set msrepl_tran_version = @c105  where  [DATAAREAID] = @c103  and
+    [RECID] = @c104 
+        end 
+        if (@update_mode_id = 1) or (@update_mode_id in (3, 5) and @failover_mode_id = 0)
+        begin 
+            -- 
+            -- immediate mode 
+            --  
+            select @rpc_proc = @connect_string + N'.' + N'[dbo].[sp_MSsync_upd_PTENTRADAPACIENTE_1]' 
+            exec @retcode = @rpc_proc @subscriber, @subscriber_db,
+                                     @c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9,@c10,@c11,@c12,@c13,@c14,@c15,@c16,@c17,@c18,@c19,@c20,@c21,@c22,@c23,@c24,@c25,@c26,@c27,@c28,@c29,@c30,@c31,@c32,@c33,@c34,@c35,@c36,@c37,@c38,@c39,@c40,@c41,@c42,@c43,@c44,@c45,@c46,@c47,@c48,@c49,@c50,@c51,@c52,@c53,@c54,@c55,@c56,@c57,@c58,@c59,@c60,@c61,@c62,@c63,@c64,@c65,@c66,@c67,@c68,@c69,@c70,@c71,@c72,@c73,@c74,@c75,@c76,@c77,@c78,@c79,@c80,@c81,@c82,@c83,@c84,@c85,@c86,@c87,@c88,@c89,@c90,@c91,@c92,@c93,@c94,@c95,@c96,@c97,@c98,@c99,@c100,@c101,@c102,@c103,@c104,@c105 
+             ,@c1_old,@c2_old,@c3_old,@c4_old,@c5_old,@c6_old,@c7_old,@c8_old,@c9_old,@c10_old,@c11_old,@c12_old,@c13_old,@c14_old,@c15_old,@c16_old,@c17_old,@c18_old,@c19_old,@c20_old,@c21_old,@c22_old,@c23_old,@c24_old,@c25_old,@c26_old,@c27_old,@c28_old,@c29_old,@c30_old,@c31_old,@c32_old,@c33_old,@c34_old,@c35_old,@c36_old,@c37_old,@c38_old,@c39_old,@c40_old,@c41_old,@c42_old,@c43_old,@c44_old,@c45_old,@c46_old,@c47_old,@c48_old,@c49_old,@c50_old,@c51_old,@c52_old,@c53_old,@c54_old,@c55_old,@c56_old,@c57_old,@c58_old,@c59_old,@c60_old,@c61_old,@c62_old,@c63_old,@c64_old,@c65_old,@c66_old,@c67_old,@c68_old,@c69_old,@c70_old,@c71_old,@c72_old,@c73_old,@c74_old,@c75_old,@c76_old,@c77_old,@c78_old,@c79_old,@c80_old,@c81_old,@c82_old,@c83_old,@c84_old,@c85_old,@c86_old,@c87_old,@c88_old,@c89_old,@c90_old,@c91_old,@c92_old,@c93_old,@c94_old,@c95_old,@c96_old,@c97_old,@c98_old,@c99_old,@c100_old,@c101_old,@c102_old,@c103_old,@c104_old,@c105_old 
+ 
+                        ,@bitmap 
+            if (@@error != 0 or @retcode != 0)
+            begin 
+                if (@retcode = -2)
+                    exec sys.sp_MSreplraiserror 21064
+                else if @retcode = 5
+                    exec sys.sp_MSreplraiserror 20515
+                else
+                    exec sys.sp_MSreplraiserror 21054
+                    goto FAILURE 
+            end
+        end 
+        else
+        begin
+            --
+            -- handle queued cases
+            -- 
+            if (@update_mode_id in (2,3))
+            begin 
+                exec @retcode = sys.sp_replsendtoqueue @queue_id, @tran_id, N'Real_001', N'11', N'upd', N'sp_MSsync_upd_PTENTRADAPACIENTE_1', @subscriber, @subscriber_db, 
+                     @c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9,@c10,@c11,@c12,@c13,@c14,@c15,@c16,@c17,@c18,@c19,@c20,@c21,@c22,@c23,@c24,@c25,@c26,@c27,@c28,@c29,@c30,@c31,@c32,@c33,@c34,@c35,@c36,@c37,@c38,@c39,@c40,@c41,@c42,@c43,@c44,@c45,@c46,@c47,@c48,@c49,@c50,@c51,@c52,@c53,@c54,@c55,@c56,@c57,@c58,@c59,@c60,@c61,@c62,@c63,@c64,@c65,@c66,@c67,@c68,@c69,@c70,@c71,@c72,@c73,@c74,@c75,@c76,@c77,@c78,@c79,@c80,@c81,@c82,@c83,@c84,@c85,@c86,@c87,@c88,@c89,@c90,@c91,@c92,@c93,@c94,@c95,@c96,@c97,@c98,@c99,@c100,@c101,@c102,@c103,@c104,@c105 
+                     ,@c1_old,@c2_old,@c3_old,@c4_old,@c5_old,@c6_old,@c7_old,@c8_old,@c9_old,@c10_old,@c11_old,@c12_old,@c13_old,@c14_old,@c15_old,@c16_old,@c17_old,@c18_old,@c19_old,@c20_old,@c21_old,@c22_old,@c23_old,@c24_old,@c25_old,@c26_old,@c27_old,@c28_old,@c29_old,@c30_old,@c31_old,@c32_old,@c33_old,@c34_old,@c35_old,@c36_old,@c37_old,@c38_old,@c39_old,@c40_old,@c41_old,@c42_old,@c43_old,@c44_old,@c45_old,@c46_old,@c47_old,@c48_old,@c49_old,@c50_old,@c51_old,@c52_old,@c53_old,@c54_old,@c55_old,@c56_old,@c57_old,@c58_old,@c59_old,@c60_old,@c61_old,@c62_old,@c63_old,@c64_old,@c65_old,@c66_old,@c67_old,@c68_old,@c69_old,@c70_old,@c71_old,@c72_old,@c73_old,@c74_old,@c75_old,@c76_old,@c77_old,@c78_old,@c79_old,@c80_old,@c81_old,@c82_old,@c83_old,@c84_old,@c85_old,@c86_old,@c87_old,@c88_old,@c89_old,@c90_old,@c91_old,@c92_old,@c93_old,@c94_old,@c95_old,@c96_old,@c97_old,@c98_old,@c99_old,@c100_old,@c101_old,@c102_old,@c103_old,@c104_old,@c105_old 
+ 
+                    ,@bitmap 
+            end
+            else if (@update_mode_id in (4,5))
+            begin
+                select @partial_cmd = 1, @start_offset = 0, @end_offset = 0
+                while (@partial_cmd != 0)
+                begin 
+                    exec @retcode = sys.sp_replwritetovarbin @start_offset, @end_offset output, @vb_buffer output, @vb_bufferlen output, N'SER02', N'AXLR', N'Real_001', @tran_id, N'11', N'upd', N'sp_MSsync_upd_PTENTRADAPACIENTE_1', @subscriber, @subscriber_db, 
+                     @c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9,@c10,@c11,@c12,@c13,@c14,@c15,@c16,@c17,@c18,@c19,@c20,@c21,@c22,@c23,@c24,@c25,@c26,@c27,@c28,@c29,@c30,@c31,@c32,@c33,@c34,@c35,@c36,@c37,@c38,@c39,@c40,@c41,@c42,@c43,@c44,@c45,@c46,@c47,@c48,@c49,@c50,@c51,@c52,@c53,@c54,@c55,@c56,@c57,@c58,@c59,@c60,@c61,@c62,@c63,@c64,@c65,@c66,@c67,@c68,@c69,@c70,@c71,@c72,@c73,@c74,@c75,@c76,@c77,@c78,@c79,@c80,@c81,@c82,@c83,@c84,@c85,@c86,@c87,@c88,@c89,@c90,@c91,@c92,@c93,@c94,@c95,@c96,@c97,@c98,@c99,@c100,@c101,@c102,@c103,@c104,@c105 
+                     ,@c1_old,@c2_old,@c3_old,@c4_old,@c5_old,@c6_old,@c7_old,@c8_old,@c9_old,@c10_old,@c11_old,@c12_old,@c13_old,@c14_old,@c15_old,@c16_old,@c17_old,@c18_old,@c19_old,@c20_old,@c21_old,@c22_old,@c23_old,@c24_old,@c25_old,@c26_old,@c27_old,@c28_old,@c29_old,@c30_old,@c31_old,@c32_old,@c33_old,@c34_old,@c35_old,@c36_old,@c37_old,@c38_old,@c39_old,@c40_old,@c41_old,@c42_old,@c43_old,@c44_old,@c45_old,@c46_old,@c47_old,@c48_old,@c49_old,@c50_old,@c51_old,@c52_old,@c53_old,@c54_old,@c55_old,@c56_old,@c57_old,@c58_old,@c59_old,@c60_old,@c61_old,@c62_old,@c63_old,@c64_old,@c65_old,@c66_old,@c67_old,@c68_old,@c69_old,@c70_old,@c71_old,@c72_old,@c73_old,@c74_old,@c75_old,@c76_old,@c77_old,@c78_old,@c79_old,@c80_old,@c81_old,@c82_old,@c83_old,@c84_old,@c85_old,@c86_old,@c87_old,@c88_old,@c89_old,@c90_old,@c91_old,@c92_old,@c93_old,@c94_old,@c95_old,@c96_old,@c97_old,@c98_old,@c99_old,@c100_old,@c101_old,@c102_old,@c103_old,@c104_old,@c105_old 
+ 
+                    ,@bitmap 
+                    if @@error != 0 or @retcode != 0 
+                    begin 
+                        exec sys.sp_MSreplraiserror 21052
+                        goto FAILURE 
+                    end 
+                    select @partial_cmd = case when (@end_offset > 0) then 1 else 0 end            
+                    exec @retcode = sys.sp_MSsendtosqlqueue @@procid, N'SER02', N'AXLR', N'Real_001', N'dbo', @tran_id, @vb_buffer, @vb_bufferlen, 1, @partial_cmd  
+                    if @@error != 0 or @retcode != 0 
+                    begin 
+                        exec sys.sp_MSreplraiserror 21052
+                        goto FAILURE 
+                    end
+                    select @start_offset = @end_offset
+                end
+            end 
+            if @@error <>0 or @retcode <> 0 
+            begin 
+                exec sys.sp_MSreplraiserror 21052
+                goto FAILURE 
+            end
+        end
+       select @c103 = case substring(@bitmap,13,1) & 64 when 64 then @c103 else @c103_old end
+     ,
+    @c104 = case substring(@bitmap,13,1) & 128 when 128 then @c104 else @c104_old end
+     
+     
+    end -- end of single row trigger update  
+    else
+    begin 
+        --
+        -- start of multirow row trigger update 
+        --  
+        declare rpl_ins_cursor CURSOR LOCAL FAST_FORWARD FOR select 
+          case substring(@bitmap,1,1) & 1 when 1 then [ENTRADAID]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,1,1) & 2 when 2 then [FECHA]  else convert(datetime, NULL) end
+    ,case substring(@bitmap,1,1) & 4 when 4 then [HORAENTRADA]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,1,1) & 8 when 8 then [PACIENTEID]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,1,1) & 16 when 16 then [CLIENTEID]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,1,1) & 32 when 32 then [DOCTORID]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,1,1) & 64 when 64 then [POLIZAID]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,1,1) & 128 when 128 then [ENCLINICA]  else convert(int, NULL) end
+    ,case substring(@bitmap,2,1) & 1 when 1 then [RECORDCLINICA]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,2,1) & 2 when 2 then [NUMEROHABITACION]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,2,1) & 4 when 4 then [FECHAENTRADA]  else convert(datetime, NULL) end
+    ,case substring(@bitmap,2,1) & 8 when 8 then [FECHADEALTA]  else convert(datetime, NULL) end
+    ,case substring(@bitmap,2,1) & 16 when 16 then [FECHAPROMETIDA]  else convert(datetime, NULL) end
+    ,case substring(@bitmap,2,1) & 32 when 32 then [HORAPROMETIDA]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,2,1) & 64 when 64 then [FLEBOTOMISTAID]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,2,1) & 128 when 128 then [NOTA]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,3,1) & 1 when 1 then [PROYECTOID]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,3,1) & 2 when 2 then [RECORDID]  else convert(int, NULL) end
+    ,case substring(@bitmap,3,1) & 4 when 4 then [BRUTO]  else convert(numeric, NULL) end
+    ,case substring(@bitmap,3,1) & 8 when 8 then [DESCUENTO]  else convert(numeric, NULL) end
+    ,case substring(@bitmap,3,1) & 16 when 16 then [SUBTOTAL]  else convert(numeric, NULL) end
+    ,case substring(@bitmap,3,1) & 32 when 32 then [NETO]  else convert(numeric, NULL) end
+    ,case substring(@bitmap,3,1) & 64 when 64 then [NOMBREPACIENTE]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,3,1) & 128 when 128 then [DIRECCION]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,4,1) & 1 when 1 then [TELEFONOS]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,4,1) & 2 when 2 then [TELEFONO2]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,4,1) & 4 when 4 then [EMAIL]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,4,1) & 8 when 8 then [CLIENTENOMBRE]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,4,1) & 16 when 16 then [SUCURSALID]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,4,1) & 32 when 32 then [USERID]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,4,1) & 64 when 64 then [COBROID]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,4,1) & 128 when 128 then [TOTALPAGADO]  else convert(numeric, NULL) end
+             ,case substring(@bitmap,5,1) & 1 when 1 then [PRIORIDAD]  else convert(int, NULL) end
+    ,case substring(@bitmap,5,1) & 2 when 2 then [FAX]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,5,1) & 4 when 4 then [COBERTURAPORC]  else convert(numeric, NULL) end
+    ,case substring(@bitmap,5,1) & 8 when 8 then [COBERTURASEGURO]  else convert(numeric, NULL) end
+    ,case substring(@bitmap,5,1) & 16 when 16 then [COBERTURAVALOR]  else convert(numeric, NULL) end
+    ,case substring(@bitmap,5,1) & 32 when 32 then [DESCUENTOPORC]  else convert(numeric, NULL) end
+    ,case substring(@bitmap,5,1) & 64 when 64 then [DESCUENTOVALOR]  else convert(numeric, NULL) end
+    ,case substring(@bitmap,5,1) & 128 when 128 then [DESCUENTOBONO]  else convert(numeric, NULL) end
+    ,case substring(@bitmap,6,1) & 1 when 1 then [ORIGEN]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,6,1) & 2 when 2 then [APROBACIONNO]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,6,1) & 4 when 4 then [APROBACIONPOR]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,6,1) & 8 when 8 then [COBERTURARECHAZADA]  else convert(int, NULL) end
+    ,case substring(@bitmap,6,1) & 16 when 16 then [COBERTURACONFIRMADA]  else convert(int, NULL) end
+    ,case substring(@bitmap,6,1) & 32 when 32 then [FECHAASEGURADORA]  else convert(datetime, NULL) end
+    ,case substring(@bitmap,6,1) & 64 when 64 then [MUESTRANO]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,6,1) & 128 when 128 then [MONEDAID]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,7,1) & 1 when 1 then [COBERTURAEXPPORC]  else convert(int, NULL) end
+    ,case substring(@bitmap,7,1) & 2 when 2 then [EDADPACIENTE]  else convert(int, NULL) end
+    ,case substring(@bitmap,7,1) & 4 when 4 then [NOMBREDOCTOR]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,7,1) & 8 when 8 then [PUBLICARINTERNET]  else convert(int, NULL) end
+    ,case substring(@bitmap,7,1) & 16 when 16 then [CARNET]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,7,1) & 32 when 32 then [PUBLICARINTERNETDOCTOR]  else convert(int, NULL) end
+    ,case substring(@bitmap,7,1) & 64 when 64 then [CUADREGLOBAL]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,7,1) & 128 when 128 then [CUADREUSUARIO]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,8,1) & 1 when 1 then [DESCAUTORIZADOPOR]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,8,1) & 2 when 2 then [GASTOSVARIOS]  else convert(numeric, NULL) end
+    ,case substring(@bitmap,8,1) & 4 when 4 then [NOAS400]  else convert(int, NULL) end
+    ,case substring(@bitmap,8,1) & 8 when 8 then [NOAXAPTA]  else convert(int, NULL) end
+    ,case substring(@bitmap,8,1) & 16 when 16 then [NOFACTURA]  else convert(int, NULL) end
+    ,case substring(@bitmap,8,1) & 32 when 32 then [FACTEXTERIOR]  else convert(int, NULL) end
+    ,case substring(@bitmap,8,1) & 64 when 64 then [HOLD]  else convert(int, NULL) end
+             ,case substring(@bitmap,8,1) & 128 when 128 then [REPMUESTRA]  else convert(int, NULL) end
+    ,case substring(@bitmap,9,1) & 1 when 1 then [ENTRADAIDANT]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,9,1) & 2 when 2 then [TIPOENTRADA]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,9,1) & 4 when 4 then [FORMADEPAGO]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,9,1) & 8 when 8 then [DESCUENTOCARD]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,9,1) & 16 when 16 then [DESCUENTOTEXTO]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,9,1) & 32 when 32 then [ACUERDOPROPIO]  else convert(int, NULL) end
+    ,case substring(@bitmap,9,1) & 64 when 64 then [CLIENTEPADRE]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,9,1) & 128 when 128 then [DESCUENTOPLANID]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,10,1) & 1 when 1 then [FECHAREGISTRO]  else convert(datetime, NULL) end
+    ,case substring(@bitmap,10,1) & 2 when 2 then [HORAREGISTRO]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,10,1) & 4 when 4 then [TASA]  else convert(numeric, NULL) end
+    ,case substring(@bitmap,10,1) & 8 when 8 then [ESTATUS]  else convert(int, NULL) end
+    ,case substring(@bitmap,10,1) & 16 when 16 then [TIPOCLIENTEAS400]  else convert(int, NULL) end
+    ,case substring(@bitmap,10,1) & 32 when 32 then [CLASECREDITO]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,10,1) & 64 when 64 then [CARNETNUMERO]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,10,1) & 128 when 128 then [CLIENTEPADREAXAPTA]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,11,1) & 1 when 1 then [PACIENTEIDAXAPTA]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,11,1) & 2 when 2 then [CLIENTEIDAXAPTA]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,11,1) & 4 when 4 then [DOCTORIDAXAPTA]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,11,1) & 8 when 8 then [NCFTYPEID]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,11,1) & 16 when 16 then [NCFID]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,11,1) & 32 when 32 then [NCFNAME]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,11,1) & 64 when 64 then [SEXO]  else convert(int, NULL) end
+    ,case substring(@bitmap,11,1) & 128 when 128 then [CUADRADO]  else convert(int, NULL) end
+    ,case substring(@bitmap,12,1) & 1 when 1 then [TRANSFERIDO]  else convert(int, NULL) end
+    ,case substring(@bitmap,12,1) & 2 when 2 then [SUCURSAL]  else convert(int, NULL) end
+    ,case substring(@bitmap,12,1) & 4 when 4 then [NUMEROINTERNET]  else convert(int, NULL) end
+    ,case substring(@bitmap,12,1) & 8 when 8 then [PUBLICARINTERNETCLIENTE]  else convert(int, NULL) end
+    ,case substring(@bitmap,12,1) & 16 when 16 then [COBERTURAPRECONFIRMADA]  else convert(int, NULL) end
+    ,case substring(@bitmap,12,1) & 32 when 32 then [COBERTURAMONTOPRECONFIRMADO]  else convert(numeric, NULL) end
+             ,case substring(@bitmap,12,1) & 64 when 64 then [TRANSFERENCIA]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,12,1) & 128 when 128 then [GRUPOPRECIO]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,13,1) & 1 when 1 then [TIPODOCUMENTO]  else convert(int, NULL) end
+    ,case substring(@bitmap,13,1) & 2 when 2 then [GRUPODESCUENTOLINEA]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,13,1) & 4 when 4 then [GRUPODESCUENTOTOTAL]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,13,1) & 8 when 8 then [RESULTADOCLIENTE]  else convert(int, NULL) end
+    ,case substring(@bitmap,13,1) & 16 when 16 then [RESULTADODOCTOR]  else convert(int, NULL) end
+    ,case substring(@bitmap,13,1) & 32 when 32 then [RESULTADOPACIENTE]  else convert(int, NULL) end
+    ,case substring(@bitmap,13,1) & 64 when 64 then [DATAAREAID]  else convert(varchar, NULL) end
+    ,case substring(@bitmap,13,1) & 128 when 128 then [RECID]  else convert(int, NULL) end
+    ,case substring(@bitmap,14,1) & 1 when 1 then [msrepl_tran_version]  else convert(uniqueidentifier, NULL) end
+     
+ 
+            from inserted for read only
+        open rpl_ins_cursor 
+ 
+        declare rpl_del_cursor CURSOR LOCAL FAST_FORWARD FOR select 
+          [ENTRADAID]
+    ,[FECHA]
+    ,[HORAENTRADA]
+    ,[PACIENTEID]
+    ,[CLIENTEID]
+    ,[DOCTORID]
+    ,[POLIZAID]
+    ,[ENCLINICA]
+    ,[RECORDCLINICA]
+    ,[NUMEROHABITACION]
+    ,[FECHAENTRADA]
+    ,[FECHADEALTA]
+    ,[FECHAPROMETIDA]
+    ,[HORAPROMETIDA]
+    ,[FLEBOTOMISTAID]
+    ,[NOTA]
+    ,[PROYECTOID]
+    ,[RECORDID]
+    ,[BRUTO]
+    ,[DESCUENTO]
+    ,[SUBTOTAL]
+    ,[NETO]
+    ,[NOMBREPACIENTE]
+    ,[DIRECCION]
+    ,[TELEFONOS]
+    ,[TELEFONO2]
+    ,[EMAIL]
+    ,[CLIENTENOMBRE]
+    ,[SUCURSALID]
+    ,[USERID]
+    ,[COBROID]
+    ,[TOTALPAGADO]
+    ,[PRIORIDAD]
+    ,[FAX]
+    ,[COBERTURAPORC]
+    ,[COBERTURASEGURO]
+    ,[COBERTURAVALOR]
+    ,[DESCUENTOPORC]
+    ,[DESCUENTOVALOR]
+    ,[DESCUENTOBONO]
+    ,[ORIGEN]
+    ,[APROBACIONNO]
+    ,[APROBACIONPOR]
+    ,[COBERTURARECHAZADA]
+    ,[COBERTURACONFIRMADA]
+    ,[FECHAASEGURADORA]
+    ,[MUESTRANO]
+    ,[MONEDAID]
+    ,[COBERTURAEXPPORC]
+    ,[EDADPACIENTE]
+    ,[NOMBREDOCTOR]
+    ,[PUBLICARINTERNET]
+    ,[CARNET]
+    ,[PUBLICARINTERNETDOCTOR]
+    ,[CUADREGLOBAL]
+    ,[CUADREUSUARIO]
+    ,[DESCAUTORIZADOPOR]
+    ,[GASTOSVARIOS]
+    ,[NOAS400]
+    ,[NOAXAPTA]
+    ,[NOFACTURA]
+    ,[FACTEXTERIOR]
+    ,[HOLD]
+    ,[REPMUESTRA]
+    ,[ENTRADAIDANT]
+    ,[TIPOENTRADA]
+    ,[FORMADEPAGO]
+    ,[DESCUENTOCARD]
+    ,[DESCUENTOTEXTO]
+    ,[ACUERDOPROPIO]
+    ,[CLIENTEPADRE]
+    ,[DESCUENTOPLANID]
+    ,[FECHAREGISTRO]
+    ,[HORAREGISTRO]
+    ,[TASA]
+    ,[ESTATUS]
+    ,[TIPOCLIENTEAS400]
+    ,[CLASECREDITO]
+    ,[CARNETNUMERO]
+    ,[CLIENTEPADREAXAPTA]
+    ,[PACIENTEIDAXAPTA]
+    ,[CLIENTEIDAXAPTA]
+    ,[DOCTORIDAXAPTA]
+    ,[NCFTYPEID]
+    ,[NCFID]
+    ,[NCFNAME]
+    ,[SEXO]
+    ,[CUADRADO]
+    ,[TRANSFERIDO]
+    ,[SUCURSAL]
+    ,[NUMEROINTERNET]
+    ,[PUBLICARINTERNETCLIENTE]
+    ,[COBERTURAPRECONFIRMADA]
+    ,[COBERTURAMONTOPRECONFIRMADO]
+    ,[TRANSFERENCIA]
+    ,[GRUPOPRECIO]
+    ,[TIPODOCUMENTO]
+    ,[GRUPODESCUENTOLINEA]
+    ,[GRUPODESCUENTOTOTAL]
+    ,[RESULTADOCLIENTE]
+    ,[RESULTADODOCTOR]
+    ,[RESULTADOPACIENTE]
+    ,[DATAAREAID]
+    ,[RECID]
+    ,[msrepl_tran_version]
+     
+ 
+            from deleted for read only
+        open rpl_del_cursor 
+         fetch next from rpl_ins_cursor into 
+          @c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9,@c10,@c11,@c12,@c13,@c14,@c15,@c16,@c17,@c18,@c19,@c20,@c21,@c22,@c23,@c24,@c25,@c26,@c27,@c28,@c29,@c30,@c31,@c32,@c33,@c34,@c35,@c36,@c37,@c38,@c39,@c40,@c41,@c42,@c43,@c44,@c45,@c46,@c47,@c48,@c49,@c50,@c51,@c52,@c53,@c54,@c55,@c56,@c57,@c58,@c59,@c60,@c61,@c62,@c63,@c64,@c65,@c66,@c67,@c68,@c69,@c70,@c71,@c72,@c73,@c74,@c75,@c76,@c77,@c78,@c79,@c80,@c81,@c82,@c83,@c84,@c85,@c86,@c87,@c88,@c89,@c90,@c91,@c92,@c93,@c94,@c95,@c96,@c97,@c98,@c99,@c100,@c101,@c102,@c103,@c104,@c105 
+         fetch next from rpl_del_cursor into 
+          @c1_old,@c2_old,@c3_old,@c4_old,@c5_old,@c6_old,@c7_old,@c8_old,@c9_old,@c10_old,@c11_old,@c12_old,@c13_old,@c14_old,@c15_old,@c16_old,@c17_old,@c18_old,@c19_old,@c20_old,@c21_old,@c22_old,@c23_old,@c24_old,@c25_old,@c26_old,@c27_old,@c28_old,@c29_old,@c30_old,@c31_old,@c32_old,@c33_old,@c34_old,@c35_old,@c36_old,@c37_old,@c38_old,@c39_old,@c40_old,@c41_old,@c42_old,@c43_old,@c44_old,@c45_old,@c46_old,@c47_old,@c48_old,@c49_old,@c50_old,@c51_old,@c52_old,@c53_old,@c54_old,@c55_old,@c56_old,@c57_old,@c58_old,@c59_old,@c60_old,@c61_old,@c62_old,@c63_old,@c64_old,@c65_old,@c66_old,@c67_old,@c68_old,@c69_old,@c70_old,@c71_old,@c72_old,@c73_old,@c74_old,@c75_old,@c76_old,@c77_old,@c78_old,@c79_old,@c80_old,@c81_old,@c82_old,@c83_old,@c84_old,@c85_old,@c86_old,@c87_old,@c88_old,@c89_old,@c90_old,@c91_old,@c92_old,@c93_old,@c94_old,@c95_old,@c96_old,@c97_old,@c98_old,@c99_old,@c100_old,@c101_old,@c102_old,@c103_old,@c104_old,@c105_old 
+ 
+        while (@@fetch_status != -1)
+        begin    select @c103 = case substring(@bitmap,13,1) & 64 when 64 then @c103 else @c103_old end
+     ,
+    @c104 = case substring(@bitmap,13,1) & 128 when 128 then @c104 else @c104_old end
+     
+        if not update (msrepl_tran_version)
+        begin
+            select @c105 = @version_guid 
+            update [dbo].[PTENTRADAPACIENTE] set msrepl_tran_version = @c105  where  [DATAAREAID] = @c103  and
+    [RECID] = @c104 
+        end 
+        if (@update_mode_id = 1) or (@update_mode_id in (3, 5) and @failover_mode_id = 0)
+        begin 
+            -- 
+            -- immediate mode 
+            --  
+            select @rpc_proc = @connect_string + N'.' + N'[dbo].[sp_MSsync_upd_PTENTRADAPACIENTE_1]' 
+            exec @retcode = @rpc_proc @subscriber, @subscriber_db,
+                                         @c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9,@c10,@c11,@c12,@c13,@c14,@c15,@c16,@c17,@c18,@c19,@c20,@c21,@c22,@c23,@c24,@c25,@c26,@c27,@c28,@c29,@c30,@c31,@c32,@c33,@c34,@c35,@c36,@c37,@c38,@c39,@c40,@c41,@c42,@c43,@c44,@c45,@c46,@c47,@c48,@c49,@c50,@c51,@c52,@c53,@c54,@c55,@c56,@c57,@c58,@c59,@c60,@c61,@c62,@c63,@c64,@c65,@c66,@c67,@c68,@c69,@c70,@c71,@c72,@c73,@c74,@c75,@c76,@c77,@c78,@c79,@c80,@c81,@c82,@c83,@c84,@c85,@c86,@c87,@c88,@c89,@c90,@c91,@c92,@c93,@c94,@c95,@c96,@c97,@c98,@c99,@c100,@c101,@c102,@c103,@c104,@c105 
+                 ,@c1_old,@c2_old,@c3_old,@c4_old,@c5_old,@c6_old,@c7_old,@c8_old,@c9_old,@c10_old,@c11_old,@c12_old,@c13_old,@c14_old,@c15_old,@c16_old,@c17_old,@c18_old,@c19_old,@c20_old,@c21_old,@c22_old,@c23_old,@c24_old,@c25_old,@c26_old,@c27_old,@c28_old,@c29_old,@c30_old,@c31_old,@c32_old,@c33_old,@c34_old,@c35_old,@c36_old,@c37_old,@c38_old,@c39_old,@c40_old,@c41_old,@c42_old,@c43_old,@c44_old,@c45_old,@c46_old,@c47_old,@c48_old,@c49_old,@c50_old,@c51_old,@c52_old,@c53_old,@c54_old,@c55_old,@c56_old,@c57_old,@c58_old,@c59_old,@c60_old,@c61_old,@c62_old,@c63_old,@c64_old,@c65_old,@c66_old,@c67_old,@c68_old,@c69_old,@c70_old,@c71_old,@c72_old,@c73_old,@c74_old,@c75_old,@c76_old,@c77_old,@c78_old,@c79_old,@c80_old,@c81_old,@c82_old,@c83_old,@c84_old,@c85_old,@c86_old,@c87_old,@c88_old,@c89_old,@c90_old,@c91_old,@c92_old,@c93_old,@c94_old,@c95_old,@c96_old,@c97_old,@c98_old,@c99_old,@c100_old,@c101_old,@c102_old,@c103_old,@c104_old,@c105_old 
+ 
+                        ,@bitmap 
+            if (@@error != 0 or @retcode != 0)
+            begin 
+                if (@retcode = -2)
+                    exec sys.sp_MSreplraiserror 21064
+                else if @retcode = 5
+                    exec sys.sp_MSreplraiserror 20515
+                else
+                    exec sys.sp_MSreplraiserror 21054
+                    goto FAILURE 
+            end
+        end 
+        else
+        begin
+            --
+            -- handle queued cases
+            -- 
+            if (@update_mode_id in (2,3))
+            begin 
+                exec @retcode = sys.sp_replsendtoqueue @queue_id, @tran_id, N'Real_001', N'11', N'upd', N'sp_MSsync_upd_PTENTRADAPACIENTE_1', @subscriber, @subscriber_db, 
+                         @c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9,@c10,@c11,@c12,@c13,@c14,@c15,@c16,@c17,@c18,@c19,@c20,@c21,@c22,@c23,@c24,@c25,@c26,@c27,@c28,@c29,@c30,@c31,@c32,@c33,@c34,@c35,@c36,@c37,@c38,@c39,@c40,@c41,@c42,@c43,@c44,@c45,@c46,@c47,@c48,@c49,@c50,@c51,@c52,@c53,@c54,@c55,@c56,@c57,@c58,@c59,@c60,@c61,@c62,@c63,@c64,@c65,@c66,@c67,@c68,@c69,@c70,@c71,@c72,@c73,@c74,@c75,@c76,@c77,@c78,@c79,@c80,@c81,@c82,@c83,@c84,@c85,@c86,@c87,@c88,@c89,@c90,@c91,@c92,@c93,@c94,@c95,@c96,@c97,@c98,@c99,@c100,@c101,@c102,@c103,@c104,@c105 
+                         ,@c1_old,@c2_old,@c3_old,@c4_old,@c5_old,@c6_old,@c7_old,@c8_old,@c9_old,@c10_old,@c11_old,@c12_old,@c13_old,@c14_old,@c15_old,@c16_old,@c17_old,@c18_old,@c19_old,@c20_old,@c21_old,@c22_old,@c23_old,@c24_old,@c25_old,@c26_old,@c27_old,@c28_old,@c29_old,@c30_old,@c31_old,@c32_old,@c33_old,@c34_old,@c35_old,@c36_old,@c37_old,@c38_old,@c39_old,@c40_old,@c41_old,@c42_old,@c43_old,@c44_old,@c45_old,@c46_old,@c47_old,@c48_old,@c49_old,@c50_old,@c51_old,@c52_old,@c53_old,@c54_old,@c55_old,@c56_old,@c57_old,@c58_old,@c59_old,@c60_old,@c61_old,@c62_old,@c63_old,@c64_old,@c65_old,@c66_old,@c67_old,@c68_old,@c69_old,@c70_old,@c71_old,@c72_old,@c73_old,@c74_old,@c75_old,@c76_old,@c77_old,@c78_old,@c79_old,@c80_old,@c81_old,@c82_old,@c83_old,@c84_old,@c85_old,@c86_old,@c87_old,@c88_old,@c89_old,@c90_old,@c91_old,@c92_old,@c93_old,@c94_old,@c95_old,@c96_old,@c97_old,@c98_old,@c99_old,@c100_old,@c101_old,@c102_old,@c103_old,@c104_old,@c105_old 
+ 
+                    ,@bitmap 
+            end
+            else if (@update_mode_id in (4,5))
+            begin
+                select @partial_cmd = 1, @start_offset = 0, @end_offset = 0
+                while (@partial_cmd != 0)
+                begin 
+                    exec @retcode = sys.sp_replwritetovarbin @start_offset, @end_offset output, @vb_buffer output, @vb_bufferlen output, N'SER02', N'AXLR', N'Real_001', @tran_id, N'11', N'upd', N'sp_MSsync_upd_PTENTRADAPACIENTE_1', @subscriber, @subscriber_db, 
+                         @c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9,@c10,@c11,@c12,@c13,@c14,@c15,@c16,@c17,@c18,@c19,@c20,@c21,@c22,@c23,@c24,@c25,@c26,@c27,@c28,@c29,@c30,@c31,@c32,@c33,@c34,@c35,@c36,@c37,@c38,@c39,@c40,@c41,@c42,@c43,@c44,@c45,@c46,@c47,@c48,@c49,@c50,@c51,@c52,@c53,@c54,@c55,@c56,@c57,@c58,@c59,@c60,@c61,@c62,@c63,@c64,@c65,@c66,@c67,@c68,@c69,@c70,@c71,@c72,@c73,@c74,@c75,@c76,@c77,@c78,@c79,@c80,@c81,@c82,@c83,@c84,@c85,@c86,@c87,@c88,@c89,@c90,@c91,@c92,@c93,@c94,@c95,@c96,@c97,@c98,@c99,@c100,@c101,@c102,@c103,@c104,@c105 
+                         ,@c1_old,@c2_old,@c3_old,@c4_old,@c5_old,@c6_old,@c7_old,@c8_old,@c9_old,@c10_old,@c11_old,@c12_old,@c13_old,@c14_old,@c15_old,@c16_old,@c17_old,@c18_old,@c19_old,@c20_old,@c21_old,@c22_old,@c23_old,@c24_old,@c25_old,@c26_old,@c27_old,@c28_old,@c29_old,@c30_old,@c31_old,@c32_old,@c33_old,@c34_old,@c35_old,@c36_old,@c37_old,@c38_old,@c39_old,@c40_old,@c41_old,@c42_old,@c43_old,@c44_old,@c45_old,@c46_old,@c47_old,@c48_old,@c49_old,@c50_old,@c51_old,@c52_old,@c53_old,@c54_old,@c55_old,@c56_old,@c57_old,@c58_old,@c59_old,@c60_old,@c61_old,@c62_old,@c63_old,@c64_old,@c65_old,@c66_old,@c67_old,@c68_old,@c69_old,@c70_old,@c71_old,@c72_old,@c73_old,@c74_old,@c75_old,@c76_old,@c77_old,@c78_old,@c79_old,@c80_old,@c81_old,@c82_old,@c83_old,@c84_old,@c85_old,@c86_old,@c87_old,@c88_old,@c89_old,@c90_old,@c91_old,@c92_old,@c93_old,@c94_old,@c95_old,@c96_old,@c97_old,@c98_old,@c99_old,@c100_old,@c101_old,@c102_old,@c103_old,@c104_old,@c105_old 
+ 
+                    ,@bitmap 
+                    if @@error != 0 or @retcode != 0 
+                    begin 
+                        exec sys.sp_MSreplraiserror 21052
+                        goto FAILURE 
+                    end 
+                    select @partial_cmd = case when (@end_offset > 0) then 1 else 0 end            
+                    exec @retcode = sys.sp_MSsendtosqlqueue @@procid, N'SER02', N'AXLR', N'Real_001', N'dbo', @tran_id, @vb_buffer, @vb_bufferlen, 1, @partial_cmd  
+                    if @@error != 0 or @retcode != 0 
+                    begin 
+                        exec sys.sp_MSreplraiserror 21052
+                        goto FAILURE 
+                    end
+                    select @start_offset = @end_offset
+                end
+            end 
+            if @@error <>0 or @retcode <> 0 
+            begin 
+                exec sys.sp_MSreplraiserror 21052
+                goto FAILURE 
+            end
+        end
+       select @c103 = case substring(@bitmap,13,1) & 64 when 64 then @c103 else @c103_old end
+     ,
+    @c104 = case substring(@bitmap,13,1) & 128 when 128 then @c104 else @c104_old end
+     
+     
+             fetch next from rpl_ins_cursor into 
+              @c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9,@c10,@c11,@c12,@c13,@c14,@c15,@c16,@c17,@c18,@c19,@c20,@c21,@c22,@c23,@c24,@c25,@c26,@c27,@c28,@c29,@c30,@c31,@c32,@c33,@c34,@c35,@c36,@c37,@c38,@c39,@c40,@c41,@c42,@c43,@c44,@c45,@c46,@c47,@c48,@c49,@c50,@c51,@c52,@c53,@c54,@c55,@c56,@c57,@c58,@c59,@c60,@c61,@c62,@c63,@c64,@c65,@c66,@c67,@c68,@c69,@c70,@c71,@c72,@c73,@c74,@c75,@c76,@c77,@c78,@c79,@c80,@c81,@c82,@c83,@c84,@c85,@c86,@c87,@c88,@c89,@c90,@c91,@c92,@c93,@c94,@c95,@c96,@c97,@c98,@c99,@c100,@c101,@c102,@c103,@c104,@c105 
+             fetch next from rpl_del_cursor into 
+              @c1_old,@c2_old,@c3_old,@c4_old,@c5_old,@c6_old,@c7_old,@c8_old,@c9_old,@c10_old,@c11_old,@c12_old,@c13_old,@c14_old,@c15_old,@c16_old,@c17_old,@c18_old,@c19_old,@c20_old,@c21_old,@c22_old,@c23_old,@c24_old,@c25_old,@c26_old,@c27_old,@c28_old,@c29_old,@c30_old,@c31_old,@c32_old,@c33_old,@c34_old,@c35_old,@c36_old,@c37_old,@c38_old,@c39_old,@c40_old,@c41_old,@c42_old,@c43_old,@c44_old,@c45_old,@c46_old,@c47_old,@c48_old,@c49_old,@c50_old,@c51_old,@c52_old,@c53_old,@c54_old,@c55_old,@c56_old,@c57_old,@c58_old,@c59_old,@c60_old,@c61_old,@c62_old,@c63_old,@c64_old,@c65_old,@c66_old,@c67_old,@c68_old,@c69_old,@c70_old,@c71_old,@c72_old,@c73_old,@c74_old,@c75_old,@c76_old,@c77_old,@c78_old,@c79_old,@c80_old,@c81_old,@c82_old,@c83_old,@c84_old,@c85_old,@c86_old,@c87_old,@c88_old,@c89_old,@c90_old,@c91_old,@c92_old,@c93_old,@c94_old,@c95_old,@c96_old,@c97_old,@c98_old,@c99_old,@c100_old,@c101_old,@c102_old,@c103_old,@c104_old,@c105_old 
+ 
+        end  -- cursor while loop 
+        close rpl_ins_cursor
+        deallocate rpl_ins_cursor  
+        close rpl_del_cursor
+        deallocate rpl_del_cursor  
+    end -- end of multi row trigger update  
+    if (@@trancount > 0)
+        commit tran
+    return 
+
+FAILURE:
+    if (@@trancount > 0)
+    begin
+        exec sys.sp_MSreplraiserror 20512
+        rollback tran
+    end
+GO
+
+CREATE TRIGGER [dbo].[trg_MSsync_del_PTENTRADAPACIENTE] ON [dbo].[PTENTRADAPACIENTE]
+WITH EXECUTE AS 'repllinkproxy'
+FOR DELETE
+NOT FOR REPLICATION
+AS
+    declare @rc int
+                ,@retcode int
+                ,@connect_string nvarchar(300)
+                ,@islocalpublisher bit 
+                ,@rpc_proc nvarchar(500)
+                ,@update_mode_id int
+                ,@bitmap varbinary(4000)
+                ,@version_guid uniqueidentifier
+                ,@trigger_op char(10)  
+                ,@failover_mode_id int
+                ,@queue_server sysname
+                ,@queue_id sysname
+                ,@tran_id varchar(255)
+                ,@subscriber sysname
+                ,@subscriber_db sysname 
+                ,@partial_cmd bit
+                ,@start_offset int
+                ,@end_offset int
+                ,@vb_buffer varbinary(8000)
+                ,@vb_bufferlen int        
+             
+    declare       @c1_old varchar(20)     ,@c2_old datetime     ,@c3_old varchar(20)     ,@c4_old varchar(10)     ,@c5_old varchar(10)     ,@c6_old varchar(10)     ,@c7_old varchar(80)     ,@c8_old int     ,@c9_old varchar(20)     ,@c10_old varchar(20)     ,@c11_old datetime     ,@c12_old datetime     ,@c13_old datetime     ,@c14_old varchar(20)     ,@c15_old varchar(10)     ,@c16_old varchar(255)     ,@c17_old varchar(10)     ,@c18_old int     ,@c19_old numeric(28,12)     ,@c20_old numeric(28,12)     ,@c21_old numeric(28,12)     ,@c22_old numeric(28,12)     ,@c23_old varchar(80)     ,@c24_old varchar(255)     ,@c25_old varchar(20)     ,@c26_old varchar(20)     ,@c27_old varchar(80)     ,@c28_old varchar(80)     ,@c29_old varchar(10)     ,@c30_old varchar(10)     ,@c31_old varchar(10)     ,@c32_old numeric(28,12)     ,@c33_old int     ,@c34_old varchar(20)     ,@c35_old numeric(28,12)     ,@c36_old numeric(28,12)     ,@c37_old numeric(28,12)     ,@c38_old numeric(28,12)     ,@c39_old numeric(28,12)     ,@c40_old numeric(28,12)     ,@c41_old varchar(10)     ,@c42_old varchar(20)     ,@c43_old varchar(80)     ,@c44_old int     ,@c45_old int     ,@c46_old datetime     ,@c47_old varchar(20)     ,@c48_old varchar(3)     ,@c49_old int     ,@c50_old int     ,@c51_old varchar(80)     ,@c52_old int     ,@c53_old varchar(20)     ,@c54_old int     ,@c55_old varchar(20)     ,@c56_old varchar(20)     ,@c57_old varchar(10)     ,@c58_old numeric(28,12)     ,@c59_old int     ,@c60_old int     ,@c61_old int     ,@c62_old int     ,@c63_old int     ,@c64_old int     ,@c65_old varchar(20)     ,@c66_old varchar(2)     ,@c67_old varchar(10)     ,@c68_old varchar(30)     ,@c69_old varchar(30)     ,@c70_old int     ,@c71_old varchar(10)     ,@c72_old varchar(10)     ,@c73_old datetime     ,@c74_old varchar(20)     ,@c75_old numeric(28,12)     ,@c76_old int     ,@c77_old int     ,@c78_old varchar(5)     ,@c79_old varchar(10)     ,@c80_old varchar(10)     ,@c81_old varchar(10)     ,@c82_old varchar(10)     ,@c83_old varchar(10)     ,@c84_old varchar(10)     ,@c85_old varchar(19)     ,@c86_old varchar(80)     ,@c87_old int     ,@c88_old int     ,@c89_old int     ,@c90_old int     ,@c91_old int     ,@c92_old int     ,@c93_old int     ,@c94_old numeric(28,12)     ,@c95_old varchar(10)     ,@c96_old varchar(10)     ,@c97_old int     ,@c98_old varchar(10)     ,@c99_old varchar(10)     ,@c100_old int     ,@c101_old int     ,@c102_old int     ,@c103_old varchar(3)     ,@c104_old int     ,@c105_old uniqueidentifier 
+
+    select @rc = @@rowcount
+            ,@subscriber = @@servername
+            ,@subscriber_db = db_name() 
+            ,@version_guid = newid()
+    if @rc = 0 
+        return 
+    set nocount on  
+    if Objectproperty(@@procid,'TriggerDeleteOrder') != 1
+    begin
+        declare @trigname sysname
+        select @trigname = object_name(@@procid)
+
+        raiserror (21130, 16, 1, @trigname)
+        goto FAILURE
+    end  
+    select @update_mode_id = update_mode
+            ,@queue_server = queue_server
+            ,@queue_id = queue_id
+            ,@failover_mode_id = failover_mode        
+    from dbo.MSsubscription_agents where id = 1  
+    --
+    -- initialize and validate based on update mode
+    --
+    if (@update_mode_id = 1 or (@update_mode_id in (3,5) and @failover_mode_id = 0))
+    begin
+        exec @retcode = sys.sp_getpublisherlink @@procid, @connect_string output, @islocalpublisher output  
+        if @retcode <>0 or @@error <> 0 
+            goto FAILURE
+    end 
+    else if (@update_mode_id in (2,4) or (@update_mode_id in (3,5) and @failover_mode_id = 1))
+    begin
+        if (@queue_id is NULL) 
+            goto FAILURE
+    end 
+    else if @update_mode_id = 0
+    begin
+        raiserror (21757, 16, 1)
+        goto FAILURE
+    end
+    else
+    begin
+        raiserror(21561, 16, 1, 'update_mode', @update_mode_id)
+        goto FAILURE
+    end  
+    --
+    -- set queue prefix for MSMQ cases
+    --
+    if (@update_mode_id in (2,3))
+    begin
+        select @queue_id = N'DIRECT=OS:' + @queue_server + N'\PRIVATE$\' + @queue_id 
+    end 
+    --
+    -- Decide if we should start a distributed transaction or local transaction
+    -- based on update mode, failover state and islocalpublisher
+    --  
+    if (@update_mode_id = 1 and @islocalpublisher = 1)
+        or (@update_mode_id = 3 and @failover_mode_id = 0 and @islocalpublisher = 1) 
+        or (@update_mode_id = 4) 
+        or (@update_mode_id = 5 and @failover_mode_id = 0 and @islocalpublisher = 1) 
+        or (@update_mode_id = 5 and @failover_mode_id = 1)  
+    begin
+        BEGIN TRAN 
+    end
+    else
+    begin
+        SET XACT_ABORT ON
+        BEGIN DISTRIBUTED TRAN
+    end  
+    --
+    -- save the transaction token for later use
+    --
+    exec sys.sp_getbindtoken @out_token = @tran_id OUTPUT , @for_xp_flag = 1   
+    --
+    -- Are we doing single or multi row trigger update 
+    --
+    if (@rc = 1)
+    begin 
+        --
+        -- single row trigger update
+        --  
+        select 
+          @c1_old = [ENTRADAID]
+             ,@c2_old = [FECHA]
+             ,@c3_old = [HORAENTRADA]
+             ,@c4_old = [PACIENTEID]
+             ,@c5_old = [CLIENTEID]
+             ,@c6_old = [DOCTORID]
+             ,@c7_old = [POLIZAID]
+             ,@c8_old = [ENCLINICA]
+             ,@c9_old = [RECORDCLINICA]
+             ,@c10_old = [NUMEROHABITACION]
+             ,@c11_old = [FECHAENTRADA]
+             ,@c12_old = [FECHADEALTA]
+             ,@c13_old = [FECHAPROMETIDA]
+             ,@c14_old = [HORAPROMETIDA]
+             ,@c15_old = [FLEBOTOMISTAID]
+             ,@c16_old = [NOTA]
+             ,@c17_old = [PROYECTOID]
+             ,@c18_old = [RECORDID]
+             ,@c19_old = [BRUTO]
+             ,@c20_old = [DESCUENTO]
+             ,@c21_old = [SUBTOTAL]
+             ,@c22_old = [NETO]
+             ,@c23_old = [NOMBREPACIENTE]
+             ,@c24_old = [DIRECCION]
+             ,@c25_old = [TELEFONOS]
+             ,@c26_old = [TELEFONO2]
+             ,@c27_old = [EMAIL]
+             ,@c28_old = [CLIENTENOMBRE]
+             ,@c29_old = [SUCURSALID]
+             ,@c30_old = [USERID]
+             ,@c31_old = [COBROID]
+             ,@c32_old = [TOTALPAGADO]
+             ,@c33_old = [PRIORIDAD]
+             ,@c34_old = [FAX]
+             ,@c35_old = [COBERTURAPORC]
+             ,@c36_old = [COBERTURASEGURO]
+             ,@c37_old = [COBERTURAVALOR]
+             ,@c38_old = [DESCUENTOPORC]
+             ,@c39_old = [DESCUENTOVALOR]
+             ,@c40_old = [DESCUENTOBONO]
+             ,@c41_old = [ORIGEN]
+             ,@c42_old = [APROBACIONNO]
+             ,@c43_old = [APROBACIONPOR]
+             ,@c44_old = [COBERTURARECHAZADA]
+             ,@c45_old = [COBERTURACONFIRMADA]
+             ,@c46_old = [FECHAASEGURADORA]
+             ,@c47_old = [MUESTRANO]
+             ,@c48_old = [MONEDAID]
+             ,@c49_old = [COBERTURAEXPPORC]
+             ,@c50_old = [EDADPACIENTE]
+             ,@c51_old = [NOMBREDOCTOR]
+             ,@c52_old = [PUBLICARINTERNET]
+             ,@c53_old = [CARNET]
+             ,@c54_old = [PUBLICARINTERNETDOCTOR]
+             ,@c55_old = [CUADREGLOBAL]
+             ,@c56_old = [CUADREUSUARIO]
+             ,@c57_old = [DESCAUTORIZADOPOR]
+             ,@c58_old = [GASTOSVARIOS]
+             ,@c59_old = [NOAS400]
+             ,@c60_old = [NOAXAPTA]
+             ,@c61_old = [NOFACTURA]
+             ,@c62_old = [FACTEXTERIOR]
+             ,@c63_old = [HOLD]
+             ,@c64_old = [REPMUESTRA]
+             ,@c65_old = [ENTRADAIDANT]
+             ,@c66_old = [TIPOENTRADA]
+             ,@c67_old = [FORMADEPAGO]
+             ,@c68_old = [DESCUENTOCARD]
+             ,@c69_old = [DESCUENTOTEXTO]
+             ,@c70_old = [ACUERDOPROPIO]
+             ,@c71_old = [CLIENTEPADRE]
+             ,@c72_old = [DESCUENTOPLANID]
+             ,@c73_old = [FECHAREGISTRO]
+             ,@c74_old = [HORAREGISTRO]
+             ,@c75_old = [TASA]
+             ,@c76_old = [ESTATUS]
+             ,@c77_old = [TIPOCLIENTEAS400]
+             ,@c78_old = [CLASECREDITO]
+             ,@c79_old = [CARNETNUMERO]
+             ,@c80_old = [CLIENTEPADREAXAPTA]
+             ,@c81_old = [PACIENTEIDAXAPTA]
+             ,@c82_old = [CLIENTEIDAXAPTA]
+             ,@c83_old = [DOCTORIDAXAPTA]
+             ,@c84_old = [NCFTYPEID]
+             ,@c85_old = [NCFID]
+             ,@c86_old = [NCFNAME]
+             ,@c87_old = [SEXO]
+             ,@c88_old = [CUADRADO]
+             ,@c89_old = [TRANSFERIDO]
+             ,@c90_old = [SUCURSAL]
+             ,@c91_old = [NUMEROINTERNET]
+             ,@c92_old = [PUBLICARINTERNETCLIENTE]
+             ,@c93_old = [COBERTURAPRECONFIRMADA]
+             ,@c94_old = [COBERTURAMONTOPRECONFIRMADO]
+             ,@c95_old = [TRANSFERENCIA]
+             ,@c96_old = [GRUPOPRECIO]
+             ,@c97_old = [TIPODOCUMENTO]
+             ,@c98_old = [GRUPODESCUENTOLINEA]
+             ,@c99_old = [GRUPODESCUENTOTOTAL]
+             ,@c100_old = [RESULTADOCLIENTE]
+             ,@c101_old = [RESULTADODOCTOR]
+             ,@c102_old = [RESULTADOPACIENTE]
+             ,@c103_old = [DATAAREAID]
+             ,@c104_old = [RECID]
+             ,@c105_old = [msrepl_tran_version]
+              
+        from deleted  
+        if (@update_mode_id = 1) or (@update_mode_id in (3, 5) and @failover_mode_id = 0)
+        begin 
+            -- 
+            -- immediate mode 
+            --  
+            select @rpc_proc = @connect_string + N'.' + N'[dbo].[sp_MSsync_del_PTENTRADAPACIENTE_1]' 
+            exec @retcode = @rpc_proc @subscriber, @subscriber_db,
+                                      @c1_old,@c2_old,@c3_old,@c4_old,@c5_old,@c6_old,@c7_old,@c8_old,@c9_old,@c10_old,@c11_old,@c12_old,@c13_old,@c14_old,@c15_old,@c16_old,@c17_old,@c18_old,@c19_old,@c20_old,@c21_old,@c22_old,@c23_old,@c24_old,@c25_old,@c26_old,@c27_old,@c28_old,@c29_old,@c30_old,@c31_old,@c32_old,@c33_old,@c34_old,@c35_old,@c36_old,@c37_old,@c38_old,@c39_old,@c40_old,@c41_old,@c42_old,@c43_old,@c44_old,@c45_old,@c46_old,@c47_old,@c48_old,@c49_old,@c50_old,@c51_old,@c52_old,@c53_old,@c54_old,@c55_old,@c56_old,@c57_old,@c58_old,@c59_old,@c60_old,@c61_old,@c62_old,@c63_old,@c64_old,@c65_old,@c66_old,@c67_old,@c68_old,@c69_old,@c70_old,@c71_old,@c72_old,@c73_old,@c74_old,@c75_old,@c76_old,@c77_old,@c78_old,@c79_old,@c80_old,@c81_old,@c82_old,@c83_old,@c84_old,@c85_old,@c86_old,@c87_old,@c88_old,@c89_old,@c90_old,@c91_old,@c92_old,@c93_old,@c94_old,@c95_old,@c96_old,@c97_old,@c98_old,@c99_old,@c100_old,@c101_old,@c102_old,@c103_old,@c104_old,@c105_old 
+ 
+            if (@@error != 0 or @retcode != 0)
+            begin 
+                if (@retcode = -2)
+                    exec sys.sp_MSreplraiserror 21064
+                else if @retcode = 5
+                    exec sys.sp_MSreplraiserror 20515
+                else
+                    exec sys.sp_MSreplraiserror 21054
+                    goto FAILURE 
+            end
+        end 
+        else
+        begin
+            --
+            -- handle queued cases
+            -- 
+            if (@update_mode_id in (2,3))
+            begin 
+                exec @retcode = sys.sp_replsendtoqueue @queue_id, @tran_id, N'Real_001', N'11', N'del', N'sp_MSsync_del_PTENTRADAPACIENTE_1', @subscriber, @subscriber_db, 
+                      @c1_old,@c2_old,@c3_old,@c4_old,@c5_old,@c6_old,@c7_old,@c8_old,@c9_old,@c10_old,@c11_old,@c12_old,@c13_old,@c14_old,@c15_old,@c16_old,@c17_old,@c18_old,@c19_old,@c20_old,@c21_old,@c22_old,@c23_old,@c24_old,@c25_old,@c26_old,@c27_old,@c28_old,@c29_old,@c30_old,@c31_old,@c32_old,@c33_old,@c34_old,@c35_old,@c36_old,@c37_old,@c38_old,@c39_old,@c40_old,@c41_old,@c42_old,@c43_old,@c44_old,@c45_old,@c46_old,@c47_old,@c48_old,@c49_old,@c50_old,@c51_old,@c52_old,@c53_old,@c54_old,@c55_old,@c56_old,@c57_old,@c58_old,@c59_old,@c60_old,@c61_old,@c62_old,@c63_old,@c64_old,@c65_old,@c66_old,@c67_old,@c68_old,@c69_old,@c70_old,@c71_old,@c72_old,@c73_old,@c74_old,@c75_old,@c76_old,@c77_old,@c78_old,@c79_old,@c80_old,@c81_old,@c82_old,@c83_old,@c84_old,@c85_old,@c86_old,@c87_old,@c88_old,@c89_old,@c90_old,@c91_old,@c92_old,@c93_old,@c94_old,@c95_old,@c96_old,@c97_old,@c98_old,@c99_old,@c100_old,@c101_old,@c102_old,@c103_old,@c104_old,@c105_old 
+ 
+            end
+            else if (@update_mode_id in (4,5))
+            begin
+                select @partial_cmd = 1, @start_offset = 0, @end_offset = 0
+                while (@partial_cmd != 0)
+                begin 
+                    exec @retcode = sys.sp_replwritetovarbin @start_offset, @end_offset output, @vb_buffer output, @vb_bufferlen output, N'SER02', N'AXLR', N'Real_001', @tran_id, N'11', N'del', N'sp_MSsync_del_PTENTRADAPACIENTE_1', @subscriber, @subscriber_db, 
+                      @c1_old,@c2_old,@c3_old,@c4_old,@c5_old,@c6_old,@c7_old,@c8_old,@c9_old,@c10_old,@c11_old,@c12_old,@c13_old,@c14_old,@c15_old,@c16_old,@c17_old,@c18_old,@c19_old,@c20_old,@c21_old,@c22_old,@c23_old,@c24_old,@c25_old,@c26_old,@c27_old,@c28_old,@c29_old,@c30_old,@c31_old,@c32_old,@c33_old,@c34_old,@c35_old,@c36_old,@c37_old,@c38_old,@c39_old,@c40_old,@c41_old,@c42_old,@c43_old,@c44_old,@c45_old,@c46_old,@c47_old,@c48_old,@c49_old,@c50_old,@c51_old,@c52_old,@c53_old,@c54_old,@c55_old,@c56_old,@c57_old,@c58_old,@c59_old,@c60_old,@c61_old,@c62_old,@c63_old,@c64_old,@c65_old,@c66_old,@c67_old,@c68_old,@c69_old,@c70_old,@c71_old,@c72_old,@c73_old,@c74_old,@c75_old,@c76_old,@c77_old,@c78_old,@c79_old,@c80_old,@c81_old,@c82_old,@c83_old,@c84_old,@c85_old,@c86_old,@c87_old,@c88_old,@c89_old,@c90_old,@c91_old,@c92_old,@c93_old,@c94_old,@c95_old,@c96_old,@c97_old,@c98_old,@c99_old,@c100_old,@c101_old,@c102_old,@c103_old,@c104_old,@c105_old 
+ 
+                    if @@error != 0 or @retcode != 0 
+                    begin 
+                        exec sys.sp_MSreplraiserror 21052
+                        goto FAILURE 
+                    end 
+                    select @partial_cmd = case when (@end_offset > 0) then 1 else 0 end            
+                    exec @retcode = sys.sp_MSsendtosqlqueue @@procid, N'SER02', N'AXLR', N'Real_001', N'dbo', @tran_id, @vb_buffer, @vb_bufferlen, 1, @partial_cmd  
+                    if @@error != 0 or @retcode != 0 
+                    begin 
+                        exec sys.sp_MSreplraiserror 21052
+                        goto FAILURE 
+                    end
+                    select @start_offset = @end_offset
+                end
+            end 
+            if @@error <>0 or @retcode <> 0 
+            begin 
+                exec sys.sp_MSreplraiserror 21052
+                goto FAILURE 
+            end
+        end
+     
+    end -- end of single row trigger update  
+    else
+    begin 
+        --
+        -- start of multirow row trigger update 
+        --  
+        declare rpl_del_cursor CURSOR LOCAL FAST_FORWARD FOR select 
+          [ENTRADAID]
+    ,[FECHA]
+    ,[HORAENTRADA]
+    ,[PACIENTEID]
+    ,[CLIENTEID]
+    ,[DOCTORID]
+    ,[POLIZAID]
+    ,[ENCLINICA]
+    ,[RECORDCLINICA]
+    ,[NUMEROHABITACION]
+    ,[FECHAENTRADA]
+    ,[FECHADEALTA]
+    ,[FECHAPROMETIDA]
+    ,[HORAPROMETIDA]
+    ,[FLEBOTOMISTAID]
+    ,[NOTA]
+    ,[PROYECTOID]
+    ,[RECORDID]
+    ,[BRUTO]
+    ,[DESCUENTO]
+    ,[SUBTOTAL]
+    ,[NETO]
+    ,[NOMBREPACIENTE]
+    ,[DIRECCION]
+    ,[TELEFONOS]
+    ,[TELEFONO2]
+    ,[EMAIL]
+    ,[CLIENTENOMBRE]
+    ,[SUCURSALID]
+    ,[USERID]
+    ,[COBROID]
+    ,[TOTALPAGADO]
+    ,[PRIORIDAD]
+    ,[FAX]
+    ,[COBERTURAPORC]
+    ,[COBERTURASEGURO]
+    ,[COBERTURAVALOR]
+    ,[DESCUENTOPORC]
+    ,[DESCUENTOVALOR]
+    ,[DESCUENTOBONO]
+    ,[ORIGEN]
+    ,[APROBACIONNO]
+    ,[APROBACIONPOR]
+    ,[COBERTURARECHAZADA]
+    ,[COBERTURACONFIRMADA]
+    ,[FECHAASEGURADORA]
+    ,[MUESTRANO]
+    ,[MONEDAID]
+    ,[COBERTURAEXPPORC]
+    ,[EDADPACIENTE]
+    ,[NOMBREDOCTOR]
+    ,[PUBLICARINTERNET]
+    ,[CARNET]
+    ,[PUBLICARINTERNETDOCTOR]
+    ,[CUADREGLOBAL]
+    ,[CUADREUSUARIO]
+    ,[DESCAUTORIZADOPOR]
+    ,[GASTOSVARIOS]
+    ,[NOAS400]
+    ,[NOAXAPTA]
+    ,[NOFACTURA]
+    ,[FACTEXTERIOR]
+    ,[HOLD]
+    ,[REPMUESTRA]
+    ,[ENTRADAIDANT]
+    ,[TIPOENTRADA]
+    ,[FORMADEPAGO]
+    ,[DESCUENTOCARD]
+    ,[DESCUENTOTEXTO]
+    ,[ACUERDOPROPIO]
+    ,[CLIENTEPADRE]
+    ,[DESCUENTOPLANID]
+    ,[FECHAREGISTRO]
+    ,[HORAREGISTRO]
+    ,[TASA]
+    ,[ESTATUS]
+    ,[TIPOCLIENTEAS400]
+    ,[CLASECREDITO]
+    ,[CARNETNUMERO]
+    ,[CLIENTEPADREAXAPTA]
+    ,[PACIENTEIDAXAPTA]
+    ,[CLIENTEIDAXAPTA]
+    ,[DOCTORIDAXAPTA]
+    ,[NCFTYPEID]
+    ,[NCFID]
+    ,[NCFNAME]
+    ,[SEXO]
+    ,[CUADRADO]
+    ,[TRANSFERIDO]
+    ,[SUCURSAL]
+    ,[NUMEROINTERNET]
+    ,[PUBLICARINTERNETCLIENTE]
+    ,[COBERTURAPRECONFIRMADA]
+    ,[COBERTURAMONTOPRECONFIRMADO]
+    ,[TRANSFERENCIA]
+    ,[GRUPOPRECIO]
+    ,[TIPODOCUMENTO]
+    ,[GRUPODESCUENTOLINEA]
+    ,[GRUPODESCUENTOTOTAL]
+    ,[RESULTADOCLIENTE]
+    ,[RESULTADODOCTOR]
+    ,[RESULTADOPACIENTE]
+    ,[DATAAREAID]
+    ,[RECID]
+    ,[msrepl_tran_version]
+     
+ 
+            from deleted for read only
+        open rpl_del_cursor 
+         fetch next from rpl_del_cursor into 
+          @c1_old,@c2_old,@c3_old,@c4_old,@c5_old,@c6_old,@c7_old,@c8_old,@c9_old,@c10_old,@c11_old,@c12_old,@c13_old,@c14_old,@c15_old,@c16_old,@c17_old,@c18_old,@c19_old,@c20_old,@c21_old,@c22_old,@c23_old,@c24_old,@c25_old,@c26_old,@c27_old,@c28_old,@c29_old,@c30_old,@c31_old,@c32_old,@c33_old,@c34_old,@c35_old,@c36_old,@c37_old,@c38_old,@c39_old,@c40_old,@c41_old,@c42_old,@c43_old,@c44_old,@c45_old,@c46_old,@c47_old,@c48_old,@c49_old,@c50_old,@c51_old,@c52_old,@c53_old,@c54_old,@c55_old,@c56_old,@c57_old,@c58_old,@c59_old,@c60_old,@c61_old,@c62_old,@c63_old,@c64_old,@c65_old,@c66_old,@c67_old,@c68_old,@c69_old,@c70_old,@c71_old,@c72_old,@c73_old,@c74_old,@c75_old,@c76_old,@c77_old,@c78_old,@c79_old,@c80_old,@c81_old,@c82_old,@c83_old,@c84_old,@c85_old,@c86_old,@c87_old,@c88_old,@c89_old,@c90_old,@c91_old,@c92_old,@c93_old,@c94_old,@c95_old,@c96_old,@c97_old,@c98_old,@c99_old,@c100_old,@c101_old,@c102_old,@c103_old,@c104_old,@c105_old 
+ 
+        while (@@fetch_status != -1)
+        begin  
+        if (@update_mode_id = 1) or (@update_mode_id in (3, 5) and @failover_mode_id = 0)
+        begin 
+            -- 
+            -- immediate mode 
+            --  
+            select @rpc_proc = @connect_string + N'.' + N'[dbo].[sp_MSsync_del_PTENTRADAPACIENTE_1]' 
+            exec @retcode = @rpc_proc @subscriber, @subscriber_db,
+                                          @c1_old,@c2_old,@c3_old,@c4_old,@c5_old,@c6_old,@c7_old,@c8_old,@c9_old,@c10_old,@c11_old,@c12_old,@c13_old,@c14_old,@c15_old,@c16_old,@c17_old,@c18_old,@c19_old,@c20_old,@c21_old,@c22_old,@c23_old,@c24_old,@c25_old,@c26_old,@c27_old,@c28_old,@c29_old,@c30_old,@c31_old,@c32_old,@c33_old,@c34_old,@c35_old,@c36_old,@c37_old,@c38_old,@c39_old,@c40_old,@c41_old,@c42_old,@c43_old,@c44_old,@c45_old,@c46_old,@c47_old,@c48_old,@c49_old,@c50_old,@c51_old,@c52_old,@c53_old,@c54_old,@c55_old,@c56_old,@c57_old,@c58_old,@c59_old,@c60_old,@c61_old,@c62_old,@c63_old,@c64_old,@c65_old,@c66_old,@c67_old,@c68_old,@c69_old,@c70_old,@c71_old,@c72_old,@c73_old,@c74_old,@c75_old,@c76_old,@c77_old,@c78_old,@c79_old,@c80_old,@c81_old,@c82_old,@c83_old,@c84_old,@c85_old,@c86_old,@c87_old,@c88_old,@c89_old,@c90_old,@c91_old,@c92_old,@c93_old,@c94_old,@c95_old,@c96_old,@c97_old,@c98_old,@c99_old,@c100_old,@c101_old,@c102_old,@c103_old,@c104_old,@c105_old 
+ 
+            if (@@error != 0 or @retcode != 0)
+            begin 
+                if (@retcode = -2)
+                    exec sys.sp_MSreplraiserror 21064
+                else if @retcode = 5
+                    exec sys.sp_MSreplraiserror 20515
+                else
+                    exec sys.sp_MSreplraiserror 21054
+                    goto FAILURE 
+            end
+        end 
+        else
+        begin
+            --
+            -- handle queued cases
+            -- 
+            if (@update_mode_id in (2,3))
+            begin 
+                exec @retcode = sys.sp_replsendtoqueue @queue_id, @tran_id, N'Real_001', N'11', N'del', N'sp_MSsync_del_PTENTRADAPACIENTE_1', @subscriber, @subscriber_db, 
+                          @c1_old,@c2_old,@c3_old,@c4_old,@c5_old,@c6_old,@c7_old,@c8_old,@c9_old,@c10_old,@c11_old,@c12_old,@c13_old,@c14_old,@c15_old,@c16_old,@c17_old,@c18_old,@c19_old,@c20_old,@c21_old,@c22_old,@c23_old,@c24_old,@c25_old,@c26_old,@c27_old,@c28_old,@c29_old,@c30_old,@c31_old,@c32_old,@c33_old,@c34_old,@c35_old,@c36_old,@c37_old,@c38_old,@c39_old,@c40_old,@c41_old,@c42_old,@c43_old,@c44_old,@c45_old,@c46_old,@c47_old,@c48_old,@c49_old,@c50_old,@c51_old,@c52_old,@c53_old,@c54_old,@c55_old,@c56_old,@c57_old,@c58_old,@c59_old,@c60_old,@c61_old,@c62_old,@c63_old,@c64_old,@c65_old,@c66_old,@c67_old,@c68_old,@c69_old,@c70_old,@c71_old,@c72_old,@c73_old,@c74_old,@c75_old,@c76_old,@c77_old,@c78_old,@c79_old,@c80_old,@c81_old,@c82_old,@c83_old,@c84_old,@c85_old,@c86_old,@c87_old,@c88_old,@c89_old,@c90_old,@c91_old,@c92_old,@c93_old,@c94_old,@c95_old,@c96_old,@c97_old,@c98_old,@c99_old,@c100_old,@c101_old,@c102_old,@c103_old,@c104_old,@c105_old 
+ 
+            end
+            else if (@update_mode_id in (4,5))
+            begin
+                select @partial_cmd = 1, @start_offset = 0, @end_offset = 0
+                while (@partial_cmd != 0)
+                begin 
+                    exec @retcode = sys.sp_replwritetovarbin @start_offset, @end_offset output, @vb_buffer output, @vb_bufferlen output, N'SER02', N'AXLR', N'Real_001', @tran_id, N'11', N'del', N'sp_MSsync_del_PTENTRADAPACIENTE_1', @subscriber, @subscriber_db, 
+                          @c1_old,@c2_old,@c3_old,@c4_old,@c5_old,@c6_old,@c7_old,@c8_old,@c9_old,@c10_old,@c11_old,@c12_old,@c13_old,@c14_old,@c15_old,@c16_old,@c17_old,@c18_old,@c19_old,@c20_old,@c21_old,@c22_old,@c23_old,@c24_old,@c25_old,@c26_old,@c27_old,@c28_old,@c29_old,@c30_old,@c31_old,@c32_old,@c33_old,@c34_old,@c35_old,@c36_old,@c37_old,@c38_old,@c39_old,@c40_old,@c41_old,@c42_old,@c43_old,@c44_old,@c45_old,@c46_old,@c47_old,@c48_old,@c49_old,@c50_old,@c51_old,@c52_old,@c53_old,@c54_old,@c55_old,@c56_old,@c57_old,@c58_old,@c59_old,@c60_old,@c61_old,@c62_old,@c63_old,@c64_old,@c65_old,@c66_old,@c67_old,@c68_old,@c69_old,@c70_old,@c71_old,@c72_old,@c73_old,@c74_old,@c75_old,@c76_old,@c77_old,@c78_old,@c79_old,@c80_old,@c81_old,@c82_old,@c83_old,@c84_old,@c85_old,@c86_old,@c87_old,@c88_old,@c89_old,@c90_old,@c91_old,@c92_old,@c93_old,@c94_old,@c95_old,@c96_old,@c97_old,@c98_old,@c99_old,@c100_old,@c101_old,@c102_old,@c103_old,@c104_old,@c105_old 
+ 
+                    if @@error != 0 or @retcode != 0 
+                    begin 
+                        exec sys.sp_MSreplraiserror 21052
+                        goto FAILURE 
+                    end 
+                    select @partial_cmd = case when (@end_offset > 0) then 1 else 0 end            
+                    exec @retcode = sys.sp_MSsendtosqlqueue @@procid, N'SER02', N'AXLR', N'Real_001', N'dbo', @tran_id, @vb_buffer, @vb_bufferlen, 1, @partial_cmd  
+                    if @@error != 0 or @retcode != 0 
+                    begin 
+                        exec sys.sp_MSreplraiserror 21052
+                        goto FAILURE 
+                    end
+                    select @start_offset = @end_offset
+                end
+            end 
+            if @@error <>0 or @retcode <> 0 
+            begin 
+                exec sys.sp_MSreplraiserror 21052
+                goto FAILURE 
+            end
+        end
+     
+             fetch next from rpl_del_cursor into 
+              @c1_old,@c2_old,@c3_old,@c4_old,@c5_old,@c6_old,@c7_old,@c8_old,@c9_old,@c10_old,@c11_old,@c12_old,@c13_old,@c14_old,@c15_old,@c16_old,@c17_old,@c18_old,@c19_old,@c20_old,@c21_old,@c22_old,@c23_old,@c24_old,@c25_old,@c26_old,@c27_old,@c28_old,@c29_old,@c30_old,@c31_old,@c32_old,@c33_old,@c34_old,@c35_old,@c36_old,@c37_old,@c38_old,@c39_old,@c40_old,@c41_old,@c42_old,@c43_old,@c44_old,@c45_old,@c46_old,@c47_old,@c48_old,@c49_old,@c50_old,@c51_old,@c52_old,@c53_old,@c54_old,@c55_old,@c56_old,@c57_old,@c58_old,@c59_old,@c60_old,@c61_old,@c62_old,@c63_old,@c64_old,@c65_old,@c66_old,@c67_old,@c68_old,@c69_old,@c70_old,@c71_old,@c72_old,@c73_old,@c74_old,@c75_old,@c76_old,@c77_old,@c78_old,@c79_old,@c80_old,@c81_old,@c82_old,@c83_old,@c84_old,@c85_old,@c86_old,@c87_old,@c88_old,@c89_old,@c90_old,@c91_old,@c92_old,@c93_old,@c94_old,@c95_old,@c96_old,@c97_old,@c98_old,@c99_old,@c100_old,@c101_old,@c102_old,@c103_old,@c104_old,@c105_old 
+ 
+        end  -- cursor while loop 
+        close rpl_del_cursor
+        deallocate rpl_del_cursor  
+    end -- end of multi row trigger update  
+    if (@@trancount > 0)
+        commit tran
+    return 
+
+FAILURE:
+    if (@@trancount > 0)
+    begin
+        exec sys.sp_MSreplraiserror 20512
+        rollback tran
+    end
+GO

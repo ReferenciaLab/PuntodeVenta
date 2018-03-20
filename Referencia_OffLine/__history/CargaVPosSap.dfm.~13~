@@ -1,0 +1,194 @@
+object frmCargaVPosSap: TfrmCargaVPosSap
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  Caption = 'Carga Ventas POS-SAP (Facturaci'#243'n)'
+  ClientHeight = 214
+  ClientWidth = 453
+  Color = clBtnFace
+  DefaultMonitor = dmDesktop
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnKeyDown = FormKeyDown
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label2: TLabel
+    Left = 373
+    Top = 233
+    Width = 65
+    Height = 13
+    Alignment = taRightJustify
+    AutoSize = False
+    Caption = '0'
+    Color = 16311249
+    ParentColor = False
+  end
+  object dxLayoutControl3: TdxLayoutControl
+    Left = 0
+    Top = 0
+    Width = 453
+    Height = 214
+    Align = alClient
+    TabOrder = 0
+    LookAndFeel = dmAppActions.lnfWeb
+    object btaceptarcuadre: TcxButton
+      Left = 23
+      Top = 169
+      Width = 200
+      Height = 22
+      Caption = 'Aceptar'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ModalResult = 1
+      ParentFont = False
+      TabOrder = 4
+    end
+    object btcancelarcuadre: TcxButton
+      Left = 229
+      Top = 169
+      Width = 200
+      Height = 22
+      Caption = 'Cancelar'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ModalResult = 2
+      ParentFont = False
+      TabOrder = 5
+    end
+    object FechaIni: TcxDateEdit
+      Left = 112
+      Top = 122
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      Style.ButtonStyle = btsHotFlat
+      Style.PopupBorderStyle = epbsSingle
+      TabOrder = 2
+      Width = 121
+    end
+    object FechaFin: TcxDateEdit
+      Left = 308
+      Top = 122
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      Style.ButtonStyle = btsHotFlat
+      Style.PopupBorderStyle = epbsSingle
+      TabOrder = 3
+      Width = 121
+    end
+    object cbExtCliente: TcxExtLookupComboBox
+      Left = 112
+      Top = 63
+      RepositoryItem = DM.elcCliente
+      Properties.CharCase = ecUpperCase
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      Style.ButtonStyle = btsHotFlat
+      Style.PopupBorderStyle = epbsSingle
+      TabOrder = 1
+      Width = 299
+    end
+    object cbExtGrupoCliente: TcxExtLookupComboBox
+      Left = 112
+      Top = 36
+      RepositoryItem = DM.elcGrupoCliente
+      Properties.CharCase = ecUpperCase
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      Style.ButtonStyle = btsHotFlat
+      Style.PopupBorderStyle = epbsSingle
+      TabOrder = 0
+      Width = 299
+    end
+    object dxLayoutGroup2: TdxLayoutGroup
+      ShowCaption = False
+      Hidden = True
+      ShowBorder = False
+      object dxLayoutControl3Group14: TdxLayoutGroup
+        ShowCaption = False
+        Hidden = True
+        ShowBorder = False
+        object GrupoParametros: TdxLayoutGroup
+          Caption = 'Parametros Cuadre'
+          ShowCaption = False
+          ShowBorder = False
+          object GrupoSucursales: TdxLayoutGroup
+            Caption = 'Cliente'
+            object dxLayoutControl3Item1: TdxLayoutItem
+              AutoAligns = [aaVertical]
+              Caption = 'Grupo de Clientes'
+              Control = cbExtGrupoCliente
+              ControlOptions.ShowBorder = False
+            end
+            object dxLayoutControl3Item42: TdxLayoutItem
+              AutoAligns = [aaVertical]
+              Caption = 'Cuenta de Cliente'
+              Control = cbExtCliente
+              ControlOptions.ShowBorder = False
+            end
+          end
+          object GrupoToma: TdxLayoutGroup
+            Caption = 'Rango de Fecha '
+            LayoutDirection = ldHorizontal
+            object dxLayoutControl3Item2: TdxLayoutItem
+              AutoAligns = [aaVertical]
+              Caption = 'Fecha Inicial'
+              Control = FechaIni
+              ControlOptions.ShowBorder = False
+            end
+            object dxLayoutControl3Item33: TdxLayoutItem
+              AutoAligns = [aaVertical]
+              AlignHorz = ahRight
+              Caption = 'Fecha Final'
+              Control = FechaFin
+              ControlOptions.ShowBorder = False
+            end
+          end
+        end
+        object GroupSaldo: TdxLayoutGroup
+          Caption = 'Saldo Final en Caja'
+          ShowCaption = False
+          LayoutDirection = ldHorizontal
+          ShowBorder = False
+        end
+      end
+      object botonescuadre: TdxLayoutGroup
+        AutoAligns = [aaVertical]
+        AlignHorz = ahClient
+        Caption = 'botonescuadre'
+        ShowCaption = False
+        LayoutDirection = ldHorizontal
+        object dxLayoutControl3Item31: TdxLayoutItem
+          Caption = 'New Item'
+          ShowCaption = False
+          Control = btaceptarcuadre
+          ControlOptions.ShowBorder = False
+        end
+        object dxLayoutControl3Item10: TdxLayoutItem
+          AutoAligns = [aaVertical]
+          AlignHorz = ahRight
+          Caption = 'New Item'
+          ShowCaption = False
+          Control = btcancelarcuadre
+          ControlOptions.ShowBorder = False
+        end
+      end
+    end
+  end
+end

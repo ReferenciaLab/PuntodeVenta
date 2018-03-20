@@ -1,0 +1,271 @@
+unit DatosPrecioAlternativo;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DatosModule, cxStyles, cxCustomData, cxGraphics, cxFilter, cxData,
+  cxDataStorage, cxEdit, DB, cxDBData, Menus, cxLookAndFeelPainters, dxPSGlbl,
+  dxPSUtl, dxPSEngn, dxPrnPg, dxBkgnd, dxWrap, dxPrnDev, dxPSCompsProvider,
+  dxPSFillPatterns, dxPSEdgePatterns, ABSMain, JvStringHolder, StdActns,
+  ActnList, ADODB, cxGridCustomPopupMenu, cxGridPopupMenu, dxPSContainerLnk,
+  dxPSdxLCLnk, dxPSCore, dxPScxCommon, dxPScxGridLnk, JvComponentBase,
+  JvFormPlacement, ExtCtrls, dxLayoutControl, StdCtrls, cxButtons, cxGridLevel,
+  cxClasses, cxControls, cxGridCustomView, cxGridCustomTableView,
+  cxGridTableView, cxGridDBTableView, cxGrid, cxPC, JvExControls, JvComponent,
+  JvEnterTab, cxCheckBox, cxDBEdit, cxCurrencyEdit, cxMaskEdit, cxDropDownEdit,
+  cxLookupEdit, cxDBLookupEdit, cxDBExtLookupComboBox, cxContainer, cxTextEdit,
+  cxGroupBox, cxRadioGroup, DBCtrls, cxImageComboBox, cxSpinEdit, cxintl;
+
+type
+  TfrmDatosPreciosAlt = class(TfrmDatosModule)
+    qrPrecioAlternativo: TADOQuery;
+    lcDatosGroup1: TdxLayoutGroup;
+    cxDBCurrencyEdit1: TcxDBCurrencyEdit;
+    lcDatosItem4: TdxLayoutItem;
+    cxDBCheckBox2: TcxDBCheckBox;
+    lcDatosItem6: TdxLayoutItem;
+    cxDBCurrencyEdit2: TcxDBCurrencyEdit;
+    lcDatosItem7: TdxLayoutItem;
+    CbTipoPrueba: TcxDBImageComboBox;
+    lcDatosTipos: TdxLayoutItem;
+    cxDBExtLookupComboBox4: TcxDBExtLookupComboBox;
+    lcDatosItem14: TdxLayoutItem;
+    cxDBTextEdit1: TcxDBTextEdit;
+    lcDatosItem11: TdxLayoutItem;
+    cxDBTextEdit3: TcxDBTextEdit;
+    lcDatosItem13: TdxLayoutItem;
+    qrPrecioAlternativoPruebaID: TStringField;
+    qrPrecioAlternativoPrecio: TBCDField;
+    qrPrecioAlternativoSucursalId: TStringField;
+    qrPrecioAlternativoPrecioDolares: TBCDField;
+    qrPrecioAlternativoActivo: TBooleanField;
+    qrPrecioAlternativoDataareaid: TStringField;
+    qrPrecioAlternativoRecid: TIntegerField;
+    tvDatosPruebaID: TcxGridDBColumn;
+    tvDatosPrecio: TcxGridDBColumn;
+    tvDatosSucursalId: TcxGridDBColumn;
+    tvDatosPrecioDolares: TcxGridDBColumn;
+    tvDatosActivo: TcxGridDBColumn;
+    tvDatosDataareaid: TcxGridDBColumn;
+    tvDatosRecid: TcxGridDBColumn;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure qrPrecioAlternativoAfterPost(DataSet: TDataSet);
+    procedure qrPrecioAlternativoAfterScroll(DataSet: TDataSet);
+    procedure qrPrecioAlternativoTIPOChange(Sender: TField);
+    procedure qrPrecioAlternativoGRUPOPRUEBAIDChange(Sender: TField);
+    procedure qrPrecioAlternativoBeforeInsert(DataSet: TDataSet);
+    procedure qrPrecioAlternativoNewRecord(DataSet: TDataSet);
+    Function  BuscaProximoRecId : Integer;
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    Procedure Inicio;
+    Procedure Refrescar;
+    Procedure Actu_Pruebas;
+    { Public declarations }
+  end;
+
+var
+  frmDatosPreciosAlt: TfrmDatosPreciosAlt;
+
+implementation
+
+uses DataModule, Main;
+
+{$R *.dfm}
+
+procedure TfrmDatosPreciosAlt.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  With DM.qrPruebas, sql do
+  begin
+    Close;
+    Clear;
+    Text :='SELECT * FROM PTPrueba Where DataAreaId = '+#39+DM.CurEmpresa+#39
+  end;
+end;
+
+procedure TfrmDatosPreciosAlt.FormCreate(Sender: TObject);
+begin
+  inherited;
+  With DM.qrPruebas, sql do
+  begin
+    Close;
+    Clear;
+    Text :='SELECT * FROM PTPrueba Where Tipo='+#39+'P'+#39+' And DataAreaId = '+#39+DM.CurEmpresa+#39;
+    Open;
+  end;
+  DM.qrParametro.close;
+  DM.qrParametro.open;
+//  edprueba.Properties.ReadOnly := DM.qrParametroAutoNumerarPruebas.Value;
+
+  AutoKeyField := 'PruebaID';
+end;
+
+
+procedure TfrmDatosPreciosAlt.qrPrecioAlternativoGRUPOPRUEBAIDChange(Sender: TField);
+begin
+  inherited;
+  Refrescar;
+end;
+
+procedure TfrmDatosPreciosAlt.qrPrecioAlternativoNewRecord(DataSet: TDataSet);
+Var RecId: Integer;
+begin
+  If (qrPrecioAlternativo.State = dsInsert) Or
+     (qrPrecioAlternativo.State = dsEdit) Then
+  begin
+      DM.qrParametro.close;
+      DM.qrParametro.open;
+      if (qrPrecioAlternativo.State = dsInsert) then
+      begin
+       qrPrecioAlternativoRecid.Value := BuscaProximoRecId;
+       qrPrecioAlternativoDataareaid.Value := 'ldr'
+      end;
+  end;
+{
+  inherited;
+  DM.qrParametro.Close;
+  DM.qrParametro.Open;
+
+  RecId := DM.qrParametroSecuencia.Value;
+
+  DM.qrParametro.Edit;
+  DM.qrParametroSecuencia.Value := DM.qrParametroSecuencia.Value + 1;
+  DM.qrParametro.Post;
+
+  qrPruebasDATAAREAID.Value := DM.CurEmpresa;
+  qrPruebasRECID.Value := RecId;
+
+  qrPruebasEstatus.Value := 1;
+  qrPruebasCosto.Value := 0;
+  qrPruebasPruebas.Value := 0;
+  qrPruebasPrecio.Value := 0;
+  qrPruebasPrecioDolares.Value := 0;
+  qrPruebasExterior.Value := 0;
+  qrPruebasOrina.Value := 0;
+  qrPruebasSangre.Value := 1;
+  qrPruebasFacturarCabecera.Value := 0;
+  qrPruebasPermiteCambioPrecio.Value := 0;
+  qrPruebasTipo.Value := 'C';
+  qrPruebasGRUPOPRUEBAID.Value := 'COM';
+
+//  qrPruebasCONDMUESTRA.Value := '.';
+//  qrPruebasCONDPACIENTE.Value := '.';
+//  qrPruebasCOMENTARIONOPROCESAR.Value := '.';
+
+//  qrPruebasCosto.ReadOnly := True;
+//  qrPruebasPrecio.ReadOnly := True;
+//  qrPruebasPrecioDolares.ReadOnly := True;
+
+  inicio;
+  EdDescripcion.SetFocus;
+}
+end;
+
+
+procedure TfrmDatosPreciosAlt.qrPrecioAlternativoTIPOChange(Sender: TField);
+begin
+  inherited;
+  Refrescar;
+end;
+
+
+procedure TfrmDatosPreciosAlt.qrPrecioAlternativoAfterPost(DataSet: TDataSet);
+begin
+  inherited;
+  qrPrecioAlternativo.Refresh;
+end;
+
+
+procedure TfrmDatosPreciosAlt.qrPrecioAlternativoAfterScroll(DataSet: TDataSet);
+begin
+  inherited;
+  Refrescar;
+end;
+
+
+procedure TfrmDatosPreciosAlt.qrPrecioAlternativoBeforeInsert(DataSet: TDataSet);
+begin
+  inherited;
+  inicio;
+end;
+
+
+procedure TfrmDatosPreciosAlt.Refrescar;
+begin
+end;
+
+
+procedure TfrmDatosPreciosAlt.Inicio;
+begin
+  inherited;
+end;
+
+
+procedure TfrmDatosPreciosAlt.Actu_Pruebas;
+//Var qupdate : TADOquery;
+begin
+{
+  qupdate := DM.NewQuery;
+
+  qupdate.Close;
+  qupdate.SQL.Text := ' UPDATE PtPrueba SET PruebaId = CodigoAxapta WHERE GrupoPruebaId = :com ';
+  qupdate.parameters[0].Value := 'COM';
+  qupdate.ExecSQL;
+
+  qrPruebas.Close;
+  qrPruebas.SQL.Text := 'SELECT * FROM PtPrueba WHERE GrupoPruebaId = :com ORDER BY PruebaId';
+  qrPruebas.parameters[0].Value := 'COM';
+  qrPruebas.Open;
+
+  qrPruebas.First;
+
+  While Not qrPruebas.Eof Do
+   Begin
+     qupdate.Close;
+     qupdate.SQL.Text := ' UPDATE PTCombosPruebas SET ComboID = :axa WHERE ComboID = :pru ';
+     qupdate.Parameters[0].Value := qrPruebasCODIGOAXAPTA.Value;
+     qupdate.Parameters[1].Value := qrPruebasPRUEBAID.Value;
+     qupdate.ExecSQL;
+
+     qrPruebas.Edit;
+     qrPruebasDATAAREAID.Value := DM.CurEmpresa;
+     qrPruebasPRUEBAID.Value   := qrPruebasCODIGOAXAPTA.Value;
+     qrPruebas.Post;
+
+     qrPruebas.Next;
+   End;
+
+  FreeAndNil(qupdate);
+}
+end;
+
+
+procedure TfrmDatosPreciosAlt.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  If (key = vk_f12) Then Actu_Pruebas;
+end;
+Function TfrmDatosPreciosAlt.BuscaProximoRecId : Integer;
+Var
+ qinter  : TAdoQuery;
+begin
+  qinter := DM.NewQuery;
+  qinter.Close;
+  qinter.SQL.Text := ' Select isnull(Max(RecId)+1,0) as Recid from ptPrecioAlternativo Order by Recid';
+  qinter.Open;
+  if (qinter.RecordCount > 0) then
+    result := qinter.FieldByName('Recid').Value
+  else
+    result := 0;
+  FreeAndNil(qinter);
+End;
+
+
+END.

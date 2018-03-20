@@ -1,0 +1,839 @@
+unit DialogConsultaEntradas;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DialogConsulta, cxGraphics, Menus, cxLookAndFeelPainters, cxStyles,
+  cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, DB, cxDBData,
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, ADODB,
+  dxLayoutControl, cxGridLevel, cxClasses, cxControls, cxGridCustomView, cxGrid,
+  StdCtrls, cxButtons, cxTextEdit, cxContainer, cxMaskEdit, cxDropDownEdit,
+  DialogCobro, cxintl, cxCheckBox, cxLabel, cxCalendar,dlgmensajes;
+
+type
+  TfrmDialogConsultaEntradas = class(TfrmDialogConsulta)
+    dbDatosTotalPagado: TcxGridDBColumn;
+    dbDatosTotalPendiente: TcxGridDBColumn;
+    dbDatosMuestrano: TcxGridDBColumn;
+    dbDatosFecha: TcxGridDBColumn;
+    dbDatosPacienteID: TcxGridDBColumn;
+    dbDatosClienteID: TcxGridDBColumn;
+    dbDatosNeto: TcxGridDBColumn;
+    dbDatosNombrePaciente: TcxGridDBColumn;
+    dbDatosClienteNombre: TcxGridDBColumn;
+    dbDatosMonedaID: TcxGridDBColumn;
+    dbDatosTelefonos: TcxGridDBColumn;
+    dbDatosHold: TcxGridDBColumn;
+    CbCriterio: TcxCheckBox;
+    dxLayoutControl1Item7: TdxLayoutItem;
+    cxLabel1: TcxLabel;
+    dtFechaIni: TcxDateEdit;
+    dxLayoutControl1Item3: TdxLayoutItem;
+    dtFechaFin: TcxDateEdit;
+    dxLayoutControl1Item8: TdxLayoutItem;
+    dbDatosEntradaID_Ref: TcxGridDBColumn;
+    dbDatosEntradaID: TcxGridDBColumn;
+    dbDatosCoberturaSeg: TcxGridDBColumn;
+    procedure dbDatosStylesGetContentStyle(Sender: TcxCustomGridTableView;
+      ARecord: TcxCustomGridRecord; AItem: TcxCustomGridTableItem;
+      out AStyle: TcxStyle);
+    procedure edbuscarporPropertiesChange(Sender: TObject);
+    procedure edbuscarporExit(Sender: TObject);
+    procedure edbuscarExit(Sender: TObject);
+    procedure CbCriterioPropertiesChange(Sender: TObject);
+    procedure cgDatosExit(Sender: TObject);
+    procedure cgDatosEnter(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    Procedure Desbloquear_Entrada;
+    procedure BuscarData;
+    Function  Verifica_MontoPrueba(Opcion : String) : String;
+    Function  Creacion_Registros_NC_FAC(DocID : String) : Boolean;
+    Function  Verifica_EntradaNC : String;
+
+  private
+    { Private declarations }
+    notac             : TcxStyle;
+    notad             : TcxStyle;
+    normal            : TcxStyle;
+  public
+    { Public declarations }
+    procedure Run;
+  end;
+
+var
+  frmDialogConsultaEntradas: TfrmDialogConsultaEntradas;
+  adentrogrid, _buscar : Boolean;
+
+implementation
+
+uses DataModule,PuntoVenta,Main;
+
+{$R *.dfm}
+
+procedure TfrmDialogConsultaEntradas.Run;
+Var
+ qfind : TADOQuery;
+ Opcion: String;
+begin
+ showmodal;
+ if ModalResult = mrOk then
+ begin
+  if (Factura_St = 'M') Or (Factura_St = 'N') Then
+  begin
+     if DM.qrEntradaPacienteConsRecid.Value <> 0 then
+     Begin
+        if Factura_St = 'M' then
+        Begin
+         if (dm.IsCambiosEntrada = True) Then
+         begin
+                  If DM.qrEntradaPacienteConsTransferido.Value=1 Then
+                  begin
+                    if MessageDlg('Factura Contabilizada en Axapta.  Desea modificar datos menores del paciente?', mtConfirmation, [mbYes,mbNo], 0) = mrYes then
+                    begin
+                        frmMain.frmTmpMod.btCliente.Enabled     := False;
+                        frmMain.frmTmpMod.btPrueba.Enabled      := False;
+                        frmMain.frmTmpMod.btEliminar.Enabled    := False;
+                        frmMain.frmTmpMod.btNotaCredito.Enabled := False;
+                        frmMain.frmTmpMod.btFunciones.Enabled   := False;
+                        frmMain.frmTmpMod.btAutoriza.Enabled    := False;
+                        frmMain.frmTmpMod.cxButton1.Enabled     := False;
+                        frmMain.frmTmpMod.edTipoCliente.Enabled := False;
+                        frmMain.frmTmpMod.btHold.Enabled        := False;
+                    end
+                    else
+                    begin
+                        frmMain.frmTmpMod.HabilitaConsultas;
+//                        frmMain.frmTmpMod.qrEntradaPacienteMUESTRANO.Value       := EmptyStr;
+//                        frmMain.frmTmpMod.qrEntradaPacienteENTRADAID.Value       := EmptyStr;
+//                        frmMain.frmTmpMod.qrEntradaPacienteNombrePaciente.Value  := EmptyStr;
+                        Exit;
+                    end;
+                  end
+                  else
+                  begin
+                    frmMain.frmTmpMod.btCliente.Enabled     := True;
+                    frmMain.frmTmpMod.btPrueba.Enabled      := True;
+                    frmMain.frmTmpMod.btEliminar.Enabled    := True;
+                    frmMain.frmTmpMod.btNotaCredito.Enabled := True;
+                    frmMain.frmTmpMod.btFunciones.Enabled   := True;
+                    frmMain.frmTmpMod.btAutoriza.Enabled    := True;
+                    frmMain.frmTmpMod.cxButton1.Enabled     := True;
+                    frmMain.frmTmpMod.edTipoCliente.Enabled := True;
+                    frmMain.frmTmpMod.btHold.Enabled        := False;
+                  end;
+                  frmMain.frmTmpMod.qrEntradaPaciente.Insert;
+                  frmMain.frmTmpMod._recorId := DM.qrEntradaPacienteConsRecid.Value;
+                  frmMain.frmTmpMod.check_balance := False;
+                  frmMain.frmTmpMod.BuscarDatos;
+                  frmMain.frmTmpMod.RefrescarInterface;
+
+//                  frmMain.frmTmpMod.qrEntradaPacienteMUESTRANO.Value       := DM.qrEntradaPacienteConsMUESTRANO.Value;
+//                  frmMain.frmTmpMod.qrEntradaPacienteENTRADAID.Value       := DM.qrEntradaPacienteConsENTRADAID.Value;
+//                  frmMain.frmTmpMod.qrEntradaPacienteNombrePaciente.Value  := DM.qrEntradaPacienteConsNombrePaciente.Value;
+                  frmMain.LanzaVentana(-8033);
+                  If Auditoria_St = 'N' then
+                  Begin
+                    if Factura_St = 'M' then
+                    Begin
+                         If (frmMain.frmTmpMod.qrEntradaPacienteEntradaID.Value <> '') then
+                         begin
+                            if frmMain.frmTmpMod.qrEntradaPaciente.State = dsEdit then  frmMain.frmTmpMod.qrEntradaPaciente.Cancel;
+                            frmMain.frmTmpMod.HabilitaConsultas;
+                         end;
+                         if (Copy(frmMain.frmTmpMod.qrEntradaPacienteMuestrano.value,3,3)='000') then
+                            frmMain.frmTmpMod.lcGeneral.LookAndFeel.GroupOptions.Color := clMoneyGreen
+                         else
+                            frmMain.frmTmpMod.lcGeneral.LookAndFeel.GroupOptions.Color := $00F8E3D1;
+                    end;
+                    Exit;
+                  end;
+//                  frmMain.frmTmpMod._recorId := DM.qrEntradaPacienteConsRecid.Value;
+//                  frmMain.frmTmpMod.check_balance := False;
+//                  frmMain.frmTmpMod.BuscarDatos;
+//                  frmMain.frmTmpMod.RefrescarInterface;
+                  Exit;
+          end;
+
+          if not((DM.qrEntradaPacienteConsFecha.value = DM.SystemDate) Or
+                 (DM.qrEntradaPacienteConsFecha.value+1 = DM.SystemDate )Or
+                 (DM.qrEntradaPacienteConsFecha.value+DM.ContDiasTrabajo(DM.qrEntradaPacienteConsFecha.value) = DM.SystemDate ) Or
+                 ((DM.ContDiasTrabajo(DM.qrEntradaPacienteConsFecha.value) = 2) And (DM.qrEntradaPacienteConsFecha.value+1 = DM.SystemDate)) Or
+                 ((DM.ContDiasTrabajo(DM.qrEntradaPacienteConsFecha.value) = 3) And (DM.qrEntradaPacienteConsFecha.value+2 = DM.SystemDate)) Or
+                 ((DM.ContDiasTrabajo(DM.qrEntradaPacienteConsFecha.value) = 4) And (DM.qrEntradaPacienteConsFecha.value+3 = DM.SystemDate))) Then
+          Begin
+            if Not((dm.CurRol = 7) or (dm.CurRol = 11) or (dm.CurRol = 13) or (dm.CurRol = 15) or (dm.CurRol = 10)) Then
+            begin
+               If (frmMain.frmTmpMod.qrEntradaPacienteEntradaID.Value <> '') then
+               begin
+                  if frmMain.frmTmpMod.qrEntradaPaciente.State = dsEdit then  frmMain.frmTmpMod.qrEntradaPaciente.Cancel;
+                  frmMain.frmTmpMod.HabilitaConsultas;
+               end;
+               if (Copy(frmMain.frmTmpMod.qrEntradaPacienteMuestrano.value,3,3)='000') then
+                  frmMain.frmTmpMod.lcGeneral.LookAndFeel.GroupOptions.Color := clMoneyGreen
+               else
+                  frmMain.frmTmpMod.lcGeneral.LookAndFeel.GroupOptions.Color := $00F8E3D1;
+
+//              frmMain.frmTmpMod.qrEntradaPacienteMUESTRANO.Value       := EmptyStr;
+//              frmMain.frmTmpMod.qrEntradaPacienteENTRADAID.Value       := EmptyStr;
+//              frmMain.frmTmpMod.qrEntradaPacienteNombrePaciente.Value  := EmptyStr;
+              EtMensajeDlg('Recuerde Entrada con más de 2 días NO puede ser Modificada.  Verifique al gerente de sucursal ó Nabis.', etError, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
+              Exit;
+            end
+            else
+            begin
+              if MessageDlg('Recuerde Entrada con más de 2 días NO puede ser Modificada.  Desea modificar datos menores del paciente?', mtConfirmation, [mbYes,mbNo], 0) = mrYes then
+              begin
+                  frmMain.frmTmpMod.btCliente.Enabled     := False;
+                  frmMain.frmTmpMod.btPrueba.Enabled      := False;
+                  frmMain.frmTmpMod.btEliminar.Enabled    := False;
+                  frmMain.frmTmpMod.btNotaCredito.Enabled := False;
+                  frmMain.frmTmpMod.btFunciones.Enabled   := False;
+                  frmMain.frmTmpMod.btAutoriza.Enabled    := False;
+                  frmMain.frmTmpMod.cxButton1.Enabled     := False;
+                  frmMain.frmTmpMod.edTipoCliente.Enabled := False;
+                  frmMain.frmTmpMod.btHold.Enabled        := False;
+              end
+              else
+              begin
+                 If (frmMain.frmTmpMod.qrEntradaPacienteEntradaID.Value <> '') then
+                 begin
+                    if frmMain.frmTmpMod.qrEntradaPaciente.State = dsEdit then  frmMain.frmTmpMod.qrEntradaPaciente.Cancel;
+                    frmMain.frmTmpMod.HabilitaConsultas;
+                 end;
+                 if (Copy(frmMain.frmTmpMod.qrEntradaPacienteMuestrano.value,3,3)='000') then
+                    frmMain.frmTmpMod.lcGeneral.LookAndFeel.GroupOptions.Color := clMoneyGreen
+                 else
+                    frmMain.frmTmpMod.lcGeneral.LookAndFeel.GroupOptions.Color := $00F8E3D1;
+//                  frmMain.frmTmpMod.qrEntradaPacienteMUESTRANO.Value       := EmptyStr;
+//                  frmMain.frmTmpMod.qrEntradaPacienteENTRADAID.Value       := EmptyStr;
+//                  frmMain.frmTmpMod.qrEntradaPacienteNombrePaciente.Value  := EmptyStr;
+                 Exit;
+              end;
+            end;
+          end
+          else
+          begin
+                  if DM.qrEntradaPacienteConsTransferido.Value = 1 then
+                  begin
+                      ShowMessage('Factura Contabilizada en Axapta.  No podrá realizar cambios a dicha factura.');
+                      Exit;
+                  end;
+                  frmMain.frmTmpMod.btCliente.Enabled     := True;
+                  frmMain.frmTmpMod.btPrueba.Enabled      := True;
+                  frmMain.frmTmpMod.btEliminar.Enabled    := True;
+                  frmMain.frmTmpMod.btNotaCredito.Enabled := True;
+                  frmMain.frmTmpMod.btFunciones.Enabled   := True;
+                  frmMain.frmTmpMod.btAutoriza.Enabled    := True;
+                  frmMain.frmTmpMod.cxButton1.Enabled     := True;
+                  frmMain.frmTmpMod.edTipoCliente.Enabled := True;
+                  frmMain.frmTmpMod.btHold.Enabled        := True;
+          end;
+          frmMain.frmTmpMod.qrEntradaPaciente.Insert;
+          frmMain.frmTmpMod._recorId := DM.qrEntradaPacienteConsRecid.Value;
+          frmMain.frmTmpMod.check_balance := False;
+          frmMain.frmTmpMod.BuscarDatos;
+          frmMain.frmTmpMod.RefrescarInterface;
+
+//          frmMain.frmTmpMod.qrEntradaPacienteMUESTRANO.Value       := DM.qrEntradaPacienteConsMUESTRANO.Value;
+//          frmMain.frmTmpMod.qrEntradaPacienteENTRADAID.Value       := DM.qrEntradaPacienteConsENTRADAID.Value;
+//          frmMain.frmTmpMod.qrEntradaPacienteNombrePaciente.Value  := DM.qrEntradaPacienteConsNombrePaciente.Value
+        end else if Factura_St = 'N' then
+        Begin
+          If Verifica_MontoPrueba(Opcion) = 'CT' Then
+          Begin
+              frmMain.frmTmpNCR.qrEntradaPacienteMUESTRANO.Value       := EmptyStr;
+              frmMain.frmTmpNCR.qrEntradaPacienteENTRADAID.Value       := EmptyStr;
+              frmMain.frmTmpNCR.qrEntradaPacienteNombrePaciente.Value  := EmptyStr;
+              EtMensajeDlg('Entrada tiene acreditada todas la(s) prueba(s).  Verifique.', etError, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
+              Exit;
+          end;
+          frmMain.frmTmpNCR.qrEntradaPaciente.Insert;
+          frmMain.frmTmpNCR.qrEntradaPacienteMUESTRANO.Value        := DM.qrEntradaPacienteConsMUESTRANO.Value;
+          frmMain.frmTmpNCR.qrEntradaPacienteENTRADAID.Value        := DM.qrEntradaPacienteConsENTRADAID.Value;
+          frmMain.frmTmpNCR.qrEntradaPacienteNombrePaciente.Value   := DM.qrEntradaPacienteConsNombrePaciente.Value;
+          frmMain.frmTmpNCR.btGrabar.Enabled                        := True;
+        end;
+       frmMain.LanzaVentana(-8033);
+       If Auditoria_St = 'N' then
+       Begin
+          if Factura_St = 'M' then
+          Begin
+             If (frmMain.frmTmpMod.qrEntradaPacienteEntradaID.Value <> '') then
+             begin
+                if frmMain.frmTmpMod.qrEntradaPaciente.State = dsEdit then  frmMain.frmTmpMod.qrEntradaPaciente.Cancel;
+                frmMain.frmTmpMod.HabilitaConsultas;
+             end;
+             if (Copy(frmMain.frmTmpMod.qrEntradaPacienteMuestrano.value,3,3)='000') then
+                frmMain.frmTmpMod.lcGeneral.LookAndFeel.GroupOptions.Color := clMoneyGreen
+             else
+                frmMain.frmTmpMod.lcGeneral.LookAndFeel.GroupOptions.Color := $00F8E3D1;
+          end else if Factura_St = 'N' then
+          Begin
+             If (frmMain.frmTmpNCR.qrEntradaPacienteEntradaID.Value <> '') then
+             begin
+                if frmMain.frmTmpNCR.qrEntradaPaciente.State = dsEdit then  frmMain.frmTmpNCR.qrEntradaPaciente.Cancel;
+                frmMain.frmTmpNCR.HabilitaConsultas;
+             end;
+             if (Copy(frmMain.frmTmpNCR.qrEntradaPacienteMuestrano.value,3,3)='000') then
+                frmMain.frmTmpNCR.lcGeneral.LookAndFeel.GroupOptions.Color := clMoneyGreen
+             else
+                frmMain.frmTmpNCR.lcGeneral.LookAndFeel.GroupOptions.Color := $00F8E3D1;
+          end else if Factura_St = 'F' then
+          Begin
+             If (frmMain.frmTmpND.qrEntradaPacienteEntradaID.Value <> '') then
+             begin
+                if frmMain.frmTmpND.qrEntradaPaciente.State = dsEdit then  frmMain.frmTmpND.qrEntradaPaciente.Cancel;
+                frmMain.frmTmpND.HabilitaConsultas;
+             end;
+             if (Copy(frmMain.frmTmpND.qrEntradaPacienteMuestrano.value,3,3)='000') then
+                frmMain.frmTmpND.lcGeneral.LookAndFeel.GroupOptions.Color := clMoneyGreen
+             else
+                frmMain.frmTmpND.lcGeneral.LookAndFeel.GroupOptions.Color := $00F8E3D1;
+          end;
+          Exit;
+       end;
+     end;
+  end;
+
+  If (frmMain.Exis_Vta = True) then
+    Begin
+      if Factura_St = 'I' Then
+      begin
+        frmMain.frmTmp._recorId := DM.qrEntradaPacienteConsRecid.Value;
+        frmMain.frmTmp.check_balance := False;
+        frmMain.frmTmp.BuscarDatos;
+        frmMain.frmTmp.RefrescarInterface;
+      end
+      else       if Factura_St = 'M' Then
+      begin
+        frmMain.frmTmpMod._recorId := DM.qrEntradaPacienteConsRecid.Value;
+        frmMain.frmTmpMod.check_balance := False;
+        frmMain.frmTmpMod.BuscarDatos;
+        frmMain.frmTmpMod.RefrescarInterface;
+      end
+      else       if Factura_St = 'L' Then
+      begin
+        frmMain.frmTmpLab._recorId := DM.qrEntradaPacienteConsRecid.Value;
+        frmMain.frmTmpLab.check_balance := False;
+        frmMain.frmTmpLab.BuscarDatos;
+        frmMain.frmTmpLab.RefrescarInterface;
+      end
+      else if (Factura_St = 'N') Then
+      begin
+        frmMain.frmTmpNCR.qrEntradaPacienteMUESTRANO.Text:='';
+        frmMain.frmTmpNCR.qrEntradaPacienteNombrePaciente.Text:='';
+        frmMain.frmTmpNCR.qrEntradaPacienteEntraDaID.Text:='';
+        If Verifica_MontoPrueba(Opcion) = 'NF' Then
+        Begin
+            EtMensajeDlg('Entrada No Tiene prueba(s) registradas.  Verifique.', etError, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
+            Exit;
+        end;
+        If Verifica_MontoPrueba(Opcion) = 'CT' Then
+        Begin
+            EtMensajeDlg('Entrada tiene acreditada todas la(s) prueba(s).  Verifique.', etError, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
+            Exit;
+        end;
+//        If Verifica_MontoPrueba(Opcion) = 'CP' Then
+//        Begin
+//            EtMensajeDlg('Entrada tiene prueba(s) acreditadas (Nota de Crédito).  Verifique.', etAviso, [etOk],0, dm.Imagenes.Items[6].Bitmap,true);
+//        end;
+        If Copy(Verifica_EntradaNC,1,1) = 'N' Then
+        Begin
+           If (EtMensajeDlg(' Entrada está procesando Nota de Crédito.  Verifique el Usuario '+Copy(Verifica_EntradaNC,2,10)+'.'+ #13 +
+                            ' Desea desbloquear la entrada?',etConfirmacion,[etSi,etNo],1,dm.Imagenes.Items[5].Bitmap,true) = mryes) then
+           begin
+              Desbloquear_Entrada;
+           end
+           else
+              Exit;
+        end;
+        If Copy(Verifica_EntradaNC,1,1) = 'F' Then
+        Begin
+           If (EtMensajeDlg(' Entrada está procesando Otra Factura.  Verifique el Usuario '+Copy(Verifica_EntradaNC,2,10)+'.'+ #13 +
+                            ' Desea desbloquear la entrada?',etConfirmacion,[etSi,etNo],1,dm.Imagenes.Items[5].Bitmap,true) = mryes) then
+           begin
+              Desbloquear_Entrada;
+           end
+           else
+              Exit;
+        end;
+        If Not Creacion_Registros_NC_FAC('N') Then
+        begin
+           Raise exception.CreateFmt( ' NO Se Pudo Crear Documento Nota de Credito. '+ #13 +
+                                      ' Se Ha Generado Un Error. '+ #13 +
+                                      ' Por Favor, Intentelo Nuevamente.!!!', []);
+        end;
+
+        frmMain.frmTmpNCR.check_balance := False;
+        frmMain.frmTmpNCR.BuscarDatos;
+        frmMain.frmTmpNCR.RefrescarInterface;
+      end else if (Factura_St = 'F') Then
+      begin
+        frmMain.frmTmpND.qrEntradaPaciente.Insert;
+        frmMain.frmTmpND.qrEntradaPacienteMUESTRANO.Text      :=EmptyStr;
+        frmMain.frmTmpND.qrEntradaPacienteNombrePaciente.Text :=EmptyStr;
+        frmMain.frmTmpND.qrEntradaPacienteEntraDaID.Text      :=EmptyStr;
+        If Copy(Verifica_EntradaNC,1,1) = 'N' Then
+        Begin
+           If (EtMensajeDlg(' Entrada está procesando Nota de Crédito.  Verifique el Usuario '+Copy(Verifica_EntradaNC,2,10)+'.'+ #13 +
+                            ' Desea desbloquear la entrada?',etConfirmacion,[etSi,etNo],1,dm.Imagenes.Items[5].Bitmap,true) = mryes) then
+           begin
+              Desbloquear_Entrada;
+           end
+           else
+              Exit;
+
+        end;
+        If Copy(Verifica_EntradaNC,1,1) = 'F' Then
+        Begin
+           If (EtMensajeDlg(' Entrada está procesando Otra Factura.  Verifique el Usuario '+Copy(Verifica_EntradaNC,2,10)+'.'+ #13 +
+                            ' Desea desbloquear la entrada?',etConfirmacion,[etSi,etNo],1,dm.Imagenes.Items[5].Bitmap,true) = mryes) then
+           begin
+              Desbloquear_Entrada;
+           end
+           else
+              Exit;
+
+        end;
+        If Not Creacion_Registros_NC_FAC('F') Then
+        begin
+           Raise exception.CreateFmt( ' NO Se Pudo Crear Documento Nota de Débito. '+ #13 +
+                                      ' Se Ha Generado Un Error. '+ #13 +
+                                      ' Por Favor, Intentelo Nuevamente.!!!', []);
+        end;
+        frmMain.frmTmpND.btCliente.Enabled      := True;
+        frmMain.frmTmpND.btPrueba.Enabled       := True;
+        frmMain.frmTmpND.btEliminar.Enabled     := True;
+        frmMain.frmTmpND.btNotaCredito.Enabled  := True;
+        frmMain.frmTmpND.btFunciones.Enabled    := True;
+        frmMain.frmTmpND.btAutoriza.Enabled     := True;
+        frmMain.frmTmpND.cxButton1.Enabled      := True;
+        frmMain.frmTmpND.btpaciente.Enabled     := True;
+        frmMain.frmTmpND.btGrabar.Enabled       := True;
+        frmMain.frmTmpND.edTipoCliente.Enabled  := True;
+        frmMain.frmTmpND.btHold.Enabled         := False;
+        frmMain.frmTmpND.check_balance          := False;
+        frmMain.frmTmpND.BuscarDatos;
+        frmMain.frmTmpND.RefrescarInterface;
+      end;
+    end;
+  If (frmMain.Exis_Cap = True) then
+    Begin
+      if Factura_St = 'I' Then
+      begin
+        frmMain.frmCap._recorId := DM.qrEntradaPacienteConsRecid.Value;
+        frmMain.frmCap.BuscarDatos;
+        frmMain.frmCap.RefrescarInterface;
+      end
+      else if Factura_St = 'M' Then
+      begin
+        frmMain.frmCapMod._recorId := DM.qrEntradaPacienteConsRecid.Value;
+        frmMain.frmCapMod.BuscarDatos;
+//        frmMain.frmCap.RefrescarInterface;
+      end
+      else if Factura_St = 'L' Then
+      begin
+        frmMain.frmCapLab._recorId := DM.qrEntradaPacienteConsRecid.Value;
+        frmMain.frmCapLab.BuscarDatos;
+        frmMain.frmCapLab.RefrescarInterface;
+      end
+      else if Factura_St = 'N' Then
+      begin
+        frmMain.frmCapNCR._recorId := DM.qrEntradaPacienteConsRecid.Value;
+        frmMain.frmCapNCR.BuscarDatos;
+        frmMain.frmCapNCR.RefrescarInterface;
+      end else if Factura_St = 'F' Then
+      begin
+        frmMain.frmCapND._recorId := DM.qrEntradaPacienteConsRecid.Value;
+        frmMain.frmCapND.BuscarDatos;
+        frmMain.frmCapND.RefrescarInterface;
+      end;
+
+    end;
+
+  If (frmMain.Exis_Lab = True) then
+    Begin
+      if Factura_St = 'I' Then
+      begin
+        frmMain.frmLab._recorId := DM.qrEntradaPacienteConsRecid.Value;
+        frmMain.frmLab.BuscarDatos;
+        frmMain.frmLab.RefrescarInterface;
+      end
+      else if Factura_St = 'M' Then
+      begin
+        frmMain.frmLabMod._recorId := DM.qrEntradaPacienteConsRecid.Value;
+        frmMain.frmLabMod.BuscarDatos;
+//        frmMain.frmLab.RefrescarInterface;
+      end
+      else if Factura_St = 'L' Then
+      begin
+        frmMain.frmLabLab._recorId := DM.qrEntradaPacienteConsRecid.Value;
+        frmMain.frmLabLab.BuscarDatos;
+        frmMain.frmLabLab.RefrescarInterface;
+      end
+      else if Factura_St = 'N' Then
+      begin
+        frmMain.frmLabNCR._recorId := DM.qrEntradaPacienteConsRecid.Value;
+        frmMain.frmLabNCR.BuscarDatos;
+        frmMain.frmLabNCR.RefrescarInterface;
+      end  else if Factura_St = 'F' Then
+      begin
+        frmMain.frmLabND._recorId := DM.qrEntradaPacienteConsRecid.Value;
+        frmMain.frmLabND.BuscarDatos;
+        frmMain.frmLabND.RefrescarInterface;
+      end;
+    end;
+
+  If (frmMain.Exis_Adm = True) then
+    Begin
+      if Factura_St = 'I' Then
+      begin
+        frmMain.frmAdmin._recorId := DM.qrEntradaPacienteConsRecid.Value;
+        frmMain.frmAdmin.BuscarDatos;
+        frmMain.frmAdmin.RefrescarInterface;
+      end
+      else if Factura_St = 'M' Then
+      begin
+        frmMain.frmAdminMod._recorId := DM.qrEntradaPacienteConsRecid.Value;
+        frmMain.frmAdminMod.BuscarDatos;
+//        frmMain.frmAdmin.RefrescarInterface;
+      end
+      else if Factura_St = 'L' Then
+      begin
+        frmMain.frmAdminLab._recorId := DM.qrEntradaPacienteConsRecid.Value;
+        frmMain.frmAdminLab.BuscarDatos;
+        frmMain.frmAdminLab.RefrescarInterface;
+      end
+      else if Factura_St = 'N' Then
+      begin
+        frmMain.frmAdminNCR._recorId := DM.qrEntradaPacienteConsRecid.Value;
+        frmMain.frmAdminNCR.BuscarDatos;
+        frmMain.frmAdminNCR.RefrescarInterface;
+      end else if Factura_St = 'F' Then
+      begin
+        frmMain.frmAdminND._recorId := DM.qrEntradaPacienteConsRecid.Value;
+        frmMain.frmAdminND.BuscarDatos;
+        frmMain.frmAdminND.RefrescarInterface;
+      end;
+    end;
+    If (frmMain.Exis_Muestra = True) then
+    Begin
+      frmMain.frmTmpMuestra.recid := DM.qrEntradaPacienteConsRecid.Value;
+      frmMain.frmTmpMuestra.BuscarDatos;
+    end;
+ end;
+end;
+
+
+procedure TfrmDialogConsultaEntradas.BuscarData;
+var
+ sqlString : String;
+begin
+ DM.qrParametro.close;
+ DM.qrParametro.open;
+
+ If ((dtFechaIni.Text = Emptystr) and (dtFechaIni.Text = Emptystr)) And (edbuscarpor.ItemIndex=9) then
+ Begin
+      EtMensajeDlg('Fecha de Inicio y Fecha Fin NO fueron digitadas.  Verifique.', etError, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
+      Exit;
+ end;
+
+ sqlString := 'SELECT * FROM PTEntradaPaciente (nolock) WHERE Isnull(RecId,'+#39+#39+')<>'+#39+#39;
+ sqlString := sqlString + ' AND DataAreaId = ' + #39 + DM.CurEmpresa + #39;
+
+ If Not((dtFechaIni.Text = Emptystr) and (dtFechaIni.Text = Emptystr)) then
+ begin
+    sqlString := sqlString + ' AND Fecha Between '+#39+formatdatetime('yyyymmdd',dtFechaini.date)+#39+' And  '+#39+formatdatetime('yyyymmdd',dtFechaFin.date)+#39;
+ end;
+
+ If (CbCriterio.Checked = False) Then
+   sqlString := sqlString + ' AND SucursalId = '+ #39 + DM.CurSucursal + #39;
+
+ If (frmMain.Exis_Cap = True) then
+   sqlString := sqlString + ' AND EntradaID LIKE '+ #39 + '%CAP%' + #39;
+
+ If (frmMain.Exis_Lab = True) then
+   sqlString := sqlString + ' AND Origen LIKE '+ #39 + '%' + DM.qrParametroGrupoLab.Value + '%' + #39;
+
+ If (frmMain.Exis_Muestra = True) then
+   sqlString := sqlString + ' AND Hold NOT LIKE '+ #39 + '%1%' + #39;
+ If (Factura_St = 'N') Or (Factura_St = 'F') Or (Factura_St = 'M') Then
+ begin
+    sqlString := sqlString + ' AND Substring(EntradaID,1,3)<>'+ #39 + 'NCR' + #39;
+    sqlString := sqlString + ' AND Hold NOT LIKE '+ #39 + '%1%' + #39; 
+ end;
+
+ If (edbuscar.Text <> '') or (edbuscarpor.ItemIndex=7) or (edbuscarpor.ItemIndex=8) then begin
+   case edbuscarpor.ItemIndex of
+     0 : sqlString := sqlString + ' AND MuestraNo like '+#39+'%'+edbuscar.Text+'%'+#39;
+     1 : sqlString := sqlString + ' AND EntradaID like '+#39+'%'+edbuscar.Text+'%'+#39;
+     2 : sqlString := sqlString + ' AND PacienteID like '+#39+'%'+edbuscar.Text+'%'+#39;
+     3 : sqlString := sqlString + ' AND NombrePaciente like '+#39+'%'+'%'+edbuscar.Text+'%'+#39;
+     4 : sqlString := sqlString + ' AND ClienteID like '+#39+'%'+edbuscar.Text+'%'+#39;
+     5 : sqlString := sqlString + ' AND ClienteNombre like '+#39+'%'+edbuscar.Text+'%'+#39;
+     6 : sqlString := sqlString + ' AND Telefonos like '+#39+'%'+edbuscar.Text+'%'+#39;
+     7 : sqlString := sqlString + ' AND UserID ='+#39+dm.CurUser+#39+' And Convert(Varchar(10),Fecha,103) = Convert(Varchar(10),Getdate(),103)';
+     8 : sqlString := sqlString + ' AND Convert(Varchar(08),Fecha,112) = Convert(Varchar(08),Getdate(),112)';
+     9 : sqlString := sqlString;
+   end;
+ end;
+
+ If ((dtFechaIni.Text = Emptystr) and (dtFechaIni.Text = Emptystr)) And
+     (frmMain.Exis_Cap = False) And
+     (frmMain.Exis_Lab = False) And
+     (Trim(edbuscar.Text) = EmptyStr) And (Length(Trim(edbuscar.Text))<5) And
+    Not((edbuscarpor.ItemIndex=7) or (edbuscarpor.ItemIndex=8))
+     then
+ begin
+      EtMensajeDlg('Debe escribir criterio de búsqueda más exacto en el Texto.  Verifique.', etAviso, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
+      edbuscar.SetFocus;
+      Exit;
+ end;
+ DM.qrEntradaPacienteCons.Close;
+ DM.qrEntradaPacienteCons.SQL.Text := sqlString + ' ORDER BY Fecha Desc, HoraEntrada Desc, SucursalId Desc, MuestraNo Desc, EntradaID Desc ';
+ DM.qrEntradaPacienteCons.Open;
+
+end;
+
+
+procedure TfrmDialogConsultaEntradas.FormCreate(Sender: TObject);
+begin
+  inherited;
+  dsDatos.DataSet := DM.qrEntradaPacienteCons;
+  edbuscarpor.ItemIndex := 0;
+  notac := TcxStyle.Create(Self);
+  notad := TcxStyle.Create(Self);
+  normal:= TcxStyle.Create(Self);
+  notac.Font.Color  := clWhite;
+  notac.TextColor   := clRed;
+  notad.Font.Color  := clWhite;
+  notad.TextColor   := clBlue;
+  normal.Font.Color := clWhite;
+  normal.TextColor  := clBlack;
+end;
+
+
+procedure TfrmDialogConsultaEntradas.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if (key = Vk_Down) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+
+  if (key = 13) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+
+  if (key = Vk_Up) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 1, 0);
+
+  if (key = 13) and (AdentroGrid) then
+    begin
+      Close;
+      ModalResult := mrOk;
+    end;
+
+  if (key = 13) and (_buscar) then
+    begin
+      If (AdentroGrid) then
+        Begin
+          Close;
+          ModalResult := mrOk;
+        end
+      Else
+        BuscarData;
+    end;
+
+  if (key = 27) then
+    begin
+      Close;
+    end;
+
+  if (key = vk_f9) then
+    begin
+      Close;
+
+      if (DM.qrEntradaPacienteCons.RecordCount >0) then
+        ModalResult := mrOk;
+    end;
+end;
+
+
+procedure TfrmDialogConsultaEntradas.FormShow(Sender: TObject);
+begin
+  inherited;
+  _buscar := True;
+  adentrogrid := False;
+  edbuscar.SetFocus;
+  DM.qrEntradaPacienteCons.Close;
+end;
+
+
+procedure TfrmDialogConsultaEntradas.cgDatosEnter(Sender: TObject);
+begin
+  inherited;
+  adentrogrid := True;
+  _buscar := False;
+end;
+
+
+procedure TfrmDialogConsultaEntradas.cgDatosExit(Sender: TObject);
+begin
+  inherited;
+  adentrogrid := false;
+  _buscar := True;
+end;
+
+
+procedure TfrmDialogConsultaEntradas.edbuscarExit(Sender: TObject);
+begin
+  inherited;
+  _buscar := True;
+  adentrogrid := False;
+//  BuscarData;
+end;
+
+procedure TfrmDialogConsultaEntradas.edbuscarporExit(Sender: TObject);
+begin
+  inherited;
+  _buscar := True;
+  adentrogrid := False;
+//  BuscarData;
+end;
+
+procedure TfrmDialogConsultaEntradas.edbuscarporPropertiesChange(
+  Sender: TObject);
+begin
+  inherited;
+  if (edbuscarpor.ItemIndex = 7) Or
+     (edbuscarpor.ItemIndex = 8) Or
+     (edbuscarpor.ItemIndex = 9) Then BuscarData;
+end;
+
+procedure TfrmDialogConsultaEntradas.CbCriterioPropertiesChange(
+  Sender: TObject);
+begin
+  inherited;
+  BuscarData;
+end;
+Function TfrmDialogConsultaEntradas.Verifica_MontoPrueba(Opcion : String) : String;
+Var qfind : TADOQuery;
+    i,c     : integer;
+begin
+      i:=0;c:=0;
+      qfind := DM.NewQuery;
+      qfind.Close;
+      qfind.SQL.Text := ' SELECT * FROM PTEntradaPacienteDetalle (nolock) '+
+                       ' WHERE refRecid = '+ inttostr(DM.qrEntradaPacienteConsRecid.Value) +
+                       ' AND DataAreaId = ' + #39 + DM.CurEmpresa + #39;
+      inttostr(DM.qrEntradaPacienteConsRecid.Value);
+      qfind.Open;
+      if (qfind.RecordCount > 0) then
+      Begin
+          qfind.First;
+          for i := 1 to qfind.RecordCount do
+          begin
+            if qfind.FieldByName('ncr_estatus').Value = True Then c := c+1;
+            qfind.Next;
+          end;
+          if c = qfind.RecordCount then
+            result := 'CT'
+          Else if c > 0 then
+            result := 'CP'
+          Else
+            result := '';
+          qfind.First;
+      end
+      Else
+        result := 'NF';
+      FreeAndNil(qfind);
+end;
+function TfrmDialogConsultaEntradas.Creacion_Registros_NC_FAC(DocID : String) : Boolean;
+Var
+ _valor   : String;
+  i       : Integer;
+ numero   : Integer;
+ qsecdoc  : TADOQuery;
+begin
+Result := False;
+Try
+  with  dm.sp_ActRegNC, Parameters do
+  begin
+    ParamByName('@RecID_F').Value     := DM.qrEntradaPacienteConsRecid.Value;
+    if Factura_St='N' then
+      ParamByName('@RecID_A').Value     := frmMain.frmTmpNCR._recorId
+    Else if Factura_St='F' then
+      ParamByName('@RecID_A').Value     := frmMain.frmTmpND._recorId;
+    ParamByName('@DocID').Value       := DocID;
+    ParamByName('@UsuarioID').Value   := DM.CurUser;
+    ExecProc;
+    Result:= True;
+  end;
+  Except
+    if not dm.Database.Connected then
+    begin
+      dm.Database.Connected := True;
+      dm.sp_ActRegNC.ExecProc;
+      Result:=True;
+    end;
+  End
+end;
+procedure TfrmDialogConsultaEntradas.dbDatosStylesGetContentStyle(
+  Sender: TcxCustomGridTableView; ARecord: TcxCustomGridRecord;
+  AItem: TcxCustomGridTableItem; out AStyle: TcxStyle);
+begin
+  inherited;
+    if ARecord.Values[dbDatosEntradaID_Ref.Index]<>EmptyStr then
+    Begin
+        If (Copy(ARecord.Values[dbDatosEntradaID.Index],1,3) = 'NCR') Then AStyle := notac;
+        If (Copy(ARecord.Values[dbDatosEntradaID.Index],1,3) = 'FAC') And
+           (Copy(ARecord.Values[dbDatosEntradaID_Ref.Index],1,3) = 'FAC') Then AStyle := notad;
+        If (Copy(ARecord.Values[dbDatosEntradaID.Index],1,3) = 'EXT') And
+           (Copy(ARecord.Values[dbDatosEntradaID_Ref.Index],1,3) = 'EXT') Then AStyle := notad;
+    end
+    else
+        AStyle := normal;
+end;
+
+Function TfrmDialogConsultaEntradas.Verifica_EntradaNC : String;
+Var qfind : TADOQuery;
+    i,c     : integer;
+begin
+      i:=0;c:=0;
+      qfind := DM.NewQuery;
+      qfind.Close;
+      qfind.SQL.Text := ' SELECT STNOTAC,USRNOTAC FROM PTEntradaPaciente (nolock) '+
+                       ' WHERE Recid = '+ inttostr(DM.qrEntradaPacienteConsRecid.Value) +
+                       ' And StNotaC IN ('+#39+'N'+#39+','+#39+'F'+#39+')'+
+                       ' AND DataAreaId = ' + #39 + DM.CurEmpresa + #39;
+      inttostr(DM.qrEntradaPacienteConsRecid.Value);
+      qfind.Open;
+      if (qfind.RecordCount > 0) then
+      Begin
+          if qfind.FieldByName('STNOTAC').Value = 'N' Then
+            result := 'N'+qfind.FieldByName('USRNOTAC').Value
+          Else If qfind.FieldByName('STNOTAC').Value = 'F' Then
+            result := 'F'+qfind.FieldByName('USRNOTAC').Value;
+      end
+      Else
+        result := '';
+      FreeAndNil(qfind);
+end;
+Procedure TfrmDialogConsultaEntradas.Desbloquear_Entrada;
+Var qfind : TADOQuery;
+begin
+      qfind := DM.NewQuery;
+      qfind.Close;
+      qfind.SQL.Text := ' Update PTEntradaPaciente with (rowlock) '+
+                        ' Set STNOTAC='+#39+''+#39+',USRNOTAC='+#39+''+#39+
+                        ' WHERE Recid = '+ inttostr(DM.qrEntradaPacienteConsRecid.Value) +
+                        ' AND DataAreaId = ' + #39 + DM.CurEmpresa + #39;
+      qfind.Execsql;
+      DM.DataBase.Execute('DELETE FROM PTEntradaPacienteDetalleNC WHERE Muestrano = '+#39+Dm.qrEntradaPacienteConsMuestrano.AsString+#39);
+      DM.DataBase.Execute('DELETE FROM PTEntradaPacienteNC WHERE Muestrano = '+#39+Dm.qrEntradaPacienteConsMuestrano.AsString+#39);
+      FreeAndNil(qfind);
+end;
+
+end.

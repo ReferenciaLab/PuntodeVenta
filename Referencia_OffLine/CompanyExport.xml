@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Configuration>
+  <CompanyExport>
+    <FormVersion>0</FormVersion>
+    <deDesde_Date>00/00/0000</deDesde_Date>
+    <deHasta_Date>00/00/0000</deHasta_Date>
+    <memCompras_Lines>
+      <Count>0</Count>
+    </memCompras_Lines>
+    <memFinanzas_Lines>
+      <Count>0</Count>
+    </memFinanzas_Lines>
+    <memInventario_Lines>
+      <Count>0</Count>
+    </memInventario_Lines>
+    <memServicios_Lines>
+      <Count>0</Count>
+    </memServicios_Lines>
+    <memVentas_Lines>
+      <Count>0</Count>
+    </memVentas_Lines>
+  </CompanyExport>
+</Configuration>

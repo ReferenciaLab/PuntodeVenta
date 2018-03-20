@@ -1,0 +1,153 @@
+inherited frmDatosMuestras: TfrmDatosMuestras
+  Caption = 'Mantenimiento de Muestras'
+  ClientHeight = 327
+  ExplicitHeight = 361
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dxLayoutControl1: TdxLayoutControl
+    Height = 294
+    ExplicitHeight = 294
+    inherited pcDatos: TcxPageControl
+      Width = 736
+      Height = 517
+      ActivePage = tsMain
+      ExplicitWidth = 736
+      ExplicitHeight = 517
+      ClientRectBottom = 517
+      ClientRectRight = 736
+      ClientRectTop = 24
+      inherited tsMain: TcxTabSheet
+        ExplicitWidth = 588
+        ExplicitHeight = 270
+        inherited lcGrid: TdxLayoutControl
+          Width = 736
+          Height = 493
+          ExplicitWidth = 588
+          ExplicitHeight = 270
+          inherited dgDatos: TcxGrid
+            Width = 550
+            Height = 240
+            ExplicitWidth = 550
+            ExplicitHeight = 240
+            inherited tvDatos: TcxGridDBTableView
+              DataController.KeyFieldNames = 'TipoID'
+              object tvDatosTipoID: TcxGridDBColumn
+                DataBinding.FieldName = 'TipoID'
+                Width = 75
+              end
+              object tvDatosDescripcion: TcxGridDBColumn
+                DataBinding.FieldName = 'Descripcion'
+                Width = 250
+              end
+            end
+          end
+        end
+      end
+      inherited tsDatos: TcxTabSheet
+        ExplicitWidth = 588
+        ExplicitHeight = 270
+        inherited lcDatos: TdxLayoutControl
+          Width = 736
+          Height = 493
+          ExplicitWidth = 588
+          ExplicitHeight = 270
+          object cxDBTextEdit1: TcxDBTextEdit [0]
+            Left = 84
+            Top = 36
+            DataBinding.DataField = 'TipoID'
+            DataBinding.DataSource = dsDatos
+            Properties.CharCase = ecUpperCase
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 0
+            Width = 121
+          end
+          object cxDBTextEdit2: TcxDBTextEdit [1]
+            Left = 84
+            Top = 63
+            DataBinding.DataField = 'Descripcion'
+            DataBinding.DataSource = dsDatos
+            Properties.CharCase = ecUpperCase
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 1
+            Width = 121
+          end
+          inherited Group_Root: TdxLayoutGroup
+            object lcDatosGroup1: TdxLayoutGroup
+              Caption = 'General'
+              object lcDatosItem1: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Muestra Id'
+                Control = cxDBTextEdit1
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem2: TdxLayoutItem
+                Caption = 'Descripci'#243'n'
+                Control = cxDBTextEdit2
+                ControlOptions.ShowBorder = False
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+  inherited dsDatos: TDataSource
+    DataSet = qrMuestras
+    Left = 188
+    Top = 2
+  end
+  inherited dxPrintGrid: TdxComponentPrinter
+    inherited dxPrintGridLink: TdxGridReportLink
+      ReportDocument.CreationDate = 38932.673759942130000000
+      BuiltInReportLink = True
+    end
+    inherited dxPrintGridDatos: TdxLayoutControlReportLink
+      ReportDocument.CreationDate = 38932.673759942130000000
+      BuiltInReportLink = True
+      HiddenComponents = {}
+      ExcludedComponents = {}
+      AggregatedReportLinks = {}
+    end
+  end
+  inherited qryHelper: TADOQuery
+    Top = 2
+  end
+  inherited qrDefaultView: TADOQuery
+    Left = 504
+    Top = 2
+  end
+  inherited qrUserFields: TABSQuery
+    Left = 152
+    Top = 172
+  end
+  inherited qrVistas: TABSQuery
+    Left = 348
+    Top = 72
+  end
+  object qrMuestras: TADOQuery
+    Connection = DM.DataBase
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT * FROM PTTipoMuestras')
+    Left = 136
+    Top = 2
+    object qrMuestrasTIPOID: TStringField
+      FieldName = 'TIPOID'
+      Size = 10
+    end
+    object qrMuestrasDescripcion: TStringField
+      FieldName = 'Descripcion'
+      Required = True
+      Size = 50
+    end
+    object qrMuestrasCodigoAxapta: TStringField
+      FieldName = 'CodigoAxapta'
+      Size = 10
+    end
+  end
+end

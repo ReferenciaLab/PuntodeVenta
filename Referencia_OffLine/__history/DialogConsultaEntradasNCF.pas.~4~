@@ -1,0 +1,770 @@
+unit DialogConsultaEntradasNCF;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DialogConsulta, cxGraphics, Menus, cxLookAndFeelPainters, cxStyles,
+  cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, DB, cxDBData,
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, ADODB,
+  dxLayoutControl, cxGridLevel, cxClasses, cxControls, cxGridCustomView, cxGrid,
+  StdCtrls, cxButtons, cxTextEdit, cxContainer, cxMaskEdit, cxDropDownEdit,
+  cxintl, dxmdaset, JvMemoryDataset, cxGridCardView, cxGridBandedTableView,
+  cxLabel;
+
+type
+  TfrmDialogConsultaEntradaNCF = class(TfrmDialogConsulta)
+    qrEntradas: TADOQuery;
+    JvMemoryData1: TJvMemoryData;
+    JvMemoryData1Seleccion: TBooleanField;
+    JvMemoryData1PruebaID: TStringField;
+    dxLayoutControl1Item3: TdxLayoutItem;
+    cgSeleccion: TcxGrid;
+    dbSeleccion: TcxGridDBTableView;
+    lvSeleccion: TcxGridLevel;
+    dsSeleccion: TDataSource;
+    dxLayoutControl1Group3: TdxLayoutGroup;
+    JvMemoryData2: TJvMemoryData;
+    JvMemoryData2Seleccion: TBooleanField;
+    GridStyles: TcxStyleRepository;
+    cxStyle1: TcxStyle;
+    cxStyle2: TcxStyle;
+    cxStyle3: TcxStyle;
+    cxStyle4: TcxStyle;
+    cxStyle5: TcxStyle;
+    cxStyle6: TcxStyle;
+    cxStyle7: TcxStyle;
+    cxStyle8: TcxStyle;
+    cxStyle9: TcxStyle;
+    cxStyle10: TcxStyle;
+    cxStyle11: TcxStyle;
+    cxStyle12: TcxStyle;
+    cxStyle13: TcxStyle;
+    cxStyle14: TcxStyle;
+    cxStyle15: TcxStyle;
+    cxStyle16: TcxStyle;
+    cxStyle17: TcxStyle;
+    cxStyle18: TcxStyle;
+    cxStyle19: TcxStyle;
+    cxStyle20: TcxStyle;
+    cxStyle21: TcxStyle;
+    cxStyle22: TcxStyle;
+    cxStyle23: TcxStyle;
+    cxStyle24: TcxStyle;
+    cxStyle25: TcxStyle;
+    cxStyle26: TcxStyle;
+    cxStyle27: TcxStyle;
+    cxStyle28: TcxStyle;
+    cxStyle29: TcxStyle;
+    cxStyle30: TcxStyle;
+    cxStyle31: TcxStyle;
+    cxStyle32: TcxStyle;
+    cxStyle33: TcxStyle;
+    cxStyle34: TcxStyle;
+    cxStyle35: TcxStyle;
+    cxStyle36: TcxStyle;
+    cxStyle37: TcxStyle;
+    cxStyle38: TcxStyle;
+    cxStyle39: TcxStyle;
+    cxStyle40: TcxStyle;
+    cxStyle41: TcxStyle;
+    cxStyle42: TcxStyle;
+    cxStyle43: TcxStyle;
+    cxStyle44: TcxStyle;
+    cxStyle45: TcxStyle;
+    cxStyle46: TcxStyle;
+    cxStyle47: TcxStyle;
+    cxStyle48: TcxStyle;
+    cxStyle49: TcxStyle;
+    cxStyle50: TcxStyle;
+    cxStyle51: TcxStyle;
+    cxStyle52: TcxStyle;
+    cxStyle53: TcxStyle;
+    cxStyle54: TcxStyle;
+    cxStyle55: TcxStyle;
+    cxStyleVerde: TcxStyle;
+    GridBandedTableViewStyleSheetDevExpress: TcxGridBandedTableViewStyleSheet;
+    GridCardViewStyleSheetDevExpress: TcxGridCardViewStyleSheet;
+    GridTableViewStyleSheetDevExpress: TcxGridTableViewStyleSheet;
+    cxStyleRepository1: TcxStyleRepository;
+    cxStyle56: TcxStyle;
+    cxStyle57: TcxStyle;
+    cxStyle58: TcxStyle;
+    cxStyle59: TcxStyle;
+    cxStyle60: TcxStyle;
+    cxStyle61: TcxStyle;
+    cxStyle62: TcxStyle;
+    cxStyle63: TcxStyle;
+    cxStyle64: TcxStyle;
+    cxStyle65: TcxStyle;
+    cxStyle66: TcxStyle;
+    cxStyle67: TcxStyle;
+    cxStyle68: TcxStyle;
+    cxStyle69: TcxStyle;
+    cxStyle70: TcxStyle;
+    cxStyle71: TcxStyle;
+    cxStyle72: TcxStyle;
+    cxStyle73: TcxStyle;
+    cxStyle74: TcxStyle;
+    cxStyle75: TcxStyle;
+    cxStyle76: TcxStyle;
+    cxStyle77: TcxStyle;
+    cxStyle78: TcxStyle;
+    cxStyle79: TcxStyle;
+    cxStyle80: TcxStyle;
+    cxStyle81: TcxStyle;
+    cxStyle82: TcxStyle;
+    cxStyle83: TcxStyle;
+    cxStyle84: TcxStyle;
+    cxStyle85: TcxStyle;
+    cxStyle86: TcxStyle;
+    cxStyle87: TcxStyle;
+    cxStyle88: TcxStyle;
+    cxStyle89: TcxStyle;
+    cxStyle90: TcxStyle;
+    cxStyle91: TcxStyle;
+    cxStyle92: TcxStyle;
+    cxStyle93: TcxStyle;
+    cxStyle94: TcxStyle;
+    cxStyle95: TcxStyle;
+    cxStyle96: TcxStyle;
+    cxStyle97: TcxStyle;
+    cxStyle98: TcxStyle;
+    cxStyle99: TcxStyle;
+    cxStyle100: TcxStyle;
+    cxStyle101: TcxStyle;
+    cxStyle102: TcxStyle;
+    cxStyle103: TcxStyle;
+    cxStyle104: TcxStyle;
+    cxStyle105: TcxStyle;
+    cxStyle106: TcxStyle;
+    cxStyle107: TcxStyle;
+    cxStyle108: TcxStyle;
+    cxStyle109: TcxStyle;
+    cxStyle110: TcxStyle;
+    cxStyle111: TcxStyle;
+    cxGridBandedTableViewStyleSheet1: TcxGridBandedTableViewStyleSheet;
+    cxGridCardViewStyleSheet1: TcxGridCardViewStyleSheet;
+    cxGridTableViewStyleSheet1: TcxGridTableViewStyleSheet;
+    MenuGrid: TPopupMenu;
+    MenuItem1: TMenuItem;
+    LbCondicion: TcxLabel;
+    dxLayoutControl1Item8: TdxLayoutItem;
+    qrEntradasMUESTRANO: TStringField;
+    qrEntradasFECHA: TDateTimeField;
+    qrEntradasPACIENTEID: TStringField;
+    qrEntradasNOMBREPACIENTE: TStringField;
+    qrEntradasTELEFONOS: TStringField;
+    qrEntradasCLIENTEID: TStringField;
+    qrEntradasCLIENTENOMBRE: TStringField;
+    qrEntradasMONEDAID: TStringField;
+    qrEntradasNETO: TBCDField;
+    JvMemoryData1Fecha: TStringField;
+    JvMemoryData1PacienteID: TStringField;
+    JvMemoryData1NombrePaciente: TStringField;
+    JvMemoryData1Telefonos: TStringField;
+    JvMemoryData1ClienteID: TStringField;
+    JvMemoryData1ClienteNombre: TStringField;
+    JvMemoryData1MonedaID: TStringField;
+    JvMemoryData1Neto: TCurrencyField;
+    JvMemoryData2Muestrano: TStringField;
+    JvMemoryData2Fecha: TStringField;
+    JvMemoryData2PacienteID: TStringField;
+    JvMemoryData2NombrePaciente: TStringField;
+    JvMemoryData2Telefonos: TStringField;
+    JvMemoryData2ClienteID: TStringField;
+    JvMemoryData2ClienteNombre: TStringField;
+    JvMemoryData2MonedaID: TStringField;
+    JvMemoryData2Neto: TCurrencyField;
+    dbDatosSeleccion: TcxGridDBColumn;
+    dbDatosMuestrano: TcxGridDBColumn;
+    dbDatosFecha: TcxGridDBColumn;
+    dbDatosPacienteID: TcxGridDBColumn;
+    dbDatosNombrePaciente: TcxGridDBColumn;
+    dbDatosTelefonos: TcxGridDBColumn;
+    dbDatosClienteID: TcxGridDBColumn;
+    dbDatosClienteNombre: TcxGridDBColumn;
+    dbDatosMonedaID: TcxGridDBColumn;
+    dbDatosNeto: TcxGridDBColumn;
+    dbSeleccionSeleccion: TcxGridDBColumn;
+    dbSeleccionMuestrano: TcxGridDBColumn;
+    dbSeleccionFecha: TcxGridDBColumn;
+    dbSeleccionPacienteID: TcxGridDBColumn;
+    dbSeleccionNombrePaciente: TcxGridDBColumn;
+    dbSeleccionTelefonos: TcxGridDBColumn;
+    dbSeleccionClienteID: TcxGridDBColumn;
+    dbSeleccionClienteNombre: TcxGridDBColumn;
+    dbSeleccionMonedaID: TcxGridDBColumn;
+    dbSeleccionNeto: TcxGridDBColumn;
+    procedure dbDatosStylesGetContentStyle(Sender: TcxCustomGridTableView;
+      ARecord: TcxCustomGridRecord; AItem: TcxCustomGridTableItem;
+      out AStyle: TcxStyle);
+    procedure MenuItem1Click(Sender: TObject);
+    procedure dbDatosEditValueChanged(Sender: TcxCustomGridTableView;
+      AItem: TcxCustomGridTableItem);
+    procedure edbuscarExit(Sender: TObject);
+    procedure cgDatosExit(Sender: TObject);
+    procedure cgDatosEnter(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormShow(Sender: TObject);
+    procedure edbuscarPropertiesChange(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure BuscarData;
+    procedure Seleccion_Pruebas;
+    Function Verifica_Seleccion : Boolean;
+    Function Verifica_Pruebas_Aceptadas: Boolean;
+    Function Verifica_Pruebas_Aceptadas_IDAS400: Boolean;
+    Function Verifica_Seleccion_AS400: Boolean;
+    Function Verifica_Prueba_Entrada(PruebaID : String; Muestrano : String):Boolean;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    ayuna             : TcxStyle;
+    normal            : TcxStyle;
+    procedure Run;
+  end;
+
+var
+  frmDialogConsultaEntradaNCF: TfrmDialogConsultaEntradaNCF;
+  adentrogrid : Boolean;
+
+implementation
+
+uses DataModule, UInterfaseAs400, Main;
+
+{$R *.dfm}
+
+
+procedure TfrmDialogConsultaEntradaNCF.BuscarData;
+var
+ sqlString : String;
+begin
+ DM.qrParametro.close;
+ DM.qrParametro.open;
+
+ sqlString := 'SELECT * FROM PTEntradaPaciente (nolock) WHERE RecId IS NOT NULL ';
+ sqlString := sqlString + ' AND DataAreaId = ' + #39 + DM.CurEmpresa + #39;
+
+ If (frmMain.Exis_Cap = True) then
+   sqlString := sqlString + ' AND EntradaID LIKE '+ #39 + '%CAP%' + #39;
+
+ If (frmMain.Exis_Lab = True) then
+   sqlString := sqlString + ' AND Origen LIKE '+ #39 + '%' + DM.qrParametroGrupoLab.Value + '%' + #39;
+
+ If (frmMain.Exis_Muestra = True) then
+   sqlString := sqlString + ' AND Hold NOT LIKE '+ #39 + '%1%' + #39;
+ If (Factura_St = 'N') Or (Factura_St = 'F') Or (Factura_St = 'M') Then
+ begin
+    sqlString := sqlString + ' AND Substring(EntradaID,1,3)<>'+ #39 + 'NCR' + #39;
+ end;
+
+ If (edbuscar.Text <> '') or (edbuscarpor.ItemIndex=7) or (edbuscarpor.ItemIndex=8) then begin
+   case edbuscarpor.ItemIndex of
+     0 : sqlString := sqlString + ' AND MuestraNo like '+#39+'%'+edbuscar.Text+'%'+#39;
+     1 : sqlString := sqlString + ' AND EntradaID like '+#39+'%'+edbuscar.Text+'%'+#39;
+     2 : sqlString := sqlString + ' AND PacienteID like '+#39+'%'+edbuscar.Text+'%'+#39;
+     3 : sqlString := sqlString + ' AND NombrePaciente like '+#39+'%'+'%'+edbuscar.Text+'%'+#39;
+     4 : sqlString := sqlString + ' AND ClienteID like '+#39+'%'+edbuscar.Text+'%'+#39;
+     5 : sqlString := sqlString + ' AND ClienteNombre like '+#39+'%'+edbuscar.Text+'%'+#39;
+     6 : sqlString := sqlString + ' AND Telefonos like '+#39+'%'+edbuscar.Text+'%'+#39;
+     7 : sqlString := sqlString + ' AND UserID ='+#39+dm.CurUser+#39+' And Convert(Varchar(10),Fecha,103) = Convert(Varchar(10),Getdate(),103)';
+     8 : sqlString := sqlString + ' AND Convert(Varchar(08),Fecha,112) = Convert(Varchar(08),Getdate(),112)';
+     9 : sqlString := sqlString;
+   end;
+ end;
+
+ If ((frmMain.Exis_Cap = False) And
+     (frmMain.Exis_Lab = False) And
+     (Trim(edbuscar.Text) = EmptyStr) And (Length(Trim(edbuscar.Text))<5) And
+     Not((edbuscarpor.ItemIndex=7) or (edbuscarpor.ItemIndex=8)) then
+ begin
+      EtMensajeDlg('Debe escribir criterio de búsqueda más exacto en el Texto.  Verifique.', etAviso, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
+      edbuscar.SetFocus;
+      Exit;
+ end;
+ qrEntradas.Close;
+ qrEntradas.SQL.Text := sqlString + ' ORDER BY Fecha Desc, HoraEntrada Desc, SucursalId Desc, MuestraNo Desc, EntradaID Desc ';
+ qrEntradas.Open;
+
+ With qrEntradas,sql do
+ begin
+    Close;
+    SQL.Text := sqlString;
+    Open;
+    if IsEmpty then
+    begin
+      exit;
+    end;
+    First;
+    DsDatos.Enabled := False;
+    if not JvMemoryData1.Active then
+      JvMemoryData1.Active := true;
+    JvMemoryData1.EmptyTable;
+    while not eof do
+    begin
+       JvMemoryData1.Append;
+       JvMemoryData1Seleccion.AsBoolean       := False;
+       JvMemoryData1Muestrano.AsString         := fieldbyname('Muestrano').AsString;
+       JvMemoryData1Descripcion.AsString      := fieldbyname('Descripcion').AsString;
+       JvMemoryData1Precio.AsFloat            := fieldbyname('Precio').Asfloat;
+       JvMemoryData1PrecioDolares.AsFloat     := fieldbyname('PrecioDolares').Asfloat;
+       JvMemoryData1CodigoIDAS400.AsString    := FormatFloat('00000000', FieldByName('CodigoIDAS400').AsInteger);
+       JvMemoryData1Ayuna.AsBoolean           := fieldbyname('Ayuna').AsBoolean;
+       Next;
+    end;
+    JvMemoryData1.First;
+    DsDatos.Enabled := True;
+ End;
+end;
+
+
+procedure TfrmDialogConsultaEntradaNCF.Run;
+Var
+ qfind : TADOQuery;
+begin
+ showmodal;
+ if ModalResult = mrOk then
+  begin
+    If (frmMain.Exis_Vta = True) then
+     Begin
+      if JvMemoryData2.Active then JvMemoryData2.First;
+       while not JvMemoryData2.Eof do
+         begin
+            if Factura_St = 'I' Then
+            begin
+               frmMain.frmTmp.qrEntradaPacienteDetalle.Insert;
+               frmMain.frmTmp.qrEntradaPacienteDetalleCodigoAs400.Value   := JvMemoryData2CodigoIDAS400.Value;
+               frmMain.frmTmp.qrEntradaPacienteDetallePruebaID.Value      := JvMemoryData2PruebaID.Value;
+               if frmMain.frmTmp.qrEntradaPacienteDetalle.State in [dsEdit, dsInsert] then
+               Begin
+                  frmMain.frmTmp.qrEntradaPacienteDetalle.Post;
+               End
+            end
+            else
+            if Factura_St = 'M' Then
+            begin
+               frmMain.frmTmpMod.qrEntradaPacienteDetalle.Insert;
+               frmMain.frmTmpMod.qrEntradaPacienteDetalleCodigoAs400.Value    := JvMemoryData2CodigoIDAS400.Value;
+               frmMain.frmTmpMod.qrEntradaPacienteDetallePruebaID.Value       := JvMemoryData2PruebaID.Value;
+               if frmMain.frmTmpMod.qrEntradaPacienteDetalle.State in [dsEdit, dsInsert] then
+               Begin
+                  frmMain.frmTmpMod.qrEntradaPacienteDetalle.Post;
+               End;
+            end
+            else
+            if Factura_St = 'L' Then
+            begin
+               frmMain.frmTmpLab.qrEntradaPacienteDetalle.Insert;
+               frmMain.frmTmpLab.qrEntradaPacienteDetalleCodigoAs400.Value    := JvMemoryData2CodigoIDAS400.Value;
+               frmMain.frmTmpLab.qrEntradaPacienteDetallePruebaID.Value       := JvMemoryData2PruebaID.Value;
+               if frmMain.frmTmpLab.qrEntradaPacienteDetalle.State in [dsEdit, dsInsert] then
+               Begin
+                  frmMain.frmTmpLab.qrEntradaPacienteDetalle.Post;
+               End;
+            end
+            else
+            if Factura_St = 'C' Then
+            begin
+               frmMain.frmClinica.qrEntradaPacienteDetalle.Insert;
+               frmMain.frmClinica.qrEntradaPacienteDetalleCodigoAs400.Value   := JvMemoryData2CodigoIDAS400.Value;
+               frmMain.frmClinica.qrEntradaPacienteDetallePruebaID.Value  := JvMemoryData2PruebaID.Value;
+               if frmMain.frmClinica.qrEntradaPacienteDetalle.State in [dsEdit, dsInsert] then
+               Begin
+                  frmMain.frmClinica.qrEntradaPacienteDetalle.Post;
+               End;
+            end
+            else
+            if Factura_St = 'F' Then
+            begin
+               frmMain.frmTmpND.qrEntradaPacienteDetalle.Insert;
+               frmMain.frmTmpND.qrEntradaPacienteDetalleCodigoAs400.Value   := JvMemoryData2CodigoIDAS400.Value;
+               frmMain.frmTmpND.qrEntradaPacienteDetallePruebaID.Value  := JvMemoryData2PruebaID.Value;
+               if frmMain.frmTmpND.qrEntradaPacienteDetalle.State in [dsEdit, dsInsert] then
+               Begin
+                  frmMain.frmTmpND.qrEntradaPacienteDetalle.Post;
+               End;
+            end;
+
+           JvMemoryData2.Next;
+         end;
+     end;
+
+    If (frmMain.Exis_Cli = True) then
+    Begin
+      if JvMemoryData2.Active then JvMemoryData2.First;
+        while not JvMemoryData2.Eof do
+        begin
+           frmMain.frmClinica.qrEntradaPacienteDetalle.Insert;
+           frmMain.frmClinica.qrEntradaPacienteDetallePruebaID.Value  := JvMemoryData2PruebaID.Value;
+           if frmMain.frmClinica.qrEntradaPacienteDetalle.State in [dsEdit, dsInsert] then
+           Begin
+              frmMain.frmClinica.qrEntradaPacienteDetalle.Post;
+           End;
+           JvMemoryData2.Next;
+        end;
+    end;
+   end;
+end;
+
+procedure TfrmDialogConsultaEntradaNCF.cgDatosEnter(Sender: TObject);
+begin
+  inherited;
+  adentrogrid := true;
+end;
+
+procedure TfrmDialogConsultaEntradaNCF.cgDatosExit(Sender: TObject);
+begin
+  inherited;
+  adentrogrid := false;
+end;
+
+procedure TfrmDialogConsultaEntradaNCF.dbDatosEditValueChanged(
+  Sender: TcxCustomGridTableView; AItem: TcxCustomGridTableItem);
+begin
+  inherited;
+  Seleccion_Pruebas;
+end;
+
+procedure TfrmDialogConsultaEntradaNCF.dbDatosStylesGetContentStyle(
+  Sender: TcxCustomGridTableView; ARecord: TcxCustomGridRecord;
+  AItem: TcxCustomGridTableItem; out AStyle: TcxStyle);
+begin
+  inherited;
+    if ARecord.Values[dbDatosAyuna.Index] = True then
+        AStyle := Ayuna
+    else
+        AStyle := normal;
+end;
+
+procedure TfrmDialogConsultaEntradaNCF.edbuscarExit(Sender: TObject);
+begin
+  inherited;
+  if (edbuscar.Text <> '') then
+    BuscarData;
+end;
+
+procedure TfrmDialogConsultaEntradaNCF.edbuscarPropertiesChange(Sender: TObject);
+begin
+  inherited;
+  if (edbuscar.Text <> '') then
+    BuscarData;
+end;
+
+procedure TfrmDialogConsultaEntradaNCF.FormCreate(Sender: TObject);
+begin
+  inherited;
+  With qrPruebas,sql do
+  begin
+    Close;
+    Open;
+    if IsEmpty then
+    begin
+      exit;
+    end;
+    First;
+    DsDatos.Enabled := False;
+    if not JvMemoryData1.Active then
+      JvMemoryData1.Active := true;
+    JvMemoryData1.EmptyTable;
+    while not eof do
+    begin
+        JvMemoryData1.Append;
+        JvMemoryData1Seleccion.AsBoolean      := False;
+        JvMemoryData1PruebaID.AsString        := fieldbyname('PruebaID').AsString;
+        JvMemoryData1Descripcion.AsString     := fieldbyname('Descripcion').AsString;
+        JvMemoryData1Precio.AsFloat           := fieldbyname('Precio').Asfloat;
+        JvMemoryData1PrecioDolares.AsFloat    := fieldbyname('PrecioDolares').Asfloat;
+        JvMemoryData1CodigoIDAS400.AsString   := FormatFloat('00000000',FieldByName('CodigoIDAS400').AsInteger);
+        JvMemoryData1Ayuna.AsBoolean          := fieldbyname('Ayuna').AsBoolean;
+        Next;
+    end;
+    JvMemoryData1.First;
+    DsDatos.Enabled := True;
+  End;
+  edbuscarpor.ItemIndex := 1;
+
+  if (edbuscar.Text <> '') then
+    BuscarData;
+end;
+
+procedure TfrmDialogConsultaEntradaNCF.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if (key = Vk_Down) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+
+  if (key = 13) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+
+  if ((key = 13) and (JvMemoryData2.Active)) or ((key = vk_f5) and (JvMemoryData2.Active)) then
+  begin
+   Close;
+   ModalResult := mrOk;
+  end;
+  if (key = vk_f9) and (JvMemoryData1.Active) then
+  begin
+      JvMemoryData1.Edit;
+      JvMemoryData1Seleccion.AsBoolean  := True;
+      Seleccion_Pruebas;
+  end;
+  if (key = Vk_Up) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 1, 0);
+
+  if (key = 27) then
+  begin
+   Close;
+  end;
+end;
+
+procedure TfrmDialogConsultaEntradaNCF.FormShow(Sender: TObject);
+begin
+  inherited;
+  ayuna   := TcxStyle.Create(Self);
+  normal  := TcxStyle.Create(Self);
+  ayuna.Font.Color  := clWhite;
+  ayuna.TextColor   := clGreen;
+  normal.Font.Color := clWhite;
+  normal.TextColor  := clBlack;
+  edbuscar.SetFocus;
+end;
+
+procedure TfrmDialogConsultaEntradaNCF.MenuItem1Click(Sender: TObject);
+begin
+  inherited;
+  if JvMemoryData2.Active then JvMemoryData2.Delete;
+end;
+procedure TfrmDialogConsultaEntradaNCF.Seleccion_Pruebas;
+begin
+  inherited;
+    if not JvMemoryData1.Active then
+      JvMemoryData1.Active := true;
+    if not JvMemoryData2.Active then
+      JvMemoryData2.Active := true;
+    JvMemoryData1.First;
+    DsDatos.Enabled := False;
+    while not JvMemoryData1.Eof do
+    begin
+        if (JvMemoryData1Seleccion.AsBoolean) Then
+//        or (dbDatos.Controller.SelectedRecords[].Selected) then
+        begin
+           qrPruebas.Locate('PruebaID',JvMemoryData1PruebaID.AsString,[]);
+           If (frmMain.Exis_Vta = True) then
+           Begin
+               If (qrPruebas.RecordCount > 0) And
+                  (qrPruebasTipo.Value = 'P') And
+                  (qrPruebasGrupoPruebaId.Value = 'PRU') Then
+               Begin
+                   //Confirmando el Mensaje No Reactivo del AS-400.
+                  if dm.PingHost('10.0.0.1',0) then
+                  begin
+                   InterfaseAS400.Confirmar_No_Reactivo(qrPruebasCODIGOIDAS400.Value,
+                                                        qrPruebasPRUEBAID.Value,
+                                                        qrPruebasDESCRIPCION.Value);
+                  end;
+               end;
+
+               If (qrPruebas.RecordCount > 0) And
+                  (qrPruebasEstatus.Value = 0) Then
+                 Begin
+                   //Confirmando el Mensaje de la Prueba Inactiva.
+                   Raise exception.CreateFmt(' La Prueba: (' + qrPruebasPRUEBAID.AsString + ') ' + qrPruebasDESCRIPCION.AsString + #13 +
+                                             ' NO Puede Ser Seleccionada. ESTA PROHIBIDA SU FACTURACION. '+ #13 +
+                                             ' Por Favor, Comuniquese con el Departamento Tecnico Correspondiente.!!!', []);
+                 end;
+           End;
+          If (Verifica_Seleccion_AS400) or (Verifica_Pruebas_Aceptadas_IDAS400) then
+          begin
+              DsDatos.Enabled := True;
+              JvMemoryData1.Edit;
+              JvMemoryData1Seleccion.AsBoolean      := False;
+              JvMemoryData1.First;
+              Raise exception.CreateFmt(' Existe otra prueba YA seleccionada con el mismo codigo de prueba AS-400.  Verifique con Seguros.', []);
+          end;
+          If (Factura_St='F') then
+          begin
+              If Verifica_Prueba_Entrada(JvMemoryData1PruebaID.AsString,frmMain.frmTmpND.qrEntradaPacienteMuestrano.Value) then
+              Begin
+                  DsDatos.Enabled := True;
+                  JvMemoryData1.Edit;
+                  JvMemoryData1Seleccion.AsBoolean      := False;
+                  Raise exception.CreateFmt(' La Prueba: (' + JvMemoryData1PruebaID.AsString + ') ' + JvMemoryData1Descripcion.AsString + #13 +
+                                            ' Ya fué Seleccionada en otra factura y el mismo número de Laboratorio. Favor verificar Pruebas Seleccionadas.', []);
+              end;
+          end;
+          If ((qrPruebasSexo.Value=0) Or (qrPruebasSexo.Value=1)) And
+             (qrPruebasEstatus.Value = 1) Then
+             Begin
+               if Factura_St = 'I' Then
+               Begin
+                 if (qrPruebasSexo.Value <> frmMain.frmTmp.qrEntradaPacienteSexo.value) then
+                 begin
+                     Raise exception.CreateFmt(' La Prueba: (' + qrPruebasPRUEBAID.AsString + ') ' + qrPruebasDESCRIPCION.AsString + #13 +
+                                               ' NO puede ser seleccionada para este SEXO.'+ #13 +
+                                               ' Por favor elija la prueba que correspondiente a dicho sexo.', []);
+                 end;
+               end
+               else
+               if Factura_St = 'M' Then
+               Begin
+                 if (qrPruebasSexo.Value <> frmMain.frmTmpMod.qrEntradaPacienteSexo.value) then
+                 begin
+                     Raise exception.CreateFmt(' La Prueba: (' + qrPruebasPRUEBAID.AsString + ') ' + qrPruebasDESCRIPCION.AsString + #13 +
+                                               ' NO puede ser seleccionada para este SEXO.'+ #13 +
+                                               ' Por favor elija la prueba que correspondiente a dicho sexo.', []);
+                 end;
+               end
+               else
+               if Factura_St = 'L' Then
+               Begin
+                 if (qrPruebasSexo.Value <> frmMain.frmTmpLab.qrEntradaPacienteSexo.value) then
+                 begin
+                     Raise exception.CreateFmt(' La Prueba: (' + qrPruebasPRUEBAID.AsString + ') ' + qrPruebasDESCRIPCION.AsString + #13 +
+                                               ' NO puede ser seleccionada para este SEXO.'+ #13 +
+                                               ' Por favor elija la prueba que correspondiente a dicho sexo.', []);
+                 end;
+               end
+               else
+               if Factura_St = 'C' Then
+               Begin
+                 if (qrPruebasSexo.Value <> frmMain.frmClinica.qrEntradaPacienteSexo.value) then
+                 begin
+                     Raise exception.CreateFmt(' La Prueba: (' + qrPruebasPRUEBAID.AsString + ') ' + qrPruebasDESCRIPCION.AsString + #13 +
+                                               ' NO puede ser seleccionada para este SEXO.'+ #13 +
+                                               ' Por favor elija la prueba que correspondiente a dicho sexo.', []);
+                 end;
+               end
+               else
+               if Factura_St = 'F' Then
+               Begin
+                 if (qrPruebasSexo.Value <> frmMain.frmTmpND.qrEntradaPacienteSexo.value) then
+                 begin
+                     Raise exception.CreateFmt(' La Prueba: (' + qrPruebasPRUEBAID.AsString + ') ' + qrPruebasDESCRIPCION.AsString + #13 +
+                                               ' NO puede ser seleccionada para este SEXO.'+ #13 +
+                                               ' Por favor elija la prueba que correspondiente a dicho sexo.', []);
+                 end;
+               end
+          end;
+          If (Verifica_Seleccion) or (Verifica_Pruebas_Aceptadas) then
+          begin
+              DsDatos.Enabled := True;
+              JvMemoryData1.Edit;
+              JvMemoryData1Seleccion.AsBoolean      := False;
+              JvMemoryData1.First;
+              Raise exception.CreateFmt(' La Prueba: (' + JvMemoryData1PruebaID.AsString + ') ' + JvMemoryData2Descripcion.AsString + #13 +
+                                        ' Ya fué Seleccionada. Favor verificar Pruebas Seleccionadas.', []);
+          end
+          else
+          begin
+            JvMemoryData2.Append;
+            JvMemoryData2Seleccion.AsBoolean      := True;
+            JvMemoryData2PruebaID.AsString        := JvMemoryData1PruebaID.AsString;
+            JvMemoryData2Descripcion.AsString     := JvMemoryData1Descripcion.AsString;
+            JvMemoryData2Precio.AsFloat           := JvMemoryData1Precio.AsFloat;
+            JvMemoryData2PrecioDolares.AsFloat    := JvMemoryData1PrecioDolares.AsFloat;
+            JvMemoryData2CodigoIDAS400.AsString   := JvMemoryData1CodigoIDAS400.AsString;
+            JvMemoryData1.Edit;
+            JvMemoryData1Seleccion.AsBoolean      := False;
+            edbuscar.Text := '';
+            edbuscar.SetFocus;
+          end;
+        end;
+        JvMemoryData1.Next;
+    end;
+    JvMemoryData1.Locate('PruebaID',JvMemoryData2PruebaID.AsString,[]);
+//    JvMemoryData1.First;
+    DsDatos.Enabled := True;
+end;
+
+
+Function TfrmDialogConsultaEntradaNCF.Verifica_Pruebas_Aceptadas: Boolean;
+begin
+  inherited;
+  Result:=false;
+    if Factura_St = 'I' Then
+    begin
+        if frmMain.frmTmp.qrEntradaPacienteDetalle.Locate('PruebaID',JvMemoryData1PruebaID.AsString,[]) then
+            Result:=true
+    end else if Factura_St = 'M' Then
+    begin
+        if frmMain.frmTmpMod.qrEntradaPacienteDetalle.Locate('PruebaID',JvMemoryData1PruebaID.AsString,[]) then
+            Result:=true
+    end else if Factura_St = 'L' Then
+    begin
+        if frmMain.frmTmpLab.qrEntradaPacienteDetalle.Locate('PruebaID',JvMemoryData1PruebaID.AsString,[]) then
+            Result:=true
+    end else if Factura_St = 'C' Then
+    begin
+        if frmMain.frmClinica.qrEntradaPacienteDetalle.Locate('PruebaID',JvMemoryData1PruebaID.AsString,[]) then
+            Result:=true
+    end else if Factura_St = 'F' Then
+    begin
+        if frmMain.frmTmpND.qrEntradaPacienteDetalle.Locate('PruebaID',JvMemoryData1PruebaID.AsString,[]) then
+            Result:=true
+    end;
+
+End;
+Function TfrmDialogConsultaEntradaNCF.Verifica_Pruebas_Aceptadas_IDAS400: Boolean;
+begin
+  inherited;
+  Result:=false;
+    if Factura_St = 'I' Then
+    begin
+    if frmMain.frmTmp.qrEntradaPacienteDetalle.Locate('CodigoAS400',JvMemoryData1CodigoIDAS400.AsString,[]) then
+            Result:=true
+    end else if Factura_St = 'M' Then
+    begin
+        if frmMain.frmTmpMod.qrEntradaPacienteDetalle.Locate('CodigoAS400',JvMemoryData1CodigoIDAS400.AsString,[]) then
+            Result:=true
+    end else if Factura_St = 'L' Then
+    begin
+        if frmMain.frmTmpLab.qrEntradaPacienteDetalle.Locate('CodigoAS400',JvMemoryData1CodigoIDAS400.AsString,[]) then
+            Result:=true
+    end else if Factura_St = 'C' Then
+    begin
+        if frmMain.frmClinica.qrEntradaPacienteDetalle.Locate('CodigoAS400',JvMemoryData1CodigoIDAS400.AsString,[]) then
+            Result:=true
+    end else if Factura_St = 'F' Then
+    begin
+        if frmMain.frmTmpND.qrEntradaPacienteDetalle.Locate('CodigoAS400',JvMemoryData1CodigoIDAS400.AsString,[]) then
+            Result:=true
+    end;
+
+End;
+
+Function TfrmDialogConsultaEntradaNCF.Verifica_Seleccion: Boolean;
+begin
+  inherited;
+  Result:=false;
+    if JvMemoryData2.Locate('PruebaID',JvMemoryData1PruebaID.AsString,[]) then
+        Result:=true
+End;
+Function TfrmDialogConsultaEntradaNCF.Verifica_Seleccion_AS400: Boolean;
+begin
+  inherited;
+  Result:=false;
+    if JvMemoryData2.Locate('CodigoIDAS400',JvMemoryData1CodigoIDAs400.AsString,[]) then
+        Result:=true
+End;
+Function  TfrmDialogConsultaEntradaNCF.Verifica_Prueba_Entrada(PruebaID : String; Muestrano : String):Boolean;
+Var qfind : TADOQuery;
+begin
+      qfind := DM.NewQuery;
+      qfind.Close;
+      qfind.SQL.Text := ' SELECT PRUEBAID FROM PTEntradaPacienteDetalle '+
+                        ' WHERE Muestrano = '+#39+Muestrano+#39+
+                        ' And PruebaID='+#39+PruebaID+#39+
+                        ' And Ncr_Estatus='+'0'+
+                        ' AND DataAreaId = '+#39+DM.CurEmpresa+#39;
+      qfind.Open;
+      if (qfind.RecordCount > 0) then
+      Begin
+          result := True;
+      end
+      Else
+        result := False;
+      FreeAndNil(qfind);
+end;
+end.
+

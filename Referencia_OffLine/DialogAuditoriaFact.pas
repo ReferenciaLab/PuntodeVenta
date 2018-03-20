@@ -1,0 +1,184 @@
+unit DialogAuditoriaFact;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DialogModule, Menus, cxLookAndFeelPainters, dxLayoutControl,
+  StdCtrls, cxButtons, cxControls, cxContainer, cxEdit, cxTextEdit,
+  cxCurrencyEdit, db, cxintl, cxMemo,ADODB, cxCheckBox;
+
+type
+  TfrmDialogAuditoriaFact = class(TfrmDialogModule)
+    edFactura: TcxTextEdit;
+    lcDialogItem2: TdxLayoutItem;
+    edComentario: TcxMemo;
+    lcDialogItem1: TdxLayoutItem;
+    ADOQuery1: TADOQuery;
+    edPaciente: TcxTextEdit;
+    lcDialogItem3: TdxLayoutItem;
+    lcDialogGroup3: TdxLayoutGroup;
+    chkError: TcxCheckBox;
+    lcDialogItem4: TdxLayoutItem;
+    lcDialogItem5: TdxLayoutItem;
+    procedure edComentarioPropertiesChange(Sender: TObject);
+  private
+    { Private declarations }
+    function GetSecuenciaId : Int64;
+  public
+    { Public declarations }
+    procedure Run;
+  end;
+
+var
+  frmDialogAuditoriaFact: TfrmDialogAuditoriaFact;
+
+implementation
+
+uses Main, DataModule, PuntoVentaMod, PuntoVentaNC;
+
+{$R *.dfm}
+
+procedure TfrmDialogAuditoriaFact.Run;
+Var qinsert : TADOQuery;
+begin
+   DM.qrParametro.Close;
+   DM.qrParametro.Open;
+
+   if Factura_st='M' then
+   begin
+     EdFactura.Text := frmMain.frmTmpMod.qrEntradaPacienteMUESTRANO.Text;
+     edPaciente.Text:= frmMain.frmTmpMod.qrEntradaPacienteNombrePaciente.Text;
+   end
+   else  if Factura_st='N' then
+   begin
+     EdFactura.Text := frmMain.frmTmpNCR.qrEntradaPacienteMUESTRANO.Text;
+     edPaciente.Text:= frmMain.frmTmpNCR.qrEntradaPacienteNombrePaciente.Text;
+   end
+   else  if Factura_st='F' then
+   begin
+     EdFactura.Text := frmMain.frmTmpND.qrEntradaPacienteMUESTRANO.Text;
+     edPaciente.Text:= frmMain.frmTmpND.qrEntradaPacienteNombrePaciente.Text;
+   end;
+   showmodal;
+   Auditoria_St := 'N';
+   If ModalResult = mrOk Then
+   Begin
+       Auditoria_St := 'S';
+       If (EdFactura.Text <> '') And (EdComentario.Lines.GetText <> '') Then
+       Begin
+            if Factura_st='M' then
+            Begin
+               if (frmMain.frmTmpMod.qrEntradaPaciente.State <> dsedit) and
+                  (frmMain.frmTmpMod.qrEntradaPaciente.State <> dsinsert) then frmMain.frmTmpMod.qrEntradaPaciente.Edit;
+            end else if Factura_st='N' then
+            Begin
+               if (frmMain.frmTmpNCR.qrEntradaPaciente.State <> dsedit) and
+                  (frmMain.frmTmpNCR.qrEntradaPaciente.State <> dsinsert) then frmMain.frmTmpNCR.qrEntradaPaciente.Edit;
+            end else if Factura_st='F' then
+            Begin
+               if (frmMain.frmTmpND.qrEntradaPaciente.State <> dsedit) and
+                  (frmMain.frmTmpND.qrEntradaPaciente.State <> dsinsert) then frmMain.frmTmpND.qrEntradaPaciente.Edit;
+            end;
+
+           qinsert := DM.NewQuery;
+           Try
+               With qinsert, sql do
+               begin
+                  Close;
+                  Text := ' INSERT INTO PTAuditoriaFact(AuditId,SucursalID,Muestrano,Fecha,UserID, '+
+                          ' Comentario, Estatus) VALUES ( '+IntToStr(GetSecuenciaId)+','+#39+DM.CurSucursal+#39+','+#39+EdFactura.Text+#39+','+
+                          #39+FormatDateTime('yyyymmdd', DM.SystemDate)+#39+','+#39+DM.CurUser+#39+','+#39+EdComentario.Lines.GetText+#39+','#39+'A'+#39+')';
+                  ExecSQL;
+               end;
+
+           Except
+               Raise exception.CreateFmt('Error Creando PTAuditoria. Muestra Num='+EdFactura.Text, []);
+           End;
+           qinsert := DM.NewQuery;
+           Try
+               With qinsert, sql do
+               begin
+                  Close;
+                  Text := ' Select * from PtEntPacienteAudit Where Muestrano='+#39+EdFactura.Text+#39;
+                  Open;
+                  if IsEmpty then
+                  Begin
+                       Close;
+                       Clear;
+                       Text := ' Insert into PtEntPacienteAudit Select DISTINCT * from PtEntradaPaciente Where Muestrano='+#39+EdFactura.Text+#39;
+                       ExecSQL;
+                       Close;
+                       Clear;
+                       Text := ' Insert into PtEntPacienteDetalleAudit Select DISTINCT * from PtEntradaPacienteDetalle Where Muestrano='+#39+EdFactura.Text+#39;
+                       ExecSQL;
+                       Close;
+                       Clear;
+                       if Factura_st='M' then
+                          Text := ' Insert into ptCobroAudit Select Distinct CobroID, TurnoID, EntradaID, SucursalID, Fecha, Hora, PacienteID, PacientePrincipalID, UsuarioID,'+
+                                  ' refRecid, TotalCobrado, TotalFactura, TotalPagado, PendienteFactura, PendienteCobro, ReciboNo, ClienteID, Aplicado, Secuencia, MonedaID, TipoDoc, Concepto, CUADREGLOBAL, CUADREUSUARIO, SINPRFILTER, RecId, Fuera_Linea from PtCobro Where EntradaId='+#39+frmMain.frmTmpMod.qrEntradaPacienteENTRADAID.Text+#39
+                       else If Factura_st='N' then
+                          Text := ' Insert into ptCobroAudit Select Distinct CobroID, TurnoID, EntradaID, SucursalID, Fecha, Hora, PacienteID, PacientePrincipalID, UsuarioID,'+
+                                  ' refRecid, TotalCobrado, TotalFactura, TotalPagado, PendienteFactura, PendienteCobro, ReciboNo, ClienteID, Aplicado, Secuencia, MonedaID, TipoDoc, Concepto, CUADREGLOBAL, CUADREUSUARIO, SINPRFILTER, RecId, Fuera_Linea from PtCobro Where EntradaId='+#39+frmMain.frmTmpNCR.qrEntradaPacienteENTRADAID.Text+#39;
+                       ExecSQL;
+                  end;
+               end;
+           Except
+               Raise exception.CreateFmt('Error Creando PtEntPacienteAudit ó PtEntPacienteDetalleAudit. Muestra Num='+EdFactura.Text, []);
+           End;
+
+         end
+       Else
+         Raise exception.CreateFmt('Debe Registrar el Número de Laboratorio Con su respectivo Comentario a Modificar.', []);
+     end;
+end;
+procedure TfrmDialogAuditoriaFact.edComentarioPropertiesChange(Sender: TObject);
+begin
+  inherited;
+  if Trim(EdComentario.Lines.GetText) = '' then
+     btAceptar.Enabled := False
+  else
+     btAceptar.Enabled := True;
+end;
+
+function TfrmDialogAuditoriaFact.GetSecuenciaId : Int64;
+Var
+ _valor   : String;
+ numero   : Int64;
+ qsecdoc  : TADOQuery;
+begin
+ _valor  := '';
+ numero  := 0;
+
+ qsecdoc := DM.NewQuery;
+ With qsecdoc,sql do
+ begin
+   Close;
+   Clear;
+   Add(' DECLARE	@return_value int,@r_result bigint,@r_result2 bigint,@r_result3 bit ');
+   Add(' EXEC	@return_value = [dbo].[Sec_Documentos] ');
+   Add(' @Tipo_Doc = N'+#39+'AUD'+#39+',');
+   Add(' @SucursalID = N'+#39+DM.CurSucursal+#39+',');
+   Add(' @r_result = @r_result OUTPUT, ');
+   Add(' @r_result2 = @r_result2 OUTPUT, ');
+   Add(' @r_result3 = @r_result3 OUTPUT ');
+   Add(' SELECT	@r_result as Secuencia,@r_result2 as SucursalAS400');
+   Open;
+   if not IsEmpty then
+   begin
+     if FieldByName('Secuencia').AsString <> '' then
+       numero := StrtoInt64(FieldByName('Secuencia').AsString)
+     else
+       numero := 1;
+     _valor := FormatFloat('000', FieldByName('SucursalAS400').AsInteger) +
+               FormatFloat('000000000', numero);
+   end;
+   Result := StrToInt64(_valor);
+ end;
+
+ FreeAndNil(qsecdoc);
+end;
+
+
+end.
+

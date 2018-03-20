@@ -1,0 +1,1838 @@
+date/time         : 2008-05-09, 12:47:21, 688ms
+computer name     : HPNEW
+user name         : sinteca <admin>
+operating system  : Windows XP Service Pack 2 build 2600
+system language   : English
+system up time    : 2 hours 8 minutes
+program up time   : 58 seconds
+processors        : 2x Intel(R) Pentium(R) D CPU 3.40GHz
+physical memory   : 155/1015 MB (free/total)
+free disk space   : (C:) 39.40 GB
+display mode      : 1024x768, 32 bit
+process id        : $528
+allocated memory  : 38.30 MB
+executable        : Laboratorio.exe
+exec. date/time   : 2008-05-09 12:46
+version           : 1.5.1.0
+madExcept version : 3.0b
+callstack crc     : $9004e572, $7cb943e1, $7cb943e1
+exception number  : 1
+exception class   : EStringListError
+exception message : List index out of bounds (17).
+
+main thread ($220):
+004708f8 +01c Laboratorio.exe Classes               TStringList.Get
+0083fc87 +10f Laboratorio.exe ppPrintr              TppPrinterSetup.PaperDimensionsToName
+0083ec84 +074 Laboratorio.exe ppPrintr              TppPrinterSetup.GetPaperName
+0083d418 +088 Laboratorio.exe ppPrintr              TppPrinter.PrinterSetupToDevMode
+0083d328 +0c0 Laboratorio.exe ppPrintr              TppPrinter.SetPrinterSetup
+0092ca41 +081 Laboratorio.exe ppProd                TppProducer.GetPrinter
+008ffd08 +00c Laboratorio.exe ppClass               TppBand.GetPrinter
+00902610 +00c Laboratorio.exe ppClass               TppComponent.GetPrinter
+0086007d +025 Laboratorio.exe ppMemo                TppCustomMemo.CalcSpaceUsed
+0086099b +00f Laboratorio.exe ppMemo                TppDBMemo.CalcSpaceUsed
+008e8609 +0dd Laboratorio.exe ppStrtch              TppStretchable.CalcPrintPosition
+008e849a +02e Laboratorio.exe ppStrtch              TppStretchable.Generate
+008bed36 +05a Laboratorio.exe ppBandEngine          TppBandEngine.ProcessQueue
+008bebac +06c Laboratorio.exe ppBandEngine          TppBandEngine.GenerateObjects
+008be5b9 +119 Laboratorio.exe ppBandEngine          TppBandEngine.Generate
+008ed54c +008 Laboratorio.exe ppBands               TppDetailBand.Generate
+0084e19b +083 Laboratorio.exe ppEngine              TppEngine.GenerateBands
+0084dc65 +0dd Laboratorio.exe ppEngine              TppEngine.GeneratePage
+0084de83 +0e3 Laboratorio.exe ppEngine              TppEngine.RestorePage
+0084da19 +049 Laboratorio.exe ppEngine              TppEngine.Generate
+0084d938 +10c Laboratorio.exe ppEngine              TppEngine.RequestPage
+00935268 +0e0 Laboratorio.exe ppReport              TppReport.RequestPage
+0092f4b9 +041 Laboratorio.exe ppDevice              TppPublisher.DoOnPageRequest
+0092f293 +063 Laboratorio.exe ppDevice              TppPublisher.Publish
+0092b462 +006 Laboratorio.exe ppProd                TppProducer.PublishReport
+0092b50e +052 Laboratorio.exe ppProd                TppProducer.PrintToDevices
+0093514e +07e Laboratorio.exe ppReport              TppReport.PrintToDevices
+0092c1ed +019 Laboratorio.exe ppProd                TppProducer.PreviewFormActivateEvent
+00842afc +01c Laboratorio.exe ppForms               TppForm.Activate
+008bdcd0 +024 Laboratorio.exe ppPrvDlg              TppPrintPreview.Activate
+004d6de0 +010 Laboratorio.exe Forms                 TCustomForm.CMActivate
+004bd2cf +2bb Laboratorio.exe Controls              TControl.WndProc
+004c10f8 +46c Laboratorio.exe Controls              TWinControl.WndProc
+004d3b39 +4c1 Laboratorio.exe Forms                 TCustomForm.WndProc
+004c08b0 +02c Laboratorio.exe Controls              TWinControl.MainWndProc
+0047b310 +014 Laboratorio.exe Classes               StdWndProc
+7c90eae0 +010 ntdll.dll                             KiUserCallbackDispatcher
+0092b60a +05e Laboratorio.exe ppProd                TppProducer.PrintToScreen
+0092b364 +050 Laboratorio.exe ppProd                TppProducer.Print
+0093438a +01e Laboratorio.exe ppReport              TppReport.Print
+00fac900 +168 Laboratorio.exe PuntoVenta   4946 +24 TfrmPuntoVenta.FacturaExterior1Click
+004b2763 +0a7 Laboratorio.exe Menus                 TMenuItem.Click
+004b3967 +013 Laboratorio.exe Menus                 TMenu.DispatchCommand
+004b496e +082 Laboratorio.exe Menus                 TPopupList.WndProc
+004b48bd +01d Laboratorio.exe Menus                 TPopupList.MainWndProc
+0047b310 +014 Laboratorio.exe Classes               StdWndProc
+7e4196b2 +00a USER32.dll                            DispatchMessageA
+004db5e0 +0fc Laboratorio.exe Forms                 TApplication.ProcessMessage
+004db61a +00a Laboratorio.exe Forms                 TApplication.HandleMessage
+004db83a +096 Laboratorio.exe Forms                 TApplication.Run
+00fe901a +0de Laboratorio.exe Laboratorio   345 +14 initialization
+
+thread $cf0:
+7c90eb94 +0 ntdll.dll  KiFastSystemCallRet
+7c90e9a9 +a ntdll.dll  NtWaitForMultipleObjects
+
+thread $abc:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e397 +0a ntdll.dll                 NtReplyWaitReceivePortEx
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($220) at:
+77e87695 +00 RPCRT4.dll
+
+thread $32c:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90d85a +0a ntdll.dll                 NtDelayExecution
+7c8023e7 +4b kernel32.dll              SleepEx
+7c80244c +0a kernel32.dll              Sleep
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($220) at:
+7750cc4a +00 ole32.dll
+
+thread $408:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e9be +0a ntdll.dll                 NtWaitForSingleObject
+7c8025c5 +85 kernel32.dll              WaitForSingleObjectEx
+7c80252d +0d kernel32.dll              WaitForSingleObject
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($220) at:
+76664112 +00 comsvcs.dll
+
+thread $71c:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e9a9 +0a ntdll.dll                 NtWaitForMultipleObjects
+7c8094dc +00 kernel32.dll              WaitForMultipleObjectsEx
+7e4195e3 +00 USER32.dll                MsgWaitForMultipleObjectsEx
+7e419693 +1a USER32.dll                MsgWaitForMultipleObjects
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($220) at:
+4ec958ef +00 gdiplus.dll
+
+thread $b8:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e397 +0a ntdll.dll                 NtReplyWaitReceivePortEx
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by thread $abc at:
+77e87695 +00 RPCRT4.dll
+
+modules:
+00400000 Laboratorio.exe 1.5.1.0          C:\Program Files\Borland\BDS\4.0\lib\Utileria\Referencia
+01f40000 winscok.dll                      C:\WINDOWS\system32
+01f60000 Normaliz.dll    6.0.5441.0       C:\WINDOWS\system32
+04520000 msadcer.dll     2.81.1117.0      C:\Program Files\Common Files\System\MSADC
+05410000 SQLOLEDB.RLL    2000.85.1117.0   C:\Program Files\Common Files\System\Ole DB
+07a10000 UNIDRVUI.DLL    0.3.1296.1       C:\WINDOWS\System32\spool\DRIVERS\W32X86\3
+0ffd0000 rsaenh.dll      5.1.2600.2161    C:\WINDOWS\system32
+20000000 xpsp2res.dll    5.1.2600.2180    C:\WINDOWS\system32
+42990000 iertutil.dll    7.0.6000.16640   C:\WINDOWS\system32
+42c10000 wininet.dll     7.0.6000.16640   C:\WINDOWS\system32
+4dd00000 sqloledb.dll    2000.85.1117.0   C:\Program Files\Common Files\System\Ole DB
+4de10000 msado15.dll     2.81.1128.0      C:\Program Files\Common Files\System\ADO
+4ec50000 gdiplus.dll     5.1.3102.2180    C:\WINDOWS\WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.2600.2180_x-ww_522f9f82
+5ad70000 uxtheme.dll     6.0.2900.2180    C:\WINDOWS\system32
+5b860000 NETAPI32.dll    5.1.2600.2976    C:\WINDOWS\system32
+5edd0000 olepro32.dll    5.1.2600.2180    C:\WINDOWS\system32
+60e30000 MSDATL3.dll     2.81.1117.0      C:\Program Files\Common Files\System\Ole DB
+662b0000 hnetcfg.dll     5.1.2600.2180    C:\WINDOWS\system32
+68100000 dssenh.dll      5.1.2600.2133    C:\WINDOWS\system32
+6d4f0000 DBNETLIB.DLL    2000.85.1117.0   C:\WINDOWS\system32
+71a50000 mswsock.dll     5.1.2600.2180    C:\WINDOWS\System32
+71a90000 wshtcpip.dll    5.1.2600.2180    C:\WINDOWS\System32
+71aa0000 WS2HELP.dll     5.1.2600.2180    C:\WINDOWS\system32
+71ab0000 WS2_32.dll      5.1.2600.2180    C:\WINDOWS\system32
+71ad0000 wsock32.dll     5.1.2600.2180    C:\WINDOWS\system32
+71f80000 security.dll    5.1.2600.2180    C:\WINDOWS\system32
+73000000 winspool.drv    5.1.2600.2180    C:\WINDOWS\system32
+73160000 oledb32.dll     2.81.1117.0      C:\Program Files\Common Files\System\Ole DB
+74060000 msadce.dll      2.81.1117.0      C:\Program Files\Common Files\System\MSADC
+74720000 MSCTF.dll       5.1.2600.2180    C:\WINDOWS\system32
+750b0000 RESUTILS.DLL    5.1.2600.2180    C:\WINDOWS\system32
+750f0000 MTXCLU.DLL      2001.12.4414.311 C:\WINDOWS\system32
+75130000 colbact.DLL     2001.12.4414.308 C:\WINDOWS\system32
+75350000 OLEDB32R.DLL    2.81.1117.0      C:\Program Files\Common Files\System\Ole DB
+755c0000 msctfime.ime    5.1.2600.2180    C:\WINDOWS\system32
+76380000 msimg32.dll     5.1.2600.2180    C:\WINDOWS\system32
+76390000 imm32.dll       5.1.2600.2180    C:\WINDOWS\system32
+763b0000 comdlg32.dll    6.0.2900.2180    C:\WINDOWS\system32
+765b0000 MSDART.DLL      2.81.1117.0      C:\WINDOWS\system32
+76620000 comsvcs.dll     2001.12.4414.308 C:\WINDOWS\system32
+767a0000 ntdsapi.dll     5.1.2600.2180    C:\WINDOWS\system32
+767f0000 schannel.dll    5.1.2600.3126    C:\WINDOWS\system32
+769c0000 USERENV.dll     5.1.2600.2180    C:\WINDOWS\system32
+76b40000 winmm.dll       5.1.2600.2180    C:\WINDOWS\system32
+76c90000 IMAGEHLP.DLL    5.1.2600.2180    C:\WINDOWS\system32
+76d10000 CLUSAPI.DLL     5.1.2600.2180    C:\WINDOWS\system32
+76d60000 iphlpapi.dll    5.1.2600.2912    C:\WINDOWS\system32
+76f20000 DNSAPI.dll      5.1.2600.3316    C:\WINDOWS\system32
+76f60000 WLDAP32.dll     5.1.2600.2180    C:\WINDOWS\system32
+76fb0000 winrnr.dll      5.1.2600.2180    C:\WINDOWS\System32
+76fc0000 rasadhlp.dll    5.1.2600.2938    C:\WINDOWS\system32
+76fd0000 CLBCATQ.DLL     2001.12.4414.308 C:\WINDOWS\system32
+77050000 COMRes.dll      2001.12.4414.258 C:\WINDOWS\system32
+77120000 oleaut32.dll    5.1.2600.3266    C:\WINDOWS\system32
+773d0000 comctl32.dll    6.0.2900.2982    C:\WINDOWS\WinSxS\x86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.2600.2982_x-ww_ac3f9c03
+774e0000 ole32.dll       5.1.2600.2726    C:\WINDOWS\system32
+77a80000 crypt32.dll     5.131.2600.2180  C:\WINDOWS\system32
+77b20000 MSASN1.dll      5.1.2600.2180    C:\WINDOWS\system32
+77c00000 version.dll     5.1.2600.2180    C:\WINDOWS\system32
+77c10000 msvcrt.dll      7.0.2600.2180    C:\WINDOWS\system32
+77c70000 msv1_0.dll      5.1.2600.2180    C:\WINDOWS\system32
+77dd0000 ADVAPI32.dll    5.1.2600.2180    C:\WINDOWS\system32
+77e70000 RPCRT4.dll      5.1.2600.3173    C:\WINDOWS\system32
+77f10000 GDI32.dll       5.1.2600.3316    C:\WINDOWS\system32
+77f60000 SHLWAPI.dll     6.0.2900.3157    C:\WINDOWS\system32
+77fe0000 Secur32.dll     5.1.2600.2180    C:\WINDOWS\system32
+7c800000 kernel32.dll    5.1.2600.3119    C:\WINDOWS\system32
+7c900000 ntdll.dll       5.1.2600.2180    C:\WINDOWS\system32
+7c9c0000 shell32.dll     6.0.2900.3241    C:\WINDOWS\system32
+7e410000 USER32.dll      5.1.2600.3099    C:\WINDOWS\system32
+
+processes:
+000 Idle
+004 System           normal
+26c smss.exe         normal C:\WINDOWS\system32
+2a4 csrss.exe
+2bc winlogon.exe     high   C:\WINDOWS\system32
+2e8 services.exe     normal C:\WINDOWS\system32
+2f4 lsass.exe        normal C:\WINDOWS\system32
+398 svchost.exe      normal C:\WINDOWS\system32
+3e8 svchost.exe
+444 svchost.exe      normal C:\WINDOWS\System32
+4a0 svchost.exe
+508 svchost.exe
+598 spoolsv.exe      normal C:\WINDOWS\system32
+64c fbguard.exe      normal C:\Program Files\Firebird\Firebird_2_0\bin
+66c inetinfo.exe     normal C:\WINDOWS\system32\inetsrv
+694 RaMaint.exe      normal C:\Program Files\LogMeIn\x86
+6fc LogMeIn.exe      normal C:\Program Files\LogMeIn\x86
+740 mdm.exe          normal C:\Program Files\Common Files\Microsoft Shared\VS7Debug
+7c4 svchost.exe      normal C:\WINDOWS\system32
+244 ssonsvr.exe      normal C:\Program Files\Citrix\ICA Client
+48c Explorer.EXE     normal C:\WINDOWS
+568 igfxtray.exe     normal C:\WINDOWS\system32
+570 hkcmd.exe        normal C:\WINDOWS\system32
+5cc igfxpers.exe     normal C:\WINDOWS\system32
+634 Scheduler.exe    normal C:\WINDOWS\SMINST
+774 SVOHOST.exe      normal C:\WINDOWS\system32
+784 explorer.exe     normal C:\WINDOWS\system32
+810 ctfmon.exe       normal C:\WINDOWS\system32
+888 fbserver.exe     normal C:\Program Files\Firebird\Firebird_2_0\bin
+fcc bds.exe          normal C:\Program Files\Borland\BDS\4.0\Bin
+0a0 iexplore.exe     normal C:\Program Files\Internet Explorer
+47c WLLoginProxy.exe normal C:\Program Files\Common Files\Microsoft Shared\Windows Live
+194 ax32.exe         normal C:\Axapta\Bin
+86c MsManager.exe    normal D:\Instalacion\VideoTodo\Adcon\MsManager
+528 Laboratorio.exe  normal C:\Program Files\Borland\BDS\4.0\lib\Utileria\Referencia
+
+hardware:
++ Computer
+  - ACPI Multiprocessor PC
++ Disk drives
+  - SAMSUNG HD080HJ/P
++ Display adapters
+  - Intel(R)  Q965/Q963 Express Chipset Family (driver 6.14.10.4642)
+  - LogMeIn Mirror Driver (driver 7.1.542.0)
++ DVD/CD-ROM drives
+  - HL-DT-ST DVD-ROM GDRH10N
++ Floppy disk controllers
+  - Standard floppy disk controller
++ IDE ATA/ATAPI controllers
+  - Intel(R) ICH8 2 port Serial ATA Storage Controller - 2825 (driver 8.0.0.1008)
+  - Intel(R) ICH8 4 port Serial ATA Storage Controller - 2820 (driver 8.0.0.1008)
+  - Primary IDE Channel
+  - Primary IDE Channel
+  - Secondary IDE Channel
+  - Secondary IDE Channel
++ Keyboards
+  - Standard 101/102-Key or Microsoft Natural PS/2 Keyboard
++ Mice and other pointing devices
+  - PS/2 Compatible Mouse
++ Monitors
+  - Plug and Play Monitor
+  - Plug and Play Monitor
++ Network adapters
+  - Broadcom NetXtreme Gigabit Ethernet (driver 9.52.0.0)
++ Ports (COM & LPT)
+  - Communications Port (COM1)
+  - ECP Printer Port (LPT1)
++ Processors
+  - Intel(R) Pentium(R) D CPU 3.40GHz
+  - Intel(R) Pentium(R) D CPU 3.40GHz
++ Sound, video and game controllers
+  - Audio Codecs
+  - Legacy Audio Drivers
+  - Legacy Video Capture Devices
+  - Media Control Devices
+  - Realtek High Definition Audio (driver 5.10.0.5275)
+  - Video Codecs
++ System devices
+  - ACPI Fixed Feature Button
+  - ACPI Power Button
+  - Advanced programmable interrupt controller
+  - Direct memory access controller
+  - Intel(R) 82801 PCI Bridge - 244E
+  - Intel(R) ICH8 Family PCI Express Root Port 1 - 283F (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family PCI Express Root Port 2 – 2841 (driver 8.0.0.1008)
+  - Intel(R) ICH8/ICH8R Family LPC Interface Controller - 2810 (driver 8.0.0.1008)
+  - Intel(R) Q963/Q965 Processor to I/O Controller – 2990 (driver 8.0.0.1006)
+  - ISAPNP Read Data Port
+  - Logical Disk Manager
+  - Microsoft ACPI-Compliant System
+  - Microsoft System Management BIOS Driver
+  - Microsoft UAA Bus Driver for High Definition Audio
+  - Microsoft Windows Management Interface for ACPI
+  - Motherboard resources
+  - Motherboard resources
+  - Numeric data processor
+  - PCI bus
+  - Plug and Play Software Device Enumerator
+  - Printer Port Logical Interface
+  - Programmable interrupt controller
+  - System board
+  - System CMOS/real time clock
+  - System speaker
+  - System timer
+  - Terminal Server Device Redirector
+  - Terminal Server Keyboard Driver
+  - Terminal Server Mouse Driver
+  - Volume Manager
++ Universal Serial Bus controllers
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2830 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2831 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2834 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2835 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB2 Enhanced Host Controller - 2836 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB2 Enhanced Host Controller - 283A (driver 8.0.0.1008)
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+
+cpu registers:
+eax = 04aada20
+ebx = 04aa7778
+ecx = 00000000
+edx = 004708fd
+esi = 00000011
+edi = 00000011
+eip = 004708fd
+esp = 0012f5d8
+ebp = 0012f638
+
+stack dump:
+0012f5d8  fd 08 47 00 de fa ed 0e - 01 00 00 00 07 00 00 00  ..G.............
+0012f5e8  ec f5 12 00 fd 08 47 00 - 20 da aa 04 78 77 aa 04  ......G.....xw..
+0012f5f8  11 00 00 00 11 00 00 00 - 38 f6 12 00 08 f6 12 00  ........8.......
+0012f608  11 00 00 00 00 f6 12 00 - 48 76 46 00 f0 5d ba 04  ........HvF..]..
+0012f618  4e f3 46 00 50 f6 12 00 - 54 53 40 00 38 f6 12 00  N.F.P...TS@.8...
+0012f628  6c f6 12 00 11 00 00 00 - f0 5d ba 04 00 00 00 00  l........]......
+0012f638  88 f6 12 00 fd 08 47 00 - d0 ac 46 00 b0 e3 3a 05  ......G...F...:.
+0012f648  11 00 00 00 8a fc 83 00 - 98 f6 12 00 54 53 40 00  ............TS@.
+0012f658  88 f6 12 00 e4 f6 12 00 - 00 00 00 00 78 dd b0 04  ............x...
+0012f668  00 00 00 00 00 00 00 00 - 00 00 00 00 6f 08 00 00  ............o...
+0012f678  a4 bb b9 00 f8 03 00 00 - 6f 08 00 00 c8 dd b0 04  ........o.......
+0012f688  b4 f6 12 00 89 ec 83 00 - 00 00 08 41 00 00 80 40  ...........A...@
+0012f698  bc f6 12 00 54 53 40 00 - b4 f6 12 00 f0 47 81 07  ....TS@......G..
+0012f6a8  d0 c2 cc 01 70 c4 03 04 - 00 00 00 00 08 f7 12 00  ....p...........
+0012f6b8  1d d4 83 00 10 f7 12 00 - 54 53 40 00 08 f7 12 00  ........TS@.....
+0012f6c8  00 00 00 00 00 00 00 00 - 70 c4 03 04 00 00 00 00  ........p.......
+0012f6d8  00 00 00 00 00 00 00 00 - 00 00 00 00 00 00 00 00  ................
+0012f6e8  be 2e 40 00 da 5b 40 00 - 39 d7 48 00 a4 bb b9 04  ..@..[@.9.H.....
+0012f6f8  6c 01 bc 01 b4 dc 83 00 - 70 c4 03 04 78 dd b0 04  l.......p...x...
+0012f708  44 f7 12 00 2d d3 83 00 - 1c f7 12 00 54 53 40 00  D...-.......TS@.
+
+disassembling:
+[...]
+00fac8ea        mov     eax, [ebx+$97c]
+00fac8f0        mov     ecx, [eax]
+00fac8f2        call    dword ptr [ecx+$10c]
+00fac8f8 4946   mov     eax, [ebx+$97c]
+00fac8fe        mov     edx, [eax]
+00fac900      > call    dword ptr [edx+$12c]
+00fac906 4949   lea     eax, [ebp-4]
+00fac909        call    -$b50112 ($45c7fc)     ; SysUtils.FreeAndNil
+00fac90e 4951   xor     eax, eax
+00fac910        pop     edx
+00fac911        pop     ecx
+[...]
+
+date/time         : 2008-05-09, 12:47:25, 469ms
+computer name     : HPNEW
+user name         : sinteca <admin>
+operating system  : Windows XP Service Pack 2 build 2600
+system language   : English
+system up time    : 2 hours 8 minutes
+program up time   : 1 minute 2 seconds
+processors        : 2x Intel(R) Pentium(R) D CPU 3.40GHz
+physical memory   : 154/1015 MB (free/total)
+free disk space   : (C:) 39.40 GB
+display mode      : 1024x768, 32 bit
+process id        : $528
+allocated memory  : 38.38 MB
+executable        : Laboratorio.exe
+exec. date/time   : 2008-05-09 12:46
+version           : 1.5.1.0
+madExcept version : 3.0b
+callstack crc     : $e173fe0e, $93ba6f96, $93ba6f96
+exception number  : 2
+exception class   : EAccessViolation
+exception message : Access violation at address 7C809D92 in module 'kernel32.dll'. Read of address 00000AAA.
+
+main thread ($220):
+7c809d92 +19a kernel32.dll                                    MultiByteToWideChar
+77f1bc31 +02d GDI32.dll                                       TextOutA
+005d6850 +050 Laboratorio.exe cxEditTextUtils         725  +8 OutTextRow
+005d6af1 +169 Laboratorio.exe cxEditTextUtils         814 +39 cxTextRowsOutHighlight
+005ef422 +082 Laboratorio.exe cxTextEdit             1385  +7 InternalTextOut
+005ee8ca +0aa Laboratorio.exe cxTextEdit             1077 +17 DrawEditText
+005f27cd +001 Laboratorio.exe cxTextEdit             3399  +0 TcxCustomTextEditViewInfo.DrawText
+005eeb39 +131 Laboratorio.exe cxTextEdit             1141 +23 DrawTextEdit
+005f2bf9 +001 Laboratorio.exe cxTextEdit             3509  +0 TcxCustomTextEditViewInfo.InternalPaint
+005c7182 +002 Laboratorio.exe cxContainer            2141  +0 TcxContainerViewInfo.Paint
+006d9ca0 +03c Laboratorio.exe cxGridCustomTableView  8010  +3 TcxGridTableDataCellPainter.DrawContent
+006ec1fa +042 Laboratorio.exe cxGridCustomView       3922  +4 TcxCustomGridCellPainter.Paint
+006d9d09 +005 Laboratorio.exe cxGridCustomTableView  8022  +1 TcxGridTableDataCellPainter.Paint
+006ec285 +019 Laboratorio.exe cxGridCustomView       3948  +3 TcxCustomGridCellPainter.MainPaint
+006ee1ff +05b Laboratorio.exe cxGridCustomView       5435 +16 TcxCustomGridCellViewInfo.Paint
+006f4b56 +00a Laboratorio.exe cxGridRows             1110  +1 TcxGridDataCellViewInfo.Paint
+00703a2f +037 Laboratorio.exe cxGridTableView        5386  +6 TcxGridRowsPainter.DrawDataRowCells
+006f3ecd +01d Laboratorio.exe cxGridRows              610  +1 TcxGridDataRowPainter.DrawCells
+006f3f44 +038 Laboratorio.exe cxGridRows              629  +5 TcxGridDataRowPainter.Paint
+006ec285 +019 Laboratorio.exe cxGridCustomView       3948  +3 TcxCustomGridCellPainter.MainPaint
+006ee1ff +05b Laboratorio.exe cxGridCustomView       5435 +16 TcxCustomGridCellViewInfo.Paint
+006d9f52 +02a Laboratorio.exe cxGridCustomTableView  8108  +4 TcxCustomGridRecordsPainter.Paint
+007039ef +02b Laboratorio.exe cxGridTableView        5373  +3 TcxGridRowsPainter.Paint
+006d9f62 +002 Laboratorio.exe cxGridCustomTableView  8114  +0 TcxCustomGridRecordsPainter.MainPaint
+006dd27f +033 Laboratorio.exe cxGridCustomTableView 10216  +3 TcxCustomGridRecordsViewInfo.Paint
+006da120 +010 Laboratorio.exe cxGridCustomTableView  8182  +1 TcxCustomGridTablePainter.DrawRecords
+00703e16 +02a Laboratorio.exe cxGridTableView        5482  +3 TcxGridTablePainter.DrawRecords
+006da162 +00e Laboratorio.exe cxGridCustomTableView  8204  +2 TcxCustomGridTablePainter.PaintContent
+00703f78 +028 Laboratorio.exe cxGridTableView        5533 +11 TcxGridTablePainter.PaintContent
+006ec540 +020 Laboratorio.exe cxGridCustomView       4067 +11 TcxCustomGridPainter.Paint
+006ecd2b +023 Laboratorio.exe cxGridCustomView       4369  +2 TcxGridSite.Paint
+004c5b5f +057 Laboratorio.exe Controls                        TCustomControl.PaintWindow
+004c1295 +055 Laboratorio.exe Controls                        TWinControl.PaintHandler
+004c1877 +03f Laboratorio.exe Controls                        TWinControl.WMPaint
+004c5af8 +010 Laboratorio.exe Controls                        TCustomControl.WMPaint
+0058ee49 +011 Laboratorio.exe cxControls             2173  +2 TcxControl.WMPaint
+004bd2cf +2bb Laboratorio.exe Controls                        TControl.WndProc
+004bdb6a +06e Laboratorio.exe Controls                        TControl.WMMouseMove
+004bd2cf +2bb Laboratorio.exe Controls                        TControl.WndProc
+004c10f8 +46c Laboratorio.exe Controls                        TWinControl.WndProc
+0058f45c +104 Laboratorio.exe cxControls             2420 +20 TcxControl.WndProc
+006ecdcb +01b Laboratorio.exe cxGridCustomView       4399  +2 TcxGridSite.WndProc
+004c08b0 +02c Laboratorio.exe Controls                        TWinControl.MainWndProc
+0047b310 +014 Laboratorio.exe Classes                         StdWndProc
+7c90f0a5 +059 ntdll.dll                                       RtlAnsiStringToUnicodeString
+7c90eae0 +010 ntdll.dll                                       KiUserCallbackDispatcher
+00fac900 +168 Laboratorio.exe PuntoVenta             4946 +24 TfrmPuntoVenta.FacturaExterior1Click
+004b2763 +0a7 Laboratorio.exe Menus                           TMenuItem.Click
+004b3967 +013 Laboratorio.exe Menus                           TMenu.DispatchCommand
+004b496e +082 Laboratorio.exe Menus                           TPopupList.WndProc
+004b48bd +01d Laboratorio.exe Menus                           TPopupList.MainWndProc
+0047b310 +014 Laboratorio.exe Classes                         StdWndProc
+7e4196b2 +00a USER32.dll                                      DispatchMessageA
+004db5e0 +0fc Laboratorio.exe Forms                           TApplication.ProcessMessage
+004db61a +00a Laboratorio.exe Forms                           TApplication.HandleMessage
+004db83a +096 Laboratorio.exe Forms                           TApplication.Run
+00fe901a +0de Laboratorio.exe Laboratorio             345 +14 initialization
+
+thread $cf0:
+7c90eb94 +0 ntdll.dll     KiFastSystemCallRet
+7c90e9a9 +a ntdll.dll     NtWaitForMultipleObjects
+7c8094dc +0 kernel32.dll  WaitForMultipleObjectsEx
+
+thread $abc:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e397 +0a ntdll.dll                 NtReplyWaitReceivePortEx
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($220) at:
+77e87695 +00 RPCRT4.dll
+
+thread $32c:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e9be +0a ntdll.dll                 NtWaitForSingleObject
+7c8025c5 +85 kernel32.dll              WaitForSingleObjectEx
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($220) at:
+7750cc4a +00 ole32.dll
+
+thread $408:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e9be +0a ntdll.dll                 NtWaitForSingleObject
+7c8025c5 +85 kernel32.dll              WaitForSingleObjectEx
+7c80252d +0d kernel32.dll              WaitForSingleObject
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($220) at:
+76664112 +00 comsvcs.dll
+
+thread $71c:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e9a9 +0a ntdll.dll                 NtWaitForMultipleObjects
+7c8094dc +00 kernel32.dll              WaitForMultipleObjectsEx
+7e4195e3 +00 USER32.dll                MsgWaitForMultipleObjectsEx
+7e419693 +1a USER32.dll                MsgWaitForMultipleObjects
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($220) at:
+4ec958ef +00 gdiplus.dll
+
+thread $b8:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e397 +0a ntdll.dll                 NtReplyWaitReceivePortEx
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by thread $abc at:
+77e87695 +00 RPCRT4.dll
+
+modules:
+00400000 Laboratorio.exe 1.5.1.0          C:\Program Files\Borland\BDS\4.0\lib\Utileria\Referencia
+01f40000 winscok.dll                      C:\WINDOWS\system32
+01f60000 Normaliz.dll    6.0.5441.0       C:\WINDOWS\system32
+04520000 msadcer.dll     2.81.1117.0      C:\Program Files\Common Files\System\MSADC
+05410000 SQLOLEDB.RLL    2000.85.1117.0   C:\Program Files\Common Files\System\Ole DB
+07a10000 UNIDRVUI.DLL    0.3.1296.1       C:\WINDOWS\System32\spool\DRIVERS\W32X86\3
+0ffd0000 rsaenh.dll      5.1.2600.2161    C:\WINDOWS\system32
+20000000 xpsp2res.dll    5.1.2600.2180    C:\WINDOWS\system32
+42990000 iertutil.dll    7.0.6000.16640   C:\WINDOWS\system32
+42c10000 wininet.dll     7.0.6000.16640   C:\WINDOWS\system32
+4dd00000 sqloledb.dll    2000.85.1117.0   C:\Program Files\Common Files\System\Ole DB
+4de10000 msado15.dll     2.81.1128.0      C:\Program Files\Common Files\System\ADO
+4ec50000 gdiplus.dll     5.1.3102.2180    C:\WINDOWS\WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.2600.2180_x-ww_522f9f82
+5ad70000 uxtheme.dll     6.0.2900.2180    C:\WINDOWS\system32
+5b860000 NETAPI32.dll    5.1.2600.2976    C:\WINDOWS\system32
+5edd0000 olepro32.dll    5.1.2600.2180    C:\WINDOWS\system32
+60e30000 MSDATL3.dll     2.81.1117.0      C:\Program Files\Common Files\System\Ole DB
+662b0000 hnetcfg.dll     5.1.2600.2180    C:\WINDOWS\system32
+68100000 dssenh.dll      5.1.2600.2133    C:\WINDOWS\system32
+6d4f0000 DBNETLIB.DLL    2000.85.1117.0   C:\WINDOWS\system32
+71a50000 mswsock.dll     5.1.2600.2180    C:\WINDOWS\System32
+71a90000 wshtcpip.dll    5.1.2600.2180    C:\WINDOWS\System32
+71aa0000 WS2HELP.dll     5.1.2600.2180    C:\WINDOWS\system32
+71ab0000 WS2_32.dll      5.1.2600.2180    C:\WINDOWS\system32
+71ad0000 wsock32.dll     5.1.2600.2180    C:\WINDOWS\system32
+71f80000 security.dll    5.1.2600.2180    C:\WINDOWS\system32
+73000000 winspool.drv    5.1.2600.2180    C:\WINDOWS\system32
+73160000 oledb32.dll     2.81.1117.0      C:\Program Files\Common Files\System\Ole DB
+74060000 msadce.dll      2.81.1117.0      C:\Program Files\Common Files\System\MSADC
+74720000 MSCTF.dll       5.1.2600.2180    C:\WINDOWS\system32
+750b0000 RESUTILS.DLL    5.1.2600.2180    C:\WINDOWS\system32
+750f0000 MTXCLU.DLL      2001.12.4414.311 C:\WINDOWS\system32
+75130000 colbact.DLL     2001.12.4414.308 C:\WINDOWS\system32
+75350000 OLEDB32R.DLL    2.81.1117.0      C:\Program Files\Common Files\System\Ole DB
+755c0000 msctfime.ime    5.1.2600.2180    C:\WINDOWS\system32
+76380000 msimg32.dll     5.1.2600.2180    C:\WINDOWS\system32
+76390000 imm32.dll       5.1.2600.2180    C:\WINDOWS\system32
+763b0000 comdlg32.dll    6.0.2900.2180    C:\WINDOWS\system32
+765b0000 MSDART.DLL      2.81.1117.0      C:\WINDOWS\system32
+76620000 comsvcs.dll     2001.12.4414.308 C:\WINDOWS\system32
+767a0000 ntdsapi.dll     5.1.2600.2180    C:\WINDOWS\system32
+767f0000 schannel.dll    5.1.2600.3126    C:\WINDOWS\system32
+769c0000 USERENV.dll     5.1.2600.2180    C:\WINDOWS\system32
+76b40000 winmm.dll       5.1.2600.2180    C:\WINDOWS\system32
+76bf0000 psapi.dll       5.1.2600.2180    C:\WINDOWS\system32
+76c30000 WINTRUST.dll    5.131.2600.2180  C:\WINDOWS\system32
+76c90000 IMAGEHLP.DLL    5.1.2600.2180    C:\WINDOWS\system32
+76d10000 CLUSAPI.DLL     5.1.2600.2180    C:\WINDOWS\system32
+76d60000 iphlpapi.dll    5.1.2600.2912    C:\WINDOWS\system32
+76f20000 DNSAPI.dll      5.1.2600.3316    C:\WINDOWS\system32
+76f60000 WLDAP32.dll     5.1.2600.2180    C:\WINDOWS\system32
+76fb0000 winrnr.dll      5.1.2600.2180    C:\WINDOWS\System32
+76fc0000 rasadhlp.dll    5.1.2600.2938    C:\WINDOWS\system32
+76fd0000 CLBCATQ.DLL     2001.12.4414.308 C:\WINDOWS\system32
+77050000 COMRes.dll      2001.12.4414.258 C:\WINDOWS\system32
+77120000 oleaut32.dll    5.1.2600.3266    C:\WINDOWS\system32
+773d0000 comctl32.dll    6.0.2900.2982    C:\WINDOWS\WinSxS\x86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.2600.2982_x-ww_ac3f9c03
+774e0000 ole32.dll       5.1.2600.2726    C:\WINDOWS\system32
+77a80000 crypt32.dll     5.131.2600.2180  C:\WINDOWS\system32
+77b20000 MSASN1.dll      5.1.2600.2180    C:\WINDOWS\system32
+77c00000 version.dll     5.1.2600.2180    C:\WINDOWS\system32
+77c10000 msvcrt.dll      7.0.2600.2180    C:\WINDOWS\system32
+77c70000 msv1_0.dll      5.1.2600.2180    C:\WINDOWS\system32
+77dd0000 ADVAPI32.dll    5.1.2600.2180    C:\WINDOWS\system32
+77e70000 RPCRT4.dll      5.1.2600.3173    C:\WINDOWS\system32
+77f10000 GDI32.dll       5.1.2600.3316    C:\WINDOWS\system32
+77f60000 SHLWAPI.dll     6.0.2900.3157    C:\WINDOWS\system32
+77fe0000 Secur32.dll     5.1.2600.2180    C:\WINDOWS\system32
+7c800000 kernel32.dll    5.1.2600.3119    C:\WINDOWS\system32
+7c900000 ntdll.dll       5.1.2600.2180    C:\WINDOWS\system32
+7c9c0000 shell32.dll     6.0.2900.3241    C:\WINDOWS\system32
+7e410000 USER32.dll      5.1.2600.3099    C:\WINDOWS\system32
+
+processes:
+000 Idle
+004 System           normal
+26c smss.exe         normal C:\WINDOWS\system32
+2a4 csrss.exe
+2bc winlogon.exe     high   C:\WINDOWS\system32
+2e8 services.exe     normal C:\WINDOWS\system32
+2f4 lsass.exe        normal C:\WINDOWS\system32
+398 svchost.exe      normal C:\WINDOWS\system32
+3e8 svchost.exe
+444 svchost.exe      normal C:\WINDOWS\System32
+4a0 svchost.exe
+508 svchost.exe
+598 spoolsv.exe      normal C:\WINDOWS\system32
+64c fbguard.exe      normal C:\Program Files\Firebird\Firebird_2_0\bin
+66c inetinfo.exe     normal C:\WINDOWS\system32\inetsrv
+694 RaMaint.exe      normal C:\Program Files\LogMeIn\x86
+6fc LogMeIn.exe      normal C:\Program Files\LogMeIn\x86
+740 mdm.exe          normal C:\Program Files\Common Files\Microsoft Shared\VS7Debug
+7c4 svchost.exe      normal C:\WINDOWS\system32
+244 ssonsvr.exe      normal C:\Program Files\Citrix\ICA Client
+48c Explorer.EXE     normal C:\WINDOWS
+568 igfxtray.exe     normal C:\WINDOWS\system32
+570 hkcmd.exe        normal C:\WINDOWS\system32
+5cc igfxpers.exe     normal C:\WINDOWS\system32
+634 Scheduler.exe    normal C:\WINDOWS\SMINST
+774 SVOHOST.exe      normal C:\WINDOWS\system32
+784 explorer.exe     normal C:\WINDOWS\system32
+810 ctfmon.exe       normal C:\WINDOWS\system32
+888 fbserver.exe     normal C:\Program Files\Firebird\Firebird_2_0\bin
+fcc bds.exe          normal C:\Program Files\Borland\BDS\4.0\Bin
+0a0 iexplore.exe     normal C:\Program Files\Internet Explorer
+47c WLLoginProxy.exe normal C:\Program Files\Common Files\Microsoft Shared\Windows Live
+194 ax32.exe         normal C:\Axapta\Bin
+86c MsManager.exe    normal D:\Instalacion\VideoTodo\Adcon\MsManager
+528 Laboratorio.exe  normal C:\Program Files\Borland\BDS\4.0\lib\Utileria\Referencia
+
+hardware:
++ Computer
+  - ACPI Multiprocessor PC
++ Disk drives
+  - SAMSUNG HD080HJ/P
++ Display adapters
+  - Intel(R)  Q965/Q963 Express Chipset Family (driver 6.14.10.4642)
+  - LogMeIn Mirror Driver (driver 7.1.542.0)
++ DVD/CD-ROM drives
+  - HL-DT-ST DVD-ROM GDRH10N
++ Floppy disk controllers
+  - Standard floppy disk controller
++ IDE ATA/ATAPI controllers
+  - Intel(R) ICH8 2 port Serial ATA Storage Controller - 2825 (driver 8.0.0.1008)
+  - Intel(R) ICH8 4 port Serial ATA Storage Controller - 2820 (driver 8.0.0.1008)
+  - Primary IDE Channel
+  - Primary IDE Channel
+  - Secondary IDE Channel
+  - Secondary IDE Channel
++ Keyboards
+  - Standard 101/102-Key or Microsoft Natural PS/2 Keyboard
++ Mice and other pointing devices
+  - PS/2 Compatible Mouse
++ Monitors
+  - Plug and Play Monitor
+  - Plug and Play Monitor
++ Network adapters
+  - Broadcom NetXtreme Gigabit Ethernet (driver 9.52.0.0)
++ Ports (COM & LPT)
+  - Communications Port (COM1)
+  - ECP Printer Port (LPT1)
++ Processors
+  - Intel(R) Pentium(R) D CPU 3.40GHz
+  - Intel(R) Pentium(R) D CPU 3.40GHz
++ Sound, video and game controllers
+  - Audio Codecs
+  - Legacy Audio Drivers
+  - Legacy Video Capture Devices
+  - Media Control Devices
+  - Realtek High Definition Audio (driver 5.10.0.5275)
+  - Video Codecs
++ System devices
+  - ACPI Fixed Feature Button
+  - ACPI Power Button
+  - Advanced programmable interrupt controller
+  - Direct memory access controller
+  - Intel(R) 82801 PCI Bridge - 244E
+  - Intel(R) ICH8 Family PCI Express Root Port 1 - 283F (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family PCI Express Root Port 2 – 2841 (driver 8.0.0.1008)
+  - Intel(R) ICH8/ICH8R Family LPC Interface Controller - 2810 (driver 8.0.0.1008)
+  - Intel(R) Q963/Q965 Processor to I/O Controller – 2990 (driver 8.0.0.1006)
+  - ISAPNP Read Data Port
+  - Logical Disk Manager
+  - Microsoft ACPI-Compliant System
+  - Microsoft System Management BIOS Driver
+  - Microsoft UAA Bus Driver for High Definition Audio
+  - Microsoft Windows Management Interface for ACPI
+  - Motherboard resources
+  - Motherboard resources
+  - Numeric data processor
+  - PCI bus
+  - Plug and Play Software Device Enumerator
+  - Printer Port Logical Interface
+  - Programmable interrupt controller
+  - System board
+  - System CMOS/real time clock
+  - System speaker
+  - System timer
+  - Terminal Server Device Redirector
+  - Terminal Server Keyboard Driver
+  - Terminal Server Mouse Driver
+  - Volume Manager
++ Universal Serial Bus controllers
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2830 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2831 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2834 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2835 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB2 Enhanced Host Controller - 2836 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB2 Enhanced Host Controller - 283A (driver 8.0.0.1008)
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+
+cpu registers:
+eax = 00000f61
+ebx = 00152eb8
+ecx = 00000f61
+edx = 00001ec2
+esi = 07827fd8
+edi = 00000aaa
+eip = 7c809d92
+esp = 0012efb8
+ebp = 0012efe8
+
+stack dump:
+0012efb8  00 00 00 00 61 0f 00 00 - d8 7f 82 07 d8 7f 82 07  ....a...........
+0012efc8  1c 00 fb 7f 0b 1a 00 00 - aa 0a 00 00 61 0f 00 00  ............a...
+0012efd8  00 00 15 00 d4 ed 12 00 - 7a 28 01 0b 08 48 00 00  ........z(...H..
+0012efe8  48 f5 12 00 8d 89 f1 77 - e4 04 00 00 00 00 00 00  H......w........
+0012eff8  aa 0a 00 00 61 0f 00 00 - d8 7f 82 07 61 0f 00 00  ....a.......a...
+0012f008  b8 6c 3a 05 01 00 00 00 - 00 00 00 00 58 f0 12 00  .l:.........X...
+0012f018  84 0b 67 04 84 f0 12 00 - c9 8b 41 7e 00 f0 fd 7f  ..g.......A~....
+0012f028  84 f0 12 00 4a 88 41 7e - 44 f0 12 00 1a 88 41 7e  ....J.A~D.....A~
+0012f038  00 00 00 00 a0 14 12 00 - b4 f3 12 00 14 00 00 00  ................
+0012f048  01 00 00 00 00 00 00 00 - 00 00 00 00 06 00 00 00  ................
+0012f058  d8 f4 12 00 00 00 00 00 - 06 00 00 00 0c 00 00 00  ................
+0012f068  01 00 00 00 06 00 00 00 - e0 f5 12 00 d9 89 f1 77  ...............w
+0012f078  0c 2c 01 47 54 00 00 00 - 03 00 00 00 00 00 00 00  .,.GT...........
+0012f088  00 00 00 00 d8 f4 12 00 - 00 00 00 00 06 00 00 00  ................
+0012f098  0c 00 00 00 e4 04 00 00 - 98 c8 fa 03 01 00 00 00  ................
+0012f0a8  2b 8a f1 77 33 bd 00 00 - d8 4e 96 01 b4 f3 12 00  +..w3....N......
+0012f0b8  00 00 04 00 9f 2a 10 96 - ac f0 12 00 f0 da a1 00  .....*..........
+0012f0c8  18 f3 12 00 77 04 44 7e - c0 b4 41 7e ff ff ff ff  ....w.D~..A~....
+0012f0d8  bb b4 41 7e fc b4 41 7e - d8 4e 96 01 33 bd 00 00  ..A~..A~.N..3...
+0012f0e8  f5 2d 01 15 0c b5 41 7e - 00 00 00 00 9f 2a 10 96  .-....A~.....*..
+
+disassembling:
+[...]
+005d6845       mov     eax, [eax+$14]
+005d6848       push    eax
+005d6849       mov     eax, [ebp+8]
+005d684c       mov     eax, [eax-8]
+005d684f       push    eax
+005d6850     > call    -$1cd4b9 ($40939c)     ; Windows.TextOut
+005d6855 726   pop     ecx
+005d6856       pop     ebp
+005d6857       ret
+
+date/time         : 2008-05-09, 12:47:39, 407ms
+computer name     : HPNEW
+user name         : sinteca <admin>
+operating system  : Windows XP Service Pack 2 build 2600
+system language   : English
+system up time    : 2 hours 8 minutes
+program up time   : 1 minute 16 seconds
+processors        : 2x Intel(R) Pentium(R) D CPU 3.40GHz
+physical memory   : 154/1015 MB (free/total)
+free disk space   : (C:) 39.40 GB
+display mode      : 1024x768, 32 bit
+process id        : $528
+allocated memory  : 39.65 MB
+executable        : Laboratorio.exe
+exec. date/time   : 2008-05-09 12:46
+version           : 1.5.1.0
+madExcept version : 3.0b
+callstack crc     : $e173fe0e, $b7626fd5, $b7626fd5
+exception number  : 3
+exception class   : EAccessViolation
+exception message : Access violation at address 7C809D92 in module 'kernel32.dll'. Read of address 00000AAA.
+
+main thread ($220):
+7c809d92 +19a kernel32.dll                                    MultiByteToWideChar
+77f1bc31 +02d GDI32.dll                                       TextOutA
+005d6850 +050 Laboratorio.exe cxEditTextUtils         725  +8 OutTextRow
+005d6af1 +169 Laboratorio.exe cxEditTextUtils         814 +39 cxTextRowsOutHighlight
+005ef422 +082 Laboratorio.exe cxTextEdit             1385  +7 InternalTextOut
+005ee8ca +0aa Laboratorio.exe cxTextEdit             1077 +17 DrawEditText
+005f27cd +001 Laboratorio.exe cxTextEdit             3399  +0 TcxCustomTextEditViewInfo.DrawText
+005eeb39 +131 Laboratorio.exe cxTextEdit             1141 +23 DrawTextEdit
+005f2bf9 +001 Laboratorio.exe cxTextEdit             3509  +0 TcxCustomTextEditViewInfo.InternalPaint
+005c7182 +002 Laboratorio.exe cxContainer            2141  +0 TcxContainerViewInfo.Paint
+006d9ca0 +03c Laboratorio.exe cxGridCustomTableView  8010  +3 TcxGridTableDataCellPainter.DrawContent
+006ec1fa +042 Laboratorio.exe cxGridCustomView       3922  +4 TcxCustomGridCellPainter.Paint
+006d9d09 +005 Laboratorio.exe cxGridCustomTableView  8022  +1 TcxGridTableDataCellPainter.Paint
+006ec285 +019 Laboratorio.exe cxGridCustomView       3948  +3 TcxCustomGridCellPainter.MainPaint
+006ee1ff +05b Laboratorio.exe cxGridCustomView       5435 +16 TcxCustomGridCellViewInfo.Paint
+006f4b56 +00a Laboratorio.exe cxGridRows             1110  +1 TcxGridDataCellViewInfo.Paint
+00703a2f +037 Laboratorio.exe cxGridTableView        5386  +6 TcxGridRowsPainter.DrawDataRowCells
+006f3ecd +01d Laboratorio.exe cxGridRows              610  +1 TcxGridDataRowPainter.DrawCells
+006f3f44 +038 Laboratorio.exe cxGridRows              629  +5 TcxGridDataRowPainter.Paint
+006ec285 +019 Laboratorio.exe cxGridCustomView       3948  +3 TcxCustomGridCellPainter.MainPaint
+006ee1ff +05b Laboratorio.exe cxGridCustomView       5435 +16 TcxCustomGridCellViewInfo.Paint
+006d9f52 +02a Laboratorio.exe cxGridCustomTableView  8108  +4 TcxCustomGridRecordsPainter.Paint
+007039ef +02b Laboratorio.exe cxGridTableView        5373  +3 TcxGridRowsPainter.Paint
+006d9f62 +002 Laboratorio.exe cxGridCustomTableView  8114  +0 TcxCustomGridRecordsPainter.MainPaint
+006dd27f +033 Laboratorio.exe cxGridCustomTableView 10216  +3 TcxCustomGridRecordsViewInfo.Paint
+006da120 +010 Laboratorio.exe cxGridCustomTableView  8182  +1 TcxCustomGridTablePainter.DrawRecords
+00703e16 +02a Laboratorio.exe cxGridTableView        5482  +3 TcxGridTablePainter.DrawRecords
+006da162 +00e Laboratorio.exe cxGridCustomTableView  8204  +2 TcxCustomGridTablePainter.PaintContent
+00703f78 +028 Laboratorio.exe cxGridTableView        5533 +11 TcxGridTablePainter.PaintContent
+006ec540 +020 Laboratorio.exe cxGridCustomView       4067 +11 TcxCustomGridPainter.Paint
+006ecd2b +023 Laboratorio.exe cxGridCustomView       4369  +2 TcxGridSite.Paint
+004c5b5f +057 Laboratorio.exe Controls                        TCustomControl.PaintWindow
+004c1295 +055 Laboratorio.exe Controls                        TWinControl.PaintHandler
+004c1877 +03f Laboratorio.exe Controls                        TWinControl.WMPaint
+004c186b +033 Laboratorio.exe Controls                        TWinControl.WMPaint
+004c5af8 +010 Laboratorio.exe Controls                        TCustomControl.WMPaint
+0058ee49 +011 Laboratorio.exe cxControls             2173  +2 TcxControl.WMPaint
+004bd2cf +2bb Laboratorio.exe Controls                        TControl.WndProc
+004c10f8 +46c Laboratorio.exe Controls                        TWinControl.WndProc
+0058f45c +104 Laboratorio.exe cxControls             2420 +20 TcxControl.WndProc
+006ecdcb +01b Laboratorio.exe cxGridCustomView       4399  +2 TcxGridSite.WndProc
+004c08b0 +02c Laboratorio.exe Controls                        TWinControl.MainWndProc
+0047b310 +014 Laboratorio.exe Classes                         StdWndProc
+7c90f0a5 +059 ntdll.dll                                       RtlAnsiStringToUnicodeString
+7c90eae0 +010 ntdll.dll                                       KiUserCallbackDispatcher
+00fac900 +168 Laboratorio.exe PuntoVenta             4946 +24 TfrmPuntoVenta.FacturaExterior1Click
+004b2763 +0a7 Laboratorio.exe Menus                           TMenuItem.Click
+004b3967 +013 Laboratorio.exe Menus                           TMenu.DispatchCommand
+004b496e +082 Laboratorio.exe Menus                           TPopupList.WndProc
+004b48bd +01d Laboratorio.exe Menus                           TPopupList.MainWndProc
+0047b310 +014 Laboratorio.exe Classes                         StdWndProc
+7e4196b2 +00a USER32.dll                                      DispatchMessageA
+004db5e0 +0fc Laboratorio.exe Forms                           TApplication.ProcessMessage
+004db61a +00a Laboratorio.exe Forms                           TApplication.HandleMessage
+004db83a +096 Laboratorio.exe Forms                           TApplication.Run
+00fe901a +0de Laboratorio.exe Laboratorio             345 +14 initialization
+
+thread $cf0:
+7c90eb94 +0 ntdll.dll     KiFastSystemCallRet
+7c90e9a9 +a ntdll.dll     NtWaitForMultipleObjects
+7c8094dc +0 kernel32.dll  WaitForMultipleObjectsEx
+
+thread $abc:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e397 +0a ntdll.dll                 NtReplyWaitReceivePortEx
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($220) at:
+77e87695 +00 RPCRT4.dll
+
+thread $32c:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e9be +0a ntdll.dll                 NtWaitForSingleObject
+7c8025c5 +85 kernel32.dll              WaitForSingleObjectEx
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($220) at:
+7750cc4a +00 ole32.dll
+
+thread $408:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e9be +0a ntdll.dll                 NtWaitForSingleObject
+7c8025c5 +85 kernel32.dll              WaitForSingleObjectEx
+7c80252d +0d kernel32.dll              WaitForSingleObject
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($220) at:
+76664112 +00 comsvcs.dll
+
+thread $71c:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e9a9 +0a ntdll.dll                 NtWaitForMultipleObjects
+7c8094dc +00 kernel32.dll              WaitForMultipleObjectsEx
+7e4195e3 +00 USER32.dll                MsgWaitForMultipleObjectsEx
+7e419693 +1a USER32.dll                MsgWaitForMultipleObjects
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($220) at:
+4ec958ef +00 gdiplus.dll
+
+thread $b8:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e397 +0a ntdll.dll                 NtReplyWaitReceivePortEx
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by thread $abc at:
+77e87695 +00 RPCRT4.dll
+
+modules:
+00400000 Laboratorio.exe 1.5.1.0          C:\Program Files\Borland\BDS\4.0\lib\Utileria\Referencia
+01f40000 winscok.dll                      C:\WINDOWS\system32
+01f60000 Normaliz.dll    6.0.5441.0       C:\WINDOWS\system32
+04520000 msadcer.dll     2.81.1117.0      C:\Program Files\Common Files\System\MSADC
+05410000 SQLOLEDB.RLL    2000.85.1117.0   C:\Program Files\Common Files\System\Ole DB
+07a10000 UNIDRVUI.DLL    0.3.1296.1       C:\WINDOWS\System32\spool\DRIVERS\W32X86\3
+0ffd0000 rsaenh.dll      5.1.2600.2161    C:\WINDOWS\system32
+20000000 xpsp2res.dll    5.1.2600.2180    C:\WINDOWS\system32
+42990000 iertutil.dll    7.0.6000.16640   C:\WINDOWS\system32
+42c10000 wininet.dll     7.0.6000.16640   C:\WINDOWS\system32
+4dd00000 sqloledb.dll    2000.85.1117.0   C:\Program Files\Common Files\System\Ole DB
+4de10000 msado15.dll     2.81.1128.0      C:\Program Files\Common Files\System\ADO
+4ec50000 gdiplus.dll     5.1.3102.2180    C:\WINDOWS\WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.2600.2180_x-ww_522f9f82
+5ad70000 uxtheme.dll     6.0.2900.2180    C:\WINDOWS\system32
+5b860000 NETAPI32.dll    5.1.2600.2976    C:\WINDOWS\system32
+5edd0000 olepro32.dll    5.1.2600.2180    C:\WINDOWS\system32
+60e30000 MSDATL3.dll     2.81.1117.0      C:\Program Files\Common Files\System\Ole DB
+662b0000 hnetcfg.dll     5.1.2600.2180    C:\WINDOWS\system32
+68100000 dssenh.dll      5.1.2600.2133    C:\WINDOWS\system32
+6d4f0000 DBNETLIB.DLL    2000.85.1117.0   C:\WINDOWS\system32
+71a50000 mswsock.dll     5.1.2600.2180    C:\WINDOWS\System32
+71a90000 wshtcpip.dll    5.1.2600.2180    C:\WINDOWS\System32
+71aa0000 WS2HELP.dll     5.1.2600.2180    C:\WINDOWS\system32
+71ab0000 WS2_32.dll      5.1.2600.2180    C:\WINDOWS\system32
+71ad0000 wsock32.dll     5.1.2600.2180    C:\WINDOWS\system32
+71f80000 security.dll    5.1.2600.2180    C:\WINDOWS\system32
+73000000 winspool.drv    5.1.2600.2180    C:\WINDOWS\system32
+73160000 oledb32.dll     2.81.1117.0      C:\Program Files\Common Files\System\Ole DB
+74060000 msadce.dll      2.81.1117.0      C:\Program Files\Common Files\System\MSADC
+74720000 MSCTF.dll       5.1.2600.2180    C:\WINDOWS\system32
+750b0000 RESUTILS.DLL    5.1.2600.2180    C:\WINDOWS\system32
+750f0000 MTXCLU.DLL      2001.12.4414.311 C:\WINDOWS\system32
+75130000 colbact.DLL     2001.12.4414.308 C:\WINDOWS\system32
+75350000 OLEDB32R.DLL    2.81.1117.0      C:\Program Files\Common Files\System\Ole DB
+755c0000 msctfime.ime    5.1.2600.2180    C:\WINDOWS\system32
+76380000 msimg32.dll     5.1.2600.2180    C:\WINDOWS\system32
+76390000 imm32.dll       5.1.2600.2180    C:\WINDOWS\system32
+763b0000 comdlg32.dll    6.0.2900.2180    C:\WINDOWS\system32
+765b0000 MSDART.DLL      2.81.1117.0      C:\WINDOWS\system32
+76620000 comsvcs.dll     2001.12.4414.308 C:\WINDOWS\system32
+767a0000 ntdsapi.dll     5.1.2600.2180    C:\WINDOWS\system32
+767f0000 schannel.dll    5.1.2600.3126    C:\WINDOWS\system32
+769c0000 USERENV.dll     5.1.2600.2180    C:\WINDOWS\system32
+76b40000 winmm.dll       5.1.2600.2180    C:\WINDOWS\system32
+76bf0000 psapi.dll       5.1.2600.2180    C:\WINDOWS\system32
+76c30000 WINTRUST.dll    5.131.2600.2180  C:\WINDOWS\system32
+76c90000 IMAGEHLP.DLL    5.1.2600.2180    C:\WINDOWS\system32
+76d10000 CLUSAPI.DLL     5.1.2600.2180    C:\WINDOWS\system32
+76d60000 iphlpapi.dll    5.1.2600.2912    C:\WINDOWS\system32
+76f20000 DNSAPI.dll      5.1.2600.3316    C:\WINDOWS\system32
+76f60000 WLDAP32.dll     5.1.2600.2180    C:\WINDOWS\system32
+76fb0000 winrnr.dll      5.1.2600.2180    C:\WINDOWS\System32
+76fc0000 rasadhlp.dll    5.1.2600.2938    C:\WINDOWS\system32
+76fd0000 CLBCATQ.DLL     2001.12.4414.308 C:\WINDOWS\system32
+77050000 COMRes.dll      2001.12.4414.258 C:\WINDOWS\system32
+77120000 oleaut32.dll    5.1.2600.3266    C:\WINDOWS\system32
+773d0000 comctl32.dll    6.0.2900.2982    C:\WINDOWS\WinSxS\x86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.2600.2982_x-ww_ac3f9c03
+774e0000 ole32.dll       5.1.2600.2726    C:\WINDOWS\system32
+77a80000 crypt32.dll     5.131.2600.2180  C:\WINDOWS\system32
+77b20000 MSASN1.dll      5.1.2600.2180    C:\WINDOWS\system32
+77c00000 version.dll     5.1.2600.2180    C:\WINDOWS\system32
+77c10000 msvcrt.dll      7.0.2600.2180    C:\WINDOWS\system32
+77c70000 msv1_0.dll      5.1.2600.2180    C:\WINDOWS\system32
+77dd0000 ADVAPI32.dll    5.1.2600.2180    C:\WINDOWS\system32
+77e70000 RPCRT4.dll      5.1.2600.3173    C:\WINDOWS\system32
+77f10000 GDI32.dll       5.1.2600.3316    C:\WINDOWS\system32
+77f60000 SHLWAPI.dll     6.0.2900.3157    C:\WINDOWS\system32
+77fe0000 Secur32.dll     5.1.2600.2180    C:\WINDOWS\system32
+7c800000 kernel32.dll    5.1.2600.3119    C:\WINDOWS\system32
+7c900000 ntdll.dll       5.1.2600.2180    C:\WINDOWS\system32
+7c9c0000 shell32.dll     6.0.2900.3241    C:\WINDOWS\system32
+7e410000 USER32.dll      5.1.2600.3099    C:\WINDOWS\system32
+
+processes:
+000 Idle
+004 System           normal
+26c smss.exe         normal C:\WINDOWS\system32
+2a4 csrss.exe
+2bc winlogon.exe     high   C:\WINDOWS\system32
+2e8 services.exe     normal C:\WINDOWS\system32
+2f4 lsass.exe        normal C:\WINDOWS\system32
+398 svchost.exe      normal C:\WINDOWS\system32
+3e8 svchost.exe
+444 svchost.exe      normal C:\WINDOWS\System32
+4a0 svchost.exe
+508 svchost.exe
+598 spoolsv.exe      normal C:\WINDOWS\system32
+64c fbguard.exe      normal C:\Program Files\Firebird\Firebird_2_0\bin
+66c inetinfo.exe     normal C:\WINDOWS\system32\inetsrv
+694 RaMaint.exe      normal C:\Program Files\LogMeIn\x86
+6fc LogMeIn.exe      normal C:\Program Files\LogMeIn\x86
+740 mdm.exe          normal C:\Program Files\Common Files\Microsoft Shared\VS7Debug
+7c4 svchost.exe      normal C:\WINDOWS\system32
+244 ssonsvr.exe      normal C:\Program Files\Citrix\ICA Client
+48c Explorer.EXE     normal C:\WINDOWS
+568 igfxtray.exe     normal C:\WINDOWS\system32
+570 hkcmd.exe        normal C:\WINDOWS\system32
+5cc igfxpers.exe     normal C:\WINDOWS\system32
+634 Scheduler.exe    normal C:\WINDOWS\SMINST
+774 SVOHOST.exe      normal C:\WINDOWS\system32
+784 explorer.exe     normal C:\WINDOWS\system32
+810 ctfmon.exe       normal C:\WINDOWS\system32
+888 fbserver.exe     normal C:\Program Files\Firebird\Firebird_2_0\bin
+fcc bds.exe          normal C:\Program Files\Borland\BDS\4.0\Bin
+0a0 iexplore.exe     normal C:\Program Files\Internet Explorer
+47c WLLoginProxy.exe normal C:\Program Files\Common Files\Microsoft Shared\Windows Live
+194 ax32.exe         normal C:\Axapta\Bin
+86c MsManager.exe    normal D:\Instalacion\VideoTodo\Adcon\MsManager
+528 Laboratorio.exe  normal C:\Program Files\Borland\BDS\4.0\lib\Utileria\Referencia
+
+hardware:
++ Computer
+  - ACPI Multiprocessor PC
++ Disk drives
+  - SAMSUNG HD080HJ/P
++ Display adapters
+  - Intel(R)  Q965/Q963 Express Chipset Family (driver 6.14.10.4642)
+  - LogMeIn Mirror Driver (driver 7.1.542.0)
++ DVD/CD-ROM drives
+  - HL-DT-ST DVD-ROM GDRH10N
++ Floppy disk controllers
+  - Standard floppy disk controller
++ IDE ATA/ATAPI controllers
+  - Intel(R) ICH8 2 port Serial ATA Storage Controller - 2825 (driver 8.0.0.1008)
+  - Intel(R) ICH8 4 port Serial ATA Storage Controller - 2820 (driver 8.0.0.1008)
+  - Primary IDE Channel
+  - Primary IDE Channel
+  - Secondary IDE Channel
+  - Secondary IDE Channel
++ Keyboards
+  - Standard 101/102-Key or Microsoft Natural PS/2 Keyboard
++ Mice and other pointing devices
+  - PS/2 Compatible Mouse
++ Monitors
+  - Plug and Play Monitor
+  - Plug and Play Monitor
++ Network adapters
+  - Broadcom NetXtreme Gigabit Ethernet (driver 9.52.0.0)
++ Ports (COM & LPT)
+  - Communications Port (COM1)
+  - ECP Printer Port (LPT1)
++ Processors
+  - Intel(R) Pentium(R) D CPU 3.40GHz
+  - Intel(R) Pentium(R) D CPU 3.40GHz
++ Sound, video and game controllers
+  - Audio Codecs
+  - Legacy Audio Drivers
+  - Legacy Video Capture Devices
+  - Media Control Devices
+  - Realtek High Definition Audio (driver 5.10.0.5275)
+  - Video Codecs
++ System devices
+  - ACPI Fixed Feature Button
+  - ACPI Power Button
+  - Advanced programmable interrupt controller
+  - Direct memory access controller
+  - Intel(R) 82801 PCI Bridge - 244E
+  - Intel(R) ICH8 Family PCI Express Root Port 1 - 283F (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family PCI Express Root Port 2 – 2841 (driver 8.0.0.1008)
+  - Intel(R) ICH8/ICH8R Family LPC Interface Controller - 2810 (driver 8.0.0.1008)
+  - Intel(R) Q963/Q965 Processor to I/O Controller – 2990 (driver 8.0.0.1006)
+  - ISAPNP Read Data Port
+  - Logical Disk Manager
+  - Microsoft ACPI-Compliant System
+  - Microsoft System Management BIOS Driver
+  - Microsoft UAA Bus Driver for High Definition Audio
+  - Microsoft Windows Management Interface for ACPI
+  - Motherboard resources
+  - Motherboard resources
+  - Numeric data processor
+  - PCI bus
+  - Plug and Play Software Device Enumerator
+  - Printer Port Logical Interface
+  - Programmable interrupt controller
+  - System board
+  - System CMOS/real time clock
+  - System speaker
+  - System timer
+  - Terminal Server Device Redirector
+  - Terminal Server Keyboard Driver
+  - Terminal Server Mouse Driver
+  - Volume Manager
++ Universal Serial Bus controllers
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2830 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2831 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2834 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2835 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB2 Enhanced Host Controller - 2836 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB2 Enhanced Host Controller - 283A (driver 8.0.0.1008)
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+
+cpu registers:
+eax = 00000f61
+ebx = 00152eb8
+ecx = 00000f61
+edx = 00001ec2
+esi = 0782efc8
+edi = 00000aaa
+eip = 7c809d92
+esp = 0012efb8
+ebp = 0012efe8
+
+stack dump:
+0012efb8  00 00 00 00 61 0f 00 00 - c8 ef 82 07 c8 ef 82 07  ....a...........
+0012efc8  1c 00 fb 7f 0b 1a 00 00 - aa 0a 00 00 61 0f 00 00  ............a...
+0012efd8  00 00 15 00 d4 ed 12 00 - f5 2d 01 15 08 48 00 00  .........-...H..
+0012efe8  48 f5 12 00 8d 89 f1 77 - e4 04 00 00 00 00 00 00  H......w........
+0012eff8  aa 0a 00 00 61 0f 00 00 - c8 ef 82 07 61 0f 00 00  ....a.......a...
+0012f008  b8 6c 3a 05 01 00 00 00 - 00 00 00 00 ff ff ff ff  .l:.............
+0012f018  32 07 91 7c ab 06 91 7c - eb 06 91 7c 38 00 00 00  2..|...|...|8...
+0012f028  d0 a6 82 07 00 00 00 00 - 00 00 00 00 00 f0 fd 7f  ................
+0012f038  88 f0 12 00 65 dc 46 00 - b0 36 d6 01 15 9b 48 00  ....e.F..6....H.
+0012f048  1d 9b 48 00 47 0c 67 04 - 60 ac d6 01 b3 08 4c 00  ..H.G.g.`.....L.
+0012f058  80 f0 12 00 ca 08 4c 00 - d2 08 4c 00 1c f1 12 00  ......L...L.....
+0012f068  dc 08 4c 00 80 f0 12 00 - 00 f1 12 00 47 0c 67 04  ..L.........G.g.
+0012f078  47 0c 67 04 20 3d fb 03 - 98 f0 12 00 12 b3 47 00  G.g..=........G.
+0012f088  38 bd 00 00 8f 26 01 db - f2 0c 07 00 9f 2a 10 96  8....&.......*..
+0012f098  c4 f0 12 00 24 87 41 7e - f2 0c 07 00 38 bd 00 00  ....$.A~....8...
+0012f0a8  8f 26 01 db f2 0c 07 00 - 47 0c 67 04 cd ab ba dc  .&......G.g.....
+0012f0b8  00 00 00 00 00 f1 12 00 - 47 0c 67 04 2c f1 12 00  ........G.g.,...
+0012f0c8  c9 8b 41 7e 00 f0 fd 7f - 2c f1 12 00 4a 88 41 7e  ..A~....,...J.A~
+0012f0d8  ec f0 12 00 1a 88 41 7e - 00 00 00 00 f2 0c 07 00  ......A~........
+0012f0e8  50 f4 12 00 14 00 00 00 - 01 00 00 00 00 00 00 00  P...............
+
+disassembling:
+[...]
+005d6845       mov     eax, [eax+$14]
+005d6848       push    eax
+005d6849       mov     eax, [ebp+8]
+005d684c       mov     eax, [eax-8]
+005d684f       push    eax
+005d6850     > call    -$1cd4b9 ($40939c)     ; Windows.TextOut
+005d6855 726   pop     ecx
+005d6856       pop     ebp
+005d6857       ret
+
+date/time         : 2008-05-09, 12:47:46, 672ms
+computer name     : HPNEW
+user name         : sinteca <admin>
+operating system  : Windows XP Service Pack 2 build 2600
+system language   : English
+system up time    : 2 hours 8 minutes
+program up time   : 1 minute 23 seconds
+processors        : 2x Intel(R) Pentium(R) D CPU 3.40GHz
+physical memory   : 155/1015 MB (free/total)
+free disk space   : (C:) 39.40 GB
+display mode      : 1024x768, 32 bit
+process id        : $528
+allocated memory  : 39.71 MB
+executable        : Laboratorio.exe
+exec. date/time   : 2008-05-09 12:46
+version           : 1.5.1.0
+madExcept version : 3.0b
+callstack crc     : $1d519bc5, $c85f79bd, $c85f79bd
+exception number  : 4
+exception class   : EAccessViolation
+exception message : Access violation at address 00405B44 in module 'Laboratorio.exe'. Read of address 2F672035.
+
+main thread ($220):
+00405b44 +00 Laboratorio.exe System                  168  +0 @LStrClr
+00406a0a +4a Laboratorio.exe System                  168  +0 @FinalizeArray
+00406dfd +01 Laboratorio.exe System                  168  +0 @Dispose
+005ced24 +08 Laboratorio.exe cxDataStorage           829  +0 TcxStringValueType.FreeBuffer
+005cff0b +3b Laboratorio.exe cxDataStorage          1955  +4 TcxValueDef.FreeBuffer
+005d112b +9b Laboratorio.exe cxDataStorage          2907 +23 TcxDataStorage.RemoveValueDef
+005d045f +0b Laboratorio.exe cxDataStorage          2235  +1 TcxValueDefs.Remove
+005cfdcc +10 Laboratorio.exe cxDataStorage          1895  +1 TcxValueDef.Destroy
+00404b00 +08 Laboratorio.exe System                  168  +0 TObject.Free
+005d0551 +09 Laboratorio.exe cxDataStorage          2304  +2 TcxInternalValueDefs.RemoveByLinkObject
+005d10b0 +20 Laboratorio.exe cxDataStorage          2888  +4 TcxDataStorage.RemoveValueDef
+005d045f +0b Laboratorio.exe cxDataStorage          2235  +1 TcxValueDefs.Remove
+005cfdcc +10 Laboratorio.exe cxDataStorage          1895  +1 TcxValueDef.Destroy
+00404b00 +08 Laboratorio.exe System                  168  +0 TObject.Free
+0064ccd0 +10 Laboratorio.exe cxCustomData           3912  +4 TcxCustomDataField.ClearData
+0064cc23 +17 Laboratorio.exe cxCustomData           3874  +2 TcxCustomDataField.Destroy
+00698adf +27 Laboratorio.exe cxDBData               3135  +4 TcxDBDataField.Destroy
+00404b00 +08 Laboratorio.exe System                  168  +0 TObject.Free
+00655e72 +3e Laboratorio.exe cxCustomData           9987  +7 TcxCustomDataController.RemoveItem
+006e448f +2f Laboratorio.exe cxGridCustomTableView 14977  +7 TcxCustomGridTableView.UpdateDataController
+006e46e2 +56 Laboratorio.exe cxGridCustomTableView 15051  +8 TcxCustomGridTableView.RemoveItem
+006de164 +48 Laboratorio.exe cxGridCustomTableView 11006  +4 TcxCustomGridTableItem.Destroy
+00709958 +24 Laboratorio.exe cxGridTableView        9581  +3 TcxGridColumn.Destroy
+00404b00 +08 Laboratorio.exe System                  168  +0 TObject.Free
+006e53f4 +38 Laboratorio.exe cxGridCustomTableView 15574  +3 TcxCustomGridTableView.ClearItems
+006e4559 +05 Laboratorio.exe cxGridCustomTableView 15002  +1 TcxCustomGridTableView.DestroyHandlers
+006ef8c3 +67 Laboratorio.exe cxGridCustomView       6422  +9 TcxCustomGridView.Destroy
+006e1e8a +26 Laboratorio.exe cxGridCustomTableView 13747  +2 TcxCustomGridTableView.Destroy
+00404b00 +08 Laboratorio.exe System                  168  +0 TObject.Free
+006c4924 +1c Laboratorio.exe cxGrid                 1430  +2 TcxCustomGrid.DestroyViews
+006c44c2 +2e Laboratorio.exe cxGrid                 1220  +5 TcxCustomGrid.Destroy
+004bec3d +8d Laboratorio.exe Controls                        TWinControl.Destroy
+004c5ad5 +1d Laboratorio.exe Controls                        TCustomControl.Destroy
+0058e971 +55 Laboratorio.exe cxControls             1924  +8 TcxControl.Destroy
+00723399 +e1 Laboratorio.exe dxLayoutControl        4457 +20 TdxCustomLayoutControl.Destroy
+004bec3d +8d Laboratorio.exe Controls                        TWinControl.Destroy
+004d1a74 +28 Laboratorio.exe Forms                           TScrollingWinControl.Destroy
+004d2a0a +c6 Laboratorio.exe Forms                           TCustomForm.Destroy
+004bec3d +8d Laboratorio.exe Controls                        TWinControl.Destroy
+004c5ad5 +1d Laboratorio.exe Controls                        TCustomControl.Destroy
+00c077e1 +41 Laboratorio.exe LMDCustomControl                TLMDCustomControl.Destroy
+00c07e0a +12 Laboratorio.exe LMDCustomPanel                  TLMDCustomPanel.Destroy
+00c086c9 +1d Laboratorio.exe LMDCustomBevelPanel             TLMDCustomBevelPanel.Destroy
+00c098a9 +1d Laboratorio.exe LMDFormDisplay                  TLMDFormDisplay.Destroy
+004bec3d +8d Laboratorio.exe Controls                        TWinControl.Destroy
+004c5ad5 +1d Laboratorio.exe Controls                        TCustomControl.Destroy
+004bec3d +8d Laboratorio.exe Controls                        TWinControl.Destroy
+004d1a74 +28 Laboratorio.exe Forms                           TScrollingWinControl.Destroy
+004d2a0a +c6 Laboratorio.exe Forms                           TCustomForm.Destroy
+00479ee3 +47 Laboratorio.exe Classes                         TComponent.DestroyComponents
+004d08e6 +32 Laboratorio.exe Forms                           DoneApplication
+00454992 +26 Laboratorio.exe SysUtils                        DoExitProc
+0040599d +21 Laboratorio.exe System                  168  +0 @Halt0
+00fe9020 +e4 Laboratorio.exe Laboratorio             346 +15 initialization
+
+thread $cf0:
+7c90eb94 +0 ntdll.dll     KiFastSystemCallRet
+7c90e9a9 +a ntdll.dll     NtWaitForMultipleObjects
+7c8094dc +0 kernel32.dll  WaitForMultipleObjectsEx
+
+thread $abc:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e397 +0a ntdll.dll                 NtReplyWaitReceivePortEx
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($220) at:
+77e87695 +00 RPCRT4.dll
+
+thread $32c:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e9be +0a ntdll.dll                 NtWaitForSingleObject
+7c8025c5 +85 kernel32.dll              WaitForSingleObjectEx
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($220) at:
+7750cc4a +00 ole32.dll
+
+thread $408:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e9be +0a ntdll.dll                 NtWaitForSingleObject
+7c8025c5 +85 kernel32.dll              WaitForSingleObjectEx
+7c80252d +0d kernel32.dll              WaitForSingleObject
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($220) at:
+76664112 +00 comsvcs.dll
+
+thread $71c:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e9a9 +0a ntdll.dll                 NtWaitForMultipleObjects
+7c8094dc +00 kernel32.dll              WaitForMultipleObjectsEx
+7e4195e3 +00 USER32.dll                MsgWaitForMultipleObjectsEx
+7e419693 +1a USER32.dll                MsgWaitForMultipleObjects
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($220) at:
+4ec958ef +00 gdiplus.dll
+
+thread $b8:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e397 +0a ntdll.dll                 NtReplyWaitReceivePortEx
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by thread $abc at:
+77e87695 +00 RPCRT4.dll
+
+modules:
+00400000 Laboratorio.exe 1.5.1.0          C:\Program Files\Borland\BDS\4.0\lib\Utileria\Referencia
+01f40000 winscok.dll                      C:\WINDOWS\system32
+01f60000 Normaliz.dll    6.0.5441.0       C:\WINDOWS\system32
+04520000 msadcer.dll     2.81.1117.0      C:\Program Files\Common Files\System\MSADC
+05410000 SQLOLEDB.RLL    2000.85.1117.0   C:\Program Files\Common Files\System\Ole DB
+07a10000 UNIDRVUI.DLL    0.3.1296.1       C:\WINDOWS\System32\spool\DRIVERS\W32X86\3
+0ffd0000 rsaenh.dll      5.1.2600.2161    C:\WINDOWS\system32
+20000000 xpsp2res.dll    5.1.2600.2180    C:\WINDOWS\system32
+42990000 iertutil.dll    7.0.6000.16640   C:\WINDOWS\system32
+42c10000 wininet.dll     7.0.6000.16640   C:\WINDOWS\system32
+4dd00000 sqloledb.dll    2000.85.1117.0   C:\Program Files\Common Files\System\Ole DB
+4de10000 msado15.dll     2.81.1128.0      C:\Program Files\Common Files\System\ADO
+4ec50000 gdiplus.dll     5.1.3102.2180    C:\WINDOWS\WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.2600.2180_x-ww_522f9f82
+5ad70000 uxtheme.dll     6.0.2900.2180    C:\WINDOWS\system32
+5b860000 NETAPI32.dll    5.1.2600.2976    C:\WINDOWS\system32
+5edd0000 olepro32.dll    5.1.2600.2180    C:\WINDOWS\system32
+60e30000 MSDATL3.dll     2.81.1117.0      C:\Program Files\Common Files\System\Ole DB
+662b0000 hnetcfg.dll     5.1.2600.2180    C:\WINDOWS\system32
+68100000 dssenh.dll      5.1.2600.2133    C:\WINDOWS\system32
+6d4f0000 DBNETLIB.DLL    2000.85.1117.0   C:\WINDOWS\system32
+71a50000 mswsock.dll     5.1.2600.2180    C:\WINDOWS\System32
+71a90000 wshtcpip.dll    5.1.2600.2180    C:\WINDOWS\System32
+71aa0000 WS2HELP.dll     5.1.2600.2180    C:\WINDOWS\system32
+71ab0000 WS2_32.dll      5.1.2600.2180    C:\WINDOWS\system32
+71ad0000 wsock32.dll     5.1.2600.2180    C:\WINDOWS\system32
+71f80000 security.dll    5.1.2600.2180    C:\WINDOWS\system32
+73000000 winspool.drv    5.1.2600.2180    C:\WINDOWS\system32
+73160000 oledb32.dll     2.81.1117.0      C:\Program Files\Common Files\System\Ole DB
+74060000 msadce.dll      2.81.1117.0      C:\Program Files\Common Files\System\MSADC
+74720000 MSCTF.dll       5.1.2600.2180    C:\WINDOWS\system32
+750b0000 RESUTILS.DLL    5.1.2600.2180    C:\WINDOWS\system32
+750f0000 MTXCLU.DLL      2001.12.4414.311 C:\WINDOWS\system32
+75130000 colbact.DLL     2001.12.4414.308 C:\WINDOWS\system32
+75350000 OLEDB32R.DLL    2.81.1117.0      C:\Program Files\Common Files\System\Ole DB
+755c0000 msctfime.ime    5.1.2600.2180    C:\WINDOWS\system32
+76380000 msimg32.dll     5.1.2600.2180    C:\WINDOWS\system32
+76390000 imm32.dll       5.1.2600.2180    C:\WINDOWS\system32
+763b0000 comdlg32.dll    6.0.2900.2180    C:\WINDOWS\system32
+765b0000 MSDART.DLL      2.81.1117.0      C:\WINDOWS\system32
+76620000 comsvcs.dll     2001.12.4414.308 C:\WINDOWS\system32
+767a0000 ntdsapi.dll     5.1.2600.2180    C:\WINDOWS\system32
+767f0000 schannel.dll    5.1.2600.3126    C:\WINDOWS\system32
+769c0000 USERENV.dll     5.1.2600.2180    C:\WINDOWS\system32
+76b40000 winmm.dll       5.1.2600.2180    C:\WINDOWS\system32
+76bf0000 psapi.dll       5.1.2600.2180    C:\WINDOWS\system32
+76c30000 WINTRUST.dll    5.131.2600.2180  C:\WINDOWS\system32
+76c90000 IMAGEHLP.DLL    5.1.2600.2180    C:\WINDOWS\system32
+76d10000 CLUSAPI.DLL     5.1.2600.2180    C:\WINDOWS\system32
+76d60000 iphlpapi.dll    5.1.2600.2912    C:\WINDOWS\system32
+76f20000 DNSAPI.dll      5.1.2600.3316    C:\WINDOWS\system32
+76f60000 WLDAP32.dll     5.1.2600.2180    C:\WINDOWS\system32
+76fb0000 winrnr.dll      5.1.2600.2180    C:\WINDOWS\System32
+76fc0000 rasadhlp.dll    5.1.2600.2938    C:\WINDOWS\system32
+76fd0000 CLBCATQ.DLL     2001.12.4414.308 C:\WINDOWS\system32
+77050000 COMRes.dll      2001.12.4414.258 C:\WINDOWS\system32
+77120000 oleaut32.dll    5.1.2600.3266    C:\WINDOWS\system32
+773d0000 comctl32.dll    6.0.2900.2982    C:\WINDOWS\WinSxS\x86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.2600.2982_x-ww_ac3f9c03
+774e0000 ole32.dll       5.1.2600.2726    C:\WINDOWS\system32
+77a80000 crypt32.dll     5.131.2600.2180  C:\WINDOWS\system32
+77b20000 MSASN1.dll      5.1.2600.2180    C:\WINDOWS\system32
+77c00000 version.dll     5.1.2600.2180    C:\WINDOWS\system32
+77c10000 msvcrt.dll      7.0.2600.2180    C:\WINDOWS\system32
+77c70000 msv1_0.dll      5.1.2600.2180    C:\WINDOWS\system32
+77dd0000 ADVAPI32.dll    5.1.2600.2180    C:\WINDOWS\system32
+77e70000 RPCRT4.dll      5.1.2600.3173    C:\WINDOWS\system32
+77f10000 GDI32.dll       5.1.2600.3316    C:\WINDOWS\system32
+77f60000 SHLWAPI.dll     6.0.2900.3157    C:\WINDOWS\system32
+77fe0000 Secur32.dll     5.1.2600.2180    C:\WINDOWS\system32
+7c800000 kernel32.dll    5.1.2600.3119    C:\WINDOWS\system32
+7c900000 ntdll.dll       5.1.2600.2180    C:\WINDOWS\system32
+7c9c0000 shell32.dll     6.0.2900.3241    C:\WINDOWS\system32
+7e410000 USER32.dll      5.1.2600.3099    C:\WINDOWS\system32
+
+processes:
+000 Idle
+004 System           normal
+26c smss.exe         normal C:\WINDOWS\system32
+2a4 csrss.exe
+2bc winlogon.exe     high   C:\WINDOWS\system32
+2e8 services.exe     normal C:\WINDOWS\system32
+2f4 lsass.exe        normal C:\WINDOWS\system32
+398 svchost.exe      normal C:\WINDOWS\system32
+3e8 svchost.exe
+444 svchost.exe      normal C:\WINDOWS\System32
+4a0 svchost.exe
+508 svchost.exe
+598 spoolsv.exe      normal C:\WINDOWS\system32
+64c fbguard.exe      normal C:\Program Files\Firebird\Firebird_2_0\bin
+66c inetinfo.exe     normal C:\WINDOWS\system32\inetsrv
+694 RaMaint.exe      normal C:\Program Files\LogMeIn\x86
+6fc LogMeIn.exe      normal C:\Program Files\LogMeIn\x86
+740 mdm.exe          normal C:\Program Files\Common Files\Microsoft Shared\VS7Debug
+7c4 svchost.exe      normal C:\WINDOWS\system32
+244 ssonsvr.exe      normal C:\Program Files\Citrix\ICA Client
+48c Explorer.EXE     normal C:\WINDOWS
+568 igfxtray.exe     normal C:\WINDOWS\system32
+570 hkcmd.exe        normal C:\WINDOWS\system32
+5cc igfxpers.exe     normal C:\WINDOWS\system32
+634 Scheduler.exe    normal C:\WINDOWS\SMINST
+774 SVOHOST.exe      normal C:\WINDOWS\system32
+784 explorer.exe     normal C:\WINDOWS\system32
+810 ctfmon.exe       normal C:\WINDOWS\system32
+888 fbserver.exe     normal C:\Program Files\Firebird\Firebird_2_0\bin
+fcc bds.exe          normal C:\Program Files\Borland\BDS\4.0\Bin
+0a0 iexplore.exe     normal C:\Program Files\Internet Explorer
+47c WLLoginProxy.exe normal C:\Program Files\Common Files\Microsoft Shared\Windows Live
+194 ax32.exe         normal C:\Axapta\Bin
+86c MsManager.exe    normal D:\Instalacion\VideoTodo\Adcon\MsManager
+528 Laboratorio.exe  normal C:\Program Files\Borland\BDS\4.0\lib\Utileria\Referencia
+
+hardware:
++ Computer
+  - ACPI Multiprocessor PC
++ Disk drives
+  - SAMSUNG HD080HJ/P
++ Display adapters
+  - Intel(R)  Q965/Q963 Express Chipset Family (driver 6.14.10.4642)
+  - LogMeIn Mirror Driver (driver 7.1.542.0)
++ DVD/CD-ROM drives
+  - HL-DT-ST DVD-ROM GDRH10N
++ Floppy disk controllers
+  - Standard floppy disk controller
++ IDE ATA/ATAPI controllers
+  - Intel(R) ICH8 2 port Serial ATA Storage Controller - 2825 (driver 8.0.0.1008)
+  - Intel(R) ICH8 4 port Serial ATA Storage Controller - 2820 (driver 8.0.0.1008)
+  - Primary IDE Channel
+  - Primary IDE Channel
+  - Secondary IDE Channel
+  - Secondary IDE Channel
++ Keyboards
+  - Standard 101/102-Key or Microsoft Natural PS/2 Keyboard
++ Mice and other pointing devices
+  - PS/2 Compatible Mouse
++ Monitors
+  - Plug and Play Monitor
+  - Plug and Play Monitor
++ Network adapters
+  - Broadcom NetXtreme Gigabit Ethernet (driver 9.52.0.0)
++ Ports (COM & LPT)
+  - Communications Port (COM1)
+  - ECP Printer Port (LPT1)
++ Processors
+  - Intel(R) Pentium(R) D CPU 3.40GHz
+  - Intel(R) Pentium(R) D CPU 3.40GHz
++ Sound, video and game controllers
+  - Audio Codecs
+  - Legacy Audio Drivers
+  - Legacy Video Capture Devices
+  - Media Control Devices
+  - Realtek High Definition Audio (driver 5.10.0.5275)
+  - Video Codecs
++ System devices
+  - ACPI Fixed Feature Button
+  - ACPI Power Button
+  - Advanced programmable interrupt controller
+  - Direct memory access controller
+  - Intel(R) 82801 PCI Bridge - 244E
+  - Intel(R) ICH8 Family PCI Express Root Port 1 - 283F (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family PCI Express Root Port 2 – 2841 (driver 8.0.0.1008)
+  - Intel(R) ICH8/ICH8R Family LPC Interface Controller - 2810 (driver 8.0.0.1008)
+  - Intel(R) Q963/Q965 Processor to I/O Controller – 2990 (driver 8.0.0.1006)
+  - ISAPNP Read Data Port
+  - Logical Disk Manager
+  - Microsoft ACPI-Compliant System
+  - Microsoft System Management BIOS Driver
+  - Microsoft UAA Bus Driver for High Definition Audio
+  - Microsoft Windows Management Interface for ACPI
+  - Motherboard resources
+  - Motherboard resources
+  - Numeric data processor
+  - PCI bus
+  - Plug and Play Software Device Enumerator
+  - Printer Port Logical Interface
+  - Programmable interrupt controller
+  - System board
+  - System CMOS/real time clock
+  - System speaker
+  - System timer
+  - Terminal Server Device Redirector
+  - Terminal Server Keyboard Driver
+  - Terminal Server Mouse Driver
+  - Volume Manager
++ Universal Serial Bus controllers
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2830 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2831 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2834 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2835 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB2 Enhanced Host Controller - 2836 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB2 Enhanced Host Controller - 283A (driver 8.0.0.1008)
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+
+cpu registers:
+eax = 2f672035
+ebx = 2f672035
+ecx = 00000001
+edx = 00000006
+esi = 0040119c
+edi = 00000001
+eip = 00405b44
+esp = 0012fcd4
+ebp = 040865f0
+
+stack dump:
+0012fcd4  0f 6a 40 00 50 21 d6 01 - 38 c5 cc 01 f0 65 08 04  .j@.P!..8....e..
+0012fce4  35 20 67 2f 02 6e 40 00 - 35 20 67 2f 29 ed 5c 00  5.g/.n@.5.g/).\.
+0012fcf4  0e ff 5c 00 ff ff ff ff - 01 00 00 00 30 11 5d 00  ..\.........0.].
+0012fd04  d0 c4 cc 01 93 9f 47 00 - 20 77 bc 04 00 04 a9 00  ......G..w......
+0012fd14  68 66 08 04 50 21 d6 01 - f0 65 08 04 20 77 bc 04  hf..P!...e...w..
+0012fd24  64 04 5d 00 f0 65 08 04 - 01 00 00 00 d1 fd 5c 00  d.]..e........\.
+0012fd34  68 66 08 04 e8 78 bc 04 - 03 4b 40 00 56 05 5d 00  hf...x...K@.V.].
+0012fd44  b5 10 5d 00 80 bb e6 03 - 4a 5c 65 00 e8 78 bc 04  ..].....J\e..x..
+0012fd54  0c 00 00 00 c0 fd 12 00 - 40 97 bc 04 68 66 08 04  ........@...hf..
+0012fd64  e8 78 bc 04 64 04 5d 00 - 68 66 08 04 01 00 00 00  .x..d.].hf......
+0012fd74  d1 fd 5c 00 60 4d 07 04 - 60 4d 07 04 03 4b 40 00  ..\.`M..`M...K@.
+0012fd84  d5 cc 64 00 00 4d 07 04 - 28 cc 64 00 60 4d 07 04  ..d..M..(.d.`M..
+0012fd94  01 4d 07 04 e4 8a 69 00 - 80 bb e6 03 60 4d 07 04  .M....i.....`M..
+0012fda4  03 4b 40 00 77 5e 65 00 - 04 fe 12 00 54 53 40 00  .K@.w^e.....TS@.
+0012fdb4  c0 fd 12 00 80 bb e6 03 - 80 bb e6 03 70 7a 7b 03  ............pz{.
+0012fdc4  95 44 6e 00 70 7a 7b 03 - 70 9a c7 01 e7 46 6e 00  .Dn.pz{.p....Fn.
+0012fdd4  70 7a 7b 03 00 00 00 00 - 6a e1 6d 00 18 fe 12 00  pz{.....j.m.....
+0012fde4  40 97 bc 04 70 7a 7b 03 - 01 00 00 00 5d 99 70 00  @...pz{.....].p.
+0012fdf4  70 9a c7 01 0b 00 00 00 - 03 4b 40 00 f9 53 6e 00  p........K@..Sn.
+0012fe04  b8 fe 12 00 54 53 40 00 - 18 fe 12 00 70 9a c7 01  ....TS@.....p...
+
+disassembling:
+00405b44     public System.@LStrClr:          ; function entry point
+00405b44 168 > mov     edx, [eax]
+00405b46       test    edx, edx
+00405b48       jz      loc_405b66
+00405b4a       mov     dword ptr [eax], 0
+00405b50       mov     ecx, [edx-8]
+[...]
+
+date/time         : 2008-05-09, 13:18:07, 649ms
+computer name     : HPNEW
+user name         : sinteca <admin>
+operating system  : Windows XP Service Pack 2 build 2600
+system language   : English
+system up time    : 2 hours 39 minutes
+program up time   : 52 seconds
+processors        : 2x Intel(R) Pentium(R) D CPU 3.40GHz
+physical memory   : 208/1015 MB (free/total)
+free disk space   : (C:) 39.40 GB
+display mode      : 1024x768, 32 bit
+process id        : $d7c
+allocated memory  : 37.26 MB
+executable        : Laboratorio.exe
+exec. date/time   : 2008-05-09 13:15
+version           : 1.5.1.0
+madExcept version : 3.0b
+callstack crc     : $8b1d11c7, $dc73340e, $dc73340e
+exception number  : 1
+exception class   : Exception
+exception message : El Monto de la Nota de Credito Esta En Blanco. Por Favor Verifique.
+
+main thread ($f5c):
+00f1daf8 +098 Laboratorio.exe DialogNC          86 +13 TfrmDialogNC.Run
+00f556ed +6bd Laboratorio.exe Main             617 +98 TfrmMain.LanzaVentana
+00fa2621 +041 Laboratorio.exe PuntoVenta      2424  +5 TfrmPuntoVenta.btnotacreditoClick
+004bd7d4 +064 Laboratorio.exe Controls                 TControl.Click
+00499e7a +01e Laboratorio.exe StdCtrls                 TButton.Click
+0060bfa2 +00e Laboratorio.exe cxButtons       1277  +2 TcxCustomButton.Click
+00499f78 +00c Laboratorio.exe StdCtrls                 TButton.CNCommand
+004bd2cf +2bb Laboratorio.exe Controls                 TControl.WndProc
+004c10f8 +46c Laboratorio.exe Controls                 TWinControl.WndProc
+00499d24 +06c Laboratorio.exe StdCtrls                 TButtonControl.WndProc
+007211cd +019 Laboratorio.exe dxLayoutControl 3164  +1 TdxLayoutItem.ControlWndProc
+004bcf5c +024 Laboratorio.exe Controls                 TControl.Perform
+004c122f +023 Laboratorio.exe Controls                 DoControlMsg
+004c19a3 +00b Laboratorio.exe Controls                 TWinControl.WMCommand
+004bd2cf +2bb Laboratorio.exe Controls                 TControl.WndProc
+004c10f8 +46c Laboratorio.exe Controls                 TWinControl.WndProc
+0058f45c +104 Laboratorio.exe cxControls      2420 +20 TcxControl.WndProc
+00723fcf +033 Laboratorio.exe dxLayoutControl 4991  +5 TdxCustomLayoutControl.WndProc
+004c08b0 +02c Laboratorio.exe Controls                 TWinControl.MainWndProc
+0047b310 +014 Laboratorio.exe Classes                  StdWndProc
+7c90eae0 +010 ntdll.dll                                KiUserCallbackDispatcher
+7e41b8ee +044 USER32.dll                               SendMessageW
+7e41e8e0 +016 USER32.dll                               CallWindowProcA
+004c11db +0d7 Laboratorio.exe Controls                 TWinControl.DefaultHandler
+004bdbf4 +010 Laboratorio.exe Controls                 TControl.WMLButtonUp
+0060cb93 +007 Laboratorio.exe cxButtons       1694  +1 TcxCustomButton.WMLButtonUp
+004bd2cf +2bb Laboratorio.exe Controls                 TControl.WndProc
+004c10f8 +46c Laboratorio.exe Controls                 TWinControl.WndProc
+00499d24 +06c Laboratorio.exe StdCtrls                 TButtonControl.WndProc
+007211cd +019 Laboratorio.exe dxLayoutControl 3164  +1 TdxLayoutItem.ControlWndProc
+004c08b0 +02c Laboratorio.exe Controls                 TWinControl.MainWndProc
+0047b310 +014 Laboratorio.exe Classes                  StdWndProc
+7e4196b2 +00a USER32.dll                               DispatchMessageA
+004db5e0 +0fc Laboratorio.exe Forms                    TApplication.ProcessMessage
+004db61a +00a Laboratorio.exe Forms                    TApplication.HandleMessage
+004db83a +096 Laboratorio.exe Forms                    TApplication.Run
+00fe901a +0de Laboratorio.exe Laboratorio      345 +14 initialization
+
+thread $55c:
+7c90eb94 +0 ntdll.dll  KiFastSystemCallRet
+7c90e9a9 +a ntdll.dll  NtWaitForMultipleObjects
+
+thread $9ec:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e397 +0a ntdll.dll                 NtReplyWaitReceivePortEx
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($f5c) at:
+77e87695 +00 RPCRT4.dll
+
+thread $434:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90d85a +0a ntdll.dll                 NtDelayExecution
+7c8023e7 +4b kernel32.dll              SleepEx
+7c80244c +0a kernel32.dll              Sleep
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($f5c) at:
+7750cc4a +00 ole32.dll
+
+thread $95c:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e9be +0a ntdll.dll                 NtWaitForSingleObject
+7c8025c5 +85 kernel32.dll              WaitForSingleObjectEx
+7c80252d +0d kernel32.dll              WaitForSingleObject
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($f5c) at:
+76664112 +00 comsvcs.dll
+
+thread $8f8:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e9a9 +0a ntdll.dll                 NtWaitForMultipleObjects
+7c8094dc +00 kernel32.dll              WaitForMultipleObjectsEx
+7e4195e3 +00 USER32.dll                MsgWaitForMultipleObjectsEx
+7e419693 +1a USER32.dll                MsgWaitForMultipleObjects
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by main thread ($f5c) at:
+4ec958ef +00 gdiplus.dll
+
+thread $49c:
+7c90eb94 +00 ntdll.dll                 KiFastSystemCallRet
+7c90e397 +0a ntdll.dll                 NtReplyWaitReceivePortEx
+0044f359 +0d Laboratorio.exe madExcept CallThreadProcSafe
+0044f3c3 +37 Laboratorio.exe madExcept ThreadExceptFrame
+>> created by thread $9ec at:
+77e87695 +00 RPCRT4.dll
+
+modules:
+00400000 Laboratorio.exe 1.5.1.0          C:\Program Files\Borland\BDS\4.0\lib\Utileria\Referencia
+01f40000 winscok.dll                      C:\WINDOWS\system32
+01f60000 Normaliz.dll    6.0.5441.0       C:\WINDOWS\system32
+04520000 msadcer.dll     2.81.1117.0      C:\Program Files\Common Files\System\MSADC
+052d0000 SQLOLEDB.RLL    2000.85.1117.0   C:\Program Files\Common Files\System\Ole DB
+0ffd0000 rsaenh.dll      5.1.2600.2161    C:\WINDOWS\system32
+20000000 xpsp2res.dll    5.1.2600.2180    C:\WINDOWS\system32
+42990000 iertutil.dll    7.0.6000.16640   C:\WINDOWS\system32
+42c10000 wininet.dll     7.0.6000.16640   C:\WINDOWS\system32
+4dd00000 sqloledb.dll    2000.85.1117.0   C:\Program Files\Common Files\System\Ole DB
+4de10000 msado15.dll     2.81.1128.0      C:\Program Files\Common Files\System\ADO
+4ec50000 gdiplus.dll     5.1.3102.2180    C:\WINDOWS\WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.2600.2180_x-ww_522f9f82
+5ad70000 uxtheme.dll     6.0.2900.2180    C:\WINDOWS\system32
+5b860000 NETAPI32.dll    5.1.2600.2976    C:\WINDOWS\system32
+5edd0000 olepro32.dll    5.1.2600.2180    C:\WINDOWS\system32
+60e30000 MSDATL3.dll     2.81.1117.0      C:\Program Files\Common Files\System\Ole DB
+662b0000 hnetcfg.dll     5.1.2600.2180    C:\WINDOWS\system32
+68100000 dssenh.dll      5.1.2600.2133    C:\WINDOWS\system32
+6d4f0000 DBNETLIB.DLL    2000.85.1117.0   C:\WINDOWS\system32
+71a50000 mswsock.dll     5.1.2600.2180    C:\WINDOWS\System32
+71a90000 wshtcpip.dll    5.1.2600.2180    C:\WINDOWS\System32
+71aa0000 WS2HELP.dll     5.1.2600.2180    C:\WINDOWS\system32
+71ab0000 WS2_32.dll      5.1.2600.2180    C:\WINDOWS\system32
+71ad0000 wsock32.dll     5.1.2600.2180    C:\WINDOWS\system32
+71f80000 security.dll    5.1.2600.2180    C:\WINDOWS\system32
+73000000 winspool.drv    5.1.2600.2180    C:\WINDOWS\system32
+73160000 oledb32.dll     2.81.1117.0      C:\Program Files\Common Files\System\Ole DB
+74060000 msadce.dll      2.81.1117.0      C:\Program Files\Common Files\System\MSADC
+74720000 MSCTF.dll       5.1.2600.2180    C:\WINDOWS\system32
+750b0000 RESUTILS.DLL    5.1.2600.2180    C:\WINDOWS\system32
+750f0000 MTXCLU.DLL      2001.12.4414.311 C:\WINDOWS\system32
+75130000 colbact.DLL     2001.12.4414.308 C:\WINDOWS\system32
+75350000 OLEDB32R.DLL    2.81.1117.0      C:\Program Files\Common Files\System\Ole DB
+755c0000 msctfime.ime    5.1.2600.2180    C:\WINDOWS\system32
+76380000 msimg32.dll     5.1.2600.2180    C:\WINDOWS\system32
+76390000 imm32.dll       5.1.2600.2180    C:\WINDOWS\system32
+763b0000 comdlg32.dll    6.0.2900.2180    C:\WINDOWS\system32
+765b0000 MSDART.DLL      2.81.1117.0      C:\WINDOWS\system32
+76620000 comsvcs.dll     2001.12.4414.308 C:\WINDOWS\system32
+767a0000 ntdsapi.dll     5.1.2600.2180    C:\WINDOWS\system32
+767f0000 schannel.dll    5.1.2600.3126    C:\WINDOWS\system32
+769c0000 USERENV.dll     5.1.2600.2180    C:\WINDOWS\system32
+76b40000 winmm.dll       5.1.2600.2180    C:\WINDOWS\system32
+76c90000 IMAGEHLP.DLL    5.1.2600.2180    C:\WINDOWS\system32
+76d10000 CLUSAPI.DLL     5.1.2600.2180    C:\WINDOWS\system32
+76d60000 iphlpapi.dll    5.1.2600.2912    C:\WINDOWS\system32
+76f20000 DNSAPI.dll      5.1.2600.3316    C:\WINDOWS\system32
+76f60000 WLDAP32.dll     5.1.2600.2180    C:\WINDOWS\system32
+76fb0000 winrnr.dll      5.1.2600.2180    C:\WINDOWS\System32
+76fc0000 rasadhlp.dll    5.1.2600.2938    C:\WINDOWS\system32
+76fd0000 CLBCATQ.DLL     2001.12.4414.308 C:\WINDOWS\system32
+77050000 COMRes.dll      2001.12.4414.258 C:\WINDOWS\system32
+77120000 oleaut32.dll    5.1.2600.3266    C:\WINDOWS\system32
+773d0000 comctl32.dll    6.0.2900.2982    C:\WINDOWS\WinSxS\x86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.2600.2982_x-ww_ac3f9c03
+774e0000 ole32.dll       5.1.2600.2726    C:\WINDOWS\system32
+77a80000 crypt32.dll     5.131.2600.2180  C:\WINDOWS\system32
+77b20000 MSASN1.dll      5.1.2600.2180    C:\WINDOWS\system32
+77c00000 version.dll     5.1.2600.2180    C:\WINDOWS\system32
+77c10000 msvcrt.dll      7.0.2600.2180    C:\WINDOWS\system32
+77c70000 msv1_0.dll      5.1.2600.2180    C:\WINDOWS\system32
+77dd0000 ADVAPI32.dll    5.1.2600.2180    C:\WINDOWS\system32
+77e70000 RPCRT4.dll      5.1.2600.3173    C:\WINDOWS\system32
+77f10000 GDI32.dll       5.1.2600.3316    C:\WINDOWS\system32
+77f60000 SHLWAPI.dll     6.0.2900.3157    C:\WINDOWS\system32
+77fe0000 Secur32.dll     5.1.2600.2180    C:\WINDOWS\system32
+7c800000 kernel32.dll    5.1.2600.3119    C:\WINDOWS\system32
+7c900000 ntdll.dll       5.1.2600.2180    C:\WINDOWS\system32
+7c9c0000 shell32.dll     6.0.2900.3241    C:\WINDOWS\system32
+7e410000 USER32.dll      5.1.2600.3099    C:\WINDOWS\system32
+
+processes:
+000 Idle
+004 System           normal
+26c smss.exe         normal C:\WINDOWS\system32
+2a4 csrss.exe
+2bc winlogon.exe     high   C:\WINDOWS\system32
+2e8 services.exe     normal C:\WINDOWS\system32
+2f4 lsass.exe        normal C:\WINDOWS\system32
+398 svchost.exe      normal C:\WINDOWS\system32
+3e8 svchost.exe
+444 svchost.exe      normal C:\WINDOWS\System32
+4a0 svchost.exe
+508 svchost.exe
+598 spoolsv.exe      normal C:\WINDOWS\system32
+64c fbguard.exe      normal C:\Program Files\Firebird\Firebird_2_0\bin
+66c inetinfo.exe     normal C:\WINDOWS\system32\inetsrv
+694 RaMaint.exe      normal C:\Program Files\LogMeIn\x86
+6fc LogMeIn.exe      normal C:\Program Files\LogMeIn\x86
+740 mdm.exe          normal C:\Program Files\Common Files\Microsoft Shared\VS7Debug
+7c4 svchost.exe      normal C:\WINDOWS\system32
+244 ssonsvr.exe      normal C:\Program Files\Citrix\ICA Client
+48c Explorer.EXE     normal C:\WINDOWS
+568 igfxtray.exe     normal C:\WINDOWS\system32
+570 hkcmd.exe        normal C:\WINDOWS\system32
+5cc igfxpers.exe     normal C:\WINDOWS\system32
+634 Scheduler.exe    normal C:\WINDOWS\SMINST
+774 SVOHOST.exe      normal C:\WINDOWS\system32
+784 explorer.exe     normal C:\WINDOWS\system32
+810 ctfmon.exe       normal C:\WINDOWS\system32
+888 fbserver.exe     normal C:\Program Files\Firebird\Firebird_2_0\bin
+fcc bds.exe          normal C:\Program Files\Borland\BDS\4.0\Bin
+0a0 iexplore.exe     normal C:\Program Files\Internet Explorer
+47c WLLoginProxy.exe normal C:\Program Files\Common Files\Microsoft Shared\Windows Live
+194 ax32.exe         normal C:\Axapta\Bin
+86c MsManager.exe    normal D:\Instalacion\VideoTodo\Adcon\MsManager
+d7c Laboratorio.exe  normal C:\Program Files\Borland\BDS\4.0\lib\Utileria\Referencia
+
+hardware:
++ Computer
+  - ACPI Multiprocessor PC
++ Disk drives
+  - SAMSUNG HD080HJ/P
++ Display adapters
+  - Intel(R)  Q965/Q963 Express Chipset Family (driver 6.14.10.4642)
+  - LogMeIn Mirror Driver (driver 7.1.542.0)
++ DVD/CD-ROM drives
+  - HL-DT-ST DVD-ROM GDRH10N
++ Floppy disk controllers
+  - Standard floppy disk controller
++ IDE ATA/ATAPI controllers
+  - Intel(R) ICH8 2 port Serial ATA Storage Controller - 2825 (driver 8.0.0.1008)
+  - Intel(R) ICH8 4 port Serial ATA Storage Controller - 2820 (driver 8.0.0.1008)
+  - Primary IDE Channel
+  - Primary IDE Channel
+  - Secondary IDE Channel
+  - Secondary IDE Channel
++ Keyboards
+  - Standard 101/102-Key or Microsoft Natural PS/2 Keyboard
++ Mice and other pointing devices
+  - PS/2 Compatible Mouse
++ Monitors
+  - Plug and Play Monitor
+  - Plug and Play Monitor
++ Network adapters
+  - Broadcom NetXtreme Gigabit Ethernet (driver 9.52.0.0)
++ Ports (COM & LPT)
+  - Communications Port (COM1)
+  - ECP Printer Port (LPT1)
++ Processors
+  - Intel(R) Pentium(R) D CPU 3.40GHz
+  - Intel(R) Pentium(R) D CPU 3.40GHz
++ Sound, video and game controllers
+  - Audio Codecs
+  - Legacy Audio Drivers
+  - Legacy Video Capture Devices
+  - Media Control Devices
+  - Realtek High Definition Audio (driver 5.10.0.5275)
+  - Video Codecs
++ System devices
+  - ACPI Fixed Feature Button
+  - ACPI Power Button
+  - Advanced programmable interrupt controller
+  - Direct memory access controller
+  - Intel(R) 82801 PCI Bridge - 244E
+  - Intel(R) ICH8 Family PCI Express Root Port 1 - 283F (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family PCI Express Root Port 2 – 2841 (driver 8.0.0.1008)
+  - Intel(R) ICH8/ICH8R Family LPC Interface Controller - 2810 (driver 8.0.0.1008)
+  - Intel(R) Q963/Q965 Processor to I/O Controller – 2990 (driver 8.0.0.1006)
+  - ISAPNP Read Data Port
+  - Logical Disk Manager
+  - Microsoft ACPI-Compliant System
+  - Microsoft System Management BIOS Driver
+  - Microsoft UAA Bus Driver for High Definition Audio
+  - Microsoft Windows Management Interface for ACPI
+  - Motherboard resources
+  - Motherboard resources
+  - Numeric data processor
+  - PCI bus
+  - Plug and Play Software Device Enumerator
+  - Printer Port Logical Interface
+  - Programmable interrupt controller
+  - System board
+  - System CMOS/real time clock
+  - System speaker
+  - System timer
+  - Terminal Server Device Redirector
+  - Terminal Server Keyboard Driver
+  - Terminal Server Mouse Driver
+  - Volume Manager
++ Universal Serial Bus controllers
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2830 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2831 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2834 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB Universal Host Controller - 2835 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB2 Enhanced Host Controller - 2836 (driver 8.0.0.1008)
+  - Intel(R) ICH8 Family USB2 Enhanced Host Controller - 283A (driver 8.0.0.1008)
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+  - USB Root Hub
+
+cpu registers:
+eax = 0768ed40
+ebx = 03785300
+ecx = 00000000
+edx = 00f1dafd
+esi = 0060bf94
+edi = 0012f694
+eip = 00f1dafd
+esp = 0012f410
+ebp = 0012f468
+
+stack dump:
+0012f410  fd da f1 00 de fa ed 0e - 01 00 00 00 07 00 00 00  ................
+0012f420  24 f4 12 00 fd da f1 00 - 40 ed 68 07 00 53 78 03  $.......@.h..Sx.
+0012f430  94 bf 60 00 94 f6 12 00 - 68 f4 12 00 40 f4 12 00  ..`.....h...@...
+0012f440  70 f4 12 00 54 53 40 00 - 68 f4 12 00 94 bf 60 00  p...TS@.h.....`.
+0012f450  00 53 78 03 00 00 00 00 - 00 00 00 00 00 00 00 00  .Sx.............
+0012f460  00 00 00 00 00 00 00 00 - d0 f4 12 00 f2 56 f5 00  .............V..
+0012f470  38 f8 12 00 54 53 40 00 - d0 f4 12 00 94 bf 60 00  8...TS@.......`.
+0012f480  20 c6 6e 03 00 00 00 00 - 00 00 00 00 00 00 00 00  ..n.............
+0012f490  00 00 00 00 00 00 00 00 - 00 00 00 00 00 00 00 00  ................
+0012f4a0  00 00 00 00 20 53 e3 40 - 00 00 00 00 00 00 00 00  .....S.@........
+0012f4b0  00 00 00 00 00 00 00 00 - 00 00 00 00 00 00 00 00  ................
+0012f4c0  00 00 00 00 00 00 00 00 - c8 e0 ff ff d0 3b 06 04  .............;..
+0012f4d0  24 f6 12 00 26 26 fa 00 - e0 5b c7 01 da d7 4b 00  $...&&...[....K.
+0012f4e0  e0 5b c7 01 7f 9e 49 00 - e0 5b c7 01 a7 bf 60 00  .[....I..[....`.
+0012f4f0  94 f6 12 00 7d 9f 49 00 - e0 5b c7 01 d2 d2 4b 00  ....}.I..[....K.
+0012f500  94 f6 12 00 b0 f8 12 00 - e0 5b c7 01 00 00 00 00  .........[......
+0012f510  00 00 00 00 68 14 21 00 - 1a 00 1b 00 00 37 d6 01  ....h.!......7..
+0012f520  18 00 00 00 20 4d 96 01 - 38 f5 12 00 8c ba 41 7e  .....M..8.....A~
+0012f530  3b c0 00 00 3b c0 00 00 - 4c f5 12 00 2e ba 41 7e  ;...;...L.....A~
+0012f540  20 4d 96 01 3b c0 00 00 - 00 00 00 00 64 f5 12 00  .M..;.......d...
+
+disassembling:
+[...]
+00f1dae5       push    $ffffffff
+00f1dae7       mov     ecx, $f1dc9c           ; 'El Monto de la Nota de Credito Esta En Blanco. Por Favor Verifique.'
+00f1daec       mov     dl, 1
+00f1daee       mov     eax, [$453c10]
+00f1daf3       call    -$ac330c ($45a7ec)     ; SysUtils.Exception.CreateFmt
+00f1daf8     > call    -$b18685 ($405478)     ; System.@RaiseExcept
+00f1dafd 087   jmp     loc_f1dc04
+00f1db02 090   mov     eax, [$1012398]
+00f1db07       mov     eax, [eax]
+00f1db09       mov     eax, [eax+$738]
+00f1db0f       mov     eax, [eax+$cbc]
+[...]
+

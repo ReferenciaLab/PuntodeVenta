@@ -1,0 +1,161 @@
+unit DialogComentarioPrueba;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, cxGraphics, Menus, cxLookAndFeelPainters, cxStyles, cxCustomData,
+  cxFilter, cxData, cxDataStorage, cxEdit, DB, cxDBData, cxGridLevel, cxClasses,
+  cxControls, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
+  cxGridDBTableView, cxGrid, StdCtrls, cxButtons, cxTextEdit, dxLayoutControl,
+  cxContainer, cxMaskEdit, cxDropDownEdit, ADODB, cxRadioGroup, JvMemoryDataset,
+  cxCheckGroup, cxCheckBox;
+
+type
+  TfrmDialogComentarioPrueba = class(TForm)
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
+    dbDatos: TcxGridDBTableView;
+    lvDatos: TcxGridLevel;
+    cgDatos: TcxGrid;
+    dxLayoutControl1Item4: TdxLayoutItem;
+    dxLayoutControl1Group2: TdxLayoutGroup;
+    btaceptar: TcxButton;
+    dxLayoutControl1Item6: TdxLayoutItem;
+    dsDatos: TDataSource;
+    qrComentarioPrueba: TADOQuery;
+    qrComentarioPruebaDescripcion: TStringField;
+    JvMemoryData1: TJvMemoryData;
+    JvMemoryData1Seleccion: TBooleanField;
+    JvMemoryData1Descripcion: TStringField;
+    dbDatosSeleccion: TcxGridDBColumn;
+    dbDatosDescripcion: TcxGridDBColumn;
+    JvMemoryData1Cod_Comen: TStringField;
+    dbDatosCod_Comen: TcxGridDBColumn;
+    qrComentarioPruebaCod_Comen: TStringField;
+    dxLayoutControl1Item1: TdxLayoutItem;
+    btCancelar: TcxButton;
+    JvMemoryData1Secuencia: TIntegerField;
+    dbDatosSecuencia: TcxGridDBColumn;
+    procedure cgDatosExit(Sender: TObject);
+    procedure cgDatosEnter(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure Run(Alergeno : string);
+  end;
+
+var
+  frmDialogComentarioPrueba: TfrmDialogComentarioPrueba;
+  AdentroGrid : Boolean;
+
+implementation
+ uses ActionsDM,DataModule,PuntoVenta,Main;
+{$R *.dfm}
+
+procedure TfrmDialogComentarioPrueba.cgDatosEnter(Sender: TObject);
+begin
+ AdentroGrid := True;
+end;
+
+procedure TfrmDialogComentarioPrueba.cgDatosExit(Sender: TObject);
+begin
+ AdentroGrid := False;
+end;
+
+procedure TfrmDialogComentarioPrueba.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (key = Vk_Down) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+  if (key = 13)  and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+  if (key = Vk_Up) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 1, 0);
+  if ((key = 13) and (JvMemoryData1.Active)) then
+  begin
+   Close;
+   ModalResult := mrOk;
+  end;
+  if (key = 27) then
+  begin
+   Close;
+   ModalResult := mrOk;
+  end;
+end;
+
+procedure TfrmDialogComentarioPrueba.Run(Alergeno : string);
+begin
+  if Copy(Alergeno,1,2)= 'AL' Then
+    Self.Caption := 'Seleccione Alergeno'
+  else   if Copy(Alergeno,1,2)= 'CU' Then
+  begin
+    if Factura_St = 'I' Then
+    begin
+       Self.Caption := 'Seleccione '+frmMain.frmTmp.qrEntradaPacienteDetalleDESCRIPCION.Value;
+    end else if Factura_St = 'M' Then
+    begin
+       Self.Caption := 'Seleccione '+frmMain.frmTmpMod.qrEntradaPacienteDetalleDESCRIPCION.Value;
+    end else if Factura_St = 'L' Then
+    begin
+       Self.Caption := 'Seleccione '+frmMain.frmTmpLab.qrEntradaPacienteDetalleDESCRIPCION.Value;
+    end else if Factura_St = 'F' Then
+    begin
+       Self.Caption := 'Seleccione '+frmMain.frmTmpND.qrEntradaPacienteDetalleDESCRIPCION.Value;
+    end;
+  end;
+  With qrComentarioPrueba,sql do
+  begin
+    Close;
+    Clear;
+    Add(' SELECT Cod_Comen+convert(varchar(2),secuencia) as Cod_Comen,Descripcion from dbo.PTCOMENTARIOPRUEBAS ');
+    Add(' WHERE Substring(Cod_Comen,1,2) = :AL ');
+    If Copy(Alergeno,1,2) <> 'AL' then
+      Add(' And Substring(Cod_Comen,3,4) = :Prueba ');
+    Add(' And Estatus='#39+'A'+#39);
+    Add(' Order by Cod_Comen ');
+    Parameters[0].Value := Copy(Alergeno,1,2);
+    if Copy(Alergeno,1,2)<>'AL' then Parameters[1].Value := Copy(Alergeno,3,4);
+    Open;
+    if IsEmpty then
+    begin
+      exit;
+    end;
+    First;
+    DsDatos.Enabled := False;
+    if not JvMemoryData1.Active then
+      JvMemoryData1.Active := true;
+    JvMemoryData1.EmptyTable;
+    while not eof do
+    begin
+        JvMemoryData1.Append;
+        JvMemoryData1Seleccion.AsBoolean      := False;
+        JvMemoryData1Descripcion.AsString     := fieldbyname('Descripcion').AsString;
+        JvMemoryData1Cod_Comen.AsString       := fieldbyname('Cod_Comen').AsString;
+        Next;
+    end;
+    JvMemoryData1.First;
+    DsDatos.Enabled := True;
+  End;
+  showmodal;
+ if ModalResult = mrOk then
+ begin
+    if Factura_St = 'I' Then
+    begin
+       frmMain.frmTmp.qrEntradaPacienteDetalle.Edit;
+       frmMain.frmTmp.qrEntradaPacienteDetalleComentario.Value  := JvMemoryData1Descripcion.Value;
+    end else if Factura_St = 'M' Then
+    begin
+       frmMain.frmTmpMod.qrEntradaPacienteDetalle.Edit;
+       frmMain.frmTmpMod.qrEntradaPacienteDetalleComentario.Value  := JvMemoryData1Descripcion.Value;
+    end else if Factura_St = 'L' Then
+    begin
+       frmMain.frmTmpLab.qrEntradaPacienteDetalle.Edit;
+       frmMain.frmTmpLab.qrEntradaPacienteDetalleComentario.Value  := JvMemoryData1Descripcion.Value;
+    end;
+ end;
+end;
+
+end.

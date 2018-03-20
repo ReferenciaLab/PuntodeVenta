@@ -1,0 +1,688 @@
+unit ImpresionVarios;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Menus, cxLookAndFeelPainters, dxLayoutControl, StdCtrls, cxButtons,
+  cxCurrencyEdit, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar,
+  cxContainer, cxEdit, cxGroupBox, cxRadioGroup, cxControls,ADODB,pptypes,
+  cxGraphics, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, ppStrtch,
+  ppRichTx, ppBands, ppClass, ppCtrls, ppVar, ppPrnabl, ppCache, ppComm,
+  ppRelatv, ppProd, ppReport, DB, ppDB, ppDBPipe, JvMemoryDataset, dlgMensajes,
+  cxDBExtLookupComboBox;
+
+type
+  TfrmImpresionVarios = class(TForm)
+    dxLayoutControl3: TdxLayoutControl;
+    btaceptarcuadre: TcxButton;
+    btcancelarcuadre: TcxButton;
+    dxLayoutGroup2: TdxLayoutGroup;
+    GrupoParametros: TdxLayoutGroup;
+    GroupUsuario: TdxLayoutGroup;
+    botonescuadre: TdxLayoutGroup;
+    dxLayoutControl3Item31: TdxLayoutItem;
+    dxLayoutControl3Item10: TdxLayoutItem;
+    Label2: TLabel;
+    GrupoLaboratorio: TdxLayoutGroup;
+    GrupoSucursales: TdxLayoutGroup;
+    dxLayoutControl3Item42: TdxLayoutItem;
+    GrupoToma: TdxLayoutGroup;
+    FechaIni: TcxDateEdit;
+    dxLayoutControl3Item2: TdxLayoutItem;
+    FechaFin: TcxDateEdit;
+    dxLayoutControl3Item33: TdxLayoutItem;
+    RgImpresion: TcxRadioGroup;
+    dxLayoutItem2: TdxLayoutItem;
+    dxLayoutControl3Group2: TdxLayoutGroup;
+    GrupoOrdenar: TdxLayoutGroup;
+    CbOrdenar: TcxComboBox;
+    dxLayoutControl3Item1: TdxLayoutItem;
+    cboReporte: TcxComboBox;
+    dxLayoutControl3Item3: TdxLayoutItem;
+    ppRptCambiosEnt: TppReport;
+    ppHeaderBand16: TppHeaderBand;
+    ppDBText215: TppDBText;
+    ppLabel237: TppLabel;
+    ppLabel238: TppLabel;
+    ppSystemVariable23: TppSystemVariable;
+    ppSystemVariable24: TppSystemVariable;
+    ppLabel239: TppLabel;
+    ppLabel241: TppLabel;
+    ppSystemVariable25: TppSystemVariable;
+    ppDetailBand21: TppDetailBand;
+    ppDBText218: TppDBText;
+    ppDBText219: TppDBText;
+    ppDBText223: TppDBText;
+    ppDBCalc37: TppDBCalc;
+    ppLabel257: TppLabel;
+    qrReporte: TADOQuery;
+    dsReporte: TDataSource;
+    JvReporte: TJvMemoryData;
+    JvReporteEntradaID: TStringField;
+    JvReporteMuestrano: TStringField;
+    JvReporteNombrePaciente: TStringField;
+    JvReporteTotalPagado: TCurrencyField;
+    JvReporteFecha: TStringField;
+    dsReporteJ: TDataSource;
+    ppReporteVarios: TppDBPipeline;
+    ppSummaryBand1: TppSummaryBand;
+    ppShape1: TppShape;
+    ppLabel242: TppLabel;
+    ppLabel246: TppLabel;
+    ppLabel250: TppLabel;
+    ppLabel1: TppLabel;
+    ppLabel5: TppLabel;
+    ppLabel6: TppLabel;
+    ppLabel7: TppLabel;
+    ppLabel8: TppLabel;
+    cbExtSucursal: TcxExtLookupComboBox;
+    dbExtUsuarioCrea: TcxExtLookupComboBox;
+    dxLayoutControl3Item6: TdxLayoutItem;
+    dbExtUsuarioMod: TcxExtLookupComboBox;
+    dxLayoutControl3Item5: TdxLayoutItem;
+    JvReporteUsuarioID: TStringField;
+    JvReporteHoraEntrada: TStringField;
+    JvReporteHoraRegistro: TStringField;
+    JvReporteTiempo_Minutos: TStringField;
+    JvReporteClienteNombre: TStringField;
+    JvReporteNeto: TCurrencyField;
+    JvReporteComentario: TStringField;
+    JvReportePendiente: TCurrencyField;
+    JvReporteUsuarioModifica: TStringField;
+    ppDBText1: TppDBText;
+    ppDBText2: TppDBText;
+    ppRptTiempoCajeroEnt: TppReport;
+    ppHeaderBand1: TppHeaderBand;
+    ppDBText3: TppDBText;
+    ppLabel2: TppLabel;
+    ppLabel3: TppLabel;
+    ppSystemVariable1: TppSystemVariable;
+    ppSystemVariable2: TppSystemVariable;
+    ppLabel4: TppLabel;
+    ppLabel9: TppLabel;
+    ppSystemVariable3: TppSystemVariable;
+    ppShape2: TppShape;
+    ppLabel10: TppLabel;
+    ppLabel11: TppLabel;
+    ppLabel12: TppLabel;
+    ppLabel13: TppLabel;
+    ppDetailBand1: TppDetailBand;
+    ppDBText4: TppDBText;
+    ppSummaryBand2: TppSummaryBand;
+    ppLabel18: TppLabel;
+    ppDBCalc1: TppDBCalc;
+    ppLabel20: TppLabel;
+    ppLabel21: TppLabel;
+    ppLabel22: TppLabel;
+    ppLabel23: TppLabel;
+    ppLabel14: TppLabel;
+    ppDBText5: TppDBText;
+    ppDBText6: TppDBText;
+    ppDBText7: TppDBText;
+    ppDBText8: TppDBText;
+    ppDBText9: TppDBText;
+    ppDBText10: TppDBText;
+    ppDBText11: TppDBText;
+    ppLabel19: TppLabel;
+    ppLabel17: TppLabel;
+    ppLabel15: TppLabel;
+    ppRptComisionDr: TppReport;
+    ppHeaderBand2: TppHeaderBand;
+    ppDBText12: TppDBText;
+    ppLabel16: TppLabel;
+    ppLabel24: TppLabel;
+    ppSystemVariable4: TppSystemVariable;
+    ppSystemVariable5: TppSystemVariable;
+    ppLabel25: TppLabel;
+    ppLabel26: TppLabel;
+    ppSystemVariable6: TppSystemVariable;
+    ppShape3: TppShape;
+    ppLabel27: TppLabel;
+    ppLabel28: TppLabel;
+    ppLabel29: TppLabel;
+    ppLabel30: TppLabel;
+    ppLabel31: TppLabel;
+    ppDetailBand2: TppDetailBand;
+    ppDBText13: TppDBText;
+    ppDBText14: TppDBText;
+    ppDBText15: TppDBText;
+    ppDBText16: TppDBText;
+    ppDBText17: TppDBText;
+    ppSummaryBand3: TppSummaryBand;
+    ppLabel35: TppLabel;
+    ppDBCalc2: TppDBCalc;
+    ppLabel36: TppLabel;
+    ppLabel34: TppLabel;
+    ppLabel32: TppLabel;
+    ppDBText18: TppDBText;
+    ppLabel33: TppLabel;
+    ppLabel37: TppLabel;
+    JvReporteComision: TCurrencyField;
+    ppDBText19: TppDBText;
+    ppDBCalc3: TppDBCalc;
+    ppDBCalc4: TppDBCalc;
+    ppImpPagosPend: TppReport;
+    ppHeaderBand14: TppHeaderBand;
+    ppDBText185: TppDBText;
+    ppLabel170: TppLabel;
+    ppLabel171: TppLabel;
+    ppLabel172: TppLabel;
+    ppLabel177: TppLabel;
+    ppLabel191: TppLabel;
+    ppLabel195: TppLabel;
+    ppLabel199: TppLabel;
+    ppLabel200: TppLabel;
+    ppLabel201: TppLabel;
+    ppLabel202: TppLabel;
+    ppLabel203: TppLabel;
+    ppLabel204: TppLabel;
+    ppLabel205: TppLabel;
+    ppLabel206: TppLabel;
+    ppSystemVariable14: TppSystemVariable;
+    ppSystemVariable15: TppSystemVariable;
+    ppLabel207: TppLabel;
+    ppLabel208: TppLabel;
+    ppSystemVariable16: TppSystemVariable;
+    ppDetailBand19: TppDetailBand;
+    ppDBText187: TppDBText;
+    ppDBText188: TppDBText;
+    ppDBText189: TppDBText;
+    ppDBText191: TppDBText;
+    ppDBText192: TppDBText;
+    ppDBText194: TppDBText;
+    ppDBText195: TppDBText;
+    ppDBText196: TppDBText;
+    ppDBText197: TppDBText;
+    ppDBText198: TppDBText;
+    ppDBText199: TppDBText;
+    ppDBText193: TppDBText;
+    ppFooterBand3: TppFooterBand;
+    ppDBCalc29: TppDBCalc;
+    ppDBCalc30: TppDBCalc;
+    ppDBCalc31: TppDBCalc;
+    ppDBCalc32: TppDBCalc;
+    ppDBCalc33: TppDBCalc;
+    ppDBCalc34: TppDBCalc;
+    ppDBCalc35: TppDBCalc;
+    ppLabel178: TppLabel;
+    JvReporteTelefono1: TStringField;
+    JvReporteTelefono2: TStringField;
+    JvReporteBruto: TCurrencyField;
+    JvReporteCoberturaSeguro: TCurrencyField;
+    JvReporteDescuento: TCurrencyField;
+    ppLabel38: TppLabel;
+    ppLabel39: TppLabel;
+    ppLabel40: TppLabel;
+    ppLabel41: TppLabel;
+    JvReporteOrigen: TStringField;
+    ppGroup1: TppGroup;
+    ppGroupHeaderBand1: TppGroupHeaderBand;
+    ppGroupFooterBand1: TppGroupFooterBand;
+    ppDBText20: TppDBText;
+    ppLabel42: TppLabel;
+    ppDBCalc5: TppDBCalc;
+    ppDBCalc6: TppDBCalc;
+    ppDBCalc7: TppDBCalc;
+    ppDBCalc8: TppDBCalc;
+    ppDBCalc9: TppDBCalc;
+    ppDBCalc10: TppDBCalc;
+    ppDBCalc11: TppDBCalc;
+    ppImpSeguros: TppReport;
+    ppHeaderBand3: TppHeaderBand;
+    ppDBText21: TppDBText;
+    ppLabel43: TppLabel;
+    ppLabel44: TppLabel;
+    ppLabel46: TppLabel;
+    ppLabel47: TppLabel;
+    ppLabel50: TppLabel;
+    ppLabel51: TppLabel;
+    ppLabel53: TppLabel;
+    ppLabel54: TppLabel;
+    ppLabel56: TppLabel;
+    ppSystemVariable7: TppSystemVariable;
+    ppSystemVariable8: TppSystemVariable;
+    ppLabel57: TppLabel;
+    ppLabel58: TppLabel;
+    ppSystemVariable9: TppSystemVariable;
+    ppDetailBand3: TppDetailBand;
+    ppDBText22: TppDBText;
+    ppDBText24: TppDBText;
+    ppDBText25: TppDBText;
+    ppDBText26: TppDBText;
+    ppDBText27: TppDBText;
+    ppDBText29: TppDBText;
+    ppDBText30: TppDBText;
+    ppDBText31: TppDBText;
+    ppFooterBand1: TppFooterBand;
+    ppDBCalc12: TppDBCalc;
+    ppDBCalc13: TppDBCalc;
+    ppDBCalc15: TppDBCalc;
+    ppDBCalc18: TppDBCalc;
+    ppLabel63: TppLabel;
+    ppGroup2: TppGroup;
+    ppGroupHeaderBand2: TppGroupHeaderBand;
+    ppDBText34: TppDBText;
+    ppGroupFooterBand2: TppGroupFooterBand;
+    ppLabel64: TppLabel;
+    ppDBCalc19: TppDBCalc;
+    ppDBCalc20: TppDBCalc;
+    ppDBCalc21: TppDBCalc;
+    ppDBCalc23: TppDBCalc;
+    ppLabel45: TppLabel;
+    JvReporteCoberturaPorC: TCurrencyField;
+    ppImpSinFact: TppReport;
+    ppHeaderBand4: TppHeaderBand;
+    ppDBText23: TppDBText;
+    ppLabel48: TppLabel;
+    ppLabel49: TppLabel;
+    ppSystemVariable10: TppSystemVariable;
+    ppSystemVariable11: TppSystemVariable;
+    ppLabel52: TppLabel;
+    ppLabel55: TppLabel;
+    ppSystemVariable12: TppSystemVariable;
+    ppShape4: TppShape;
+    ppLabel62: TppLabel;
+    ppLabel65: TppLabel;
+    ppLabel66: TppLabel;
+    ppLabel67: TppLabel;
+    ppLabel68: TppLabel;
+    ppLabel72: TppLabel;
+    ppDetailBand4: TppDetailBand;
+    ppDBText28: TppDBText;
+    ppDBText32: TppDBText;
+    ppDBText33: TppDBText;
+    ppDBText35: TppDBText;
+    ppDBText36: TppDBText;
+    ppDBText37: TppDBText;
+    ppSummaryBand4: TppSummaryBand;
+    ppLabel74: TppLabel;
+    ppDBCalc14: TppDBCalc;
+    ppDBCalc16: TppDBCalc;
+    ppLabel73: TppLabel;
+    ppLabel59: TppLabel;
+    ppLabel60: TppLabel;
+    ppLabel61: TppLabel;
+    ppLabel75: TppLabel;
+    ppLabel69: TppLabel;
+    ppLabel70: TppLabel;
+    JvReporteTotal_Cobertura: TCurrencyField;
+    procedure FormShow(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure Run;
+  end;
+
+var
+  frmImpresionVarios: TfrmImpresionVarios;
+  Seleccion,Seleccion2 : string;
+
+implementation
+
+uses ActionsDM, DataModule, DatosClientesPlanes, Main;
+
+{$R *.dfm}
+
+procedure TfrmImpresionVarios.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (key = Vk_Down) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+  if (key = 13) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+  if (key = Vk_Up)  then
+     PostMessage(Handle, Wm_NextDlgCtl, 1, 0);
+  if (key = 27) then
+  begin
+   Close;
+  end;
+end;
+
+procedure TfrmImpresionVarios.FormShow(Sender: TObject);
+begin
+  If not DM.qrSucursal.Active then
+    DM.qrSucursal.Open;
+  If not DM.qrUsuario.Active then
+    DM.qrUsuario.Open;
+  cboReporte.Properties.Items.Clear;
+  if (dm.CurRol = 7) or (dm.CurRol = 10) or
+     (dm.CurRol = 11) or (dm.CurRol = 13) or
+     (dm.CurRol = 18) then
+  begin
+    cboReporte.Properties.Items.Add('MODIFICACIONES ENTRADAS Y/O CAMBIOS');
+    cboReporte.Properties.Items.Add('TIEMPO DE OFICIAL(CAJERO) POR ENTRADA');
+    cboReporte.Properties.Items.Add('COMISION DR. COMPRES GUTIERREZ');
+    cboReporte.Properties.Items.Add('LISTADO DE PAGOS PENDIENTES');
+    cboReporte.Properties.Items.Add('DE ENTRADAS POR SEGUROS (ARS)');
+    cboReporte.Properties.Items.Add('DE ENTRADAS A CREDITO SIN FACTURAR');
+  end
+  else if (dm.CurRol = 12) or (dm.CurRol = 15) or (dm.CurRol = 17) or (dm.CurRol = 8)then
+  begin
+    cboReporte.Properties.Items.Add('DE ENTRADAS POR SEGUROS (ARS)');
+  end;
+  FechaIni.Date := DM.Buscar_Fecha_Actual;
+  FechaFin.Date := DM.Buscar_Fecha_Actual;
+end;
+
+procedure TfrmImpresionVarios.Run;
+Var Muestrano_Ant,CodSucursal  : String;
+begin
+ showmodal;
+ if ModalResult = mrOk then
+ begin
+ If cboReporte.Text = EmptyStr then
+ Begin
+    EtMensajeDlg('Debe Seleccionar el Tipo de Reporte.  Verifique.',etConfirmacion,[etOk],1,dm.Imagenes.Items[5].Bitmap,true);
+    Exit;
+ end;
+ If MessageDlg('Desea Imprimir el Reporte de '+cboReporte.Text+'?', mtWarning, [mbYes,mbNo], 0) = mrYes then
+ begin
+    Application.ProcessMessages;
+    CodSucursal:=EmptyStr;
+    DM.qrSucursal.locate('Nombre', cbExtSucursal.text,[]);
+    CodSucursal := DM.qrSucursal.FieldByName('SucursalID').AsString;
+    Seleccion := EmptyStr;
+    if cboReporte.Text = 'MODIFICACIONES ENTRADAS Y/O CAMBIOS' then
+    begin
+      Seleccion :=  ' Select distinct a.fecha,a.muestrano,e.nombrepaciente,e.Neto,e.ClienteNombre,e.Userid as Usuario_Entrada,a.UserId as Usuario_Modifica,comentario '+
+                    ' From dbo.PTAuditoriaFact a, dbo.Ptentradapaciente e '+
+                    ' Where a.muestrano=e.muestrano ';
+    end
+    else If cboReporte.Text = 'TIEMPO DE OFICIAL(CAJERO) POR ENTRADA' then
+    begin
+      Seleccion :=  ' Select UserID as Usuario_Entrada,Fecha,HoraEntrada,HoraRegistro ,'+
+                    ' Datediff(minute,Convert(datetime,fechaentrada+'+#39+' '+#39+'+horaentrada,120),Convert(datetime,fechaentrada+'+#39+' '+#39+'+Substring(horaRegistro,1,8),120)) as Tiempo_Minutos,'+
+                    ' Muestrano,ClienteNombre,nombrepaciente,Neto,TotalPagado From PTEntradaPaciente e Where len(horaregistro)= 8 '
+    end
+    else If cboReporte.Text = 'COMISION DR. COMPRES GUTIERREZ' then
+    begin
+      Seleccion :=  ' SELECT E.MUESTRANO,E.FECHA,E.HORAENTRADA,E.NOMBREPACIENTE,E.CLIENTENOMBRE,E.NETO,E.TOTALPAGADO FROM PTENTRADAPACIENTE E, PTENTRADAPACIENTEDETALLE D '+
+                    ' WHERE E.RECID=D.REFRECID '+
+                    ' AND D.PRUEBAID='+#39+'00003799'+#39+
+                    ' AND E.SUCURSALID='+#39+'SF'+#39+
+                    ' AND E.NOMBREDOCTOR NOT IN ('+#39+'PRIV'+#39+','+#39+''+#39+','+#39+'SARVITAP'+#39+')';
+    end
+    else If cboReporte.Text = 'LISTADO DE PAGOS PENDIENTES' then
+    begin
+      Seleccion :=  ' SELECT E.MUESTRANO,E.FECHA,E.HORAENTRADA,E.NOMBREPACIENTE,E.CLIENTENOMBRE,E.NETO,E.TOTALPAGADO,(E.NETO-E.TOTALPAGADO) AS PENDIENTE,TELEFONOS,TELEFONO2,BRUTO,E.DESCUENTO,COBERTURASEGURO,E.ENTRADAID,E.USERID,'+#39+'('+#39+'+G.GRUPOCLIENTE+'+#39+')-'+#39+'+G.DESCRIPCION AS ORIGEN FROM PTENTRADAPACIENTE E, PTGRUPOCLIENTE G '+
+                    ' WHERE E.ORIGEN IN ('+#39+'01'+#39+','+#39+'02'+#39+','+#39+'03'+#39+') AND (E.NETO - E.TOTALPAGADO) > 0 And E.ORIGEN=G.GRUPOCLIENTE And E.RecID = ANY ( Select Refrecid from PtEntradaPacienteDetalle '+
+                    ' Where Refrecid = e.Recid) ';
+    end
+    else If cboReporte.Text = 'DE ENTRADAS POR SEGUROS (ARS)' then
+    begin
+      Seleccion :=  ' SELECT E.USERID,E.FECHA,E.MUESTRANO,E.CLIENTEID,E.CLIENTENOMBRE,E.PACIENTEID,E.NOMBREPACIENTE,E.BRUTO,E.COBERTURAPORC,E.COBERTURASEGURO,E.NETO,SUM(TOTALLINEA) AS TOTAL_COBERTURA '+
+                    ' FROM PTENTRADAPACIENTE E INNER JOIN PTENTRADAPACIENTEDETALLE D ON D.REFRECID=E.RECID, PTGRUPOCLIENTE G '+
+                    ' WHERE E.ORIGEN IN ('+#39+'01'+#39') AND E.ORIGEN=G.GRUPOCLIENTE AND D.COBERTURAAPLICA='+#39+'1'+#39;
+    end
+    else If cboReporte.Text = 'DE ENTRADAS A CREDITO SIN FACTURAR' then
+    begin
+      Seleccion :=  ' SELECT E.USERID,E.FECHA,E.MUESTRANO,E.CLIENTEID,E.CLIENTENOMBRE,E.PACIENTEID,E.NOMBREPACIENTE,E.NETO,E.HORAENTRADA FROM PTENTRADAPACIENTE E INNER JOIN PTCLIENTE C ON E.CLIENTEID=C.CLIENTEID, PTGRUPOCLIENTE G '+
+                    ' WHERE  E.TRANSFERIDO='+#39+'0'+#39+' AND E.ESTATUS='+#39+'0'+#39+' AND E.ORIGEN IN ('+#39+'07'+#39+','+#39+'09'+#39+','+#39+'10'+#39+','+#39+'12'+#39+') AND (E.NETO - E.TOTALPAGADO) > 0 And E.ORIGEN=G.GRUPOCLIENTE And E.RecID = ANY ( Select Refrecid from PtEntradaPacienteDetalle '+
+                    ' Where Refrecid = e.Recid) ';
+      Seleccion2 := ' UNION ALL SELECT E.USERID,E.FECHA,E.MUESTRANO,E.CLIENTEID,E.CLIENTENOMBRE,E.PACIENTEID,E.NOMBREPACIENTE,E.NETO,E.HORAENTRADA FROM PTENTRADAPACIENTE E INNER JOIN PTCLIENTE C ON E.CLIENTEID=C.CLIENTEID, PTGRUPOCLIENTE G '+
+                    ' WHERE  E.TRANSFERIDO='+#39+'0'+#39+' AND E.ESTATUS='+#39+'0'+#39+' AND E.ORIGEN IN ('+#39+'01'+#39+') AND E.ORIGEN=G.GRUPOCLIENTE And E.RecID = ANY ( Select Refrecid from PtEntradaPacienteDetalle '+
+                    ' Where Refrecid = e.Recid) ';
+      Seleccion2 := Seleccion2 +' And e.Estatus = 0 And e.Dataareaid='+#39+dm.CurEmpresa+#39;
+      If (cbExtSucursal.Text <> '') then
+      begin
+        Seleccion2 := Seleccion2 + ' And e.SucursalID ='+#39+CodSucursal+#39;
+      end;
+      If (dbExtUsuarioCrea.Text <> '') then
+      begin
+        Seleccion2 := Seleccion2 + ' And e.UserID ='+#39+dbExtUsuarioCrea.EditValue+#39;
+      end;
+      If (dbExtUsuarioMod.Text <> '') then
+      begin
+        Seleccion2 := Seleccion2 + ' And e.FlebotomistaID ='+#39+dbExtUsuarioMod.EditValue+#39;
+      end;
+      If (FechaIni.Text<> '') and (FechaFin.Text<> '') then
+      begin
+        Seleccion2 := Seleccion2 + ' And e.Fecha Between '+#39+FormatDateTime('yyyymmdd', FechaIni.Date)+#39+ ' AND '+#39+FormatDateTime('yyyymmdd', FechaFin.Date)+#39;
+      end;
+    end;
+    Seleccion := Seleccion +' And e.Estatus = 0 And e.Dataareaid='+#39+dm.CurEmpresa+#39;
+    If (cbExtSucursal.Text <> '') then
+    begin
+      Seleccion := Seleccion + ' And e.SucursalID ='+#39+CodSucursal+#39;
+    end;
+    If (dbExtUsuarioCrea.Text <> '') then
+    begin
+      Seleccion := Seleccion + ' And e.UserID ='+#39+dbExtUsuarioCrea.EditValue+#39;
+    end;
+    If (dbExtUsuarioMod.Text <> '') then
+    begin
+      Seleccion := Seleccion + ' And e.FlebotomistaID ='+#39+dbExtUsuarioMod.EditValue+#39;
+    end;
+    If (FechaIni.Text<> '') and (FechaFin.Text<> '') then
+    begin
+      Seleccion := Seleccion + ' And e.Fecha Between '+#39+FormatDateTime('yyyymmdd', FechaIni.Date)+#39+ ' AND '+#39+FormatDateTime('yyyymmdd', FechaFin.Date)+#39;
+    end;
+
+    If (CbOrdenar.ItemIndex = 0) Then
+    Begin
+      if cboReporte.Text = 'MODIFICACIONES ENTRADAS Y/O CAMBIOS' then
+        Seleccion := Seleccion + ' Order By a.fecha,a.muestrano,e.nombrepaciente,e.Userid,a.UserId ,comentario '
+      else if cboReporte.Text = 'LISTADO DE PAGOS PENDIENTES' then
+        Seleccion := Seleccion + ' Order By e.Origen,e.EntradaID,e.fecha,e.muestrano,e.Userid '
+      else If cboReporte.Text = 'DE ENTRADAS A CREDITO SIN FACTURAR' then
+        Seleccion2:= Seleccion2 + ' Order By e.clienteid,e.EntradaID,e.fecha,e.muestrano,e.Userid '
+      else
+        Seleccion := Seleccion + ' Order By e.EntradaID,e.fecha,e.muestrano,e.Userid '
+    end;
+    If (CbOrdenar.ItemIndex = 1) Then
+    Begin
+      if cboReporte.Text = 'MODIFICACIONES ENTRADAS Y/O CAMBIOS' then
+        Seleccion := Seleccion + ' Order By a.fecha,a.muestrano,e.nombrepaciente,e.Userid,a.UserId ,comentario '
+      else if cboReporte.Text = 'LISTADO DE PAGOS PENDIENTES' then
+        Seleccion := Seleccion + ' Order By e.Origen,e.fecha,e.muestrano,e.nombrepaciente,e.Userid'
+      else if cboReporte.Text = 'DE ENTRADAS POR SEGUROS (ARS)' then
+        Seleccion := Seleccion + ' Group By E.USERID,E.FECHA,E.MUESTRANO,E.CLIENTEID,E.CLIENTENOMBRE,E.PACIENTEID,E.NOMBREPACIENTE,E.BRUTO,E.COBERTURAPORC,E.COBERTURASEGURO,E.NETO '+
+                                 ' Order By e.ClienteNombre,e.fecha,e.Userid,e.Muestrano,e.nombrepaciente'
+      else If cboReporte.Text = 'DE ENTRADAS A CREDITO SIN FACTURAR' then
+        Seleccion2:= Seleccion2+ ' Order By e.clienteid,e.muestrano,e.fecha,e.nombrepaciente,e.Userid'
+      else
+        Seleccion := Seleccion + ' Order By e.muestrano,e.fecha,e.nombrepaciente,e.Userid';
+
+    end;
+    If (CbOrdenar.ItemIndex = 2) Then
+      if cboReporte.Text = 'MODIFICACIONES ENTRADAS Y/O CAMBIOS' then
+        Seleccion := Seleccion + ' Order By a.fecha,a.muestrano,e.nombrepaciente,e.Userid,a.UserId ,comentario '
+      else
+        Seleccion := Seleccion + ' Order By e.Neto,e.fecha,e.Muestrano,e.nombrepaciente,e.Userid';
+    If (CbOrdenar.ItemIndex = 3) Then
+    Begin
+      if cboReporte.Text = 'MODIFICACIONES ENTRADAS Y/O CAMBIOS' then
+        Seleccion := Seleccion + ' Order By a.fecha,a.muestrano,e.nombrepaciente,e.Userid,a.UserId ,comentario '
+      else
+        Seleccion := Seleccion + ' Order By e.TotalPagado,e.fecha,e.Muestrano,e.nombrepaciente,e.Userid';
+    end;
+    If (CbOrdenar.ItemIndex = 4) Then
+    Begin
+      if cboReporte.Text = 'LISTADO DE PAGOS PENDIENTES' then
+        Seleccion := Seleccion + ' Order By e.Userid,e.fecha,e.muestrano ';
+    end;
+    With qrReporte, sql do
+    begin
+      Close;
+      If cboReporte.Text = 'DE ENTRADAS A CREDITO SIN FACTURAR' then
+          SQL.Text := Seleccion+' '+Seleccion2
+      else
+          SQL.Text := Seleccion;
+      Open;
+      if IsEmpty then
+      begin
+          EtMensajeDlg('Esta búsqueda NO arrojó datos.  Verifique.',etConfirmacion,[etOk],1,dm.Imagenes.Items[5].Bitmap,true);
+          Exit;
+      end;
+      First;
+      dsReporte.Enabled := False;
+      if not jvReporte.Active then
+         jvReporte.Active := true;
+      jvReporte.EmptyTable;
+      while not eof do
+      begin
+          jvReporte.Append;
+          jvReporteFecha.AsString                   := formatdatetime('dd/mm/yyyy',fieldbyname('Fecha').AsDateTime);
+          jvReporteMuestrano.AsString               := fieldbyname('Muestrano').AsString;
+          jvReporteNombrePaciente.AsString          := fieldbyname('NombrePaciente').AsString;
+          If  (cboReporte.Text = 'TIEMPO DE OFICIAL(CAJERO) POR ENTRADA') Or
+              (cboReporte.Text = 'COMISION DR. COMPRES GUTIERREZ') Or
+              (cboReporte.Text = 'LISTADO DE PAGOS PENDIENTES') Then
+          Begin
+              jvReporteHoraEntrada.AsString         := fieldbyname('HoraEntrada').AsString;
+              jvReporteTotalPagado.AsCurrency       := fieldbyname('TotalPagado').AsCurrency;
+          end;
+          If (cboReporte.Text = 'TIEMPO DE OFICIAL(CAJERO) POR ENTRADA') Then
+              jvReporteHoraRegistro.AsString        := fieldbyname('HoraRegistro').AsString;
+
+          jvReporteClienteNombre.AsString           := fieldbyname('ClienteNombre').AsString;
+          jvReporteNeto.AsFloat                     := fieldbyname('Neto').AsFloat;
+          If  (cboReporte.Text = 'MODIFICACIONES ENTRADAS Y/O CAMBIOS') Or
+              (cboReporte.Text = 'TIEMPO DE OFICIAL(CAJERO) POR ENTRADA') Then
+              jvReporteUsuarioID.Asstring           := fieldbyname('Usuario_Entrada').AsString;
+          If  (cboReporte.Text = 'MODIFICACIONES ENTRADAS Y/O CAMBIOS') then
+              jvReporteUsuarioModifica.Asstring     := fieldbyname('Usuario_Modifica').AsString;
+          If cboReporte.Text = 'TIEMPO DE OFICIAL(CAJERO) POR ENTRADA' then
+             jvReporteTiempo_Minutos.AsString       := fieldbyname('Tiempo_Minutos').AsString;
+          If cboReporte.Text = 'LISTADO DE PAGOS PENDIENTES' then
+          Begin
+              jvReportePendiente.AsCurrency         := fieldbyname('Pendiente').AsCurrency;
+              jvReporteTelefono1.AsString           := fieldbyname('Telefonos').AsString;
+              jvReporteTelefono2.AsString           := fieldbyname('Telefono2').AsString;
+              jvReporteBruto.AsCurrency             := fieldbyname('Bruto').AsCurrency;
+              jvReporteCoberturaSeguro.AsCurrency   := fieldbyname('CoberturaSeguro').AsCurrency;
+              jvReporteDescuento.AsCurrency         := fieldbyname('Descuento').AsCurrency;
+              jvReporteEntradaID.AsString           := fieldbyname('EntradaID').AsString;
+              jvReporteOrigen.AsString              := fieldbyname('Origen').AsString;
+              jvReporteUsuarioID.AsString           := fieldbyname('UserID').AsString;
+          end;
+          If cboReporte.Text = 'COMISION DR. COMPRES GUTIERREZ' then
+              jvReporteComision.AsCurrency          := (fieldbyname('TotalPagado').AsCurrency * 20)/100;
+          if cboReporte.Text = 'MODIFICACIONES ENTRADAS Y/O CAMBIOS' then
+              jvReporteComentario.AsString          := fieldbyname('Comentario').AsString;
+          If cboReporte.Text = 'DE ENTRADAS POR SEGUROS (ARS)' then
+          Begin
+              jvReporteTotal_Cobertura.AsCurrency   := fieldbyname('Total_Cobertura').AsCurrency;
+              jvReporteCoberturaPorC.AsCurrency     := fieldbyname('CoberturaPorc').AsCurrency;
+              jvReporteCoberturaSeguro.AsCurrency   := fieldbyname('CoberturaSeguro').AsCurrency;
+              jvReporteUsuarioID.AsString           := fieldbyname('UserID').AsString;
+          end;
+          If cboReporte.Text = 'DE ENTRADAS A CREDITO SIN FACTURAR' then
+          Begin
+              jvReporteHoraEntrada.AsString         := fieldbyname('HoraEntrada').AsString;
+              jvReporteUsuarioID.AsString           := fieldbyname('UserID').AsString;
+          end;
+        Next;
+      end;
+      jvReporte.First;
+      dsReporte.Enabled := True;
+   end;
+   If (jvReporte.RecordCount > 0) Then
+   Begin
+      if cboReporte.Text = 'MODIFICACIONES ENTRADAS Y/O CAMBIOS' then
+      begin
+        if cbExtSucursal.Text = EmptyStr then
+          ppLabel8.Caption := 'Todas las Sucursales'
+        else
+          ppLabel8.Caption := cbExtSucursal.Text;
+        ppLabel6.Caption := 'Listado '+cboReporte.Text;
+        ppLabel7.Caption :='Desde : '+FormatDateTime('dd/mm/yyyy', FechaIni.Date)+' Hasta : '+FormatDateTime('dd/mm/yyyy', FechaFin.Date);
+
+        If (RgImpresion.ItemIndex = 0) Then
+           ppRptCambiosEnt.DeviceType := dtScreen
+        else If (RgImpresion.ItemIndex = 1) Then
+           ppRptCambiosEnt.DeviceType := dtPrinter;
+           ppRptCambiosEnt.Print;
+      end
+      else if cboReporte.Text = 'TIEMPO DE OFICIAL(CAJERO) POR ENTRADA' then
+      begin
+        if cbExtSucursal.Text = EmptyStr then
+          ppLabel19.Caption := 'Todas las Sucursales'
+        else
+          ppLabel19.Caption := cbExtSucursal.Text;
+        ppLabel17.Caption := 'Listado '+cboReporte.Text;
+        ppLabel15.Caption :='Desde : '+FormatDateTime('dd/mm/yyyy', FechaIni.Date)+' Hasta : '+FormatDateTime('dd/mm/yyyy', FechaFin.Date);
+
+        If (RgImpresion.ItemIndex = 0) Then
+           ppRptTiempoCajeroEnt.DeviceType := dtScreen
+        else If (RgImpresion.ItemIndex = 1) Then
+           ppRptTiempoCajeroEnt.DeviceType := dtPrinter;
+        ppRptTiempoCajeroEnt.Print;
+      end
+      else if cboReporte.Text = 'COMISION DR. COMPRES GUTIERREZ' then
+      begin
+        if cbExtSucursal.Text = EmptyStr then
+          ppLabel36.Caption := 'Todas las Sucursales'
+        else
+          ppLabel36.Caption := cbExtSucursal.Text;
+        ppLabel34.Caption := 'Listado '+cboReporte.Text;
+        ppLabel32.Caption :='Desde : '+FormatDateTime('dd/mm/yyyy', FechaIni.Date)+' Hasta : '+FormatDateTime('dd/mm/yyyy', FechaFin.Date);
+
+        If (RgImpresion.ItemIndex = 0) Then
+           ppRptComisionDr.DeviceType := dtScreen
+        else If (RgImpresion.ItemIndex = 1) Then
+           ppRptComisionDr.DeviceType := dtPrinter;
+        ppRptComisionDr.Print;
+      end
+      else if cboReporte.Text = 'LISTADO DE PAGOS PENDIENTES' then
+      begin
+        if cbExtSucursal.Text = EmptyStr then
+          ppLabel38.Caption := 'Todas las Sucursales'
+        else
+          ppLabel38.Caption := cbExtSucursal.Text;
+
+        ppLabel39.Caption := 'Listado '+cboReporte.Text;
+        ppLabel40.Caption := 'Desde : '+FormatDateTime('dd/mm/yyyy', FechaIni.Date)+' Hasta : '+FormatDateTime('dd/mm/yyyy', FechaFin.Date);
+        if dbExtUsuarioCrea.EditValue <> Null then
+          ppLabel41.Caption := 'Cajero : '+dbExtUsuarioCrea.EditValue
+        else
+          ppLabel41.Caption := 'Todos los Usuarios';
+        If (RgImpresion.ItemIndex = 0) Then
+           ppImpPagosPend.DeviceType := dtScreen
+        else If (RgImpresion.ItemIndex = 1) Then
+           ppImpPagosPend.DeviceType := dtPrinter;
+        ppImpPagosPend.Print;
+      end
+      else if cboReporte.Text = 'DE ENTRADAS POR SEGUROS (ARS)' then
+      begin
+        if cbExtSucursal.Text = EmptyStr then
+          ppLabel73.Caption := 'Todas las Sucursales'
+        else
+          ppLabel73.Caption := cbExtSucursal.Text;
+        ppLabel59.Caption := 'Listado '+cboReporte.Text;
+        ppLabel60.Caption :='Desde : '+FormatDateTime('dd/mm/yyyy', FechaIni.Date)+' Hasta : '+FormatDateTime('dd/mm/yyyy', FechaFin.Date);
+
+        If (RgImpresion.ItemIndex = 0) Then
+           ppImpSeguros.DeviceType := dtScreen
+        else If (RgImpresion.ItemIndex = 1) Then
+           ppImpSeguros.DeviceType := dtPrinter;
+        ppImpSeguros.Print;
+      end
+      else if cboReporte.Text = 'DE ENTRADAS A CREDITO SIN FACTURAR' then
+      begin
+        if cbExtSucursal.Text = EmptyStr then
+          ppLabel75.Caption := 'Todas las Sucursales'
+        else
+          ppLabel75.Caption := cbExtSucursal.Text;
+        ppLabel69.Caption := 'Listado '+cboReporte.Text;
+        ppLabel70.Caption :='Desde : '+FormatDateTime('dd/mm/yyyy', FechaIni.Date)+' Hasta : '+FormatDateTime('dd/mm/yyyy', FechaFin.Date);
+
+        If (RgImpresion.ItemIndex = 0) Then
+           ppImpSinFact.DeviceType := dtScreen
+        else If (RgImpresion.ItemIndex = 1) Then
+           ppImpSinFact.DeviceType := dtPrinter;
+        ppImpSinFact.Print;
+      end;
+
+   end;
+  end;
+ end;
+ end;
+ Procedure ppRptComisionDrBeforePrint(Sender: TObject);
+ Begin
+
+ end;
+end.

@@ -1,0 +1,162 @@
+object frmCuadreCajaSucursalGlobal: TfrmCuadreCajaSucursalGlobal
+  Left = 0
+  Top = 0
+  Caption = 'Imprimir Cuadre de Sucursales (Seleccionar Fecha)'
+  ClientHeight = 132
+  ClientWidth = 455
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnKeyDown = FormKeyDown
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label2: TLabel
+    Left = 373
+    Top = 233
+    Width = 65
+    Height = 13
+    Alignment = taRightJustify
+    AutoSize = False
+    Caption = '0'
+    Color = 16311249
+    ParentColor = False
+  end
+  object dxLayoutControl3: TdxLayoutControl
+    Left = 0
+    Top = 0
+    Width = 455
+    Height = 132
+    Align = alClient
+    TabOrder = 0
+    LookAndFeel = dmAppActions.lnfWeb
+    object edfechacorte: TcxDateEdit
+      Left = 191
+      Top = 11
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      Style.ButtonStyle = btsHotFlat
+      Style.PopupBorderStyle = epbsSingle
+      TabOrder = 0
+      Width = 148
+    end
+    object btaceptarcuadre: TcxButton
+      Left = 23
+      Top = 72
+      Width = 200
+      Height = 25
+      Caption = 'Aceptar'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ModalResult = 1
+      ParentFont = False
+      TabOrder = 2
+    end
+    object btcancelarcuadre: TcxButton
+      Left = 229
+      Top = 72
+      Width = 200
+      Height = 25
+      Caption = 'Cancelar'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ModalResult = 2
+      ParentFont = False
+      TabOrder = 3
+    end
+    object cboTanda: TcxImageComboBox
+      Left = 189
+      Top = 38
+      Properties.Items = <
+        item
+          Description = 'Primero'
+          ImageIndex = 0
+          Value = 1
+        end
+        item
+          Description = 'Segundo'
+          Value = 2
+        end
+        item
+          Description = 'Tercero'
+          Value = 3
+        end
+        item
+          Description = 'Cuarto'
+          Value = 4
+        end
+        item
+          Description = 'General (Todos)'
+          Value = 0
+        end>
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      Style.ButtonStyle = btsHotFlat
+      Style.PopupBorderStyle = epbsSingle
+      TabOrder = 1
+      Width = 151
+    end
+    object dxLayoutGroup2: TdxLayoutGroup
+      ShowCaption = False
+      Hidden = True
+      ShowBorder = False
+      object GroupParametros: TdxLayoutGroup
+        Caption = 'Parametros Cuadre'
+        ShowCaption = False
+        ShowBorder = False
+        object dxLayoutControl3Item2: TdxLayoutItem
+          AutoAligns = [aaVertical]
+          AlignHorz = ahCenter
+          Caption = 'Fecha de Corte'
+          Control = edfechacorte
+          ControlOptions.ShowBorder = False
+        end
+        object dxLayoutControl3Item1: TdxLayoutItem
+          AutoAligns = [aaVertical]
+          AlignHorz = ahCenter
+          Caption = 'Cuadre a Elegir'
+          Control = cboTanda
+          ControlOptions.ShowBorder = False
+        end
+      end
+      object GroupSaldo: TdxLayoutGroup
+        Caption = 'Saldo Final en Caja'
+        ShowCaption = False
+        ShowBorder = False
+        object botonescuadre: TdxLayoutGroup
+          AutoAligns = []
+          AlignHorz = ahRight
+          AlignVert = avBottom
+          Caption = 'botonescuadre'
+          ShowCaption = False
+          LayoutDirection = ldHorizontal
+          object dxLayoutControl3Item31: TdxLayoutItem
+            Caption = 'New Item'
+            ShowCaption = False
+            Control = btaceptarcuadre
+            ControlOptions.ShowBorder = False
+          end
+          object dxLayoutControl3Item10: TdxLayoutItem
+            Caption = 'New Item'
+            ShowCaption = False
+            Control = btcancelarcuadre
+            ControlOptions.ShowBorder = False
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,93 @@
+
+item0=SQL Manager for IB/FB News
+subitem0-1=02/15/2010:EMS SQL Manager for InterBase/Firebird version 5.2 released - Windows 7 support and preliminary support of InterBase 2009 added, support of Embedded Users and Embedded User Authentication, a lot of other improvements and enhancements&hellip;|http://sqlmanager.net/products/ibfb/manager/news/1579|1
+
+subitem0-2=09/17/2008:SQL Manager for InterBase/Firebird version 5.1 released - Preliminary support of Firebird 2.5, the ability to create external and global&nbsp;temporary tables added, the ability to save object templates, fixed errors occurred during the script execution and much more&hellip;|http://sqlmanager.net/products/ibfb/manager/news/1356|1
+
+subitem0-3=01/29/2008:SQL Manager 2008 for InterBase/Firebird released - Support of DB triggers, journaling and incremental backup, support of UTF-8 and Unicode, wizards running in the background mode, many other improvements and new features…|http://sqlmanager.net/products/ibfb/manager/news/1319|1
+
+subitem0-4=11/14/2006:SQL Manager for InterBase/Firebird v. 4.4 released - InterBase 2007 partial support implemented, array type fields manipulation improved, lots of other improvements and bugfixes...|http://sqlmanager.net/products/ibfb/manager/news/976|1
+
+subitem0-5=06/05/2006:SQL Manager 2005 for InterBase/Firebird ver. 4.3 released - This is a bugfix release for the current production release version.|http://sqlmanager.net/products/ibfb/manager/news/839|1
+
+item1=General Information
+subitem1-0=EMS Software Development Web Site|http://www.sqlmanager.net|1
+	
+subitem1-1=Overview|http://www.sqlmanager.net/en/products/ibfb/manager|1
+			
+subitem1-2=Product News|http://www.sqlmanager.net/en/products/ibfb/manager/news|1
+			
+subitem1-3=Product Features|http://www.sqlmanager.net/en/products/ibfb/manager/features|1
+			
+subitem1-4=Features Matrix|http://www.sqlmanager.net/en/products/ibfb/manager/matrix|1
+			
+subitem1-5=Product Screenshots|http://www.sqlmanager.net/en/products/ibfb/manager/screenshots|1
+			
+subitem1-6=System Requirements|http://www.sqlmanager.net/en/products/ibfb/manager/system|1
+			
+subitem1-7=License Agreement|http://www.sqlmanager.net/en/products/ibfb/manager/license|1
+			
+subitem1-8=Testimonials|http://www.sqlmanager.net/en/products/ibfb/manager/testimonials|1
+			
+subitem1-9=Related Products|http://www.sqlmanager.net/en/products/ibfb/manager/related|1
+			
+item2=Downloads
+
+subitem2-1=EMS SQL Manager for InterBase/Firebird (full installation package)|5.2.2.3|49.49 Mb|http://sqlmanager.net/software/ibmanager/ibmanager.zip|2
+
+subitem2-2=EMS SQL Manager for InterBase/Firebird (executable-file only)|5.2.2.3|6.34 Mb|http://sqlmanager.net/software/ibmanager/ibmanager_exe.zip|2
+
+subitem2-3=EMS SQL Manager for InterBase/Firebird Freeware (full installation package)|5.2.2.3|49.50 Mb|http://sqlmanager.net/software/ibmanager/ibmanager_lite.zip|2
+
+subitem2-4=EMS SQL Manager for InterBase/Firebird Freeware (executable-file only)|5.2.2.3|6.33 Mb|http://sqlmanager.net/software/ibmanager/ibmanager_lite_exe.zip|2
+
+subitem2-5=EMS SQL Manager for InterBase/Firebird, Studio edition (executable-file only)|5.2.2.3|6.34 Mb|http://sqlmanager.net/software/ibstudio/ibmanager_update.zip|2
+
+subitem2-6=User's Manual (en, pdf)||20.84 Mb|http://sqlmanager.net/software/ibmanager/doc/ibmanager.pdf|2
+
+subitem2-7=User's Manual (en, chm)||19.35 Mb|http://sqlmanager.net/software/ibmanager/doc/ibmanager.chm|2
+
+subitem2-8=User's Manual (ru, chm)||18.56 Mb|http://sqlmanager.net/software/ibmanager/doc/ibmanager_russian.chm|2
+
+subitem2-9=User's Manual (ru, pdf)||20.05 Mb|http://sqlmanager.net/software/ibmanager/doc/ibmanager_russian.pdf|2
+
+subitem2-10=Data Sheet (ru, pdf)||442.94 Kb|http://sqlmanager.net/software/datasheets/ibfb/manager/ru/ibmanager.pdf|2
+
+subitem2-11=Data Sheet (en, pdf)||398.59 Kb|http://sqlmanager.net/software/datasheets/ibfb/manager/en/ibmanager.pdf|2
+
+subitem2-12=Data Sheet (de, pdf)||404.63 Kb|http://sqlmanager.net/software/datasheets/ibfb/manager/de/ibmanager.pdf|2
+
+subitem2-13=Data Sheet (fr, pdf)||403.99 Kb|http://sqlmanager.net/software/datasheets/ibfb/manager/fr/ibmanager.pdf|2
+
+subitem2-14=Russian||778.94 Kb|http://sqlmanager.net/software/lng/ibmanager/russian.lng|2
+
+item3=Related Products
+
+subitem3-1=SQL Manager for SQL Server - Simplify and automate your Microsoft SQL Server database development process, <em>design, explore and maintain existing MS SQL Server databases</em>, build compound SQL Server query statements, manage SQL Server database user rights and manipulate data in different ways.|http://sqlmanager.net/products/mssql/manager|0
+
+subitem3-2=SQL Manager for MySQL - Simplify and automate your <em>MySQL database development process</em>, design, explore and maintain existing MySQL databases, build compound MySQL query statements, manage MySQL database user rights and manipulate data in different ways.|http://sqlmanager.net/products/mysql/manager|0
+
+subitem3-3=SQL Manager for PostgreSQL - Simplify and automate your PostgreSQL database development process, design, explore and maintain existing PostgreSQL databases, build compound PostgreSQL query statements, <em>manage PostgreSQL database user rights</em> and manipulate data in different ways.|http://sqlmanager.net/products/postgresql/manager|0
+
+subitem3-4=Data Export for InterBase/Firebird - Export InterBase/Firebird database data to any of 20 most popular data formats, including MS Access, MS Excel, MS Word, PDF, HTML, ODF and more.|http://sqlmanager.net/products/ibfb/dataexport|0
+
+subitem3-5=Data Import for InterBase/Firebird - Import data to InterBase/Firebird database tables from MS Access, MS Excel, CSV, XML and other popular formats via user-friendly wizard interface.|http://sqlmanager.net/products/ibfb/dataimport|0
+
+subitem3-6=Data Pump for InterBase/Firebird - Migrate from most popular databases (MS SQL Server, MySQL, PostgreSQL, Oracle, DB2, etс.) to InterBase/Firebird. Convert database schema and import table data to InterBase/Firebird database from any ADO-compatible source.|http://sqlmanager.net/products/ibfb/datapump|0
+
+subitem3-7=Data Generator for InterBase/Firebird - Generate test data for InterBase/Firebird database for testing purposes in a simple and direct way. Wide range of data generation parameters, user-friendly wizard interface and useful console utility to automate <em>InterBase/Firebird test data generation</em>.|http://sqlmanager.net/products/ibfb/datagenerator|0
+
+subitem3-8=DB Comparer for InterBase/Firebird - Compare and synchronize the structure of InterBase/Firebird databases. Move changes on your development database to production with ease.|http://sqlmanager.net/products/ibfb/dbcomparer|0
+
+subitem3-9=DB Extract for InterBase/Firebird - Create <em>InterBase/Firebird database backups in the form of SQL scripts</em>, script and save your InterBase/Firebird database structure and table data as a whole or partially.|http://sqlmanager.net/products/ibfb/extract|0
+
+subitem3-10=SQL Query for InterBase/Firebird - Analyze and retrieve your data, build your <em>InterBase/Firebird queries visually</em>, work with InterBase/Firebird query plans, build charts based on retrieved data quickly and more.|http://sqlmanager.net/products/ibfb/query|0
+
+subitem3-11=Data Comparer for InterBase/Firebird - Compare and synchronize the contents of your InterBase/Firebird databases. Automate your data migrations from development to production database. Customize the <em>InterBase/Firebird comparison and synchronization process to suit your needs</em>.|http://sqlmanager.net/products/ibfb/datacomparer|0
+
+subitem3-12=SQL Studio for InterBase/Firebird - EMS SQL Management Studio 2011 for InterBase and Firebird is a complete solution for Interbase and Firebird database administration and development. SQL Studio unites the must-have <em>Interbase tools</em> and <em>Firebird tools</em> in one powerful and easy-to-use environment that will make you more productive than ever before!|http://sqlmanager.net/products/studio/ibfb|0
+
+subitem3-13=SQL Manager for Oracle - Simplify and automate your <em>Oracle database development process</em>, design, explore and maintain existing Oracle databases, build compound Oracle SQL query statements, manage Oracle database user rights and manipulate data in different ways.|http://sqlmanager.net/products/oracle/manager|0
+
+subitem3-14=SQL Manager for DB2 - Simplify and automate your DB2 database development process, design, explore and maintain existing DB2 databases, build compound <em>DB2 SQL query</em> statements, manage DB2 database user rights and manipulate data in different ways.|http://sqlmanager.net/products/db2/manager|0
+

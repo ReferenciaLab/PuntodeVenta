@@ -1,0 +1,317 @@
+// ************************************************************************ //
+// The types declared in this file were generated from data read from the
+// WSDL File described below:
+// WSDL     : http://localhost:8080/wsReferencia/ReferenciaWebService.asmx?WSDL
+// Encoding : utf-8
+// Version  : 1.0
+// (06/01/2010 7:57:11 PM - 1.33.2.5)
+// ************************************************************************ //
+
+unit ReferenciaWebService;
+
+interface
+
+uses InvokeRegistry, SOAPHTTPClient, Types, XSBuiltIns;
+
+type
+
+  // ************************************************************************ //
+  // The following types, referred to in the WSDL document are not being represented
+  // in this file. They are either aliases[@] of other types represented or were referred
+  // to but never[!] declared in the document. The types from the latter category
+  // typically map to predefined/known XML or Borland types; however, they could also 
+  // indicate incorrect WSDL documents that failed to declare or import a schema type.
+  // ************************************************************************ //
+  // !:int             - "http://www.w3.org/2001/XMLSchema"
+  // !:string          - "http://www.w3.org/2001/XMLSchema"
+  // !:long            - "http://www.w3.org/2001/XMLSchema"
+  // !:boolean         - "http://www.w3.org/2001/XMLSchema"
+  // !:double          - "http://www.w3.org/2001/XMLSchema"
+
+  ccCancelacion        = class;                 { "http://tempuri.org/" }
+  ccCobertura          = class;                 { "http://tempuri.org/" }
+  ccAutorizacion       = class;                 { "http://tempuri.org/" }
+  ccAseguradora        = class;                 { "http://tempuri.org/" }
+  ccPSS                = class;                 { "http://tempuri.org/" }
+  ccError              = class;                 { "http://tempuri.org/" }
+  ccCBase              = class;                 { "http://tempuri.org/" }
+  ccAfiliado           = class;                 { "http://tempuri.org/" }
+
+
+
+  // ************************************************************************ //
+  // Namespace : http://tempuri.org/
+  // ************************************************************************ //
+  ccCancelacion = class(TRemotable)
+  private
+    FEstado: Boolean;
+    FMensaje: WideString;
+    FCodigoSalida: WideString;
+    FArsId: Integer;
+    FSession: Int64;
+  published
+    property Estado: Boolean read FEstado write FEstado;
+    property Mensaje: WideString read FMensaje write FMensaje;
+    property CodigoSalida: WideString read FCodigoSalida write FCodigoSalida;
+    property ArsId: Integer read FArsId write FArsId;
+    property Session: Int64 read FSession write FSession;
+  end;
+
+
+
+  // ************************************************************************ //
+  // Namespace : http://tempuri.org/
+  // ************************************************************************ //
+  ccCobertura = class(TRemotable)
+  private
+    FCodigo: WideString;
+    FDeducible: Double;
+    FDescripcion: WideString;
+    FMontoIndemizado: Double;
+    FMontoNoCubierto: Double;
+    FMontoTotal: Double;
+    FCodigoSalida: WideString;
+    FError: WideString;
+  published
+    property Codigo: WideString read FCodigo write FCodigo;
+    property Deducible: Double read FDeducible write FDeducible;
+    property Descripcion: WideString read FDescripcion write FDescripcion;
+    property MontoIndemizado: Double read FMontoIndemizado write FMontoIndemizado;
+    property MontoNoCubierto: Double read FMontoNoCubierto write FMontoNoCubierto;
+    property MontoTotal: Double read FMontoTotal write FMontoTotal;
+    property CodigoSalida: WideString read FCodigoSalida write FCodigoSalida;
+    property Error: WideString read FError write FError;
+  end;
+
+  ArrayOfCcCobertura = array of ccCobertura;    { "http://tempuri.org/" }
+
+
+  // ************************************************************************ //
+  // Namespace : http://tempuri.org/
+  // ************************************************************************ //
+  ccAutorizacion = class(TRemotable)
+  private
+    FNoReclamacion: Integer;
+    FDiferenciaAfiliado: Double;
+    FMontoArs: Double;
+    FListaCoberturas: ArrayOfCcCobertura;
+    FId: Integer;
+    FNumeroSession: Integer;
+    FYear: Integer;
+    FMontoTotal: Double;
+  public
+    destructor Destroy; override;
+  published
+    property NoReclamacion: Integer read FNoReclamacion write FNoReclamacion;
+    property DiferenciaAfiliado: Double read FDiferenciaAfiliado write FDiferenciaAfiliado;
+    property MontoArs: Double read FMontoArs write FMontoArs;
+    property ListaCoberturas: ArrayOfCcCobertura read FListaCoberturas write FListaCoberturas;
+    property Id: Integer read FId write FId;
+    property NumeroSession: Integer read FNumeroSession write FNumeroSession;
+    property Year: Integer read FYear write FYear;
+    property MontoTotal: Double read FMontoTotal write FMontoTotal;
+  end;
+
+
+
+  // ************************************************************************ //
+  // Namespace : http://tempuri.org/
+  // ************************************************************************ //
+  ccAseguradora = class(TRemotable)
+  private
+    FCodigo: Integer;
+    FNombre: WideString;
+    FUrl: WideString;
+  published
+    property Codigo: Integer read FCodigo write FCodigo;
+    property Nombre: WideString read FNombre write FNombre;
+    property Url: WideString read FUrl write FUrl;
+  end;
+
+  ArrayOfCcAseguradora = array of ccAseguradora;   { "http://tempuri.org/" }
+
+
+  // ************************************************************************ //
+  // Namespace : http://tempuri.org/
+  // ************************************************************************ //
+  ccPSS = class(TRemotable)
+  private
+    FIdProveedor: Integer;
+    FCodigo: WideString;
+    FNombre: WideString;
+    FEstado: Boolean;
+    FTipo: WideString;
+    FCodigoSalida: WideString;
+  published
+    property IdProveedor: Integer read FIdProveedor write FIdProveedor;
+    property Codigo: WideString read FCodigo write FCodigo;
+    property Nombre: WideString read FNombre write FNombre;
+    property Estado: Boolean read FEstado write FEstado;
+    property Tipo: WideString read FTipo write FTipo;
+    property CodigoSalida: WideString read FCodigoSalida write FCodigoSalida;
+  end;
+
+
+
+  // ************************************************************************ //
+  // Namespace : http://tempuri.org/
+  // ************************************************************************ //
+  ccError = class(TRemotable)
+  private
+    FDescipcion: WideString;
+    FCode: Integer;
+  published
+    property Descipcion: WideString read FDescipcion write FDescipcion;
+    property Code: Integer read FCode write FCode;
+  end;
+
+
+
+  // ************************************************************************ //
+  // Namespace : http://tempuri.org/
+  // ************************************************************************ //
+  ccCBase = class(TRemotable)
+  private
+    FError: ccError;
+  public
+    destructor Destroy; override;
+  published
+    property Error: ccError read FError write FError;
+  end;
+
+
+
+  // ************************************************************************ //
+  // Namespace : http://tempuri.org/
+  // ************************************************************************ //
+  ccAfiliado = class(ccCBase)
+  private
+    FNombre: WideString;
+    FCedula: WideString;
+    FCodigo: WideString;
+    FCodigoSalida: WideString;
+    FEstado: Boolean;
+    FTipoPlan: WideString;
+    FPasaporte: WideString;
+    FPrimerNombre: WideString;
+    FSegundoNombre: WideString;
+    FPrimerApellido: WideString;
+    FSegundoApellido: WideString;
+    FCodigoAsegurado: Int64;
+  published
+    property Nombre: WideString read FNombre write FNombre;
+    property Cedula: WideString read FCedula write FCedula;
+    property Codigo: WideString read FCodigo write FCodigo;
+    property CodigoSalida: WideString read FCodigoSalida write FCodigoSalida;
+    property Estado: Boolean read FEstado write FEstado;
+    property TipoPlan: WideString read FTipoPlan write FTipoPlan;
+    property Pasaporte: WideString read FPasaporte write FPasaporte;
+    property PrimerNombre: WideString read FPrimerNombre write FPrimerNombre;
+    property SegundoNombre: WideString read FSegundoNombre write FSegundoNombre;
+    property PrimerApellido: WideString read FPrimerApellido write FPrimerApellido;
+    property SegundoApellido: WideString read FSegundoApellido write FSegundoApellido;
+    property CodigoAsegurado: Int64 read FCodigoAsegurado write FCodigoAsegurado;
+  end;
+
+
+  // ************************************************************************ //
+  // Namespace : http://tempuri.org/
+  // soapAction: http://tempuri.org/%operationName%
+  // transport : http://schemas.xmlsoap.org/soap/http
+  // style     : document
+  // binding   : TReferenciaWebServiceSoap
+  // service   : TReferenciaWebService
+  // port      : TReferenciaWebServiceSoap
+  // URL       : http://127.0.0.1:8080/wsReferencia/ReferenciaWebService.asmx
+  // ************************************************************************ //
+  TReferenciaWebServiceSoap = interface(IInvokable)
+  ['{3B2B3597-F797-ECC2-C8C5-9714F5911B79}']
+    function  CancelaAutoriazcion(const vCodArs: Integer; const vNoReclamacion: Integer; const vYear: WideString; const vCodAfiliado: Int64; const vCodProveedor: Int64): Boolean; stdcall;
+    function  CancelarAutorizacion(const vCodArs: Integer; const vNumeroSession: Int64): ccCancelacion; stdcall;
+    function  CotizacionPorCoberturas(const vCodArs: Integer; const vCoberturas: ArrayOfCcCobertura; const vCodAfiliado: Int64; const vCodProveedor: Int64): ccAutorizacion; stdcall;
+    function  CotizacionPorMonto(const vCodArs: Integer; const vMontoTotal: Double; const vCodAfiliado: Int64; const vCodProveedor: Int64): ccAutorizacion; stdcall;
+    function  GetAseguradoras: ArrayOfCcAseguradora; stdcall;
+    function  GetCoberturasMasUsadas(const vCodArs: Integer; const vCodProveedor: Int64): ArrayOfCcCobertura; stdcall;
+    function  GetCoberturas(const vCodArs: Integer; const vCodProveedor: Int64): ArrayOfCcCobertura; stdcall;
+    function  ReclamacionPorCoberturas(const vCodArs: Integer; const vCoberturas: ArrayOfCcCobertura; const vCodAfiliado: Int64; const vCodProveedor: Int64): ccAutorizacion; stdcall;
+    function  ReclamacionPorMonto(const vCodArs: Integer; const vMontoTotal: Double; const vCodAfiliado: Int64; const vCodProveedor: Int64): ccAutorizacion; stdcall;
+    function  ValidaAfiliado(const vCodArs: Integer; const vCodAfiliado: Int64; const vCodProveedor: Int64): ccAfiliado; stdcall;
+    function  ValidaProveedor(const vCodArs: Integer; const vCodProveedor: Int64): ccPSS; stdcall;
+  end;
+
+function GetTReferenciaWebServiceSoap(UseWSDL: Boolean=System.False; Addr: string=''; HTTPRIO: THTTPRIO = nil): TReferenciaWebServiceSoap;
+
+
+implementation
+
+function GetTReferenciaWebServiceSoap(UseWSDL: Boolean; Addr: string; HTTPRIO: THTTPRIO): TReferenciaWebServiceSoap;
+const
+  defWSDL = 'http://localhost:8080/wsReferencia/ReferenciaWebService.asmx?WSDL';
+  defURL  = 'http://127.0.0.1:8080/wsReferencia/ReferenciaWebService.asmx';
+  defSvc  = 'TReferenciaWebService';
+  defPrt  = 'TReferenciaWebServiceSoap';
+var
+  RIO: THTTPRIO;
+begin
+  Result := nil;
+  if (Addr = '') then
+  begin
+    if UseWSDL then
+      Addr := defWSDL
+    else
+      Addr := defURL;
+  end;
+  if HTTPRIO = nil then
+    RIO := THTTPRIO.Create(nil)
+  else
+    RIO := HTTPRIO;
+  try
+    Result := (RIO as TReferenciaWebServiceSoap);
+    if UseWSDL then
+    begin
+      RIO.WSDLLocation := Addr;
+      RIO.Service := defSvc;
+      RIO.Port := defPrt;
+    end else
+      RIO.URL := Addr;
+  finally
+    if (Result = nil) and (HTTPRIO = nil) then
+      RIO.Free;
+  end;
+end;
+
+
+destructor ccAutorizacion.Destroy;
+var
+  I: Integer;
+begin
+  for I := 0 to Length(FListaCoberturas)-1 do
+    if Assigned(FListaCoberturas[I]) then
+      FListaCoberturas[I].Free;
+  SetLength(FListaCoberturas, 0);
+  inherited Destroy;
+end;
+
+destructor ccCBase.Destroy;
+begin
+  if Assigned(FError) then
+    FError.Free;
+  inherited Destroy;
+end;
+
+initialization
+  InvRegistry.RegisterInterface(TypeInfo(TReferenciaWebServiceSoap), 'http://tempuri.org/', 'utf-8');
+  InvRegistry.RegisterDefaultSOAPAction(TypeInfo(TReferenciaWebServiceSoap), 'http://tempuri.org/%operationName%');
+  InvRegistry.RegisterInvokeOptions(TypeInfo(TReferenciaWebServiceSoap), ioDocument);
+  RemClassRegistry.RegisterXSClass(ccCancelacion, 'http://tempuri.org/', 'ccCancelacion');
+  RemClassRegistry.RegisterXSClass(ccCobertura, 'http://tempuri.org/', 'ccCobertura');
+  RemClassRegistry.RegisterXSInfo(TypeInfo(ArrayOfCcCobertura), 'http://tempuri.org/', 'ArrayOfCcCobertura');
+  RemClassRegistry.RegisterXSClass(ccAutorizacion, 'http://tempuri.org/', 'ccAutorizacion');
+  RemClassRegistry.RegisterXSClass(ccAseguradora, 'http://tempuri.org/', 'ccAseguradora');
+  RemClassRegistry.RegisterXSInfo(TypeInfo(ArrayOfCcAseguradora), 'http://tempuri.org/', 'ArrayOfCcAseguradora');
+  RemClassRegistry.RegisterXSClass(ccPSS, 'http://tempuri.org/', 'ccPSS');
+  RemClassRegistry.RegisterXSClass(ccError, 'http://tempuri.org/', 'ccError');
+  RemClassRegistry.RegisterXSClass(ccCBase, 'http://tempuri.org/', 'ccCBase');
+  RemClassRegistry.RegisterXSClass(ccAfiliado, 'http://tempuri.org/', 'ccAfiliado');
+
+end. 

@@ -1,0 +1,182 @@
+object frmActivaCobro: TfrmActivaCobro
+  Left = 0
+  Top = 0
+  Caption = 'Activa Cobro Punto de Venta'
+  ClientHeight = 182
+  ClientWidth = 430
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnKeyDown = FormKeyDown
+  PixelsPerInch = 96
+  TextHeight = 13
+  object dxLayoutControl1: TdxLayoutControl
+    Left = 0
+    Top = 0
+    Width = 430
+    Height = 182
+    Align = alClient
+    TabOrder = 0
+    AutoContentSizes = [acsWidth, acsHeight]
+    LookAndFeel = dmAppActions.lnfWeb
+    object cxButton1: TcxButton
+      Left = 263
+      Top = 130
+      Width = 75
+      Height = 25
+      Caption = 'Aceptar'
+      Enabled = False
+      ModalResult = 1
+      TabOrder = 4
+    end
+    object cxButton2: TcxButton
+      Left = 344
+      Top = 130
+      Width = 75
+      Height = 25
+      Caption = 'Cancelar'
+      ModalResult = 2
+      TabOrder = 5
+    end
+    object txtMuestrano: TcxMaskEdit
+      Left = 101
+      Top = 42
+      Properties.CharCase = ecUpperCase
+      Properties.MaxLength = 11
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      TabOrder = 0
+      Width = 232
+    end
+    object btBuscar: TcxButton
+      Left = 339
+      Top = 42
+      Width = 25
+      Height = 22
+      TabOrder = 3
+      OnClick = btBuscarClick
+      Glyph.Data = {
+        DE030000424DDE03000000000000DE0200002800000010000000100000000100
+        08000000000000010000120B0000120B0000AA000000AA00000000000000FFFF
+        FF00FF00FF00FFFEFE0067343200663332006634320068343100683532006935
+        31006B3630006D372F0072392D0071392E00733A2C007D3F2900804026007E40
+        27007C3F2800844224008242250081412500964E2100984C1900A7541500A351
+        1600A3531700C85B0000C85C0000B35A0E00B1590F00AF580F00AE581000AF5A
+        1200A9551200A8551300A5531300A8551400AC591600B3611B00B2611F00A95B
+        1E00C9610000CA600100C9600500C5630700C4620700B75B0800B65B0900CB67
+        0F00B45C0D00B35A0D00B15A0E00B0590E00CD6B1100B9611000B35D1100CE6E
+        1700CE6D1800C26E2200D5853B00C2793800D98D4A00FBEBDC00FBF2EA00D66B
+        0000D66C0000D56B0000D46B0000D36A0000D2690000D1690000D0690000CE67
+        0000CE680000CD670000CB630000CB640000CB650000CA620000CB660100CA64
+        0100D26B0200CD660200CC680200CB660200CA660200CB670300CD680400CF69
+        0500C2610500C5640600CD6B0800D3710C00BF630B00D2741400D1731400D175
+        1800D2761900D1761900CF721900C36C1A00D9822A00D9832C00DA852F00DF89
+        3100E1903F00E1934300DC914800DA914900DD954D00E9A05600E8A05600E8A2
+        5A00E4A25E00F1AD6900EBAB6900DE9F6300F0AF6D00E6A76900F0B17100E6AB
+        6F00ECB17500DEA56E00E2A87100F6BB7F00E7B68400EABF9300ECC29700EAC1
+        9700EAC09800F9D1A800F3CCA500F8D1A900F0CBA600EDCCAA00FAD8B700FAD9
+        B700F2D9C000F5DFC900F6E2CF00FAE9D800FBEFE300FDF2E700D1731100D87C
+        1C00D87D1E00D9802400DA832900DC8B3600E1913E00E19B5100E6A35D00E7AE
+        7200F9BE8100F8C18600ECBA8600FED6AB00F5CEA500F8DBBC00FBDFC200FDE4
+        CA00FBE3CA00F8E6D300F5E4D200FEEFDF00FEF2E500FCEEDE00FCF3E800FCF6
+        EF000202020202060B15150B0402020202020202020C101F5A56552E1E130702
+        0202020212254452584C4B49484218090202021420454F3A813C1C4E50504323
+        0502021746545136A4403E1B4E5050411502225E5D6090628B01A97C2B2A5047
+        1D093561936794688C01010182312A4A5B0938956B6A966BA3010101018A644D
+        530A37727A706F718D0101010187394E530E34779E7873763F0101037E2C2A4A
+        2D08326EA0839A7DA701A879594D50471E09026585A59D9B8F8E98925F574E41
+        1102022F6CA1A6889F746966635C43190D020202336D89A5A2849C999791240F
+        0202020202303B757F86807B3D1612020202020202020221272829261A020202
+        0202}
+      LookAndFeel.Kind = lfUltraFlat
+      LookAndFeel.NativeStyle = True
+    end
+    object txtPaciente: TcxTextEdit
+      Left = 101
+      Top = 96
+      Enabled = False
+      Properties.CharCase = ecUpperCase
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      StyleDisabled.TextStyle = [fsBold]
+      TabOrder = 2
+      Width = 121
+    end
+    object txtFactura: TcxMaskEdit
+      Left = 101
+      Top = 69
+      Properties.CharCase = ecUpperCase
+      Properties.MaxLength = 11
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      TabOrder = 1
+      Width = 100
+    end
+    object dxLayoutControl1Group_Root: TdxLayoutGroup
+      ShowCaption = False
+      Hidden = True
+      ShowBorder = False
+      object dxLayoutControl1Item7: TdxLayoutItem
+        ControlOptions.ShowBorder = False
+      end
+      object dxLayoutControl1Group1: TdxLayoutGroup
+        Caption = 'Activar'
+        LayoutDirection = ldHorizontal
+        object dxLayoutControl1Group3: TdxLayoutGroup
+          ShowCaption = False
+          Hidden = True
+          ShowBorder = False
+          object dxLayoutControl1Item1: TdxLayoutItem
+            Caption = 'Laboratorio No.'
+            Control = txtMuestrano
+            ControlOptions.ShowBorder = False
+          end
+          object dxLayoutControl1Item6: TdxLayoutItem
+            Caption = 'Registro No.'
+            Control = txtFactura
+            ControlOptions.ShowBorder = False
+          end
+          object dxLayoutControl1Item3: TdxLayoutItem
+            Caption = 'Paciente'
+            Control = txtPaciente
+            ControlOptions.ShowBorder = False
+          end
+        end
+        object dxLayoutControl1Item2: TdxLayoutItem
+          ShowCaption = False
+          Control = btBuscar
+          ControlOptions.ShowBorder = False
+        end
+      end
+      object dxLayoutControl1Group2: TdxLayoutGroup
+        AutoAligns = [aaVertical]
+        AlignHorz = ahRight
+        Caption = 'Botones'
+        ShowCaption = False
+        LayoutDirection = ldHorizontal
+        ShowBorder = False
+        object dxLayoutControl1Item4: TdxLayoutItem
+          Caption = 'cxButton1'
+          ShowCaption = False
+          Control = cxButton1
+          ControlOptions.ShowBorder = False
+        end
+        object dxLayoutControl1Item5: TdxLayoutItem
+          Caption = 'cxButton2'
+          ShowCaption = False
+          Control = cxButton2
+          ControlOptions.ShowBorder = False
+        end
+      end
+    end
+  end
+end

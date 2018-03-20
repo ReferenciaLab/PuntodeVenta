@@ -1,0 +1,230 @@
+unit DialogConsultaEntradasClinica;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DialogConsulta, cxGraphics, Menus, cxLookAndFeelPainters, cxStyles,
+  cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, DB, cxDBData,
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, ADODB,
+  dxLayoutControl, cxGridLevel, cxClasses, cxControls, cxGridCustomView, cxGrid,
+  StdCtrls, cxButtons, cxTextEdit, cxContainer, cxMaskEdit, cxDropDownEdit,
+  DialogCobro, cxintl, cxCheckBox, cxCalendar,dlgmensajes;
+
+type
+  TfrmDialogConsultaEntradasClinica = class(TfrmDialogConsulta)
+    dbDatosTotalPagado: TcxGridDBColumn;
+    dbDatosTotalPendiente: TcxGridDBColumn;
+    dbDatosEntradaID: TcxGridDBColumn;
+    dbDatosFecha: TcxGridDBColumn;
+    dbDatosPacienteID: TcxGridDBColumn;
+    dbDatosNeto: TcxGridDBColumn;
+    dbDatosNombrePaciente: TcxGridDBColumn;
+    dbDatosClienteNombre: TcxGridDBColumn;
+    dbDatosRECORDCLINICA: TcxGridDBColumn;
+    dbDatosNUMEROHABITACION: TcxGridDBColumn;
+    dbDatosFECHAENTRADA: TcxGridDBColumn;
+    dbDatosEstatus: TcxGridDBColumn;
+    dtFechaIni: TcxDateEdit;
+    dxLayoutControl1Item3: TdxLayoutItem;
+    dtFechaFin: TcxDateEdit;
+    dxLayoutControl1Item7: TdxLayoutItem;
+    procedure edbuscarporPropertiesChange(Sender: TObject);
+    procedure edbuscarporExit(Sender: TObject);
+    procedure edbuscarExit(Sender: TObject);
+    procedure cgDatosExit(Sender: TObject);
+    procedure cgDatosEnter(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure BuscarData;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure Run;
+  end;
+
+var
+  frmDialogConsultaEntradasClinica: TfrmDialogConsultaEntradasClinica;
+  adentrogrid : Boolean;
+
+implementation
+
+uses DataModule,PuntoVenta,Main;
+
+{$R *.dfm}
+
+procedure TfrmDialogConsultaEntradasClinica.Run;
+Var
+ qfind : TADOQuery;
+begin
+ showmodal;
+ if ModalResult = mrOk then
+  begin
+   If (frmMain.Exis_Cli = True) then
+    Begin
+      frmMain.frmClinica._recorId := DM.qrEntradaClinicaRecid.Value;
+      frmMain.frmClinica.check_balance := False;
+      frmMain.frmClinica.BuscarDatos;
+      frmMain.frmClinica.RefrescarInterface;
+    end;
+  end;
+end;
+
+
+procedure TfrmDialogConsultaEntradasClinica.BuscarData;
+var
+ sqlString : String;
+begin
+ DM.qrParametro.close;
+ DM.qrParametro.open;
+ If ((dtFechaIni.Text = Emptystr) and (dtFechaIni.Text = Emptystr)) And (edbuscarpor.ItemIndex=9) then
+ Begin
+      EtMensajeDlg('Fecha de Inicio y Fecha Fin NO fueron digitadas.  Verifique.', etError, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
+      Exit;
+ end;
+ sqlString := 'SELECT * FROM PTEntradaPacienteClinica WHERE RecId IS NOT NULL ';
+ sqlString := sqlString + ' AND DataAreaId = ' + #39 + DM.CurEmpresa + #39;
+ If Not((dtFechaIni.Text = Emptystr) and (dtFechaIni.Text = Emptystr)) then
+ begin
+    sqlString := sqlString + ' AND Fecha Between '+#39+formatdatetime('yyyymmdd',dtFechaini.date)+#39+' And  '+#39+formatdatetime('yyyymmdd',dtFechaFin.date)+#39;
+ end;
+
+ if edbuscar.Text <> '' then begin
+   Case edbuscarpor.ItemIndex of
+     0 : sqlString := sqlString + ' AND MuestraNo like '+#39+'%'+edbuscar.Text+'%'+#39;
+     1 : sqlString := sqlString + ' AND EntradaID like '+#39+'%'+edbuscar.Text+'%'+#39;
+     2 : sqlString := sqlString + ' AND RecordClinica like '+#39+'%'+edbuscar.Text+'%'+#39;
+     3 : sqlString := sqlString + ' AND NumeroHabitacion like '+#39+'%'+edbuscar.Text+'%'+#39;
+     4 : sqlString := sqlString + ' AND PacienteID like '+#39+'%'+edbuscar.Text+'%'+#39;
+     5 : sqlString := sqlString + ' AND NombrePaciente like '+#39+'%'+'%'+edbuscar.Text+'%'+#39;
+     6 : sqlString := sqlString + ' AND ClienteNombre like '+#39+'%'+edbuscar.Text+'%'+#39;
+     7 : sqlString := sqlString + ' AND UserID ='+#39+dm.CurUser+#39+' And Convert(Varchar(10),Fecha,103) = Convert(Varchar(10),Getdate(),103)';
+     8 : sqlString := sqlString + ' AND Convert(Varchar(08),Fecha,112) = Convert(Varchar(08),Getdate(),112)';
+     9 : sqlString := sqlString;
+   end;
+ end;
+
+ DM.qrEntradaClinica.Close;
+ DM.qrEntradaClinica.SQL.Text := sqlString + ' ORDER BY Fecha DESC, SucursalId DESC, EntradaID DESC, MuestraNo Desc ';
+ DM.qrEntradaClinica.Open;
+end;
+
+procedure TfrmDialogConsultaEntradasClinica.cgDatosEnter(Sender: TObject);
+begin
+  inherited;
+  adentrogrid := True;
+  _buscar := False;
+end;
+
+procedure TfrmDialogConsultaEntradasClinica.cgDatosExit(Sender: TObject);
+begin
+  inherited;
+  adentrogrid := false;
+  _buscar := True;
+end;
+
+
+procedure TfrmDialogConsultaEntradasClinica.edbuscarExit(Sender: TObject);
+begin
+  inherited;
+  _buscar := True;
+  adentrogrid := False;
+end;
+
+procedure TfrmDialogConsultaEntradasClinica.edbuscarporExit(Sender: TObject);
+begin
+  inherited;
+  _buscar := True;
+  adentrogrid := False;
+end;
+
+procedure TfrmDialogConsultaEntradasClinica.edbuscarporPropertiesChange(
+  Sender: TObject);
+begin
+  inherited;
+  if (edbuscarpor.ItemIndex = 7) Or
+     (edbuscarpor.ItemIndex = 8) Or
+     (edbuscarpor.ItemIndex = 9) Then BuscarData;
+end;
+
+procedure TfrmDialogConsultaEntradasClinica.FormCreate(Sender: TObject);
+begin
+  inherited;
+  edbuscarpor.ItemIndex := 0;
+end;
+
+
+procedure TfrmDialogConsultaEntradasClinica.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+{  if (key = Vk_Down) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+  if (key = 13) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+  if (key = 13) and (AdentroGrid) then
+  begin
+   Close;
+   ModalResult := mrOk;
+  end;
+  if (key = Vk_Up) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 1, 0);
+  if (key = 27) then
+  begin
+   Close;
+  end;
+  }
+  if (key = Vk_Down) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+
+  if (key = 13) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+
+  if (key = Vk_Up) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 1, 0);
+
+  if (key = 13) and (AdentroGrid) then
+    begin
+      Close;
+      ModalResult := mrOk;
+    end;
+
+  if (key = 13) and (_buscar) then
+    begin
+      If (AdentroGrid) then
+        Begin
+          Close;
+          ModalResult := mrOk;
+        end
+      Else
+        BuscarData;
+    end;
+
+  if (key = 27) then
+    begin
+      Close;
+    end;
+
+  if (key = vk_f9) then
+    begin
+      Close;
+
+      if (DM.qrEntradaPacienteCons.RecordCount >0) then
+        ModalResult := mrOk;
+    end;
+
+end;
+
+
+procedure TfrmDialogConsultaEntradasClinica.FormShow(Sender: TObject);
+begin
+  inherited;
+  _buscar := True;
+  adentrogrid := False;
+  edbuscar.SetFocus;
+end;
+
+
+end.

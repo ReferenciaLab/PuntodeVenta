@@ -1,0 +1,304 @@
+inherited frmDatosTarjetaBonos: TfrmDatosTarjetaBonos
+  Caption = 'Registrar Bonos'
+  ClientHeight = 266
+  ClientWidth = 501
+  ExplicitWidth = 509
+  ExplicitHeight = 300
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dxLayoutControl1: TdxLayoutControl
+    Width = 501
+    Height = 233
+    ExplicitWidth = 501
+    ExplicitHeight = 233
+    inherited pcDatos: TcxPageControl
+      Width = 736
+      Height = 517
+      ActivePage = tsDatos
+      ExplicitWidth = 736
+      ExplicitHeight = 517
+      ClientRectBottom = 517
+      ClientRectRight = 736
+      ClientRectTop = 24
+      inherited tsMain: TcxTabSheet
+        inherited lcGrid: TdxLayoutControl
+          Width = 736
+          Height = 493
+          inherited dgDatos: TcxGrid
+            Width = 550
+            Height = 240
+            ExplicitWidth = 550
+            ExplicitHeight = 240
+            inherited tvDatos: TcxGridDBTableView
+              DataController.KeyFieldNames = 'TarjetaNumero'
+              object tvDatosTarjetaID: TcxGridDBColumn
+                Caption = 'Tarjeta Id'
+                DataBinding.FieldName = 'TarjetaID'
+                Options.Editing = False
+                Width = 100
+              end
+              object tvDatosDescripcion: TcxGridDBColumn
+                Caption = 'Numero'
+                DataBinding.FieldName = 'TarjetaNumero'
+                Options.Editing = False
+                Width = 175
+              end
+              object tvDatosValor: TcxGridDBColumn
+                Caption = 'Valor Bono RD$'
+                DataBinding.FieldName = 'Valor'
+                Width = 100
+              end
+              object tvDatosActivo: TcxGridDBColumn
+                DataBinding.FieldName = 'Activo'
+                Options.Editing = False
+                Width = 50
+              end
+            end
+          end
+        end
+      end
+      inherited tsDatos: TcxTabSheet
+        inherited lcDatos: TdxLayoutControl
+          Width = 736
+          Height = 493
+          object EdTarjeta: TcxDBTextEdit [0]
+            Tag = 99
+            Left = 101
+            Top = 36
+            DataBinding.DataField = 'TarjetaID'
+            DataBinding.DataSource = dsDatos
+            Properties.CharCase = ecUpperCase
+            Properties.ReadOnly = True
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 0
+            Width = 123
+          end
+          object EdDescripcion: TcxDBTextEdit [1]
+            Left = 101
+            Top = 63
+            DataBinding.DataField = 'Descripcion'
+            DataBinding.DataSource = dsDatos
+            Properties.CharCase = ecUpperCase
+            Properties.ReadOnly = True
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 1
+            Width = 325
+          end
+          object CbEstatus: TcxDBCheckBox [2]
+            Left = 101
+            Top = 171
+            DataBinding.DataField = 'Activo'
+            DataBinding.DataSource = dsDatos
+            Properties.Alignment = taLeftJustify
+            Properties.ReadOnly = True
+            Properties.ValueChecked = 'True'
+            Properties.ValueUnchecked = 'False'
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 5
+            Width = 121
+          end
+          object EdNumero: TcxDBTextEdit [3]
+            Left = 101
+            Top = 90
+            DataBinding.DataField = 'TarjetaNumero'
+            DataBinding.DataSource = dsDatos
+            Properties.CharCase = ecUpperCase
+            Properties.ReadOnly = False
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 2
+            Width = 325
+          end
+          object cxDBCurrencyEdit2: TcxDBCurrencyEdit [4]
+            Left = 101
+            Top = 117
+            DataBinding.DataField = 'Valor'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 3
+            Width = 123
+          end
+          object cxDBCurrencyEdit1: TcxDBCurrencyEdit [5]
+            Left = 101
+            Top = 144
+            DataBinding.DataField = 'Consumido'
+            DataBinding.DataSource = dsDatos
+            Properties.ReadOnly = True
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.Color = clAqua
+            Style.HotTrack = False
+            TabOrder = 4
+            Width = 123
+          end
+          inherited Group_Root: TdxLayoutGroup
+            object lcDatosGroup1: TdxLayoutGroup
+              Caption = 'General'
+              object lcDatosItem1: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Tarjeta Id'
+                Control = EdTarjeta
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem2: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Descripci'#243'n'
+                Control = EdDescripcion
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem5: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Tarjeta Numero'
+                Control = EdNumero
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem4: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Valor del Bono'
+                Control = cxDBCurrencyEdit2
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem3: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Consumido'
+                Control = cxDBCurrencyEdit1
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem6: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Activo'
+                Control = CbEstatus
+                ControlOptions.ShowBorder = False
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+  inherited pnCaption: TPanel
+    Width = 501
+    ExplicitWidth = 501
+  end
+  inherited formStorage: TJvFormStorage
+    Left = 344
+  end
+  inherited dsDatos: TDataSource
+    DataSet = qrTarjetaBonos
+    Left = 90
+  end
+  inherited dxPrintGrid: TdxComponentPrinter
+    Left = 284
+    Top = 180
+    inherited dxPrintGridLink: TdxGridReportLink
+      ReportDocument.CreationDate = 38922.606807361110000000
+      BuiltInReportLink = True
+    end
+    inherited dxPrintGridDatos: TdxLayoutControlReportLink
+      ReportDocument.CreationDate = 38922.606807361110000000
+      BuiltInReportLink = True
+      HiddenComponents = {}
+      ExcludedComponents = {}
+      AggregatedReportLinks = {}
+    end
+  end
+  inherited cxGridPopupMenu: TcxGridPopupMenu
+    Left = 144
+    Top = 48
+  end
+  inherited cxGridStyles: TcxStyleRepository
+    Left = 344
+    Top = 212
+  end
+  inherited SaveDialog: TSaveDialog
+    Left = 425
+    Top = 208
+  end
+  inherited qryHelper: TADOQuery
+    Left = 391
+    Top = 2
+  end
+  inherited alEdit: TActionList
+    Left = 284
+    Top = 56
+  end
+  inherited pmCustom: TPopupMenu
+    Left = 224
+    Top = 52
+  end
+  inherited qrDefaultView: TADOQuery
+    Left = 342
+    Top = 2
+  end
+  inherited strView: TJvStrHolder
+    Left = 332
+    Top = 52
+  end
+  inherited strTableNames: TJvStrHolder
+    Left = 424
+    Top = 180
+  end
+  inherited cxStyleRepository1: TcxStyleRepository
+    Left = 288
+    Top = 212
+  end
+  inherited qrUserFields: TABSQuery
+    Left = 224
+    Top = 180
+  end
+  object qrTarjetaBonos: TADOQuery
+    Connection = DM.DataBase
+    CursorType = ctStatic
+    BeforePost = qrTarjetaBonosBeforePost
+    AfterPost = qrTarjetaBonosAfterPost
+    OnNewRecord = qrTarjetaBonosNewRecord
+    Parameters = <
+      item
+        Name = 'tar'
+        DataType = ftString
+        NumericScale = 255
+        Precision = 255
+        Size = 10
+        Value = ''
+      end>
+    SQL.Strings = (
+      'Select * From PTTarjetaBono'
+      'Where TarjetaId = :tar')
+    Left = 48
+    Top = 3
+    object qrTarjetaBonosTarjetaID: TStringField
+      FieldName = 'TarjetaID'
+      Size = 10
+    end
+    object qrTarjetaBonosDescripcion: TStringField
+      FieldName = 'Descripcion'
+      Size = 85
+    end
+    object qrTarjetaBonosTarjetaNumero: TStringField
+      FieldName = 'TarjetaNumero'
+      Size = 25
+    end
+    object qrTarjetaBonosActivo: TBooleanField
+      FieldName = 'Activo'
+    end
+    object qrTarjetaBonosValor: TBCDField
+      FieldName = 'Valor'
+      Precision = 18
+      Size = 0
+    end
+    object qrTarjetaBonosConsumido: TBCDField
+      FieldName = 'Consumido'
+      Precision = 18
+      Size = 0
+    end
+  end
+end

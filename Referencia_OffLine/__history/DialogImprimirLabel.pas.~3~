@@ -1,0 +1,145 @@
+unit DialogImprimirLabel;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DialogModule, Menus, cxLookAndFeelPainters, dxLayoutControl,
+  StdCtrls, cxButtons, cxControls, cxGraphics, cxSpinEdit, cxTimeEdit,
+  cxDropDownEdit, cxCalendar, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
+  cxLookupEdit, cxDBLookupEdit, cxDBExtLookupComboBox, ADODB, cxintl;
+
+type
+  TfrmDialogImprimirLabel = class(TfrmDialogModule)
+    edfecha: TcxDateEdit;
+    lcDialogItem2: TdxLayoutItem;
+    edhora: TcxTimeEdit;
+    lcDialogItem3: TdxLayoutItem;
+    lcDialogGroup3: TdxLayoutGroup;
+    EdUsuario: TcxTextEdit;
+    lcDialogItem4: TdxLayoutItem;
+    EdClave: TcxTextEdit;
+    lcDialogItem5: TdxLayoutItem;
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    valor  : Boolean;
+    Usuario : String;
+
+    procedure Run;
+    procedure Cargar;
+    procedure VerificarUsuario;
+  end;
+
+var
+  frmDialogImprimirLabel: TfrmDialogImprimirLabel;
+
+implementation
+
+uses Main, DataModule, PymeConst;
+
+{$R *.dfm}
+
+
+procedure TfrmDialogImprimirLabel.Cargar;
+begin
+  EdUsuario.Text := '';
+  edhora.Time := Time;
+  edfecha.Date := DM.SystemDate;
+  edhora.Properties.ReadOnly := False;
+  edfecha.Properties.ReadOnly := False;
+end;
+
+
+procedure TfrmDialogImprimirLabel.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if (Key = Vk_Down) or (Key = 13) then
+    PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+  if Key = Vk_Up then
+    PostMessage(Handle, Wm_NextDlgCtl, 1, 0);
+
+  If (key = Vk_F9) Then btAceptar.Click;
+end;
+
+procedure TfrmDialogImprimirLabel.VerificarUsuario;
+Var
+ clave  : String;
+ qfind  : TADOQuery;
+begin
+ valor := False;
+ usuario := '';
+
+ qfind := DM.NewQuery;
+ qfind.Close;
+ qfind.SQL.Text := ' SELECT * FROM SysUsuarios, PTUsuarioSucursal '+
+                   ' WHERE  SysUsuarios.UserID = PTUsuarioSucursal.UserID '+
+                   ' AND SysUsuarios.UserID = '+#39+edusuario.Text+#39+
+//                   ' AND SysUsuarios.Clave = '+#39+edclave.Text+#39+
+                   ' AND PTUsuarioSucursal.SucursalID = '+#39+DM.CurSucursal+#39;
+ qfind.Open;
+
+ If qfind.RecordCount = 0 then
+  begin
+   DM.Error(SUsuarioClaveNoE);
+  end
+ else
+  begin
+//   if (DecryptKey(qfind.FieldByName('Clave').AsString) <> edClave.Text) then
+   usuario := qfind.FieldByName('Nombre').AsString;
+   clave := DecryptKey(qfind.FieldByName('Clave').AsString);
+
+//   if (qfind.FieldByName('Clave').AsString <> edClave.Text) then
+   if (clave <> edClave.Text) then
+    Begin
+     DM.Error('La Clave y/o El Usuario Suministrado Es Incorrecto.');
+    end
+   else
+    begin
+     valor := True;
+//     DM.Info('La Flebotomista '+ Usuario +' Ha Sido Autorizada');
+    end;
+  end;
+end;
+
+
+procedure TfrmDialogImprimirLabel.Run;
+begin
+ Cargar;
+
+ showmodal;                                             
+
+ if ModalResult = mrOk then
+   Begin
+     VerificarUsuario;
+
+     If ( DM.Mensaje('Desea Imprimir el Label de Esta Muestra?' ,mb_yesno) = id_yes ) And
+        ( valor = true ) Then
+       Begin
+        frmMain.Exis_RegMuestra := True;
+        If (frmMain.Exis_RegMuestra = True) then
+          frmMain.frmTmpMuestra.ImprimirLabels;
+          frmMain.frmRegMuestras.Insertar_Impresion(edusuario.Text, edfecha.Date, edhora.Text);
+//          frmMain.frmRegMuestras.Insertar_Impresion(Usuario, edfecha.Date, edhora.Text);
+
+        If (frmMain.Exis_Codigo = True) then
+          frmMain.frmSeguimiento.Insertar_Impresion(edusuario.Text, edfecha.Date, edhora.Text);
+//          frmMain.frmSeguimiento.Insertar_Impresion(Usuario, edfecha.Date, edhora.Text);
+
+        If (frmMain.Exis_Muestra = True) And (frmMain.Muestra_Unico = True) then
+          frmMain.frmTmpMuestra.Insertar_Impresion(edusuario.Text, edfecha.Date, edhora.Text);
+//          frmMain.frmTmpMuestra.Insertar_Impresion(Usuario, edfecha.Date, edhora.Text);
+
+        If (frmMain.Exis_Muestra = True) And (frmMain.Muestra_Todos = True) then
+          frmMain.frmTmpMuestra.Insertar_Impresiones(edusuario.Text, edfecha.Date, edhora.Text);
+//          frmMain.frmTmpMuestra.Insertar_Impresiones(Usuario, edfecha.Date, edhora.Text);
+       End;
+   End;
+end;
+
+
+end.
+

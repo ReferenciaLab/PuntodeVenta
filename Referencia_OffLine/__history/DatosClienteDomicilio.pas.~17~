@@ -1,0 +1,331 @@
+unit DatosClienteDomicilio;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DatosModule, cxStyles, cxCustomData, cxGraphics, cxFilter, cxData,
+  cxDataStorage, cxEdit, DB, cxDBData, Menus, cxLookAndFeelPainters, dxPSGlbl,
+  dxPSUtl, dxPSEngn, dxPrnPg, dxBkgnd, dxWrap, dxPrnDev, dxPSCompsProvider,
+  dxPSFillPatterns, dxPSEdgePatterns, ABSMain, JvStringHolder, StdActns,
+  ActnList, ADODB, cxGridCustomPopupMenu, cxGridPopupMenu, dxPSContainerLnk,
+  dxPSdxLCLnk, dxPSCore, dxPScxCommon, dxPScxGridLnk, JvComponentBase,
+  JvFormPlacement, ExtCtrls, dxLayoutControl, StdCtrls, cxButtons, cxGridLevel,
+  cxClasses, cxControls, cxGridCustomView, cxGridCustomTableView,
+  cxGridTableView, cxGridDBTableView, cxGrid, cxPC, JvExControls, JvComponent,
+  JvEnterTab, cxMaskEdit, cxSpinEdit, cxDBEdit, cxContainer, cxTextEdit,
+  cxCheckBox, cxintl, cxImageComboBox, cxDropDownEdit, cxCalendar, cxMemo,
+  cxLookupEdit, cxDBLookupEdit, cxDBExtLookupComboBox,dlgmensajes, cxImage,
+  cxLabel, LMDCustomButton, LMDButton, LMDControl, LMDBaseControl,
+  LMDBaseGraphicControl, LMDBaseLabel, LMDCustomLabel, LMDLabel,
+  LMDCustomControl, LMDCustomPanel, LMDCustomBevelPanel, LMDSimplePanel;
+
+type
+  TfrmDatosClienteDomicilio = class(TfrmDatosModule)
+    qrClienteDomicilio: TADOQuery;
+    lcDatosGroup1: TdxLayoutGroup;
+    EdClienteDom: TcxDBTextEdit;
+    lcDatosItem1: TdxLayoutItem;
+    EdNombre: TcxDBTextEdit;
+    lcDatosItem2: TdxLayoutItem;
+    cbExtDocumento: TcxExtLookupComboBox;
+    lcDatosItem3: TdxLayoutItem;
+    lcDatosItem7: TdxLayoutItem;
+    lcDatosItem4: TdxLayoutItem;
+    lcDatosGroup2: TdxLayoutGroup;
+    cxDBMemo1: TcxDBMemo;
+    lcDatosItem5: TdxLayoutItem;
+    EdFechaBorn: TcxDBDateEdit;
+    CbSexo: TcxDBImageComboBox;
+    lcDatosItem6: TdxLayoutItem;
+    lcDatosGroup4: TdxLayoutGroup;
+    lcDatosItem8: TdxLayoutItem;
+    mskTelResidencia: TcxDBMaskEdit;
+    lcDatosItem9: TdxLayoutItem;
+    lcDatosGroup5: TdxLayoutGroup;
+    mskTelCelular: TcxDBMaskEdit;
+    lcDatosItem10: TdxLayoutItem;
+    mskTelOficina: TcxDBMaskEdit;
+    lcDatosGroup7: TdxLayoutGroup;
+    lcDatosItem11: TdxLayoutItem;
+    EdEmail: TcxDBTextEdit;
+    lcDatosGroup6: TdxLayoutGroup;
+    tvDatosCteDomID: TcxGridDBColumn;
+    tvDatosTipo_Documento: TcxGridDBColumn;
+    tvDatosDocumento: TcxGridDBColumn;
+    tvDatosNombre: TcxGridDBColumn;
+    tvDatosDireccion: TcxGridDBColumn;
+    tvDatosFecha_Nacimiento: TcxGridDBColumn;
+    tvDatosClienteID: TcxGridDBColumn;
+    tvDatosTel_Oficina: TcxGridDBColumn;
+    tvDatosTel_Residencia: TcxGridDBColumn;
+    tvDatosTel_Celular: TcxGridDBColumn;
+    tvDatosEmail: TcxGridDBColumn;
+    tvDatosUserID: TcxGridDBColumn;
+    btPaciente: TcxButton;
+    lcDatosGroup8: TdxLayoutGroup;
+    qrClienteDomDet: TADOQuery;
+    dsDatosTran: TDataSource;
+    lcDatosGroup9: TdxLayoutGroup;
+    GridTransacciones: TcxGrid;
+    cxGridDBTableView1: TcxGridDBTableView;
+    cxGridLevel1: TcxGridLevel;
+    qrClienteDomDetCteDomID: TIntegerField;
+    qrClienteDomDetCteDomDet: TIntegerField;
+    qrClienteDomDetMuestrano: TStringField;
+    qrClienteDomDetFecha: TDateTimeField;
+    qrClienteDomDetHora: TStringField;
+    qrClienteDomDetResultado_Via: TStringField;
+    qrClienteDomDetUsuario_Toma: TStringField;
+    qrClienteDomDetObservacion: TStringField;
+    qrClienteDomDetRefrecid: TLargeintField;
+    cxGridDBTableView1CteDomID: TcxGridDBColumn;
+    cxGridDBTableView1CteDomDet: TcxGridDBColumn;
+    cxGridDBTableView1Muestrano: TcxGridDBColumn;
+    cxGridDBTableView1Fecha: TcxGridDBColumn;
+    cxGridDBTableView1Hora: TcxGridDBColumn;
+    cxGridDBTableView1Resultado_Via: TcxGridDBColumn;
+    cxGridDBTableView1Usuario_Toma: TcxGridDBColumn;
+    cxGridDBTableView1Observacion: TcxGridDBColumn;
+    cxGridDBTableView1Refrecid: TcxGridDBColumn;
+    lcDatosItem12: TdxLayoutItem;
+    dxLayoutControl1Item2: TdxLayoutItem;
+    qrClienteDomicilioCteDomID: TIntegerField;
+    qrClienteDomicilioTipo_Documento: TIntegerField;
+    qrClienteDomicilioDocumento: TStringField;
+    qrClienteDomicilioNombre: TStringField;
+    qrClienteDomicilioSexo: TSmallintField;
+    qrClienteDomicilioDireccion: TStringField;
+    qrClienteDomicilioFecha_Nacimiento: TDateTimeField;
+    qrClienteDomicilioClienteID: TStringField;
+    qrClienteDomicilioTel_Oficina: TStringField;
+    qrClienteDomicilioTel_Residencia: TStringField;
+    qrClienteDomicilioTel_Celular: TStringField;
+    qrClienteDomicilioEmail: TStringField;
+    qrClienteDomicilioUserID: TStringField;
+    dxLayoutControl1Item1: TdxLayoutItem;
+    btTransacciones: TcxButton;
+    dxLayoutControl1Item3: TdxLayoutItem;
+    bteliminar: TcxButton;
+    dxLayoutControl1Item4: TdxLayoutItem;
+    btcancelar: TcxButton;
+    btgrabar: TcxButton;
+    dxLayoutControl1Item5: TdxLayoutItem;
+    btimprimir: TcxButton;
+    dxLayoutControl1Item6: TdxLayoutItem;
+    EdCedula: TcxMaskEdit;
+    imgFoto: TcxImage;
+    lcDatosItem13: TdxLayoutItem;
+    lcDatosGroup10: TdxLayoutGroup;
+    lcDatosGroup12: TdxLayoutGroup;
+    lcDatosGroup11: TdxLayoutGroup;
+    spDetalleTransacciones: TLMDSimplePanel;
+    LMDLabel1: TLMDLabel;
+    LMDButton1: TLMDButton;
+    btAceptaPG: TLMDButton;
+    cxLabel3: TcxLabel;
+    cxLabel7: TcxLabel;
+    cxLabel1: TcxLabel;
+    cxLabel2: TcxLabel;
+    cxLabel4: TcxLabel;
+    cxDBDateEdit1: TcxDBDateEdit;
+    cxLabel5: TcxLabel;
+    cxDBMaskEdit1: TcxDBMaskEdit;
+    cboResultados: TcxDBImageComboBox;
+    cxLabel6: TcxLabel;
+    cxDBTextEdit4: TcxDBTextEdit;
+    cxDBMemo2: TcxDBMemo;
+    cxDBMaskEdit2: TcxDBMaskEdit;
+    cxDBMaskEdit3: TcxDBMaskEdit;
+    procedure EdCedulaExit(Sender: TObject);
+    procedure cbExtDocumentoPropertiesChange(Sender: TObject);
+    procedure qrClienteDomicilioAfterPost(DataSet: TDataSet);
+    procedure qrClienteDomicilioNewRecord(DataSet: TDataSet);
+    procedure qrClienteDomicilioBeforePost(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+    Db1Servidor,Db2Servidor : String;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmDatosClienteDomicilio: TfrmDatosClienteDomicilio;
+
+implementation
+
+uses DataModule, Main;
+
+{$R *.dfm}
+
+procedure TfrmDatosClienteDomicilio.cbExtDocumentoPropertiesChange(
+  Sender: TObject);
+begin
+  inherited;
+  edCedula.Properties.EditMask := dm.qrDocumento.Fieldbyname('Mascara').AsString;
+  edCedula.Update;
+end;
+
+procedure TfrmDatosClienteDomicilio.EdCedulaExit(Sender: TObject);
+Var
+  qfind       : TAdoQuery;
+  Direccion   : String;
+begin
+  inherited;
+  If ((qrClienteDomicilio.State = dsInsert) Or (qrClienteDomicilio.State = dsEdit)) and
+     (Length(trim(dm.qrDocumento.Fieldbyname('Mascara').AsString))=13)  Then
+    Begin
+      If Not Dm.GetDigitoVerificador(copy(DM.Cortar_Char('-', EdCedula.Text),1,11)) Then
+      begin
+         EtMensajeDlg('Favor digitar Número de Cédula Válido.', etError, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
+         qrClienteDomicilioDocumento.Value := EmptyStr;
+         EdCedula.Setfocus;
+         Exit;
+      end;
+      qfind := DM.NewQuery;
+      DM.qrParametro.close;
+      DM.qrParametro.open;
+      If dm.qrParametroServidor_AS400.value = EmptyStr then
+      begin
+           Db1Servidor := 'Ced2011_1';
+           Db2Servidor := 'Ced2011_2';
+      end
+      else
+      begin
+           Db1Servidor := 'Ced2011';
+      end;
+       qfind.Close;
+       qfind.SQL.Text:=' SELECT NOMBRES,APELLIDO1,ISNULL(APELLIDO2,'+#39+#39+') AS APELLIDO2,FECHA_NAC,SEXO,COD_SANGRE,P.COD_MUNICIPIO,P.COD_CIUDAD,'+
+                             '  P.COD_SECTOR,ISNULL(CALLE,'+#39+#39+') AS CALLE,ISNULL(CASA,'+#39+#39+') AS CASA,ISNULL(EDIFICIO,'+#39+#39+') AS EDIFICIO, ISNULL(PISO,'+#39+#39+') AS PISO, ISNULL(APTO,'+#39+#39+') AS APTO,ISNULL(S.DESCRIPCION,'+#39+#39+') AS SECTOR,C.CIUDADID AS CIUDAD '+
+                             '   FROM '+Db1Servidor+'.dbo.CEDULADOS P inner join '+Db1Servidor+'.dbo.SECTOR_PARAJE S on  '+
+                             '   		(S.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI)  '+
+                             '   		AND (S.COD_SECTOR COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_SECTOR COLLATE SQL_AltDiction_CP850_CI_AI ) INNER JOIN   '+
+                             '   '+Db1Servidor+'.dbo.MUNICIPIO M ON  '+
+                             '   		M.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI '+
+                             '   		LEFT OUTER JOIN dbo.PTCIUDAD C ON '+
+                             '   		C.COD_NUM_PADRON COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI '+
+                             ' WHERE MUN_CED ='+#39+Copy(EdCedula.Text,1,3)+#39+
+                             ' AND   SEQ_CED ='+#39+copy(EdCedula.Text,5,7)+#39+
+                             ' AND   VER_CED ='+#39+copy(EdCedula.Text,13,1)+#39;
+       qfind.Open;
+       If (dm.qrParametroServidor_AS400.value <> EmptyStr) then
+       begin
+           If (qfind.RecordCount =0) Then
+           begin
+             Raise exception.CreateFmt(' Número de Cedula No Existe.  Verifique.', []);
+           end
+       end
+       else
+       If (dm.qrParametroServidor_AS400.value = EmptyStr) and (qfind.RecordCount =0) then
+       begin
+           qfind.Close;
+           qfind.SQL.Text:=' SELECT NOMBRES,APELLIDO1,ISNULL(APELLIDO2,'+#39+#39+') AS APELLIDO2,FECHA_NAC,SEXO,COD_SANGRE,P.COD_MUNICIPIO,P.COD_CIUDAD,'+
+                                 '  P.COD_SECTOR,ISNULL(CALLE,'+#39+#39+') AS CALLE,ISNULL(CASA,'+#39+#39+') AS CASA,ISNULL(EDIFICIO,'+#39+#39+') AS EDIFICIO, ISNULL(PISO,'+#39+#39+') AS PISO, ISNULL(APTO,'+#39+#39+') AS APTO,ISNULL(S.DESCRIPCION,'+#39+#39+') AS SECTOR,C.CIUDADID AS CIUDAD '+
+                                 '   FROM '+Db2Servidor+'.dbo.CEDULADOS P inner join '+Db2Servidor+'.dbo.SECTOR_PARAJE S on  '+
+                                 '   		(S.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI)  '+
+                                 '   		AND (S.COD_SECTOR COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_SECTOR COLLATE SQL_AltDiction_CP850_CI_AI ) INNER JOIN   '+
+                                 '   '+Db2Servidor+'.dbo.MUNICIPIO M ON  '+
+                                 '   		M.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI '+
+                                 '   		LEFT OUTER JOIN dbo.PTCIUDAD C ON '+
+                                 '   		C.COD_NUM_PADRON COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI '+
+                                 ' WHERE MUN_CED ='+#39+Copy(EdCedula.Text,1,3)+#39+
+                                 ' AND   SEQ_CED ='+#39+copy(EdCedula.Text,5,7)+#39+
+                                 ' AND   VER_CED ='+#39+copy(EdCedula.Text,13,1)+#39;
+           qfind.Open;
+       end;
+         If (qfind.RecordCount =0) Then
+         begin
+           Raise exception.CreateFmt(' Número de Cedula No Existe.  Verifique.', []);
+         end;
+           qrClienteDomicilioNombre.Value := qfind.FieldByName('Nombres').AsString+' '+
+                                     qfind.FieldByName('APELLIDO1').AsString+' '+
+                                     qfind.FieldByName('APELLIDO2').AsString;
+           qrClienteDomicilioFecha_Nacimiento.Text := qfind.FieldByName('fecha_nac').AsString;
+           case qfind.FieldByName('Sexo').AsString[1] of
+              'M': cbSexo.ItemIndex:=1;
+              'F': cbSexo.ItemIndex:=0;
+           end;
+           if Copy(cbSexo.Text,1,1)='F' then
+             qrClienteDomicilioSEXO.Text := '0'
+           else if Copy(cbSexo.Text,1,1)='M' then
+             qrClienteDomicilioSEXO.Text := '1';
+
+           if qfind.FieldByName('Calle').AsString <> EmptyStr then
+              Direccion := qfind.FieldByName('Calle').AsString;
+           if qfind.FieldByName('Casa').AsString <> EmptyStr then
+              Direccion := Direccion+' No. '+qfind.FieldByName('Casa').AsString;
+           if qfind.FieldByName('Edificio').AsString <> EmptyStr then
+              Direccion := Direccion+' Edif.'+qfind.FieldByName('Edificio').AsString;
+           if not ((qfind.FieldByName('Piso').AsString = EmptyStr) or (qfind.FieldByName('Piso').AsString = '00'))then
+              Direccion := Direccion+' Piso '+qfind.FieldByName('Piso').AsString;
+           if qfind.FieldByName('Apto').AsString <> EmptyStr then
+              Direccion := Direccion+' Apto. '+qfind.FieldByName('Apto').AsString;
+           qrClienteDomicilioDIRECCION.Text   := Trim(Direccion);
+//             qrClientesSECTOR.Text      := qfind.FieldByName('Sector').AsString;
+//             qrClientesCIUDADID.Value   := qfind.FieldByName('Ciudad').AsString;
+            If dm.qrParametroServidor_AS400.value <> EmptyStr then
+                DM.BuscaFoto(Self,Copy(EdCedula.Text,1,3),Copy(EdCedula.Text,5,7),Copy(EdCedula.Text,13,1));
+    End;
+    FreeAndNil(qfind);
+end;
+
+procedure TfrmDatosClienteDomicilio.FormCreate(Sender: TObject);
+begin
+  inherited;
+  DM.qrParametro.close;
+  DM.qrParametro.open;
+
+  DM.qrDocumento.Close;
+  DM.qrDocumento.Open;
+  LcGrid.Enabled := False;
+  edclienteDom.Properties.ReadOnly := DM.qrParametroAutoNumerarTarjetas.Value;
+  tsMain.Enabled      := False;
+  tsMain.Visible      := False;
+  tsMain.TabVisible   := False;
+  pcDatos.ActivePage  := tsDatos;
+//  EdTarjetaId.Properties.ReadOnly := DM.qrParametroAutoNumerarTarjetas.Value;
+end;
+
+procedure TfrmDatosClienteDomicilio.qrClienteDomicilioAfterPost(
+  DataSet: TDataSet);
+begin
+  inherited;
+  qrClienteDomicilio.Refresh;
+end;
+
+procedure TfrmDatosClienteDomicilio.qrClienteDomicilioBeforePost(
+  DataSet: TDataSet);
+begin
+  inherited;
+{  If (qrTarjetaDescuento.State = dsInsert) Or
+     (qrTarjetaDescuento.State = dsEdit) Then
+    If (qrTarjetaDescuentoTarjetaID.IsNull) Or
+       (qrTarjetaDescuentoTarjetaID.Value = '')Then
+      AutoKeyField := 'TarjetaID';
+
+  DM.qrParametro.close;
+  DM.qrParametro.open;
+
+  if (qrTarjetaDescuento.State = dsInsert) and (DM.qrParametroAutoNumerarTarjetas.Value) then
+  begin
+//   qrTarjetaDescuentoTarjetaID.Value := formatfloat('00',strtofloat(DM.CurSucursal)) + '-' +
+   qrTarjetaDescuentoTarjetaID.Value := Copy(DM.CurSucursal, 1, 2) + '-' +
+                                        formatfloat('0000',DM.qrParametroSecuenciaTarjetas.asfloat);
+
+   DM.qrParametro.edit;
+   DM.qrParametroSecuenciaTarjetas.Value := DM.qrParametroSecuenciaTarjetas.Value + 1;
+   DM.qrParametro.Post;
+}
+end;
+
+procedure TfrmDatosClienteDomicilio.qrClienteDomicilioNewRecord(
+  DataSet: TDataSet);
+begin
+  inherited;
+//  qrTarjetaDescuentoBono.Value := False;
+//  qrTarjetaDescuentoNumeroUnico.Value := False;
+//  qrTarjetaDescuentoNumeroObligatorio.Value := False;
+end;
+
+end.

@@ -1,0 +1,32 @@
+
+A-  Campos a usar. Para agregar en el mantenimiento de las pruebas:
+   1-   Nombre abreviado de la prueba.
+   2-   Departamento (MANTENIMIENTO).
+   3-   Tipo de Muestra (Sangre - Orina). Existen Otras Si Quieres (MANTENIMIENTO).
+   4-   Medio (Tubo - Envase).
+   5-   Color (Solo Aplica Para los TUBOS (MEDIO).
+B-   Parametros para las Impresiones de los Codigos:
+   1-   Todos los Medios Tipo (ENVASE) Se Imprimen en un Label Solo.
+   2-   Los Tubos se Agruparan por Departamento + Color Pudiendo generarse un Label que contenga desde 1 hasta 8 pruebas:
+         Se Generara un Label por cada Departamento + Color que exista en las pruebas, pudiendo agrupar hasta 8 pruebas en un label. No tengo que decirte que si tiene mas de 8 pruebas para un solo departamento generaras otro label con las pruebas restante. Si una prueba pertenece al mismo departamento pero no es del mismo color de ninguna otra prueba de ese departamento entonces ese Label se generara con esa prueba solamente. Igual pasara si una prueba es de otro Departamento pero tiene el mismo color de las anteriores.
+         Si imprimes una prueba sola se imprimira la descripcion completa, si el label tiene mas de una vas a imprimir las descripciones cortas de las pruebas contenidas en ese label.
+        Por las pantallas de seguimiento, se necesita que los codigos de barras se inserten en una tabla, para poder consultar el label y darle un seguimiento al TUBO ó ENVASE que tiene dicho label. En esta tabla esta el dichoso label, numero de muestra, fecha, hora, usuario, departamento, y si esta entrando o saliendo de dicho departamento. Una Pantalla para dar Entradas y Otra para Dar Salidas.
+ En los departamentos solo deben ver las pruebas que les corresponden (FILTRAR).
+C-  Descripcion de los Labels:
+   1-   Los Codigos de Barra Solo se Imprimen en Code 39.
+   2- En el Label de Toma de Muestra el Codigo de Barra Grande Es el Numero de Muestra SOLO.
+   3-   El Codigo de Barra Pequeño es la LETRA que corresponde al numero de Orden del Label: 1=A ; 2=B ; 3=C ; 4=D ; Etc.
+   4-   En la Parte Superior Derecha se Imprime el Codigo del Usuario Que Esta Generando la Impresion.  (NO IMPORTA QUE SE REIMPRIMA EL CODIGO DE BARRA DEBE IMPRIMIR EL USUARIO QUE ESTA GENERANDO LA IMPRESION).
+   5-   El Detalle del Numero al Pie del Codigo de Barra es el Siguiente: 12001572-001-01
+        12001572 =  NUMERO DE MUESTRA; 001 = NUMERO DE ORDEN; 01 = SUCURSAL.
+   6-   En Esa Misma Linea a la Derecha se Imprime el Nombre del Departamento.
+   7-   En La Proxima Linea Se Imprime el Nombre del Paciente.
+   8-   En La Proxima Linea Se Imprime la Descripciones de las Pruebas Impresas en ese Label.
+   9-   En la Parte Inferior Derecha se Imprime el Codigo de Barra Pequeño que es la Letra que Corresponde al Num de Orden. 
+   10- El Codigo de Barra que Imprimen los Departamentos Solo Imprime: )
+        10-1   El Numero de Muestra (Codigo de Barra).
+        10-2   En La Proxima Linea Se Imprime el Nombre del Paciente. 
+        10-3   En La Proxima Linea Se Imprime la Descripcion de la Prueba.
+        10-4   En los Departamentos Solo deben Ver en las Consultas las Pruebas que les corresponden (FILTRAR). ESTO ES DE MEMORIA. TU TIENES LA MUESTRA.
+
+Juan José Pérez Namis.

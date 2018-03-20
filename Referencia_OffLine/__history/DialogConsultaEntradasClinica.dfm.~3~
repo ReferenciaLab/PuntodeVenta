@@ -1,0 +1,138 @@
+inherited frmDialogConsultaEntradasClinica: TfrmDialogConsultaEntradasClinica
+  Caption = 'Consulta de Entradas (CLINICAS).'
+  ClientHeight = 553
+  ClientWidth = 958
+  KeyPreview = True
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  OnShow = FormShow
+  ExplicitWidth = 966
+  ExplicitHeight = 587
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dxLayoutControl1: TdxLayoutControl
+    Width = 958
+    Height = 553
+    ExplicitWidth = 958
+    ExplicitHeight = 553
+    inherited edbuscarpor: TcxComboBox
+      Properties.CharCase = ecUpperCase
+      Properties.Items.Strings = (
+        'Laboratorio No.'
+        'Registro No.'
+        'Record'
+        'Habitacion'
+        'Paciente'
+        'Nombre del Paciente'
+        'Nombre del Cliente')
+    end
+    inherited edbuscar: TcxTextEdit
+      Properties.OnChange = edbuscarPropertiesChange
+    end
+    inherited cgDatos: TcxGrid
+      Width = 936
+      Height = 441
+      OnEnter = cgDatosEnter
+      OnExit = cgDatosExit
+      ExplicitWidth = 936
+      ExplicitHeight = 441
+      inherited dbDatos: TcxGridDBTableView
+        DataController.KeyFieldNames = 'ENTRADAID'
+        object dbDatosEntradaID: TcxGridDBColumn
+          Caption = 'Registro No.'
+          DataBinding.FieldName = 'ENTRADAID'
+          Options.Editing = False
+          Width = 55
+        end
+        object dbDatosFecha: TcxGridDBColumn
+          DataBinding.FieldName = 'Fecha'
+          Options.Editing = False
+          Width = 45
+        end
+        object dbDatosRECORDCLINICA: TcxGridDBColumn
+          Caption = 'Record No.'
+          DataBinding.FieldName = 'RECORDCLINICA'
+          Options.Editing = False
+          Width = 50
+        end
+        object dbDatosNUMEROHABITACION: TcxGridDBColumn
+          Caption = 'Hab. No.'
+          DataBinding.FieldName = 'NUMEROHABITACION'
+          Options.Editing = False
+          Width = 30
+        end
+        object dbDatosFECHAENTRADA: TcxGridDBColumn
+          Caption = 'Fecha Ent.'
+          DataBinding.FieldName = 'FECHAENTRADA'
+          Options.Editing = False
+          Width = 45
+        end
+        object dbDatosPacienteID: TcxGridDBColumn
+          Caption = 'Pac. Id.'
+          DataBinding.FieldName = 'PacienteID'
+          Options.Editing = False
+          Width = 40
+        end
+        object dbDatosNombrePaciente: TcxGridDBColumn
+          Caption = 'Nombre Paciente'
+          DataBinding.FieldName = 'NombrePaciente'
+          Options.Editing = False
+          Width = 90
+        end
+        object dbDatosClienteNombre: TcxGridDBColumn
+          Caption = 'Nombre de Cliente'
+          DataBinding.FieldName = 'ClienteNombre'
+          Options.Editing = False
+          Width = 80
+        end
+        object dbDatosNeto: TcxGridDBColumn
+          Caption = 'Valor'
+          DataBinding.FieldName = 'Neto'
+          Options.Editing = False
+          Width = 45
+        end
+        object dbDatosTotalPagado: TcxGridDBColumn
+          Caption = 'Pagado'
+          DataBinding.FieldName = 'TotalPagado'
+          Options.Editing = False
+          Width = 45
+        end
+        object dbDatosTotalPendiente: TcxGridDBColumn
+          Caption = 'Pendiente'
+          DataBinding.FieldName = 'TotalPendiente'
+          Options.Editing = False
+          Width = 45
+        end
+        object dbDatosEstatus: TcxGridDBColumn
+          Caption = 'Fact'
+          DataBinding.FieldName = 'ESTATUS_CLINICA'
+          PropertiesClassName = 'TcxCheckBoxProperties'
+          Properties.ReadOnly = True
+          Properties.ValueChecked = 'F'
+          Properties.ValueUnchecked = 'P'
+          Options.Editing = False
+          Width = 30
+        end
+      end
+    end
+    inherited btcancelar: TcxButton
+      Left = 872
+      Top = 517
+      ExplicitLeft = 872
+      ExplicitTop = 517
+    end
+    inherited btaceptar: TcxButton
+      Left = 791
+      Top = 517
+      ExplicitLeft = 791
+      ExplicitTop = 517
+    end
+  end
+  inherited dsDatos: TDataSource
+    Left = 916
+    Top = 31
+  end
+  inherited cxIntl1: TcxIntl
+    Left = 880
+  end
+end

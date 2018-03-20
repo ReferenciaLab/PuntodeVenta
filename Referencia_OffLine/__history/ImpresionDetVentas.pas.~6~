@@ -1,0 +1,227 @@
+unit ImpresionDetVentas;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Menus, cxLookAndFeelPainters, dxLayoutControl, StdCtrls, cxButtons,
+  cxCurrencyEdit, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar,
+  cxContainer, cxEdit, cxGroupBox, cxRadioGroup, cxControls,ADODB,pptypes,
+  cxGraphics, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, ppStrtch,
+  ppRichTx, ppBands, ppClass, ppCtrls, ppVar, ppPrnabl, ppCache, ppComm,
+  ppRelatv, ppProd, ppReport, DB, ppDB, ppDBPipe, JvMemoryDataset, dlgMensajes,
+  cxDBExtLookupComboBox;
+
+type
+  TfrmImpresionDetVentas = class(TForm)
+    dxLayoutControl3: TdxLayoutControl;
+    btaceptarcuadre: TcxButton;
+    btcancelarcuadre: TcxButton;
+    dxLayoutGroup2: TdxLayoutGroup;
+    dxLayoutControl3Group14: TdxLayoutGroup;
+    GrupoParametros: TdxLayoutGroup;
+    GroupSaldo: TdxLayoutGroup;
+    botonescuadre: TdxLayoutGroup;
+    dxLayoutControl3Item31: TdxLayoutItem;
+    dxLayoutControl3Item10: TdxLayoutItem;
+    Label2: TLabel;
+    GrupoToma: TdxLayoutGroup;
+    FechaIni: TcxDateEdit;
+    dxLayoutControl3Item2: TdxLayoutItem;
+    FechaFin: TcxDateEdit;
+    dxLayoutControl3Item33: TdxLayoutItem;
+    RgImpresion: TcxRadioGroup;
+    dxLayoutItem2: TdxLayoutItem;
+    ppListadoDetVentas: TppReport;
+    ppHeaderBand16: TppHeaderBand;
+    ppDBText215: TppDBText;
+    ppLabel238: TppLabel;
+    ppSystemVariable23: TppSystemVariable;
+    ppSystemVariable24: TppSystemVariable;
+    ppLabel239: TppLabel;
+    ppLabel241: TppLabel;
+    ppSystemVariable25: TppSystemVariable;
+    ppDetailBand21: TppDetailBand;
+    ppDBText218: TppDBText;
+    ppDBText219: TppDBText;
+    ppDBText223: TppDBText;
+    ppDBText226: TppDBText;
+    ppDBCalc12: TppDBCalc;
+    ppDBCalc37: TppDBCalc;
+    ppLabel257: TppLabel;
+    ppDBCalc39: TppDBCalc;
+    qrReporte: TADOQuery;
+    dsReporte: TDataSource;
+    JvReporte: TJvMemoryData;
+    JvReporteEntradaID: TStringField;
+    JvReporteMuestrano: TStringField;
+    JvReporteNombrePaciente: TStringField;
+    JvReporteTotalPagado: TCurrencyField;
+    JvReporteFecha: TStringField;
+    dsReporteJ: TDataSource;
+    ppReporteDetVentas: TppDBPipeline;
+    ppSummaryBand1: TppSummaryBand;
+    ppShape1: TppShape;
+    ppLabel242: TppLabel;
+    ppLabel246: TppLabel;
+    ppLabel250: TppLabel;
+    ppLabel1: TppLabel;
+    ppLabel2: TppLabel;
+    ppLabel6: TppLabel;
+    ppLabel7: TppLabel;
+    JvReporteDescuento: TCurrencyField;
+    JvReporteGrupoDescuentoTotal: TStringField;
+    ppDBText2: TppDBText;
+    ppLabel5: TppLabel;
+    ppDBText3: TppDBText;
+    JvReporteNeto: TCurrencyField;
+    ppDBCalc1: TppDBCalc;
+    JvReporteBruto: TCurrencyField;
+    JvReporteClienteNombre: TStringField;
+    ppLabel3: TppLabel;
+    ppDBText1: TppDBText;
+    procedure FormShow(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure Run;
+  end;
+
+var
+  frmImpresionDetVentas: TfrmImpresionDetVentas;
+  Seleccion : string;
+
+implementation
+
+uses ActionsDM, DataModule, DatosClientesPlanes, Main;
+
+{$R *.dfm}
+
+procedure TfrmImpresionDetVentas.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (key = Vk_Down) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+  if (key = 13) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+  if (key = Vk_Up)  then
+     PostMessage(Handle, Wm_NextDlgCtl, 1, 0);
+  if (key = 27) then
+  begin
+   Close;
+  end;
+end;
+
+procedure TfrmImpresionDetVentas.FormShow(Sender: TObject);
+begin
+  if not DM.qrSucursal.Active then
+    DM.qrSucursal.Open;
+
+  FechaIni.Date := DM.Buscar_Fecha_Actual;
+  FechaFin.Date := DM.Buscar_Fecha_Actual;
+end;
+
+procedure TfrmImpresionDetVentas.Run;
+Var Muestrano_Ant,CodSucursal  : String;
+begin
+ showmodal;
+ if ModalResult = mrOk then
+ begin
+ If MessageDlg('Desea Imprimir el Listado Detallado de Ventas ?', mtWarning, [mbYes,mbNo], 0) = mrYes then
+ begin
+    Application.ProcessMessages;
+    If (FechaIni.Text=EmptyStr) then
+    begin
+      EtMensajeDlg('Fecha Inicial No puede estar en blanco.  Verifique.',etConfirmacion,[etOk],1,dm.Imagenes.Items[5].Bitmap,true);
+      Exit;
+    end;
+    If (FechaFin.Text=EmptyStr) then
+    begin
+      EtMensajeDlg('Fecha Final No puede estar en blanco.  Verifique.',etConfirmacion,[etOk],1,dm.Imagenes.Items[5].Bitmap,true);
+      Exit;
+    end;
+
+    Seleccion :=  '	Declare @Muestrano		Varchar(20),	@Neto			Money,'+
+			            ' @NombrePaciente	Varchar(80),	@ClienteNombre  Varchar(80),'+
+			            ' @TotalPagado	Money,			@Total_Mayor	Money,'+
+			            ' @ID				int,			@Total_Neto		Money,'+
+			            ' @Index			Int,			@RecordCNT		Int'+
+                  ' Declare @Sales Table '+
+                  ' ( '+
+                  '    sID					Int Identity(1,1)'+
+                  '   ,sMuestrano			Varchar(20)'+
+                  '   ,sNombrePaciente		Varchar(80)'+
+                  '   ,sClienteNombre		Varchar(80)'+
+                  '   ,sNeto				Money '+
+                  '   ,sTotalPagado		Money '+
+                  ' ) '+
+                  ' Select @Total_Mayor=sum(INVOICEAMOUNTMST) '+
+                  ' From  dbo.custinvoicejour '+
+                  ' Where invoicedate between '+#39+FormatDateTime('yyyymmdd', FechaIni.Date)+#39+ ' AND '+#39+FormatDateTime('yyyymmdd', FechaFin.Date)+#39+
+                  '  set @Total_Neto='+#39+'0.00'+#39+
+                  '  Insert Into @Sales '+
+                  ' Select	Muestrano,NombrePaciente,ClienteNombre,Neto,TotalPagado '+
+                  ' From	dbo.Sales (nolock) '+
+                  ' Where   Fecha between between '+#39+FormatDateTime('yyyymmdd', FechaIni.Date)+#39+ ' AND '+#39+FormatDateTime('yyyymmdd', FechaFin.Date)+#39+
+                  ' Select @Index = 1 '+
+                  ' Select @RecordCnt = COUNT(sID) From @Sales '+
+                  ' While (@Index <= @RecordCnt) And (@Total_Mayor >= @Total_Neto ) '+
+                  ' Begin '+
+                  '    SELECT	@Muestrano = sMuestrano, '+
+                  '        @NombrePaciente = sNombrePaciente, '+
+                  '        @ClienteNombre = sClienteNombre, '+
+                  '        @Neto=sNeto, '+
+                  '        @TotalPagado=sTotalPagado '+
+                  '    FROM @Sales '+
+                  '    WHERE sID = @Index '+
+                  '    Set @Total_Neto = @Total_Neto+@Neto '+
+                  '    Select @Muestrano as Muestrano,@NombrePaciente as NombrePaciente, '+
+                  '         @ClienteNombre as ClienteNombre, @Neto as Total_Factura, '+
+                  '         @TotalPagado as TotalPagado, @Total_Neto as Total_Neto '+
+                  '    Set @Index = @Index + 1 '+
+                  ' End ';
+
+    With qrReporte, sql do
+    begin
+      Close;
+      SQL.Text := Seleccion;
+      Open;
+      if IsEmpty then
+      begin
+          EtMensajeDlg('Esta búsqueda NO arrojó datos.  Verifique.',etConfirmacion,[etOk],1,dm.Imagenes.Items[5].Bitmap,true);
+          Exit;
+      end;
+      First;
+      dsReporte.Enabled := False;
+      if not jvReporte.Active then
+         jvReporte.Active := true;
+      jvReporte.EmptyTable;
+      while not eof do
+      begin
+          jvReporte.Append;
+          jvReporteMuestrano.AsString          := fieldbyname('Muestrano').AsString;
+          jvReporteNombrePaciente.AsString     := fieldbyname('NombrePaciente').AsString;
+          jvReporteClienteNombre.AsString      := fieldbyname('ClienteNombre').AsString;
+          jvReporteNeto.AsFloat                := fieldbyname('Neto').AsFloat;
+          jvReporteTotalPagado.AsFloat         := fieldbyname('TotalPagado').AsFloat;
+        Next;
+      end;
+      jvReporte.First;
+      dsReporte.Enabled := True;
+   end;
+   If (jvReporte.RecordCount > 0) Then
+   Begin
+      ppLabel6.Caption := 'Listado Detallado de Ventas ';
+      ppLabel7.Caption :='Desde : '+FormatDateTime('dd/mm/yyyy', FechaIni.Date)+' Hasta : '+FormatDateTime('dd/mm/yyyy', FechaFin.Date);
+        If (RgImpresion.ItemIndex = 0) Then
+           ppListadoDetVentas.DeviceType := dtScreen
+        else If (RgImpresion.ItemIndex = 1) Then
+           ppListadoDetVentas.DeviceType := dtPrinter;
+        ppListadoDetVentas.Print;
+   end;
+  end;
+ end;
+ end;
+end.

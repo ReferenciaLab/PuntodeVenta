@@ -1,0 +1,325 @@
+unit DialogDescUsuario;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DialogModule, Menus, cxLookAndFeelPainters, dxLayoutControl,
+  StdCtrls, cxButtons, cxControls, cxContainer, cxEdit, cxTextEdit,
+  cxCurrencyEdit, db, cxGraphics, cxLookupEdit, cxDBLookupEdit, ADODB,
+  cxDBExtLookupComboBox, cxMaskEdit, cxDropDownEdit, cxImageComboBox, cxintl;
+
+type
+  TfrmDialogDescUsuario = class(TfrmDialogModule)
+    EdDescuento: TcxCurrencyEdit;
+    LcDescuento: TdxLayoutItem;
+    lcDialogGroup3: TdxLayoutGroup;
+    EdTarjeta: TcxExtLookupComboBox;
+    LcTarjeta: TdxLayoutItem;
+    CbTipo: TcxComboBox;
+    LcTipo: TdxLayoutItem;
+    EdNumero: TcxCurrencyEdit;
+    LcNumero: TdxLayoutItem;
+    edPlan: TcxTextEdit;
+    LcPlan: TdxLayoutItem;
+    EdBono: TcxCurrencyEdit;
+    LcBono: TdxLayoutItem;
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure CbTipoEnter(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    Bono          : Double;
+    DesctoSuc     : Double;
+    Alerta        : Boolean;
+    qfindBono     : TADOQuery;
+    qfindTarjeta  : TADOQuery;
+
+    procedure Run(Tipo : integer);
+    procedure Limpiar;
+    procedure Reg_Bono;
+    procedure Buscar_Tarjeta;
+    procedure Buscar_Descuento;
+  end;
+
+var
+  frmDialogDescUsuario: TfrmDialogDescUsuario;
+
+implementation
+
+uses Main, DataModule;
+
+{$R *.dfm}
+
+
+procedure TfrmDialogDescUsuario.Limpiar;
+begin
+ Bono := 0;
+ DesctoSuc := 0;
+ Alerta := False;
+ EdBono.Value := Bono;
+ EdDescuento.Value := 0;
+ edPlan.Style.Color := ClAqua;
+ EdBono.Style.Color := ClAqua;
+ edPlan.Properties.ReadOnly := True;
+ EdBono.Properties.ReadOnly := True;
+ EdDescuento.Style.Color := ClWindow;
+ EdDescuento.Properties.ReadOnly := False;
+end;
+
+
+procedure TfrmDialogDescUsuario.Reg_Bono;
+begin
+// Bono := 0;
+ DesctoSuc := 0;
+ Alerta := False;
+ EdBono.Value := 0;
+ EdDescuento.Value := 0;
+ EdBono.Style.Color := ClWindow;
+ EdBono.Properties.ReadOnly := False;
+ EdDescuento.Style.Color := ClAqua;
+ EdDescuento.Properties.ReadOnly := True;
+end;
+
+
+procedure TfrmDialogDescUsuario.buscar_descuento;
+begin
+  Limpiar;
+  If (CbTipo.ItemIndex = 0) Then
+  Begin
+      edPlan.Text := 'DESCUENTO SUCURSAL';
+      EdDescuento.Style.Color := ClWindow;
+      EdDescuento.Properties.ReadOnly := False;
+      DesctoSuc := DM.DescuentoUsuario(Dm.CurUser);
+      EdDescuento.Value := DM.DescuentoUsuario(Dm.CurUser);
+  end
+  else
+  If (CbTipo.ItemIndex = 2) Then
+  Begin
+      edPlan.Text := 'DESCUENTO EMPLEADO';
+      EdDescuento.Style.Color := ClWindow;
+      EdDescuento.Properties.ReadOnly := False;
+      DesctoSuc := DM.qrParametroDescuento_Empleado.AsCurrency;
+      EdDescuento.Value := DM.qrParametroDescuento_Empleado.AsCurrency;
+  end
+  Else
+  Begin
+      edPlan.Text := '';
+      buscar_tarjeta;
+  end;
+end;
+
+
+procedure TfrmDialogDescUsuario.buscar_tarjeta;
+Var
+  Texto : String;
+begin
+  Limpiar;
+
+  If (CbTipo.ItemIndex = 1) Then
+   If (EdTarjeta.Text = '') Then
+   Begin
+     Limpiar;
+     Alerta := True;
+   end
+ Else
+  Begin
+    //Buscando los Datos de la Tarjeta Seleccionada.
+    qfindTarjeta := DM.Find('SELECT * FROM PTTarjetaDescuento WHERE TarjetaId = :tar',
+                            UpperCase(EdTarjeta.Text));
+
+    If (qfindTarjeta.RecordCount > 0) Then
+      Begin
+        edPlan.Text := qfindTarjeta.FieldByName('Descripcion').AsString;
+
+        If (qfindTarjeta.FieldByName('Bono').AsBoolean = True) then
+          Begin
+            //Buscando el Numero de Tarjeta del Bono
+            qfindBono := DM.NewQuery;
+            qfindBono.Close;
+
+            Texto := ' SELECT * FROM PTTarjetaBono '+
+                     ' WHERE TarjetaID = :tar '+
+                     ' AND Activo = 1 ';
+
+            //Validando el Numero Obligatorio de la Tarjeta de Descuento.
+            If (qfindTarjeta.FieldByName('NumeroObligatorio').AsBoolean = True) Or
+               (qfindTarjeta.FieldByName('Bono').AsBoolean = True) then
+              Texto := Texto + ' AND TarjetaNumero = :num ';
+
+            qfindBono.SQL.Text := Texto;
+            qfindBono.Parameters.ParamByName('tar').Value := UpperCase(EdTarjeta.Text);
+
+            //Validando el Numero Obligatorio de la Tarjeta de Descuento.
+            If (qfindTarjeta.FieldByName('NumeroObligatorio').AsBoolean = True) Or
+               (qfindTarjeta.FieldByName('Bono').AsBoolean = True) then
+                qfindBono.Parameters.ParamByName('num').Value := UpperCase(EdNumero.Text);
+
+            qfindBono.Open;
+
+            If (qfindBono.RecordCount > 0) Then
+              Begin
+                Limpiar;
+                Bono :=  (qfindBono.FieldByName('Valor').Value - qfindBono.FieldByName('Consumido').Value);
+                If (Bono > 1) then
+                  Begin
+                    //El Monto Pendiente del Bono Sera el Descuento.
+                    Reg_Bono;
+                    EdBono.Value := Bono;
+                  End
+                Else
+                  Begin
+                    Alerta := True;
+//                    Raise exception.CreateFmt('Este Bono Ya Fue Consumido.', []);
+                  end;
+              end
+            Else
+              Begin
+                //No existe Bono Con los Criterios de busqueda.
+                Limpiar;
+                Alerta := True;
+              end;
+          end
+        Else
+          Begin
+            //El Descuento no es Un Bono.
+            Limpiar;
+            EdDescuento.Style.Color := ClAqua;
+            EdDescuento.Properties.ReadOnly := True;
+            DesctoSuc := DM.DescTarjetaBono(UpperCase(EdTarjeta.Text), UpperCase(EdNumero.Text));
+            EdDescuento.Value := DM.DescTarjetaBono(UpperCase(EdTarjeta.Text), UpperCase(EdNumero.Text));
+          end;
+      End
+    Else
+      Begin
+        Limpiar;
+        Alerta := True;
+        EdDescuento.Style.Color := ClAqua;
+        EdDescuento.Properties.ReadOnly := True;
+//        Raise exception.CreateFmt('El Descuento Registrado NO Existe.', []);
+      end;
+  end;
+end;
+
+
+procedure TfrmDialogDescUsuario.CbTipoEnter(Sender: TObject);
+begin
+ inherited;
+ buscar_descuento;
+end;
+
+
+procedure TfrmDialogDescUsuario.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if (Key = Vk_Down) or (Key = 13) then
+    PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+  if Key = Vk_Up then
+    PostMessage(Handle, Wm_NextDlgCtl, 1, 0);
+
+  If (key = Vk_F9) Then btAceptar.Click;
+end;
+
+
+procedure TfrmDialogDescUsuario.Run(Tipo : integer);
+begin
+ Limpiar;
+ DM.qrTarjetasDesc.Close;
+ DM.qrTarjetasDesc.Open;
+ if Tipo = 0 Then
+    CbTipo.ItemIndex := 0
+ else
+    CbTipo.ItemIndex := 2;
+ buscar_descuento;
+ showmodal;
+
+ If ModalResult = mrOk then
+  begin
+    If (EdBono.Value < 1) And (EdDescuento.Value < 1) Then
+      Begin
+        If DM.Mensaje('Los Valores de Bono y Descuento Estan en Cero. Desea Realizar la Busqueda Automatica?',mb_yesno) = id_yes then
+          buscar_descuento;
+      end;
+
+    If (Alerta = True) Then
+      Begin
+        Limpiar;
+        Raise exception.CreateFmt(' Operacion Abortada Por Una de Estas Razones: '+ #13 +
+                                  ' ó El Numero de Tarjeta Esta en Blanco '+ #13 +
+                                  ' ó El Descuento NO Existe '+ #13 +
+                                  ' ó El Bono Ya Fue Consumido '+ #13 +
+                                  ' ó La Vigencia del Descuento Esta Vencida '+ #13 +
+                                  ' Por Favor Verifique.!!!', []);
+      End;
+
+    If (EdBono.Value > Bono) Then
+      Begin
+        Raise exception.CreateFmt(' Operacion Abortada: '+
+                                  ' El Monto de Descuento Es Mayor que el Bono Restante.', []);
+      End;
+
+    If (EdDescuento.Value > DesctoSuc) Then
+      Begin
+        Raise exception.CreateFmt(' Operacion Abortada: '+
+                                  ' El Monto de Descuento Es Mayor que el Descuento Permitido.', []);
+
+        DesctoSuc := DM.DescTarjetaBono(UpperCase(EdTarjeta.Text), UpperCase(EdNumero.Text));
+        EdDescuento.Value := DM.DescTarjetaBono(UpperCase(EdTarjeta.Text), UpperCase(EdNumero.Text));
+      End;
+
+    If Factura_St = 'I' then
+    Begin
+        frmMain.frmTmp.qrEntradaPaciente.Edit;
+        If (CbTipo.ItemIndex = 0) Then
+          Begin
+            frmMain.frmTmp.qrEntradaPacienteDescuentoCard.Value := '';
+            frmMain.frmTmp.qrEntradaPacienteDescuentoTexto.Value := UpperCase(edPlan.Text);
+            frmMain.frmTmp.qrEntradaPacienteDescuentoPlanId.Value := CbTipo.Text;
+          end
+        Else
+          Begin
+            frmMain.frmTmp.qrEntradaPacienteDescuentoCard.Value := UpperCase(EdNumero.Text);
+            frmMain.frmTmp.qrEntradaPacienteDescuentoTexto.Value := UpperCase(edPlan.Text);
+            frmMain.frmTmp.qrEntradaPacienteDescuentoPlanId.Value := UpperCase(EdTarjeta.Text);
+          end;
+
+         frmMain.frmTmp.qrEntradaPacienteDescuentoBono.Value := EdBono.Value;
+         frmMain.frmTmp.qrEntradaPacienteDescuentoPorc.Value := EdDescuento.Value;
+         frmMain.frmTmp.qrEntradaPacienteDescAutorizadoPor.Value := DM.CurUser;
+         frmMain.frmTmp.qrEntradaPacienteDescuentoValor.Value := 0;
+
+         frmMain.frmTmp.ActTotales;
+         frmMain.frmTmp.VerificarPagoDiferencia;
+    end  else
+    If Factura_St = 'M' then
+    Begin
+        frmMain.frmTmpMod.qrEntradaPaciente.Edit;
+        If (CbTipo.ItemIndex = 0) Then
+          Begin
+            frmMain.frmTmpMod.qrEntradaPacienteDescuentoCard.Value := '';
+            frmMain.frmTmpMod.qrEntradaPacienteDescuentoTexto.Value := UpperCase(edPlan.Text);
+            frmMain.frmTmpMod.qrEntradaPacienteDescuentoPlanId.Value := CbTipo.Text;
+          end
+        Else
+          Begin
+            frmMain.frmTmpMod.qrEntradaPacienteDescuentoCard.Value := UpperCase(EdNumero.Text);
+            frmMain.frmTmpMod.qrEntradaPacienteDescuentoTexto.Value := UpperCase(edPlan.Text);
+            frmMain.frmTmpMod.qrEntradaPacienteDescuentoPlanId.Value := UpperCase(EdTarjeta.Text);
+          end;
+
+         frmMain.frmTmpMod.qrEntradaPacienteDescuentoBono.Value := EdBono.Value;
+         frmMain.frmTmpMod.qrEntradaPacienteDescuentoPorc.Value := EdDescuento.Value;
+         frmMain.frmTmpMod.qrEntradaPacienteDescAutorizadoPor.Value := DM.CurUser;
+         frmMain.frmTmpMod.qrEntradaPacienteDescuentoValor.Value := 0;
+
+         frmMain.frmTmpMod.ActTotales;
+         frmMain.frmTmpMod.VerificarPagoDiferencia;
+    end;
+  end;
+end;
+
+end.
+
+

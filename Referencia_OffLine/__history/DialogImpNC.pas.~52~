@@ -1,0 +1,287 @@
+unit DialogImpNC;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, cxGraphics, Menus, cxLookAndFeelPainters, cxStyles, cxCustomData,
+  cxFilter, cxData, cxDataStorage, cxEdit, DB, cxDBData, cxGridLevel, cxClasses,
+  cxControls, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
+  cxGridDBTableView, cxGrid, StdCtrls, cxButtons, cxTextEdit, dxLayoutControl,
+  cxContainer, cxMaskEdit, cxDropDownEdit, ADODB,pptypes;
+
+type
+  TfrmDialogImpNC = class(TForm)
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
+    dbDatos: TcxGridDBTableView;
+    lvDatos: TcxGridLevel;
+    cgDatos: TcxGrid;
+    dxLayoutControl1Item4: TdxLayoutItem;
+    dxLayoutControl1Group2: TdxLayoutGroup;
+    btcancelar: TcxButton;
+    dxLayoutControl1Item5: TdxLayoutItem;
+    btaceptar: TcxButton;
+    dxLayoutControl1Item6: TdxLayoutItem;
+    dsDatos: TDataSource;
+    qrCobros: TADOQuery;
+    qrCobrosCobroID: TStringField;
+    qrCobrosTurnoID: TStringField;
+    qrCobrosEntradaID: TStringField;
+    qrCobrosSucursalID: TStringField;
+    mon: TDateTimeField;
+    qrCobrosHora: TStringField;
+    qrCobrosPacienteID: TStringField;
+    qrCobrosPacientePrincipalID: TStringField;
+    qrCobrosUsuarioID: TStringField;
+    qrCobrosTotalCobrado: TBCDField;
+    qrCobrosTotalFactura: TBCDField;
+    qrCobrosTotalPagado: TBCDField;
+    qrCobrosPendienteFactura: TBCDField;
+    qrCobrosPendienteCobro: TBCDField;
+    qrCobrosReciboNo: TStringField;
+    qrCobrosClienteID: TStringField;
+    qrCobrosAplicado: TBooleanField;
+    dbDatosFecha: TcxGridDBColumn;
+    dbDatosHora: TcxGridDBColumn;
+    dbDatosUsuarioID: TcxGridDBColumn;
+    dbDatosTotalCobrado: TcxGridDBColumn;
+    dbDatosTotalFactura: TcxGridDBColumn;
+    dbDatosTotalPagado: TcxGridDBColumn;
+    dbDatosPendienteFactura: TcxGridDBColumn;
+    dbDatosPendienteCobro: TcxGridDBColumn;
+    dbDatosReciboNo: TcxGridDBColumn;
+    qrCobrosMonedaID: TStringField;
+    dbDatosColumn1: TcxGridDBColumn;
+    qrCobrosTipoDoc: TStringField;
+    qrCobrosConcepto: TStringField;
+    qrCobrosCUADREGLOBAL: TStringField;
+    qrCobrosCUADREUSUARIO: TStringField;
+    qrCobrosSecuencia: TAutoIncField;
+    qrCobrosSINPRFILTER: TIntegerField;
+    qrCobrosRecId: TLargeintField;
+    qrCobrosrefRecid: TLargeintField;
+    procedure cgDatosExit(Sender: TObject);
+    procedure cgDatosEnter(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure Run(recid : int64;Tipo_Doc : String);
+  end;
+
+var
+  frmDialogImpNC: TfrmDialogImpNC;
+  AdentroGrid : Boolean;
+
+implementation
+ uses ActionsDM,DataModule,PuntoVenta,Main;
+{$R *.dfm}
+
+procedure TfrmDialogImpNC.cgDatosEnter(Sender: TObject);
+begin
+ AdentroGrid := True;
+end;
+
+procedure TfrmDialogImpNC.cgDatosExit(Sender: TObject);
+begin
+ AdentroGrid := False;
+end;
+
+procedure TfrmDialogImpNC.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (key = Vk_Down) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+  if (key = 13) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+  if (key = Vk_Up) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 1, 0);
+  if (key = 27) then
+  begin
+   Close;
+  end;
+end;
+
+procedure TfrmDialogImpNC.Run(recid : int64;Tipo_Doc : String);
+begin
+  inherited;
+  If Tipo_Doc = 'NC' then
+     Self.Caption := 'Consulta de Notas de Credito'
+  else If Tipo_Doc = 'ND' then
+     Self.Caption := 'Consulta de Notas de Débito'
+  else If Tipo_Doc = 'DV' then
+     Self.Caption := 'Consulta de Devoluciones';
+
+  qrCobros.close;
+  qrCobros.parameters[0].value := RecId;
+  qrCobros.parameters[1].value := Tipo_Doc;
+  qrCobros.open;
+  showmodal;
+  If ModalResult = mrOk then
+  Begin
+    If qrCobros.RecordCount > 0 then
+    begin
+          With DM.qryCobroTicket, sql do
+          begin
+              Close;
+              Clear;
+              Add(' select Distinct e.NombrePaciente ,e.ClienteNombre, c.ReciboNo , c.EntradaId ,e.Muestrano as Muestrano,'+
+                   ' c.Fecha, c.Hora , c.UsuarioID , c.MonedaId ,'+
+                   ' (Select Empresa from PtParametro) as TituloEmpresa,'+
+                   ' s.Nombre,s.Telefono,isnull(d.Descripcion,'+#39+#39+') as Descripcion, c.PendienteFactura, c.TotalCobrado,'+
+                   ' c.PendienteCobro,c.TotalFactura,c.TotalPagado, e.CoberturaSeguro,e.FactExterior,'+
+                   '                             (e.Neto-GastosVarios) as TotalPruebaUsa,e.GastosVarios as TotalEnvioUsa,isnull(d.Comentario ,'+#39+#39+') as Comentario, c.Concepto, '+
+                   '  (Select Convert(Varchar(200),NotaNCreditoBalance) from PtParametro) as NotaNCredito, c.TurnoID as Autorizacion, '+
+                   '  Convert(Varchar(10),Getdate()+180,120) as Fecha_Autoriza, c.Cobroid as CobroID , c.Refrecid as Refrecid, '+
+                   ' (Select RNC from PtParametro) as RNC, d.Secuencia, (Select NotaExterior from PtParametro) as SubTituloEmpresa, e.Origen '+
+                   '  from ptcobro c Inner Join ptentradapaciente e '+
+                   '   on c.refrecid=e.recid Left outer join ptentradapacientedetalle d '+
+                   '   on d.refrecid = e.recid '+
+                   '   Inner Join ptsucursal s  '+
+                   '   on e.SucursalID=s.SucursalID '+
+                   '   Where c.refrecid='+qrCobros.Fieldbyname('refrecid').AsString+
+                   '   and c.cobroid='+#39+qrCobros.Fieldbyname('CobroID').Asstring+#39+
+                   '   and c.TipoDoc='+#39+Tipo_Doc+#39+
+                   '   and e.Dataareaid='+#39+'ldr'+#39);
+              Open;
+              If Not IsEmpty then
+              begin
+                If Ruta_Recibo <> EmptyStr then
+                Begin
+                      if (Tipo_Doc = 'NC') or (Tipo_Doc = 'DV') then
+                      Begin
+                          If (dm.CurRol <> 13) then
+                          begin
+                            If Tipo_Doc = 'ND' then dm.ImpresionRwPrint_Devolucion;
+                            If Tipo_Doc = 'NC' then dm.ImpresionRwPrint_Nota_Credito;
+                          end
+                          else
+                          begin
+                            With DM.ppImpNCDEV do
+                            begin
+                              ShowPrintDialog := False;
+                              DeviceType := dtPrinter;
+                              PrinterSetup.PrinterName := Ruta_Recibo;
+                              Print;
+                            end;
+                          end;
+                      end
+                      else
+                      if (Tipo_Doc = 'ND') then
+                      Begin
+
+{                         if Trim(DM.qryCobroTicket.FieldByName('Autorizacion').AsString) <> EmptyStr then
+                          begin
+                               frmMain.LanzaVentana(-7981);
+                               if (Tiene_Balance = 0) Then
+                               Begin
+                                   Raise exception.CreateFmt('Contraseña no Válida.  Por Favor Verifique.', []);
+                               end;
+                          end;
+}
+                          If Trim(DM.qryCobroTicket.FieldByName('Concepto').AsString)<>'ND CTE. OTORGAN CHEQUE' Then
+                          begin
+                              If (dm.CurRol <> 13) then
+                              begin
+                                  dm.ImpresionRwPrint_Nota_Debito;
+                              end
+                              else
+                              begin
+                                With DM.ppImpND do
+                                begin
+                                  ShowPrintDialog := False;
+                                  DeviceType := dtPrinter;
+                                  PrinterSetup.PrinterName := Ruta_Recibo;
+                                  Print;
+                                end;
+                              end;
+                          end
+                          else
+                          begin
+                            If (dm.CurRol <> 13) then
+                            begin
+                              dm.ImpresionRwPrint_Nota_Credito;
+                            end
+                            else
+                            begin
+                              With DM.ppImpNDCK do
+                              begin
+                                  ShowPrintDialog := False;
+                                  DeviceType := dtPrinter;
+                                  PrinterSetup.PrinterName := Ruta_Recibo;
+                                  Print;
+                              end;
+                            end;
+                          end;
+                      end;
+                End
+                Else
+                Begin
+                      if (Tipo_Doc = 'NC') or (Tipo_Doc = 'DV') then
+                      Begin
+                          If (dm.CurRol <> 13) then
+                          begin
+                            If Tipo_Doc = 'ND' then dm.ImpresionRwPrint_Devolucion;
+                            If Tipo_Doc = 'NC' then dm.ImpresionRwPrint_Nota_Credito;
+                          end
+                          else
+                          begin
+                            With DM.ppImpNCDEV do
+                            begin
+                                DeviceType := dtScreen;
+                                Print;
+                            end;
+                          end;
+                      end
+                      else
+                      if (Tipo_Doc = 'ND') then
+                      Begin
+{                          if Trim(DM.qryCobroTicket.FieldByName('Autorizacion').AsString) <> EmptyStr then
+                          begin
+                               frmMain.LanzaVentana(-7981);
+                               if (Tiene_Balance = 0) Then
+                               Begin
+                                   Raise exception.CreateFmt('Contraseña no Válida.  Por Favor Verifique.', []);
+                               end;
+                          end;
+}
+                          If Trim(DM.qryCobroTicket.FieldByName('Concepto').AsString)<>'ND CTE. OTORGAN CHEQUE' Then
+                          begin
+                              If (dm.CurRol <> 13) then
+                              begin
+                                dm.ImpresionRwPrint_Nota_Debito;
+                              end
+                              else
+                              begin
+                                With DM.ppImpND do
+                                begin
+                                  DeviceType := dtScreen;
+                                  Print;
+                                end;
+                              end;
+                          end
+                          else
+                          begin
+                              If (dm.CurRol <> 13) then
+                              begin
+                                dm.ImpresionRwPrint_Nota_Credito;
+                              end
+                              else
+                              begin
+                                With DM.ppImpNDCK do
+                                begin
+                                  DeviceType := dtScreen;
+                                  Print;
+                                end;
+                              end;
+                          end;
+                      end;
+                End;
+              end;
+          end;
+    end;
+  end;
+end;
+end.

@@ -1,0 +1,166 @@
+inherited frmDialogDescUsuario: TfrmDialogDescUsuario
+  Caption = 'Descuentos Permitidos al Usuario'
+  ClientHeight = 274
+  ClientWidth = 312
+  KeyPreview = True
+  OnKeyDown = FormKeyDown
+  ExplicitWidth = 318
+  ExplicitHeight = 306
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited lcDialog: TdxLayoutControl
+    Width = 312
+    Height = 274
+    ExplicitWidth = 312
+    ExplicitHeight = 274
+    inherited btCancelar: TcxButton
+      Left = 158
+      Top = 238
+      Width = 141
+      TabOrder = 7
+      ExplicitLeft = 158
+      ExplicitTop = 238
+      ExplicitWidth = 141
+    end
+    inherited btAceptar: TcxButton
+      Top = 238
+      Width = 141
+      Caption = 'F9 = Aceptar'
+      Default = False
+      Font.Height = -13
+      Font.Style = [fsBold]
+      TabOrder = 6
+      ExplicitTop = 238
+      ExplicitWidth = 141
+    end
+    object EdDescuento: TcxCurrencyEdit [2]
+      Left = 131
+      Top = 176
+      Properties.DisplayFormat = '0.00,%;(0.00,%)'
+      Properties.ReadOnly = False
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      TabOrder = 4
+      Width = 140
+    end
+    object EdTarjeta: TcxExtLookupComboBox [3]
+      Left = 131
+      Top = 63
+      RepositoryItem = DM.elcTarjetaDescuento
+      Properties.CharCase = ecUpperCase
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      Style.ButtonStyle = btsHotFlat
+      Style.PopupBorderStyle = epbsSingle
+      TabOrder = 1
+      OnClick = CbTipoEnter
+      OnEnter = CbTipoEnter
+      OnExit = CbTipoEnter
+      Width = 140
+    end
+    object CbTipo: TcxComboBox [4]
+      Left = 131
+      Top = 36
+      Properties.CharCase = ecUpperCase
+      Properties.Items.Strings = (
+        'SUCURSAL'
+        'TARJETA'
+        'EMPLEADO')
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      Style.ButtonStyle = btsHotFlat
+      Style.PopupBorderStyle = epbsSingle
+      TabOrder = 0
+      Text = 'SUCURSAL'
+      OnClick = CbTipoEnter
+      OnEnter = CbTipoEnter
+      OnExit = CbTipoEnter
+      Width = 140
+    end
+    object EdNumero: TcxCurrencyEdit [5]
+      Left = 131
+      Top = 117
+      Properties.DecimalPlaces = 0
+      Properties.DisplayFormat = '0'
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      TabOrder = 3
+      OnExit = CbTipoEnter
+      Width = 140
+    end
+    object edPlan: TcxTextEdit [6]
+      Left = 131
+      Top = 90
+      Properties.CharCase = ecUpperCase
+      Properties.ReadOnly = False
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.Color = clWindow
+      Style.HotTrack = False
+      TabOrder = 2
+      Width = 140
+    end
+    object EdBono: TcxCurrencyEdit [7]
+      Left = 131
+      Top = 203
+      Properties.DisplayFormat = 'RD$,0.00;(RD$,0.00)'
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      TabOrder = 5
+      Width = 140
+    end
+    inherited lcDialogGroup_Root: TdxLayoutGroup
+      object lcDialogGroup3: TdxLayoutGroup [0]
+        Caption = 'Tipo de Descuento'
+        object LcTipo: TdxLayoutItem
+          AutoAligns = [aaVertical]
+          Caption = 'Tipo de Descuento'
+          Control = CbTipo
+          ControlOptions.ShowBorder = False
+        end
+        object LcTarjeta: TdxLayoutItem
+          AutoAligns = [aaVertical]
+          Caption = 'Tarjeta de Descuento'
+          Control = EdTarjeta
+          ControlOptions.ShowBorder = False
+        end
+        object LcPlan: TdxLayoutItem
+          AutoAligns = [aaVertical]
+          Caption = 'Plan de Descuento'
+          Control = edPlan
+          ControlOptions.ShowBorder = False
+        end
+        object LcNumero: TdxLayoutItem
+          AutoAligns = [aaVertical]
+          Caption = 'Numero de Tarjeta'
+          Control = EdNumero
+          ControlOptions.ShowBorder = False
+        end
+      end
+      inherited lcDialogGroup1: TdxLayoutGroup
+        Caption = 'Descuento'
+        object LcDescuento: TdxLayoutItem
+          AutoAligns = [aaVertical]
+          Caption = 'Descuento %'
+          Control = EdDescuento
+          ControlOptions.ShowBorder = False
+        end
+        object LcBono: TdxLayoutItem
+          AutoAligns = [aaVertical]
+          Caption = 'Bono de Descuento'
+          Control = EdBono
+          ControlOptions.ShowBorder = False
+        end
+      end
+    end
+  end
+  inherited cxIntl1: TcxIntl
+    Left = 275
+    Top = 10
+  end
+end

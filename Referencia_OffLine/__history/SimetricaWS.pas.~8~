@@ -1,0 +1,341 @@
+// ************************************************************************ //
+// The types declared in this file were generated from data read from the
+// WSDL File described below:
+// WSDL     : http://pss.servehttp.com/SimetricaWS.asmx?WSDL
+// Encoding : utf-8
+// Version  : 1.0
+// (24/11/2009 12:46:33 p.m. - 1.33.2.5)
+// ************************************************************************ //
+
+unit SimetricaWS;
+
+interface
+
+uses InvokeRegistry, SOAPHTTPClient, Types, XSBuiltIns;
+
+type
+
+  // ************************************************************************ //
+  // The following types, referred to in the WSDL document are not being represented
+  // in this file. They are either aliases[@] of other types represented or were referred
+  // to but never[!] declared in the document. The types from the latter category
+  // typically map to predefined/known XML or Borland types; however, they could also 
+  // indicate incorrect WSDL documents that failed to declare or import a schema type.
+  // ************************************************************************ //
+  // !:string          - "http://www.w3.org/2001/XMLSchema"
+  // !:int             - "http://www.w3.org/2001/XMLSchema"
+  // !:long            - "http://www.w3.org/2001/XMLSchema"
+  // !:boolean         - "http://www.w3.org/2001/XMLSchema"
+  // !:double          - "http://www.w3.org/2001/XMLSchema"
+
+  User                 = class;                 { "http://www.simetricaconsulting.com/webservices/Proveedores" }
+  PSS                  = class;                 { "http://www.simetricaconsulting.com/webservices/dbaper/" }
+  Cobertura            = class;                 { "http://www.simetricaconsulting.com/webservices/dbaper/" }
+  Aseguradora          = class;                 { "http://simetricaconsulting.com/" }
+  Cancelacion          = class;                 { "http://www.simetricaconsulting.com/webservices/dbaper/" }
+  Error                = class;                 { "http://www.simetricaconsulting.com/webservices/dbaper/" }
+  CBase                = class;                 { "http://www.simetricaconsulting.com/webservices/dbaper/" }
+  Afiliado             = class;                 { "http://www.simetricaconsulting.com/webservices/dbaper/" }
+  Autorizacion         = class;                 { "http://www.simetricaconsulting.com/webservices/dbaper/" }
+
+
+
+  // ************************************************************************ //
+  // Namespace : http://www.simetricaconsulting.com/webservices/Proveedores
+  // ************************************************************************ //
+  User = class(TRemotable)
+  private
+    FToken: WideString;
+    FUserId: WideString;
+    FUserName: WideString;
+    FUserFullName: WideString;
+  published
+    property Token: WideString read FToken write FToken;
+    property UserId: WideString read FUserId write FUserId;
+    property UserName: WideString read FUserName write FUserName;
+    property UserFullName: WideString read FUserFullName write FUserFullName;
+  end;
+
+
+
+  // ************************************************************************ //
+  // Namespace : http://www.simetricaconsulting.com/webservices/dbaper/
+  // ************************************************************************ //
+  PSS = class(TRemotable)
+  private
+    FIdProveedor: Integer;
+    FCodigo: WideString;
+    FNombre: WideString;
+    FEstado: Boolean;
+    FTipo: WideString;
+    FCodigoSalida: WideString;
+  published
+    property IdProveedor: Integer read FIdProveedor write FIdProveedor;
+    property Codigo: WideString read FCodigo write FCodigo;
+    property Nombre: WideString read FNombre write FNombre;
+    property Estado: Boolean read FEstado write FEstado;
+    property Tipo: WideString read FTipo write FTipo;
+    property CodigoSalida: WideString read FCodigoSalida write FCodigoSalida;
+  end;
+
+  ArrayOfCobertura = array of Cobertura;        { "http://www.simetricaconsulting.com/webservices/Proveedores" }
+
+
+  // ************************************************************************ //
+  // Namespace : http://www.simetricaconsulting.com/webservices/dbaper/
+  // ************************************************************************ //
+  Cobertura = class(TRemotable)
+  private
+    FCodigo: WideString;
+    FDeducible: Double;
+    FDescripcion: WideString;
+    FMontoIndemizado: Double;
+    FMontoNoCubierto: Double;
+    FMontoTotal: Double;
+    FCodigoSalida: WideString;
+    FError: WideString;
+  published
+    property Codigo: WideString read FCodigo write FCodigo;
+    property Deducible: Double read FDeducible write FDeducible;
+    property Descripcion: WideString read FDescripcion write FDescripcion;
+    property MontoIndemizado: Double read FMontoIndemizado write FMontoIndemizado;
+    property MontoNoCubierto: Double read FMontoNoCubierto write FMontoNoCubierto;
+    property MontoTotal: Double read FMontoTotal write FMontoTotal;
+    property CodigoSalida: WideString read FCodigoSalida write FCodigoSalida;
+    property Error: WideString read FError write FError;
+  end;
+
+  ArrayOfAseguradora = array of Aseguradora;    { "http://www.simetricaconsulting.com/webservices/Proveedores" }
+
+
+  // ************************************************************************ //
+  // Namespace : http://simetricaconsulting.com/
+  // ************************************************************************ //
+  Aseguradora = class(TRemotable)
+  private
+    FCodigo: Integer;
+    FNombre: WideString;
+    FUrl: WideString;
+  published
+    property Codigo: Integer read FCodigo write FCodigo;
+    property Nombre: WideString read FNombre write FNombre;
+    property Url: WideString read FUrl write FUrl;
+  end;
+
+
+
+  // ************************************************************************ //
+  // Namespace : http://www.simetricaconsulting.com/webservices/dbaper/
+  // ************************************************************************ //
+  Cancelacion = class(TRemotable)
+  private
+    FEstado: Boolean;
+    FMensaje: WideString;
+    FCodigoSalida: WideString;
+    FArsId: Integer;
+    FSession: Int64;
+  published
+    property Estado: Boolean read FEstado write FEstado;
+    property Mensaje: WideString read FMensaje write FMensaje;
+    property CodigoSalida: WideString read FCodigoSalida write FCodigoSalida;
+    property ArsId: Integer read FArsId write FArsId;
+    property Session: Int64 read FSession write FSession;
+  end;
+
+
+
+  // ************************************************************************ //
+  // Namespace : http://www.simetricaconsulting.com/webservices/dbaper/
+  // ************************************************************************ //
+  Error = class(TRemotable)
+  private
+    FDescipcion: WideString;
+    FCode: Integer;
+  published
+    property Descipcion: WideString read FDescipcion write FDescipcion;
+    property Code: Integer read FCode write FCode;
+  end;
+
+
+
+  // ************************************************************************ //
+  // Namespace : http://www.simetricaconsulting.com/webservices/dbaper/
+  // ************************************************************************ //
+  CBase = class(TRemotable)
+  private
+    FError: Error;
+  public
+    destructor Destroy; override;
+  published
+    property Error: Error read FError write FError;
+  end;
+
+
+
+  // ************************************************************************ //
+  // Namespace : http://www.simetricaconsulting.com/webservices/dbaper/
+  // ************************************************************************ //
+  Afiliado = class(CBase)
+  private
+    FNombre: WideString;
+    FCedula: WideString;
+    FCodigo: WideString;
+    FCodigoSalida: WideString;
+    FEstado: Boolean;
+    FTipoPlan: WideString;
+    FPasaporte: WideString;
+    FPrimerNombre: WideString;
+    FSegundoNombre: WideString;
+    FPrimerApellido: WideString;
+    FSegundoApellido: WideString;
+    FCodigoAsegurado: Int64;
+  published
+    property Nombre: WideString read FNombre write FNombre;
+    property Cedula: WideString read FCedula write FCedula;
+    property Codigo: WideString read FCodigo write FCodigo;
+    property CodigoSalida: WideString read FCodigoSalida write FCodigoSalida;
+    property Estado: Boolean read FEstado write FEstado;
+    property TipoPlan: WideString read FTipoPlan write FTipoPlan;
+    property Pasaporte: WideString read FPasaporte write FPasaporte;
+    property PrimerNombre: WideString read FPrimerNombre write FPrimerNombre;
+    property SegundoNombre: WideString read FSegundoNombre write FSegundoNombre;
+    property PrimerApellido: WideString read FPrimerApellido write FPrimerApellido;
+    property SegundoApellido: WideString read FSegundoApellido write FSegundoApellido;
+    property CodigoAsegurado: Int64 read FCodigoAsegurado write FCodigoAsegurado;
+  end;
+
+  ArrayOfCobertura2 = array of Cobertura;       { "http://www.simetricaconsulting.com/webservices/dbaper/" }
+
+
+  // ************************************************************************ //
+  // Namespace : http://www.simetricaconsulting.com/webservices/dbaper/
+  // ************************************************************************ //
+  Autorizacion = class(TRemotable)
+  private
+    FNoReclamacion: Integer;
+    FDiferenciaAfiliado: Double;
+    FMontoArs: Double;
+    FListaCoberturas: ArrayOfCobertura2;
+    FId: Integer;
+    FNumeroSession: Integer;
+    FYear: Integer;
+    FMontoTotal: Double;
+  public
+    destructor Destroy; override;
+  published
+    property NoReclamacion: Integer read FNoReclamacion write FNoReclamacion;
+    property DiferenciaAfiliado: Double read FDiferenciaAfiliado write FDiferenciaAfiliado;
+    property MontoArs: Double read FMontoArs write FMontoArs;
+    property ListaCoberturas: ArrayOfCobertura2 read FListaCoberturas write FListaCoberturas;
+    property Id: Integer read FId write FId;
+    property NumeroSession: Integer read FNumeroSession write FNumeroSession;
+    property Year: Integer read FYear write FYear;
+    property MontoTotal: Double read FMontoTotal write FMontoTotal;
+  end;
+
+
+  // ************************************************************************ //
+  // Namespace : http://www.simetricaconsulting.com/webservices/Proveedores
+  // soapAction: http://www.simetricaconsulting.com/webservices/Proveedores/%operationName%
+  // transport : http://schemas.xmlsoap.org/soap/http
+  // binding   : SimetricaWSSoap
+  // service   : SimetricaWS
+  // port      : SimetricaWSSoap
+  // URL       : http://pss.servehttp.com/SimetricaWS.asmx
+  // ************************************************************************ //
+  SimetricaWSSoap = interface(IInvokable)
+  ['{2376F27E-2056-0DAC-6954-CB595605D57A}']
+    function  Test: WideString; stdcall;
+    function  Login(const email: WideString;const password: WideString): User; stdcall;
+    function  ValidaAfiliado(const token: WideString; const codArs: Integer; const codAfiliado: Int64; const codProveedor: Int64): Afiliado; stdcall;
+    function  ValidaProveedor(const token: WideString; const codArs: Integer; const codProveedor: Int64): PSS; stdcall;
+    function  ValidaToken(const token: WideString): Boolean; stdcall;
+    function  CotizacionPorMonto(const token: WideString; const codArs: Integer; const montoTotal: Double; const codAfiliado: Int64; const codProveedor: Int64): Autorizacion; stdcall;
+    function  CotizacionPorCoberturas(const token: WideString; const codArs: Integer; const coberturas: ArrayOfCobertura; const codAfiliado: Int64; const codProveedor: Int64): Autorizacion; stdcall;
+    function  ReclamacionPorMonto(const token: WideString; const codArs: Integer; const montoTotal: Double; const codAfiliado: Int64; const codProveedor: Int64): Autorizacion; stdcall;
+    function  ReclamacionPorCoberturas(const token: WideString; const codArs: Integer; const coberturas: ArrayOfCobertura; const codAfiliado: Int64; const codProveedor: Int64): Autorizacion; stdcall;
+    function  GetCoberturasMasUsadas(const token: WideString; const codArs: Integer; const codProveedor: Int64): ArrayOfCobertura; stdcall;
+    function  GetCoberturas(const token: WideString; const codArs: Integer; const codProveedor: Int64): ArrayOfCobertura; stdcall;
+    function  GetAseguradoras(const token: WideString): ArrayOfAseguradora; stdcall;
+    function  CancelaAutoriazcion(const token: WideString; const codArs: Integer; const noReclamacion: Integer; const year: WideString; const codAfiliado: Int64; const codProveedor: Int64): Boolean; stdcall;
+    function  CancelarAutorizacion(const token: WideString; const codArs: Integer; const numeroSession: Int64): Cancelacion; stdcall;
+  end;
+
+function GetSimetricaWSSoap(UseWSDL: Boolean=System.False; Addr: string=''; HTTPRIO: THTTPRIO = nil): SimetricaWSSoap;
+
+
+implementation
+
+function GetSimetricaWSSoap(UseWSDL: Boolean; Addr: string; HTTPRIO: THTTPRIO): SimetricaWSSoap;
+const
+  defWSDL = 'http://pss.servehttp.com/SimetricaWS.asmx?WSDL';
+  defURL  = 'http://pss.servehttp.com/SimetricaWS.asmx';
+  defSvc  = 'SimetricaWS';
+  defPrt  = 'SimetricaWSSoap';
+var
+  RIO: THTTPRIO;
+begin
+  Result := nil;
+  if (Addr = '') then
+  begin
+    if UseWSDL then
+      Addr := defWSDL
+    else
+      Addr := defURL;
+  end;
+  if HTTPRIO = nil then
+    RIO := THTTPRIO.Create(nil)
+  else
+    RIO := HTTPRIO;
+  try
+    Result := (RIO as SimetricaWSSoap);
+    if UseWSDL then
+    begin
+      RIO.WSDLLocation := Addr;
+      RIO.Service := defSvc;
+      RIO.Port := defPrt;
+    end else
+      RIO.URL := Addr;
+  finally
+    if (Result = nil) and (HTTPRIO = nil) then
+      RIO.Free;
+  end;
+end;
+
+
+destructor CBase.Destroy;
+begin
+  if Assigned(FError) then
+    FError.Free;
+  inherited Destroy;
+end;
+
+destructor Autorizacion.Destroy;
+var
+  I: Integer;
+begin
+  for I := 0 to Length(FListaCoberturas)-1 do
+    if Assigned(FListaCoberturas[I]) then
+      FListaCoberturas[I].Free;
+  SetLength(FListaCoberturas, 0);
+  inherited Destroy;
+end;
+
+initialization
+  InvRegistry.RegisterInterface(TypeInfo(SimetricaWSSoap), 'http://www.simetricaconsulting.com/webservices/Proveedores', 'utf-8');
+  InvRegistry.RegisterDefaultSOAPAction(TypeInfo(SimetricaWSSoap), 'http://www.simetricaconsulting.com/webservices/Proveedores/%operationName%');
+  RemClassRegistry.RegisterSerializeOptions(TypeInfo(SimetricaWSSoap), [xoHolderClass,xoLiteralParam]);
+  RemClassRegistry.RegisterXSClass(User, 'http://www.simetricaconsulting.com/webservices/Proveedores', 'User');
+  RemClassRegistry.RegisterXSClass(PSS, 'http://www.simetricaconsulting.com/webservices/dbaper/', 'PSS');
+  RemClassRegistry.RegisterXSInfo(TypeInfo(ArrayOfCobertura), 'http://www.simetricaconsulting.com/webservices/Proveedores', 'ArrayOfCobertura');
+  RemClassRegistry.RegisterXSClass(Cobertura, 'http://www.simetricaconsulting.com/webservices/dbaper/', 'Cobertura');
+  RemClassRegistry.RegisterXSInfo(TypeInfo(ArrayOfAseguradora), 'http://www.simetricaconsulting.com/webservices/Proveedores', 'ArrayOfAseguradora');
+  RemClassRegistry.RegisterXSClass(Aseguradora, 'http://simetricaconsulting.com/', 'Aseguradora');
+  RemClassRegistry.RegisterXSClass(Cancelacion, 'http://www.simetricaconsulting.com/webservices/dbaper/', 'Cancelacion');
+  RemClassRegistry.RegisterXSClass(Error, 'http://www.simetricaconsulting.com/webservices/dbaper/', 'Error');
+  RemClassRegistry.RegisterXSClass(CBase, 'http://www.simetricaconsulting.com/webservices/dbaper/', 'CBase');
+  RemClassRegistry.RegisterXSClass(Afiliado, 'http://www.simetricaconsulting.com/webservices/dbaper/', 'Afiliado');
+  RemClassRegistry.RegisterXSInfo(TypeInfo(ArrayOfCobertura2), 'http://www.simetricaconsulting.com/webservices/dbaper/', 'ArrayOfCobertura2', 'ArrayOfCobertura');
+  RemClassRegistry.RegisterXSClass(Autorizacion, 'http://www.simetricaconsulting.com/webservices/dbaper/', 'Autorizacion');
+  InvRegistry.RegisterInvokeOptions(TypeInfo(SimetricaWSSoap),ioDocument);
+end.

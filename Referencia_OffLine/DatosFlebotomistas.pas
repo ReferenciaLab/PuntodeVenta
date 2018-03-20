@@ -1,0 +1,92 @@
+unit DatosFlebotomistas;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DatosModule, cxStyles, cxCustomData, cxGraphics, cxFilter, cxData,
+  cxDataStorage, cxEdit, DB, cxDBData, Menus, cxLookAndFeelPainters, dxPSGlbl,
+  dxPSUtl, dxPSEngn, dxPrnPg, dxBkgnd, dxWrap, dxPrnDev, dxPSCompsProvider,
+  dxPSFillPatterns, dxPSEdgePatterns, ABSMain, JvStringHolder, StdActns,
+  ActnList, ADODB, cxGridCustomPopupMenu, cxGridPopupMenu, dxPSContainerLnk,
+  dxPSdxLCLnk, dxPSCore, dxPScxCommon, dxPScxGridLnk, JvComponentBase,
+  JvFormPlacement, ExtCtrls, dxLayoutControl, StdCtrls, cxButtons, cxGridLevel,
+  cxClasses, cxControls, cxGridCustomView, cxGridCustomTableView,
+  cxGridTableView, cxGridDBTableView, cxGrid, cxPC, JvExControls, JvComponent,
+  JvEnterTab, cxCheckBox, cxDBEdit, cxContainer, cxTextEdit, cxintl;
+
+type
+  TfrmDatosFlebotomistas = class(TfrmDatosModule)
+    qrFlebotomista: TADOQuery;
+    qrFlebotomistaFlebotomistaID: TStringField;
+    qrFlebotomistaDescripcion: TStringField;
+    qrFlebotomistaEstatus: TIntegerField;
+    qrFlebotomistaCodigoAxapta: TStringField;
+    tvDatosFlebotomistaID: TcxGridDBColumn;
+    tvDatosDescripcion: TcxGridDBColumn;
+    tvDatosEstatus: TcxGridDBColumn;
+    tvDatosCodigoAxapta: TcxGridDBColumn;
+    lcDatosGroup1: TdxLayoutGroup;
+    cxDBTextEdit1: TcxDBTextEdit;
+    lcDatosItem1: TdxLayoutItem;
+    cxDBTextEdit2: TcxDBTextEdit;
+    lcDatosItem2: TdxLayoutItem;
+    cxDBCheckBox1: TcxDBCheckBox;
+    lcDatosItem3: TdxLayoutItem;
+    qrFlebotomistaDATAAREAID: TStringField;
+    qrFlebotomistaRECID: TLargeintField;
+    procedure qrFlebotomistaBeforePost(DataSet: TDataSet);
+    procedure qrFlebotomistaNewRecord(DataSet: TDataSet);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmDatosFlebotomistas: TfrmDatosFlebotomistas;
+
+implementation
+
+uses DataModule, Main;
+
+{$R *.dfm}
+
+procedure TfrmDatosFlebotomistas.qrFlebotomistaBeforePost(DataSet: TDataSet);
+begin
+  inherited;
+
+  DM.qrParametro.close;
+  DM.qrParametro.open;
+
+  if (qrFlebotomista.State = dsInsert) then
+  begin
+   qrFlebotomistaFlebotomistaID.Value := formatfloat('000000', DM.qrParametroSecuenciaFleb.asfloat);
+
+   DM.qrParametro.edit;
+   DM.qrParametroSecuenciaFleb.Value := DM.qrParametroSecuenciaFleb.Value + 1;
+   DM.qrParametro.Post;
+  end;
+end;
+
+procedure TfrmDatosFlebotomistas.qrFlebotomistaNewRecord(DataSet: TDataSet);
+Var RecId: Integer;
+begin
+  inherited;
+  DM.qrParametro.Close;
+  DM.qrParametro.Open;
+
+  RecId := DM.qrParametroSecuencia.Value;
+
+  DM.qrParametro.Edit;
+  DM.qrParametroSecuencia.Value     := DM.qrParametroSecuencia.Value + 1;
+  DM.qrParametro.Post;
+
+  qrFlebotomistaRECID.Value         := RecId;
+  qrFlebotomistaDATAAREAID.Value    := DM.CurEmpresa;
+  qrFlebotomistaEstatus.Value       := 1;
+  qrFlebotomistaCodigoAxapta.Value  := dm.GetMaxCodFlebAX;
+  qrFlebotomistaFlebotomistaID.Value:= formatfloat('000000',DM.qrParametroSecuenciaFleb.asfloat);
+end;
+
+end.

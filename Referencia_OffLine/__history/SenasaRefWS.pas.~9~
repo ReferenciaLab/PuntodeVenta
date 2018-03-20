@@ -1,0 +1,338 @@
+// ************************************************************************ //
+// The types declared in this file were generated from data read from the
+// WSDL File described below:
+// WSDL     : http://10.0.0.213/WSRefSenasa/SenasaRefWS.asmx?WSDL
+// Encoding : utf-8
+// Version  : 1.0
+// (14/09/2012 05:54:08 p.m. - 1.33.2.5)
+// ************************************************************************ //
+
+unit SenasaRefWS;
+
+interface
+
+uses InvokeRegistry, SOAPHTTPClient, Types, XSBuiltIns;
+
+type
+
+  // ************************************************************************ //
+  // The following types, referred to in the WSDL document are not being represented
+  // in this file. They are either aliases[@] of other types represented or were referred
+  // to but never[!] declared in the document. The types from the latter category
+  // typically map to predefined/known XML or Borland types; however, they could also 
+  // indicate incorrect WSDL documents that failed to declare or import a schema type.
+  // ************************************************************************ //
+  // !:string          - "http://www.w3.org/2001/XMLSchema"
+  // !:int             - "http://www.w3.org/2001/XMLSchema"
+  // !:decimal         - "http://www.w3.org/2001/XMLSchema"
+  // !:boolean         - "http://www.w3.org/2001/XMLSchema"
+  // !:dateTime        - "http://www.w3.org/2001/XMLSchema"
+
+  Afiliados            = class;                 { "http://arssenasa.tools.web.org/" }
+  crefProcedimientos   = class;                 { "http://tempuri.org/" }
+  crefAutorizacionLaboratorio = class;          { "http://tempuri.org/" }
+  Procedimiento        = class;                 { "http://arssenasa.tools.web.org/" }
+  AutorizacionLaboratorio = class;              { "http://arssenasa.tools.web.org/" }
+
+  { "http://tempuri.org/" }
+  EstatusProcedimiento = (EnCobertura, NoCobertura, CodigoInvalido, ProcedimientoYaRealizado);
+
+  { "http://arssenasa.tools.web.org/" }
+  EstatusProcedimiento2 = (EnCobertura2, NoCobertura2, CodigoInvalido2, ProcedimientoYaRealizado2);
+
+
+
+  // ************************************************************************ //
+  // Namespace : http://arssenasa.tools.web.org/
+  // ************************************************************************ //
+  Afiliados = class(TRemotable)
+  private
+    FNSS: WideString;
+    FCDG: Integer;
+    FCEDULA: WideString;
+    FPSS: Integer;
+    FNombre: WideString;
+    FRegimen: WideString;
+    FRegimenDesc: WideString;
+    FEstatus: WideString;
+    FEstatusDesc: WideString;
+    FCodMsg: Integer;
+    FCodMsgDesc: WideString;
+  published
+    property NSS: WideString read FNSS write FNSS;
+    property CDG: Integer read FCDG write FCDG;
+    property CEDULA: WideString read FCEDULA write FCEDULA;
+    property PSS: Integer read FPSS write FPSS;
+    property Nombre: WideString read FNombre write FNombre;
+    property Regimen: WideString read FRegimen write FRegimen;
+    property RegimenDesc: WideString read FRegimenDesc write FRegimenDesc;
+    property Estatus: WideString read FEstatus write FEstatus;
+    property EstatusDesc: WideString read FEstatusDesc write FEstatusDesc;
+    property CodMsg: Integer read FCodMsg write FCodMsg;
+    property CodMsgDesc: WideString read FCodMsgDesc write FCodMsgDesc;
+  end;
+
+  ArrayOfCrefProcedimientos = array of crefProcedimientos;   { "http://tempuri.org/" }
+
+
+  // ************************************************************************ //
+  // Namespace : http://tempuri.org/
+  // ************************************************************************ //
+  crefProcedimientos = class(TRemotable)
+  private
+    FSIMON: WideString;
+    FCUBS: WideString;
+    FSubGrupo: WideString;
+    FDescripcion: WideString;
+    FTarifa: TXSDecimal;
+    FCoPago: TXSDecimal;
+    FEstatus: EstatusProcedimiento;
+    FEstatusDescripcion: WideString;
+  public
+    destructor Destroy; override;
+  published
+    property SIMON: WideString read FSIMON write FSIMON;
+    property CUBS: WideString read FCUBS write FCUBS;
+    property SubGrupo: WideString read FSubGrupo write FSubGrupo;
+    property Descripcion: WideString read FDescripcion write FDescripcion;
+    property Tarifa: TXSDecimal read FTarifa write FTarifa;
+    property CoPago: TXSDecimal read FCoPago write FCoPago;
+    property Estatus: EstatusProcedimiento read FEstatus write FEstatus;
+    property EstatusDescripcion: WideString read FEstatusDescripcion write FEstatusDescripcion;
+  end;
+
+
+
+  // ************************************************************************ //
+  // Namespace : http://tempuri.org/
+  // ************************************************************************ //
+  crefAutorizacionLaboratorio = class(TRemotable)
+  private
+    FNAP: WideString;
+    FContrato: Integer;
+    FRegimen: Integer;
+    FPrestadorCDG: Integer;
+    FPrestadorTipo: Integer;
+    FFechaAutorizacion: TXSDateTime;
+    FNSS: WideString;
+    FAccidenteTransito: Boolean;
+    FDiagnostico: WideString;
+    FMontoAutorizado: TXSDecimal;
+    FValorCopago: TXSDecimal;
+    FcrefProcedimientos: ArrayOfCrefProcedimientos;
+  public
+    destructor Destroy; override;
+  published
+    property NAP: WideString read FNAP write FNAP;
+    property Contrato: Integer read FContrato write FContrato;
+    property Regimen: Integer read FRegimen write FRegimen;
+    property PrestadorCDG: Integer read FPrestadorCDG write FPrestadorCDG;
+    property PrestadorTipo: Integer read FPrestadorTipo write FPrestadorTipo;
+    property FechaAutorizacion: TXSDateTime read FFechaAutorizacion write FFechaAutorizacion;
+    property NSS: WideString read FNSS write FNSS;
+    property AccidenteTransito: Boolean read FAccidenteTransito write FAccidenteTransito;
+    property Diagnostico: WideString read FDiagnostico write FDiagnostico;
+    property MontoAutorizado: TXSDecimal read FMontoAutorizado write FMontoAutorizado;
+    property ValorCopago: TXSDecimal read FValorCopago write FValorCopago;
+    property crefProcedimientos: ArrayOfCrefProcedimientos read FcrefProcedimientos write FcrefProcedimientos;
+  end;
+
+
+
+  // ************************************************************************ //
+  // Namespace : http://arssenasa.tools.web.org/
+  // ************************************************************************ //
+  Procedimiento = class(TRemotable)
+  private
+    FSIMON: WideString;
+    FCUBS: WideString;
+    FSubGrupo: WideString;
+    FDescripcion: WideString;
+    FTarifa: TXSDecimal;
+    FCoPago: TXSDecimal;
+    FEstatus: EstatusProcedimiento2;
+    FEstatusDescripcion: WideString;
+  public
+    destructor Destroy; override;
+  published
+    property SIMON: WideString read FSIMON write FSIMON;
+    property CUBS: WideString read FCUBS write FCUBS;
+    property SubGrupo: WideString read FSubGrupo write FSubGrupo;
+    property Descripcion: WideString read FDescripcion write FDescripcion;
+    property Tarifa: TXSDecimal read FTarifa write FTarifa;
+    property CoPago: TXSDecimal read FCoPago write FCoPago;
+    property Estatus: EstatusProcedimiento2 read FEstatus write FEstatus;
+    property EstatusDescripcion: WideString read FEstatusDescripcion write FEstatusDescripcion;
+  end;
+
+  ArrayOfProcedimiento = array of Procedimiento;   { "http://arssenasa.tools.web.org/" }
+
+
+  // ************************************************************************ //
+  // Namespace : http://arssenasa.tools.web.org/
+  // ************************************************************************ //
+  AutorizacionLaboratorio = class(TRemotable)
+  private
+    FNAP: WideString;
+    FContrato: Integer;
+    FRegimen: Integer;
+    FPrestadorCDG: Integer;
+    FPrestadorTipo: Integer;
+    FFechaAutorizacion: TXSDateTime;
+    FNSS: WideString;
+    FAccidenteTransito: Boolean;
+    FDiagnostico: WideString;
+    FMontoAutorizado: TXSDecimal;
+    FValorCopago: TXSDecimal;
+    FProcedimientos: ArrayOfProcedimiento;
+  public
+    destructor Destroy; override;
+  published
+    property NAP: WideString read FNAP write FNAP;
+    property Contrato: Integer read FContrato write FContrato;
+    property Regimen: Integer read FRegimen write FRegimen;
+    property PrestadorCDG: Integer read FPrestadorCDG write FPrestadorCDG;
+    property PrestadorTipo: Integer read FPrestadorTipo write FPrestadorTipo;
+    property FechaAutorizacion: TXSDateTime read FFechaAutorizacion write FFechaAutorizacion;
+    property NSS: WideString read FNSS write FNSS;
+    property AccidenteTransito: Boolean read FAccidenteTransito write FAccidenteTransito;
+    property Diagnostico: WideString read FDiagnostico write FDiagnostico;
+    property MontoAutorizado: TXSDecimal read FMontoAutorizado write FMontoAutorizado;
+    property ValorCopago: TXSDecimal read FValorCopago write FValorCopago;
+    property Procedimientos: ArrayOfProcedimiento read FProcedimientos write FProcedimientos;
+  end;
+
+
+  // ************************************************************************ //
+  // Namespace : http://tempuri.org/
+  // soapAction: http://tempuri.org/%operationName%
+  // transport : http://schemas.xmlsoap.org/soap/http
+  // binding   : TSenasaRefWSSoap
+  // service   : TSenasaRefWS
+  // port      : TSenasaRefWSSoap
+  // URL       : http://10.0.0.213/WSRefSenasa/SenasaRefWS.asmx
+  // ************************************************************************ //
+  TSenasaRefWSSoap = interface(IInvokable)
+  ['{ACD20562-A88C-A62F-CDE4-C6789C6AA633}']
+    function  Validar(const vCedula: WideString; const vUsuarioID: WideString; const vPassword: WideString): WideString; stdcall;
+    function  ConsultarAfiliado(const vToken: WideString; const vTipoID: Integer; const vID: WideString): Afiliados; stdcall;
+    function  AgregarProcedimientos(const vToken: WideString; const vProcedimientos: ArrayOfCrefProcedimientos; const vAuthLab: AutorizacionLaboratorio): Boolean; stdcall;
+    function  RemoverProcedimientoIn(const vToken: WideString; const vIndex: Integer; const vAuthLab: AutorizacionLaboratorio): Boolean; stdcall;
+    function  RemoverProcedimientoAll(const vToken: WideString; const vProcedimientos: Procedimiento; const vAuthLab: AutorizacionLaboratorio): Boolean; stdcall;
+    function  Generar(const vToken: WideString; const vAuthLab: AutorizacionLaboratorio): AutorizacionLaboratorio; stdcall;
+    function  Aceptar(const vToken: WideString; const vAuthLab: AutorizacionLaboratorio; const vNSS: WideString; const vRegimen: Integer): crefAutorizacionLaboratorio; stdcall;
+    function  Anular(const vToken: WideString; const vNota: WideString; const vNap: WideString): crefAutorizacionLaboratorio; stdcall;
+  end;
+
+function GetTSenasaRefWSSoap(UseWSDL: Boolean=System.False; Addr: string=''; HTTPRIO: THTTPRIO = nil): TSenasaRefWSSoap;
+
+
+implementation
+
+function GetTSenasaRefWSSoap(UseWSDL: Boolean; Addr: string; HTTPRIO: THTTPRIO): TSenasaRefWSSoap;
+const
+  defWSDL = 'http://10.0.0.213/WSRefSenasa/SenasaRefWS.asmx?WSDL';
+  defURL  = 'http://10.0.0.213/WSRefSenasa/SenasaRefWS.asmx';
+  defSvc  = 'TSenasaRefWS';
+  defPrt  = 'TSenasaRefWSSoap';
+var
+  RIO: THTTPRIO;
+begin
+  Result := nil;
+  if (Addr = '') then
+  begin
+    if UseWSDL then
+      Addr := defWSDL
+    else
+      Addr := defURL;
+  end;
+  if HTTPRIO = nil then
+    RIO := THTTPRIO.Create(nil)
+  else
+    RIO := HTTPRIO;
+  try
+    Result := (RIO as TSenasaRefWSSoap);
+    if UseWSDL then
+    begin
+      RIO.WSDLLocation := Addr;
+      RIO.Service := defSvc;
+      RIO.Port := defPrt;
+    end else
+      RIO.URL := Addr;
+  finally
+    if (Result = nil) and (HTTPRIO = nil) then
+      RIO.Free;
+  end;
+end;
+
+
+destructor crefProcedimientos.Destroy;
+begin
+  if Assigned(FTarifa) then
+    FTarifa.Free;
+  if Assigned(FCoPago) then
+    FCoPago.Free;
+  inherited Destroy;
+end;
+
+destructor crefAutorizacionLaboratorio.Destroy;
+var
+  I: Integer;
+begin
+  for I := 0 to Length(FcrefProcedimientos)-1 do
+    if Assigned(FcrefProcedimientos[I]) then
+      FcrefProcedimientos[I].Free;
+  SetLength(FcrefProcedimientos, 0);
+  if Assigned(FFechaAutorizacion) then
+    FFechaAutorizacion.Free;
+  if Assigned(FMontoAutorizado) then
+    FMontoAutorizado.Free;
+  if Assigned(FValorCopago) then
+    FValorCopago.Free;
+  inherited Destroy;
+end;
+
+destructor Procedimiento.Destroy;
+begin
+  if Assigned(FTarifa) then
+    FTarifa.Free;
+  if Assigned(FCoPago) then
+    FCoPago.Free;
+  inherited Destroy;
+end;
+
+destructor AutorizacionLaboratorio.Destroy;
+var
+  I: Integer;
+begin
+  for I := 0 to Length(FProcedimientos)-1 do
+    if Assigned(FProcedimientos[I]) then
+      FProcedimientos[I].Free;
+  SetLength(FProcedimientos, 0);
+  if Assigned(FFechaAutorizacion) then
+    FFechaAutorizacion.Free;
+  if Assigned(FMontoAutorizado) then
+    FMontoAutorizado.Free;
+  if Assigned(FValorCopago) then
+    FValorCopago.Free;
+  inherited Destroy;
+end;
+
+initialization
+  InvRegistry.RegisterInterface(TypeInfo(TSenasaRefWSSoap), 'http://tempuri.org/', 'utf-8');
+  InvRegistry.RegisterDefaultSOAPAction(TypeInfo(TSenasaRefWSSoap), 'http://tempuri.org/%operationName%');
+  RemClassRegistry.RegisterXSInfo(TypeInfo(EstatusProcedimiento), 'http://tempuri.org/', 'EstatusProcedimiento');
+  RemClassRegistry.RegisterXSClass(Afiliados, 'http://arssenasa.tools.web.org/', 'Afiliados');
+  RemClassRegistry.RegisterXSInfo(TypeInfo(ArrayOfCrefProcedimientos), 'http://tempuri.org/', 'ArrayOfCrefProcedimientos');
+  RemClassRegistry.RegisterXSClass(crefProcedimientos, 'http://tempuri.org/', 'crefProcedimientos');
+  RemClassRegistry.RegisterXSClass(crefAutorizacionLaboratorio, 'http://tempuri.org/', 'crefAutorizacionLaboratorio');
+  RemClassRegistry.RegisterXSInfo(TypeInfo(EstatusProcedimiento2), 'http://arssenasa.tools.web.org/', 'EstatusProcedimiento2', 'EstatusProcedimiento');
+  RemClassRegistry.RegisterExternalPropName(TypeInfo(EstatusProcedimiento2), 'EnCobertura2', 'EnCobertura');
+  RemClassRegistry.RegisterExternalPropName(TypeInfo(EstatusProcedimiento2), 'NoCobertura2', 'NoCobertura');
+  RemClassRegistry.RegisterExternalPropName(TypeInfo(EstatusProcedimiento2), 'CodigoInvalido2', 'CodigoInvalido');
+  RemClassRegistry.RegisterExternalPropName(TypeInfo(EstatusProcedimiento2), 'ProcedimientoYaRealizado2', 'ProcedimientoYaRealizado');
+  RemClassRegistry.RegisterXSClass(Procedimiento, 'http://arssenasa.tools.web.org/', 'Procedimiento');
+  RemClassRegistry.RegisterXSInfo(TypeInfo(ArrayOfProcedimiento), 'http://arssenasa.tools.web.org/', 'ArrayOfProcedimiento');
+  RemClassRegistry.RegisterXSClass(AutorizacionLaboratorio, 'http://arssenasa.tools.web.org/', 'AutorizacionLaboratorio');
+  InvRegistry.RegisterInvokeOptions(TypeInfo(TSenasaRefWSSoap), ioDocument);
+end.

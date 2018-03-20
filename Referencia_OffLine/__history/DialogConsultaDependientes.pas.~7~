@@ -1,0 +1,196 @@
+unit DialogConsultaDependientes;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, cxGraphics, Menus, cxLookAndFeelPainters, cxStyles, cxCustomData,
+  cxFilter, cxData, cxDataStorage, cxEdit, DB, cxDBData, cxGridLevel, cxClasses,
+  cxControls, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
+  cxGridDBTableView, cxGrid, StdCtrls, cxButtons, cxTextEdit, dxLayoutControl,
+  cxContainer, cxMaskEdit, cxDropDownEdit, ADODB,pptypes, JvMemoryDataset;
+
+type
+  TfrmDialogDependiente = class(TForm)
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
+    dbDatos: TcxGridDBTableView;
+    lvDatos: TcxGridLevel;
+    cgDatos: TcxGrid;
+    dxLayoutControl1Item4: TdxLayoutItem;
+    dxLayoutControl1Group2: TdxLayoutGroup;
+    btcancelar: TcxButton;
+    dxLayoutControl1Item5: TdxLayoutItem;
+    btaceptar: TcxButton;
+    dxLayoutControl1Item6: TdxLayoutItem;
+    dsDatos: TDataSource;
+    qrPacientes: TADOQuery;
+    qrPacientesSelecciona: TStringField;
+    qrPacientesclienteid: TStringField;
+    qrPacientesCedula: TStringField;
+    qrPacientesTipoPaciente: TStringField;
+    qrPacientesnombre: TStringField;
+    qrPacientestelefono: TStringField;
+    JvMemoryData1: TJvMemoryData;
+    JvMemoryData1Seleccion: TBooleanField;
+    JvMemoryData1ClienteID: TStringField;
+    JvMemoryData1Cedula: TStringField;
+    JvMemoryData1Tipo: TStringField;
+    JvMemoryData1Nombre: TStringField;
+    JvMemoryData1Telefono: TStringField;
+    dbDatosSeleccion: TcxGridDBColumn;
+    dbDatosClienteID: TcxGridDBColumn;
+    dbDatosCedula: TcxGridDBColumn;
+    dbDatosTipo: TcxGridDBColumn;
+    dbDatosNombre: TcxGridDBColumn;
+    dbDatosTelefono: TcxGridDBColumn;
+    procedure cgDatosExit(Sender: TObject);
+    procedure cgDatosEnter(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure Run(DocumentoID : String);
+  end;
+
+var
+  frmDialogDependiente: TfrmDialogDependiente;
+  AdentroGrid : Boolean;
+
+implementation
+
+uses ActionsDM, DataModule, PuntoVenta, Main;
+
+{$R *.dfm}
+
+procedure TfrmDialogDependiente.cgDatosEnter(Sender: TObject);
+begin
+ AdentroGrid := True;
+end;
+
+procedure TfrmDialogDependiente.cgDatosExit(Sender: TObject);
+begin
+ AdentroGrid := False;
+end;
+
+procedure TfrmDialogDependiente.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (key = Vk_Down) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+  if (key = 13) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+  if (key = Vk_Up) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 1, 0);
+  if (key = 27) then
+  begin
+   Close;
+  end;
+end;
+
+procedure TfrmDialogDependiente.Run(DocumentoID : String);
+begin
+  inherited;
+  qrPacientes.close;
+  qrPacientes.parameters[0].value := DocumentoID;
+  qrPacientes.open;
+  With qrPacientes,sql do
+  begin
+
+    if IsEmpty then
+    begin
+      exit;
+    end;
+    First;
+    DsDatos.Enabled := False;
+    if not JvMemoryData1.Active then
+      JvMemoryData1.Active := true;
+    JvMemoryData1.EmptyTable;
+    while not eof do
+    begin
+        JvMemoryData1.Append;
+        JvMemoryData1Seleccion.AsBoolean      := False;
+        JvMemoryData1ClienteID.AsString       := fieldbyname('ClienteID').AsString;
+        JvMemoryData1Cedula.AsString          := fieldbyname('Cedula').AsString;
+        JvMemoryData1Tipo.AsString            := fieldbyname('Tipo').AsString;
+        JvMemoryData1Nombre.AsString          := fieldbyname('Nombre').AsString;
+        JvMemoryData1Telefono.AsString        := fieldbyname('Telefono').AsString;
+        Next;
+    end;
+    JvMemoryData1.First;
+    DsDatos.Enabled := True;
+  End;
+  showmodal;
+  If ModalResult = mrOk then
+  Begin
+{    If qrPacientes.RecordCount > 0 then
+    begin
+              DM.qrCobroDetalle.Close;
+              DM.qrCobroDetalle.Parameters[0].Value := qrCobrosCobroid.Value;
+              DM.qrCobroDetalle.Open;
+              With DM.qryCobroTicket, sql do
+              begin
+                  Close;
+                  Clear;
+                  Add('select Distinct e.NombrePaciente ,e.ClienteNombre, c.ReciboNo , c.EntradaId ,e.Muestrano as Muestrano,'+
+                       ' c.Fecha, c.Hora , c.UsuarioID , c.MonedaId ,'+
+                       ' (Select Empresa from PtParametro) as TituloEmpresa,'+
+                       ' s.Nombre,s.Telefono,isnull(d.Descripcion,'+#39+#39+') as Descripcion, c.PendienteFactura, c.TotalCobrado,'+
+                       ' c.PendienteCobro,c.TotalFactura,c.TotalPagado,'+
+                       ' e.CoberturaSeguro,e.FactExterior,'+
+                       '                             (e.Neto-GastosVarios) as TotalPruebaUsa,e.GastosVarios as TotalEnvioUsa,isnull(d.Comentario ,'+#39+#39+') as Comentario, c.Concepto, '+
+                       '  (Select Convert(Varchar(200),NotaNCreditoBalance) from PtParametro) as NotaNCredito, c.TurnoID as Autorizacion, '+
+                       '  Convert(Varchar(10),Getdate()+180,120) as Fecha_Autoriza, c.CobroId as Cobroid '+
+                       '  from ptcobro c Inner Join ptentradapaciente e '+
+                       '   on c.refrecid=e.recid Left outer join ptentradapacientedetalle d '+
+                       '   on d.refrecid = e.recid '+
+                       '   Inner Join ptsucursal s  '+
+                       '   on e.SucursalID=s.SucursalID '+
+                       '   Where c.refrecid='+inttostr(qrCobrosrefRecid.Value)+
+                       '   and c.cobroid='+#39+qrCobrosCobroid.Value+#39+
+                       '   and c.TipoDoc='+#39+'RI'+#39+
+                       '   and e.Dataareaid='+#39+'ldr'+#39);
+                  Open;
+                  If Not IsEmpty then
+                  begin
+                    If Ruta_Recibo <> EmptyStr then
+                    Begin
+                        If Fieldbyname('FactExterior').value > 0 then
+                        Begin
+                              DM.ppImpReciboExterior.PrinterSetup.Copies := 2;
+                              DM.ppImpReciboExterior.DeviceType := dtScreen;
+                              DM.ppImpReciboExterior.Print;
+                        End
+                        Else
+                        begin
+                            With DM.ppImpReciboTicket do
+                            begin
+                                ShowPrintDialog := False;
+                                DeviceType := dtPrinter;
+                                PrinterSetup.PrinterName := Ruta_Recibo;
+                                Print;
+                            end;
+                        end;
+                    End
+                    Else
+                    Begin
+                        If Fieldbyname('FactExterior').value > 0 then
+                        Begin
+                              DM.ppImpReciboExterior.PrinterSetup.Copies := 2;
+                              DM.ppImpReciboExterior.DeviceType := dtScreen;
+                              DM.ppImpReciboExterior.Print;
+                        End
+                        Else
+                        begin
+                              DM.ppImpReciboTicket.DeviceType := dtScreen;
+                              DM.ppImpReciboTicket.Print;
+                        end;
+                    End;
+                  end;
+              end;
+    end;
+}
+  end;
+end;
+end.

@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s1="http://www.simetricaconsulting.com/webservices/dbaper/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.simetricaconsulting.com/webservices/Proveedores" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://www.simetricaconsulting.com/webservices/Proveedores" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.simetricaconsulting.com/webservices/Proveedores">
+      <s:import namespace="http://www.simetricaconsulting.com/webservices/dbaper/" />
+      <s:element name="Test">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="User">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserFullName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ValidaAfiliado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="codArs" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="codAfiliado" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="codProveedor" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidaAfiliadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidaAfiliadoResult" type="s1:Afiliado" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidaProveedor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="codArs" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="codProveedor" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidaProveedorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidaProveedorResult" type="s1:PSS" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidaToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidaTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ValidaTokenResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CotizacionPorMonto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="codArs" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="montoTotal" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="codAfiliado" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="codProveedor" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CotizacionPorMontoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CotizacionPorMontoResult" type="s1:Autorizacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CotizacionPorCoberturas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="codArs" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="coberturas" type="tns:ArrayOfCobertura" />
+            <s:element minOccurs="1" maxOccurs="1" name="codAfiliado" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="codProveedor" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCobertura">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Cobertura" nillable="true" type="s1:Cobertura" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CotizacionPorCoberturasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CotizacionPorCoberturasResult" type="s1:Autorizacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReclamacionPorMonto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="codArs" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="montoTotal" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="codAfiliado" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="codProveedor" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReclamacionPorMontoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReclamacionPorMontoResult" type="s1:Autorizacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReclamacionPorCoberturas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="codArs" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="coberturas" type="tns:ArrayOfCobertura" />
+            <s:element minOccurs="1" maxOccurs="1" name="codAfiliado" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="codProveedor" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReclamacionPorCoberturasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReclamacionPorCoberturasResult" type="s1:Autorizacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCoberturasMasUsadas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="codArs" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="codProveedor" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCoberturasMasUsadasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCoberturasMasUsadasResult" type="tns:ArrayOfCobertura" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCoberturas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="codArs" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="codProveedor" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCoberturasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCoberturasResult" type="tns:ArrayOfCobertura" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAseguradoras">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAseguradorasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAseguradorasResult" type="tns:ArrayOfAseguradora" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAseguradora">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Aseguradora" nillable="true" type="tns:Aseguradora" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Aseguradora">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Codigo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImageUrl" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Estado" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="VersionCoberturas" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaVersion" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaVersionCoberturas" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="WsURL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CancelaAutoriazcion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="codArs" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="noReclamacion" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="year" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="codAfiliado" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="codProveedor" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelaAutoriazcionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CancelaAutoriazcionResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelarAutorizacion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="codArs" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="numeroSession" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelarAutorizacionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CancelarAutorizacionResult" type="s1:Cancelacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.simetricaconsulting.com/webservices/dbaper/">
+      <s:complexType name="Afiliado">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:CBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Cedula" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Codigo" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CodigoSalida" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Estado" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="TipoPlan" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Pasaporte" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PrimerNombre" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SegundoNombre" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PrimerApellido" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SegundoApellido" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CodigoAsegurado" type="s:long" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CBase" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s1:Error" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Error">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Descipcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PSS">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdProveedor" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Codigo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Estado" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tipo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoSalida" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Autorizacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="NoReclamacion" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DiferenciaAfiliado" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoArs" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="ListaCoberturas" type="s1:ArrayOfCobertura" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumeroSession" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Year" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoTotal" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCobertura">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Cobertura" nillable="true" type="s1:Cobertura" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Cobertura">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Codigo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Deducible" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoIndemizado" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoNoCubierto" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoTotal" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoSalida" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Cancelacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Estado" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mensaje" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoSalida" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ArsId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Session" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="TestSoapIn">
+    <wsdl:part name="parameters" element="tns:Test" />
+  </wsdl:message>
+  <wsdl:message name="TestSoapOut">
+    <wsdl:part name="parameters" element="tns:TestResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidaAfiliadoSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidaAfiliado" />
+  </wsdl:message>
+  <wsdl:message name="ValidaAfiliadoSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidaAfiliadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidaProveedorSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidaProveedor" />
+  </wsdl:message>
+  <wsdl:message name="ValidaProveedorSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidaProveedorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidaTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidaToken" />
+  </wsdl:message>
+  <wsdl:message name="ValidaTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidaTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="CotizacionPorMontoSoapIn">
+    <wsdl:part name="parameters" element="tns:CotizacionPorMonto" />
+  </wsdl:message>
+  <wsdl:message name="CotizacionPorMontoSoapOut">
+    <wsdl:part name="parameters" element="tns:CotizacionPorMontoResponse" />
+  </wsdl:message>
+  <wsdl:message name="CotizacionPorCoberturasSoapIn">
+    <wsdl:part name="parameters" element="tns:CotizacionPorCoberturas" />
+  </wsdl:message>
+  <wsdl:message name="CotizacionPorCoberturasSoapOut">
+    <wsdl:part name="parameters" element="tns:CotizacionPorCoberturasResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReclamacionPorMontoSoapIn">
+    <wsdl:part name="parameters" element="tns:ReclamacionPorMonto" />
+  </wsdl:message>
+  <wsdl:message name="ReclamacionPorMontoSoapOut">
+    <wsdl:part name="parameters" element="tns:ReclamacionPorMontoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReclamacionPorCoberturasSoapIn">
+    <wsdl:part name="parameters" element="tns:ReclamacionPorCoberturas" />
+  </wsdl:message>
+  <wsdl:message name="ReclamacionPorCoberturasSoapOut">
+    <wsdl:part name="parameters" element="tns:ReclamacionPorCoberturasResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCoberturasMasUsadasSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCoberturasMasUsadas" />
+  </wsdl:message>
+  <wsdl:message name="GetCoberturasMasUsadasSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCoberturasMasUsadasResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCoberturasSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCoberturas" />
+  </wsdl:message>
+  <wsdl:message name="GetCoberturasSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCoberturasResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAseguradorasSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAseguradoras" />
+  </wsdl:message>
+  <wsdl:message name="GetAseguradorasSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAseguradorasResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelaAutoriazcionSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelaAutoriazcion" />
+  </wsdl:message>
+  <wsdl:message name="CancelaAutoriazcionSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelaAutoriazcionResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelarAutorizacionSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelarAutorizacion" />
+  </wsdl:message>
+  <wsdl:message name="CancelarAutorizacionSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelarAutorizacionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SimetricaWSSoap">
+    <wsdl:operation name="Test">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Metodo de verificacion de conectividad</wsdl:documentation>
+      <wsdl:input message="tns:TestSoapIn" />
+      <wsdl:output message="tns:TestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Metodo requerido para la autenticacion.</wsdl:documentation>
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidaAfiliado">
+      <wsdl:input message="tns:ValidaAfiliadoSoapIn" />
+      <wsdl:output message="tns:ValidaAfiliadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidaProveedor">
+      <wsdl:input message="tns:ValidaProveedorSoapIn" />
+      <wsdl:output message="tns:ValidaProveedorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidaToken">
+      <wsdl:input message="tns:ValidaTokenSoapIn" />
+      <wsdl:output message="tns:ValidaTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CotizacionPorMonto">
+      <wsdl:input message="tns:CotizacionPorMontoSoapIn" />
+      <wsdl:output message="tns:CotizacionPorMontoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CotizacionPorCoberturas">
+      <wsdl:input message="tns:CotizacionPorCoberturasSoapIn" />
+      <wsdl:output message="tns:CotizacionPorCoberturasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReclamacionPorMonto">
+      <wsdl:input message="tns:ReclamacionPorMontoSoapIn" />
+      <wsdl:output message="tns:ReclamacionPorMontoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReclamacionPorCoberturas">
+      <wsdl:input message="tns:ReclamacionPorCoberturasSoapIn" />
+      <wsdl:output message="tns:ReclamacionPorCoberturasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoberturasMasUsadas">
+      <wsdl:input message="tns:GetCoberturasMasUsadasSoapIn" />
+      <wsdl:output message="tns:GetCoberturasMasUsadasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoberturas">
+      <wsdl:input message="tns:GetCoberturasSoapIn" />
+      <wsdl:output message="tns:GetCoberturasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAseguradoras">
+      <wsdl:input message="tns:GetAseguradorasSoapIn" />
+      <wsdl:output message="tns:GetAseguradorasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelaAutoriazcion">
+      <wsdl:input message="tns:CancelaAutoriazcionSoapIn" />
+      <wsdl:output message="tns:CancelaAutoriazcionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelarAutorizacion">
+      <wsdl:input message="tns:CancelarAutorizacionSoapIn" />
+      <wsdl:output message="tns:CancelarAutorizacionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SimetricaWSSoap" type="tns:SimetricaWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Test">
+      <soap:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/Test" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidaAfiliado">
+      <soap:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/ValidaAfiliado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidaProveedor">
+      <soap:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/ValidaProveedor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidaToken">
+      <soap:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/ValidaToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CotizacionPorMonto">
+      <soap:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/CotizacionPorMonto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CotizacionPorCoberturas">
+      <soap:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/CotizacionPorCoberturas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReclamacionPorMonto">
+      <soap:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/ReclamacionPorMonto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReclamacionPorCoberturas">
+      <soap:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/ReclamacionPorCoberturas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoberturasMasUsadas">
+      <soap:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/GetCoberturasMasUsadas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoberturas">
+      <soap:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/GetCoberturas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAseguradoras">
+      <soap:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/GetAseguradoras" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelaAutoriazcion">
+      <soap:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/CancelaAutoriazcion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelarAutorizacion">
+      <soap:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/CancelarAutorizacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SimetricaWSSoap12" type="tns:SimetricaWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+    <wsdl:operation name="Test">
+      <soap12:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/Test" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/Login" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidaAfiliado">
+      <soap12:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/ValidaAfiliado" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidaProveedor">
+      <soap12:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/ValidaProveedor" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidaToken">
+      <soap12:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/ValidaToken" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CotizacionPorMonto">
+      <soap12:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/CotizacionPorMonto" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CotizacionPorCoberturas">
+      <soap12:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/CotizacionPorCoberturas" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReclamacionPorMonto">
+      <soap12:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/ReclamacionPorMonto" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReclamacionPorCoberturas">
+      <soap12:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/ReclamacionPorCoberturas" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoberturasMasUsadas">
+      <soap12:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/GetCoberturasMasUsadas" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoberturas">
+      <soap12:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/GetCoberturas" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAseguradoras">
+      <soap12:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/GetAseguradoras" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelaAutoriazcion">
+      <soap12:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/CancelaAutoriazcion" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelarAutorizacion">
+      <soap12:operation soapAction="http://www.simetricaconsulting.com/webservices/Proveedores/CancelarAutorizacion" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SimetricaWS">
+    <wsdl:port name="SimetricaWSSoap" binding="tns:SimetricaWSSoap">
+      <soap:address location="https://www.simetricaconsulting.net/simetricaws.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SimetricaWSSoap12" binding="tns:SimetricaWSSoap12">
+      <soap12:address location="https://www.simetricaconsulting.net/simetricaws.asmx" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

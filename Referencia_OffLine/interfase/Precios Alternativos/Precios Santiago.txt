@@ -1,0 +1,536 @@
+002ACETONURIA                                        0016000
+003ACIDO FOLICO                                      0042500
+004ACIDO URICO                                       0018500
+005ACIDO URICO EN ORINA 24 HRS                       0018500
+358ACIDO VALPROICO (DEPAKENE)                        0054500
+528ACTH                                              0098000
+007AG. AUSTRALIANO                                   0030000
+737AG. CRYPTOSPORIDIUM Y GIARDIA                     0135000
+763AG. ENTAMOEBA HISTOLYTICA                         0190000
+008AG. FEBRILES                                      0028000
+808ALBUMINA                                          0000000
+882ALCOHOL EN SALIVA                                 0053500
+010ALDOLASA                                          0000000
+495ALERGENO DE : BASE 1                              0055000
+923ALERGENO DE : BASE 10                             0055000
+924ALERGENO DE : BASE 11                             0055000
+925ALERGENO DE : BASE 12                             0055000
+926ALERGENO DE : BASE 13                             0055000
+927ALERGENO DE : BASE 14                             0055000
+928ALERGENO DE : BASE 15                             0055000
+496ALERGENO DE : BASE 2                              0055000
+916ALERGENO DE : BASE 3                              0055000
+917ALERGENO DE : BASE 4                              0055000
+918ALERGENO DE : BASE 5                              0055000
+919ALERGENO DE : BASE 6                              0055000
+920ALERGENO DE : BASE 7                              0055000
+921ALERGENO DE : BASE 8                              0055000
+922ALERGENO DE : BASE 9                              0055000
+352ALFA-AMILASA PANCREATICA                          0030000
+013ALFA-FETO PROTEINA                                0040000
+014ALFA-1-ANTITRIPSINA                               0060000
+015AMEBA EN SUERO                                    0056000
+016AMILASA                                           0019500
+017AMILASA EN ORINA                                  0019500
+018AMONIO                                            0035000
+019ANA                                               0029000
+535ANDROSTENEDIONA                                   0047500
+756ANFETAMINAS                                       0031000
+020ANTI HIV                                          0029500
+770ANTI MYCOBACTERIUM TUBERCULOSIS                   0048500
+726ANTI TIROGLOBULINAS                               0057500
+727ANTI TPO                                          0057500
+830ANTI TROMBINA III                                 0110000
+021ANTI-CARDIOLIPINAS                                0082500
+022ANTI-DNA                                          0041000
+614ANTI-HAV                                          0038500
+024ANTI-HAV-IGM                                      0038500
+516ANTI-HBC                                          0038500
+026ANTI-HBC-IGM                                      0039000
+027ANTI-HBE                                          0048500
+028ANTI-HBS                                          0037500
+575ANTIGENO DE H. PYLORI EN HECES                    0170000
+509ANTIGENO P24                                      0095000
+747APOLIPOPROTEINA A1                                0055000
+746APOLIPOPROTEINA B                                 0055000
+576ARN-CHLAMYDIA T.                                  0090000
+417ASO CUANTITATIVA                                  0026500
+394ASO LATEX                                         0023500
+878A1-HIV                                            0000000
+880A1B-HIV                                           0000000
+879A2-HIV                                            0000000
+881A2B-HIV                                           0000000
+031BACILOSCOPIA EN FLUIDOS                           0026000
+571BACILOSCOPIA EN HECES                             0026000
+572BACILOSCOPIA EN HECES X 3                         0078000
+034BACILOSCOPIA EN ORINA                             0026000
+035BACILOSCOPIA EN ORINA X 2                         0052000
+036BACILOSCOPIA EN ORINA X 3                         0078000
+037BACILOSCOPIA EN ORINA X 4                         0104000
+038BACILOSCOPIA EN ORINA X 6                         0156000
+039BACILOSCOPIA EN ORINA 1                           0000000
+040BACILOSCOPIA EN ORINA 2                           0000000
+041BACILOSCOPIA EN ORINA 3                           0000000
+042BACILOSCOPIA EN ORINA 4                           0000000
+043BACILOSCOPIA EN ORINA 5                           0000000
+044BACILOSCOPIA EN ORINA 6                           0000000
+795BACILOSCOPIA EN SANGRE                            0026000
+593BACILOSCOPIA EN TEJIDO                            0026000
+046BACILOSCOPIA ESP X 2                              0052000
+047BACILOSCOPIA ESP X 3                              0078000
+048BACILOSCOPIA ESP X 5                              0130000
+373BACILOSCOPIA ESP 1                                0000000
+673BACILOSCOPIA ESP 2                                0000000
+674BACILOSCOPIA ESP 3                                0000000
+052BACILOSCOPIA ESP 4                                0000000
+053BACILOSCOPIA ESP 5                                0000000
+439BACILOSCOPIA ESPUTO                               0026000
+054BACILOSCOPIA ORINA X 5                            0130000
+056BENZODIAZEPINAS                                   0036000
+898BETA CROSS LAPS                                   0120000
+752BHCG CUANTITATIVA ELFA                            0000000
+445BHCG EN SUERO CUALITATIVA                         0022000
+058BILIRRUBINA                                       0021500
+060C-HDL                                             0020000
+061C-HDL Y C-LDL                                     0000000
+640C-LDL                                             0020000
+378C-VLDL                                            0020000
+390CA 125                                            0050000
+062CA 15-3                                           0052000
+525CA 19-9                                           0052000
+594CA 27.29                                          0000000
+718CAFEINA                                           0000000
+063CALCIO                                            0019500
+377CALCIO EN ORINA                                   0019500
+064CALCIO EN ORINA DE 24 HRS.                        0019500
+721CALCIO IONICO                                     0138500
+065CALCULO RENAL                                     0000000
+068CEA                                               0040000
+069CELULAS L.E.                                      0020500
+070CELULAS LCR                                       0017500
+419CERULOPLASMINA                                    0052500
+773CHEQUEO ANALISIS                                  0000000
+774CHEQUEO PSICOLOGICO                               0000000
+071CK-MB                                             0026000
+072CK-TOTAL                                          0020000
+074CLAMIDIA IGG                                      0055000
+076CLORO                                             0019500
+799CLORO EN ORINA                                    0019500
+350CLORO LCR                                         0019500
+800CLOSTRIDIUM DIFFICILE TOXINA A/B                  0110000
+077COCAINA                                           0030000
+078COLESTEROL                                        0019000
+555COLESTEROL LIQ. ASCITICO                          0019000
+079COLINESTERASA ERITROCITICA                        0040000
+080COLINESTERASA PLASMATICA                          0040000
+081COLORACION DE GRAM                                0017500
+082COLORACION DE ZIEHL NEELSEN                       0017500
+084CONTEO DE ESPERMATOZOIDES                         0017500
+085CONTEO DE HEMATIES EN HECES                       0017500
+086CONTEO DE HEMATIES EN HECES X 2                   0035000
+087CONTEO DE HEMATIES EN HECES X 3                   0052500
+088CONTEO DE HEMATIES EN HECES 1                     0000000
+089CONTEO DE HEMATIES EN HECES 2                     0000000
+090CONTEO DE HEMATIES EN HECES 3                     0000000
+611CONTEO DE LEUCOCITOS EN ESPUTO                    0017500
+091CONTEO DE LEUCOCITOS EN HECES                     0017500
+092CONTEO DE LEUCOCITOS EN HECES X 2                 0035000
+093CONTEO DE LEUCOCITOS EN HECES X 3                 0052500
+094CONTEO DE LEUCOCITOS EN HECES 1                   0000000
+095CONTEO DE LEUCOCITOS EN HECES 2                   0000000
+096CONTEO DE LEUCOCITOS EN HECES 3                   0000000
+098COPROLOGICO                                       0018500
+099COPROLOGICO X 2                                   0037000
+100COPROLOGICO X 3                                   0055500
+101COPROLOGICO 1                                     0000000
+102COPROLOGICO 2                                     0000000
+103COPROLOGICO 3                                     0000000
+383COPROLOGICO-INVEST. AMEBAS                        0025000
+375CORTISOL EN ORINA 24 HRS                          0000000
+423CORTISOL EN SUERO AM                              0035000
+425CORTISOL EN SUERO PM                              0035000
+814CORTISOL PLASMATICO AM                            0035000
+815CORTISOL PLASMATICO PM                            0035000
+107CO2                                               0020000
+109CREATININA                                        0018500
+110CREATININA EN ORINA                               0018500
+111CRIOAGLUTININAS                                   0017500
+899CRUCE DE BANCO                                    0000000
+775CRUCE SANGUINEO                                   0000000
+113CULTIVO                                           0000000
+114CULTIVO DE                                        0000000
+748CULTIVO DE: ANAEROBIO                             0090000
+657CULTIVO DE: AREA                                  0030000
+515CULTIVO DE: BK Y SENS.                            0060000
+908CULTIVO DE: BK Y SENS. ESPUTO 1                   0000000
+909CULTIVO DE: BK Y SENS. ESPUTO 2                   0000000
+910CULTIVO DE: BK Y SENS. ESPUTO 3                   0000000
+122CULTIVO DE: CAMPYLOBACTER EN HECES                0048500
+847CULTIVO DE: DISPOSITIVOS                          0031500
+442CULTIVO DE: ESPUTO                                0031500
+124CULTIVO DE: FARINGE                               0028000
+564CULTIVO DE: FLUIDOS ESTERILES                     0033000
+827CULTIVO DE: H. PYLORI MUCOSA GASTRICA             0000000
+368CULTIVO DE: HECES                                 0039500
+806CULTIVO DE: HEMOCULTIVO PEDIATRICO AEROBICO       0000000
+128CULTIVO DE: HERIDAS PROFUNDAS                     0031500
+367CULTIVO DE: HERIDAS SUPERFICIALES                 0031500
+001CULTIVO DE: HONGOS                                0032500
+365CULTIVO DE: LIQUIDO CEFALORRAQUIDEO               0030500
+913CULTIVO DE: MICOBACTERIAS EN SANGRE               0500000
+364CULTIVO DE: ORINA                                 0030000
+560CULTIVO DE: SANGRE AEROBICO                       0056000
+693CULTIVO DE: SANGRE AEROBICO 1                     0000000
+694CULTIVO DE: SANGRE AEROBICO 2                     0000000
+695CULTIVO DE: SANGRE AEROBICO 3                     0000000
+562CULTIVO DE: SANGRE ANAEROBICO                     0077000
+698CULTIVO DE: SANGRE ANAEROBICO 1                   0000000
+699CULTIVO DE: SANGRE ANAEROBICO 2                   0000000
+700CULTIVO DE: SANGRE ANAEROBICO 3                   0000000
+663CULTIVO DE: SEC. NASAL                            0028000
+849CULTIVO DE: SEC. OCULAR                           0028000
+363CULTIVO DE: SEC. OIDO                             0032500
+790CULTIVO DE: SEC. URETRAL                          0039000
+369CULTIVO DE: SEC. VAGINAL                          0032500
+372CULTIVO DE: SEMEN                                 0031000
+374CULTIVO DE: SEMEN (ESPERMATOGRAMA)                0000000
+589CULTIVO DE: UÑAS                                  0030000
+441CULTIVO PARA MICOBACTERIAS Y SENS.                0440000
+872CURVA DE GLUCOSA                                  0000000
+550CURVA DE INSULINA 2 HRS                           0121500
+551CURVA DE INSULINA 3 HRS                           0140000
+552CURVA DE INSULINA 4 HRS                           0164000
+553CURVA DE INSULINA 5 HRS                           0184500
+866CYTOMEGALOVIRUS DNA-PCR                           0450000
+141CYTOMEGALOVIRUS-IGG                               0045000
+142CYTOMEGALOVIRUS-IGM                               0067500
+143C3                                                0031000
+144C4                                                0031000
+145D-XYLOSA ADULTOS                                  0180000
+146D-XYLOSA NIÑOS                                    0180000
+884DENGUE ANTIGENO                                   0081000
+506DENGUE IGG POR EIA                                0064000
+507DENGUE IGM POR EIA                                0064000
+750DENGUE RAPIDO                                     0075000
+147DEPURACION DE CREATININA                          0022500
+529DHEA-SO4                                          0046500
+834DIAPOSITIVA                                       0000000
+148DIGESTION MATERIAS FECALES                        0021000
+149DIGOXINA                                          0035000
+354DILANTIN (PHENYTOIN)                              0035000
+538DIMERO D                                          0060000
+890DISMORFIA ERITROCITICA                            0017500
+151E.DE HEMOG.ACIDA                                  0038000
+152E.DE HEMOGLOBINAS                                 0027500
+153E.DE LIPOPROTEINAS                                0037000
+681ECSTASY (MDMA)                                    0033000
+156ELECT.DE LCR                                      0065000
+157ELECT.DE ORINA                                    0065000
+158ELECT.DE PROTEINAS                                0027500
+862ELECTROCARDIOGRAMA                                0000000
+159ELECTROLITOS                                      0000000
+160ELECTROLITOS EN ORINA                             0076500
+432ELECTROLITOS EN SUDOR                             0120000
+822ENVASE COLECCION MATERIA FECAL                    0006500
+823ENVASE COLECCION MATERIA FECAL X 2                0013000
+824ENVASE COLECCION MATERIA FECAL X 3                0019500
+161EOSINOFILOS                                       0020000
+389EOSINOFILOS EN ESPUTO                             0018500
+162EOSINOFILOS EN SEC. NASAL                         0018500
+807EOSINOFILOS EN SEC. OCULAR                        0018500
+658EOSINOFILOS SEC. FARINGE                          0018500
+467EPSTEIN BARR-VCA IGM                              0044000
+165ERITRO                                            0019500
+355ESPERMATOGRAMA COMPLETO                           0046500
+112ESTRADIOL (E2)                                    0035000
+533ESTREPTOCOCO A RAPIDO                             0060000
+443ESTRIOL (UE3)                                     0087500
+169ESTROGENOS TOTALES                                0037500
+170ESTUDIO LIQ  CEFALORRAQUIDEO                      0000000
+171ESTUDIO LIQ. ASCITICO                             0000000
+173ESTUDIO LIQ. CEFALORRAQUIDEO                      0028000
+174ESTUDIO LIQ. PERICARDICO                          0028000
+175ESTUDIO LIQ. PERITONEAL                           0000000
+176ESTUDIO LIQ. PLEURAL                              0000000
+177ESTUDIO LIQ. SINOVIAL                             0000000
+772ESTUDIO LIQ. TORAXICO                             0000000
+178ESTUDIO LIQUIDO ASCITICO                          0038000
+371ESTUDIO LIQUIDO PERICARDICO                       0000000
+179ESTUDIO LIQUIDO PERITONEAL                        0028000
+180ESTUDIO LIQUIDO PLEURAL                           0028000
+181ESTUDIO LIQUIDO SINOVIAL                          0028000
+771ESTUDIO LIQUIDO TORAXICO                          0028000
+182EXAMEN FISICO                                     0000000
+183EXTENDIDOS GRAL                                   0017500
+396F. REUMATOIDE LATEX                               0019500
+886FACTOR V                                          0200000
+911FACTOR V DE LEIDEN                                0230000
+895FACTOR VIII                                       0200000
+185FALCEMIA                                          0025500
+186FENOBARBITAL                                      0035000
+187FERRITINA                                         0040000
+188FIBRINOGENO                                       0032500
+189FILARIAS                                          0023000
+190FOSFATASA ACIDA                                   0030000
+604FOSFATASA ACIDA NO PROSTATICA                     0032500
+191FOSFATASA ACIDA PROSTATICA                        0032500
+192FOSFATASA ALCALINA                                0018500
+193FOSFOLIPIDOS                                      0032500
+194FOSFORO                                           0018500
+195FOSFORO EN ORINA                                  0018500
+418FR CUANTITATIVO                                   0029000
+557FR LIQ. ASCITICO                                  0029000
+196FRAGILIDAD CAPILAR                                0019500
+197FRAGILIDAD ERITROCITICA                           0022500
+199FROTIS SANGRE PERIFERICA                          0020000
+200FRUCTOSA EN SEMEN                                 0019000
+201FRUCTOSAMINA                                      0056000
+202FSH                                               0033500
+385FTA-ABS                                           0026500
+931GASES ARTERIALES I-STAT                           0000000
+676GASES ARTERIALES, NA,K,CL,CO2,CA IONICO           0000000
+901GENTAMICINA                                       0050000
+205GGPT                                              0018500
+206GLUCOSA                                           0018500
+207GLUCOSA CURVA 2 HORAS                             0000000
+208GLUCOSA CURVA 2 HRS                               0060000
+209GLUCOSA CURVA 3 HORAS                             0000000
+210GLUCOSA CURVA 3 HRS                               0070000
+211GLUCOSA CURVA 4 HORAS                             0000000
+212GLUCOSA CURVA 4 HRS                               0075000
+213GLUCOSA CURVA 5 HORAS                             0000000
+214GLUCOSA CURVA 5 HRS                               0080000
+216GLUCOSA PP                                        0018500
+217GLUCOSA PP CON GLUCOLA                            0030000
+218GLUCOSA-6-FOSFATO                                 0070000
+219GLUCOSURIA                                        0018000
+220GONADOTROPINA CORIONICA                           0034500
+221GRASAS EN HECES                                   0017500
+455GRUPO 1                                           0000000
+456GRUPO 2                                           0000000
+457GRUPO 3                                           0000000
+458GRUPO 4                                           0000000
+459GRUPO 5                                           0000000
+460GRUPO 6                                           0000000
+222H. PYLORI                                         0039000
+223HBE AG                                            0051500
+224HEMATOCRITO                                       0020000
+225HEMATOCRITO Y HEMOGLOBINA                         0020000
+226HEMATOZOARIOS                                     0018500
+230HEMOGLOBINA GLICOSILADA                           0026500
+231HEMOGRAMA                                         0020000
+870HEPATITIS B PCR EN TIEMPO REAL                    0530000
+232HEPATITIS C                                       0036000
+869HEPATITIS C PCR EN TIEMPO REAL                    0530000
+679HEPATITIS C RNA-PCR CUALITATIVA                   0000000
+505HERPES I Y II IGG                                 0060000
+472HERPES I Y II IGM                                 0080000
+929HERPES I Y II POR PCR                             0650000
+235HIERRO                                            0020000
+897HIV I-II/AG. P24/0                                0000000
+871HIV PCR EN TIEMPO REAL                            0520000
+642HIV RNA-PCR-ESTANDAR                              0000000
+236HIV-1 Y 2 RAPIDO                                  0032500
+706HOMOCISTEINA                                      0083000
+238HORMONA CREC. CON INSULINA                        0000000
+461HORMONA CRECIMIENTO BASAL                         0042500
+744HORMONA CRECIMIENTO CON ESTIMULACION ARGININA     0000000
+462HORMONA CRECIMIENTO POST                          0042500
+240HORMONA CRECIMIENTO-INSULINA                      0000000
+241HTLV-1                                            0130000
+433IDENTIFICACION DE PARASITO                        0017500
+242IGA                                               0029500
+243IGE                                               0033500
+244IGG                                               0029500
+421IGG EN LCR                                        0000000
+540IGG SUBCLASES 1, 2, 3, 4                          0300000
+245IGM                                               0029500
+246INMUNOFIJACION                                    0290000
+688INSULINA BASAL                                    0039000
+687INSULINA POST                                     0039000
+248INV. AMEBAS                                       0022500
+249INV. AMEBAS 1                                     0000000
+250INV. AMEBAS 2                                     0000000
+381INV. AMEBAS 3                                     0000000
+251INV. DE AMEBAS X 2                                0045000
+362INV. DE AMEBAS X 3                                0067500
+934INV. DE MICROSPORIDIUM                            0000000
+252INV. DE OXIUROS                                   0018500
+253INV. DE SCHISTOSOMA MANSONI                       0018500
+582INV. PARASITOS ASPIRADO DUODENAL                  0018500
+740INVESTIGACION DE COCCIDIA                         0030000
+565KIT DE COLECCION CLAMIDIA                         0012500
+255LDH                                               0019000
+450LDH EN LIQ. PLEURAL                               0019000
+346LDH LCR                                           0019000
+885LEPTOSPIRA IGM                                    0095000
+904LEUKO-TEST EN HECES                               0062500
+150LH                                                0034500
+257LIPASA                                            0019000
+734LIPOPROTEINA A                                    0052500
+259LITIO                                             0020000
+831LUPUS ANTICOAGULANT                               0100000
+260MAGNESIO                                          0020000
+850MALARIA EN SUERO                                  0032000
+261MARIHUANA                                         0030000
+262MICROALBUMINA                                     0026500
+766MICROALBUMINA CUANTITATIVA                        0035000
+263MONOTEST                                          0021000
+777MYCOPLASMA PNEUMONIAE IGM                         0070000
+751N-TX                                              0085000
+760NEISSERIA G/CHLAMYDIA T. ENDOCERVICAL             0365000
+761NEISSERIA G/CHLAMYDIA T. ORINA                    0375000
+811NEISSERIA G/CHLAMYDIA T. URETRAL                  0365000
+620NICOTINA                                          0059000
+841NITROGENO UREICO EN ORINA                         0000000
+722NT-PRO BNP                                        0210000
+267OPIATOS                                           0033000
+762OSTEOCALCINA                                      0140000
+791PANEL AUTOINMUNE                                  0220000
+608PANEL CARDIACO                                    0110000
+907PANEL CARDIACO CUANTITATIVO                       0000000
+671PANEL DE CHEQUEO                                  0000000
+692PANEL DE LINFOCITOS                               0220000
+888PANEL DONANTE                                     0000000
+851PANEL EPSTEIN BARR-IGG                            0160000
+858PANEL MEDICARD                                    0030000
+859PANEL MEDICARD GOLD                               0050000
+625PANEL OVARICO                                     0000000
+769PANEL PREVENTIVO HOGAR                            0120000
+683PANEL PROFAMILIA                                  0000000
+454PANEL 2                                           0060000
+680PANEL 26                                          0000000
+707PANEL 3                                           0000000
+778PANEL 3-PRSC                                      0000000
+268PANEL 4                                           0000000
+856PANEL 5                                           0000000
+883PANEL 6                                           0000000
+731PAPERAS IGG                                       0090000
+732PAPERAS IGM                                       0090000
+672PAQUETE OPIE                                      0000000
+735PAQUETE QUIMICA                                   0000000
+838PAQUETE SPA-F                                     0000000
+839PAQUETE SPA-M                                     0000000
+768PCP                                               0035000
+422PCR CUANTITATIVA                                  0023500
+536PDF                                               0190000
+749PEPTIDO C                                         0120000
+787PEPTIDO C POST                                    0120000
+837PEPTIDOS CICLICOS CITRULINADOS                    0160000
+270PH EN MATERIA FECAL                               0016000
+271PH EN ORINA                                       0016000
+347PLAQUETAS (CAMARA)                                0020000
+511PLOMO                                             0068000
+273POTASIO                                           0018500
+274POTASIO EN ORINA                                  0018500
+275POTASIO EN ORINA 24 HRS                           0018500
+464PREPARACION DE KOH                                0020000
+932PROCALCITONINA                                    0000000
+914PROFAMILIA HRA PHARMA                             0000000
+933PROFAMILIA PROT.422                               0000000
+277PROGESTERONA                                      0035000
+278PROLACTINA                                        0035000
+279PROTEINA BENCE JONES                              0016000
+828PROTEINA C                                        0190000
+280PROTEINA C REACTIVA                               0020000
+829PROTEINA S                                        0190000
+281PROTEINAS LCR                                     0020000
+753PROTEINAS T. LIQ. PLEURAL                         0020000
+282PROTEINAS T. ORINA                                0020000
+283PROTEINAS TOTALES                                 0022500
+380PROTEINAS TOTALES EN ORINA CASUAL                 0020000
+845PROYECTO ACV                                      0000000
+855PROYECTO AZEVAN                                   0000000
+284PRUEBA EMBARAZO ORINA                             0022000
+715PRUEBA USA.: ACIDO FORMICO                        0000000
+714PRUEBA USA.: DE FLORURO                           0000000
+667PRUEBAS                                           0000000
+503PRUEBAS USA.:                                     0000000
+498PRUEBAS USA.: BASE 1                              0000000
+285PSA                                               0034000
+524PSA LIBRE Y TOTAL                                 0055000
+534PTH INTACTA                                       0110000
+384R. P. R.                                          0019000
+826RADIOGRAFIA DE SENOS PARANASALES                  0000000
+286RADIOGRAFIA DEL TORAX                             0000000
+370RADIOGRAFIA LUMBAR                                0000000
+287RETICULOCITOS                                     0017000
+288RETRACCION COAGULO                                0015000
+289ROTAVIRUS                                         0055000
+290RUBELLA IGG                                       0050000
+291RUBELLA IGM                                       0067000
+292S. G. O. T.                                       0018500
+293S. G. P. T.                                       0018500
+294SANGRE OCULTA                                     0016500
+729SARAMPION IGG                                     0120000
+730SARAMPION IGM                                     0130000
+809SAVINASA IGE                                      0000000
+619SCOCH TAPE                                        0017500
+892SHIGA TOXIN (EHEC)                                0120000
+298SODIO                                             0018500
+299SODIO EN ORINA                                    0018500
+300SODIO EN ORINA 24 HRS                             0018500
+810STREPTOZYME                                       0028500
+302SUSTANCIAS REDUCTORAS                             0018500
+303TC                                                0017500
+304TEGRETOL                                          0036000
+305TEOFILINA                                         0029000
+306TEST DE COOMBS DIRECTO                            0018000
+361TEST DE COOMBS IND.                               0027000
+309TEST GLUTARALDEHIDO                               0022000
+310TESTOSTERONA                                      0035000
+832TIEMPO DE TROMBINA (TT)                           0080000
+313TINTA CHINA                                       0016000
+314TIPIFICACION                                      0021000
+166TIROGLOBULINA                                     0035000
+315TOMA DE MUESTRA DOMICILIO                         0025000
+382TOMA DOMICILIO ADICIONAL                          0005000
+820TOMA DOMICILIO ESPECIAL                           0000000
+779TOMA DOMICILIO PARCIAL                            0010000
+316TOXO IGG POR EIA                                  0035000
+317TOXO IGM POR EIA                                  0035000
+318TP                                                0025000
+825TRANSCUL PARA URETRA                              0006500
+426TRANSFERRINA                                      0065000
+716TRANSPORTE DE MUESTRA                             0000000
+319TRIGLICERIDOS                                     0018500
+320TRIPSINA EN HECES                                 0016000
+600TROPONINA CUALITATIVA RAPIDA                      0095000
+549TROPONINA I                                       0056000
+321TS                                                0017500
+322TSH                                               0030000
+323TTP                                               0026000
+684TUBERCULINA (MANTOUX)                             0028000
+324T3                                                0030000
+723T3 LIBRE                                          0038000
+326T4                                                0030000
+327T4 LIBRE                                          0030000
+328UREA                                              0018500
+853UREA EN ORINA                                     0019500
+776UROANALISIS                                       0018500
+780UROANALISIS X 2                                   0037000
+781UROANALISIS X 3                                   0055500
+782UROANALISIS 1                                     0000000
+783UROANALISIS 2                                     0000000
+784UROANALISIS 3                                     0000000
+448USA                                               0000000
+900VANCOMICINA                                       0050000
+403VARICELLA ZOSTER IGG                              0100000
+404VARICELLA ZOSTER IGM                              0110000
+704VDRL                                              0019000
+335VDRL EN LCR                                       0019000
+638VDRL SESPAS                                       0000000
+840VIRUS DEL PAPILOMA H.                             0300000
+336VITAMINA B12                                      0042500
+337VLDL                                              0020000
+338VMA                                               0130000
+339WESTERN BLOT                                      0300000
+755X-100                                             0000000
+379X-200                                             0000000
+630X-300                                             0000000
+83617 HIDROXI-PROGESTERONA                           0097000
+34117-CETOS                                          0220000
+34217-OH                                             0250000
+936PROFAMILIA PROT.427                               0000000
+937EPSTEIN BAAR-VCA IGG                              0000000
+938MIOGLOBINA                                        0000000

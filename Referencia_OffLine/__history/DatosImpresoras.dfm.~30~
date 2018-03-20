@@ -1,0 +1,444 @@
+inherited frmDatosImpresoras: TfrmDatosImpresoras
+  Caption = 'Parametros de Impresion'
+  ClientHeight = 366
+  ClientWidth = 692
+  OnDestroy = nil
+  OnKeyUp = nil
+  ExplicitWidth = 700
+  ExplicitHeight = 400
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dxLayoutControl1: TdxLayoutControl
+    Width = 692
+    Height = 333
+    ExplicitWidth = 692
+    ExplicitHeight = 333
+    inherited pcDatos: TcxPageControl
+      Width = 736
+      Height = 517
+      ExplicitWidth = 736
+      ExplicitHeight = 517
+      ClientRectBottom = 517
+      ClientRectRight = 736
+      ClientRectTop = 24
+      inherited tsMain: TcxTabSheet
+        ExplicitWidth = 668
+        ExplicitHeight = 309
+        inherited lcGrid: TdxLayoutControl
+          Width = 736
+          Height = 493
+          ExplicitWidth = 668
+          ExplicitHeight = 309
+          inherited dgDatos: TcxGrid
+            Width = 550
+            Height = 240
+            ExplicitWidth = 550
+            ExplicitHeight = 240
+            inherited tvDatos: TcxGridDBTableView
+              object tvDatosComputerName: TcxGridDBColumn
+                Caption = 'Nombre PC'
+                DataBinding.FieldName = 'ComputerName'
+                Width = 175
+              end
+              object tvDatosSesionUserName: TcxGridDBColumn
+                Caption = 'Sesion - Usuario'
+                DataBinding.FieldName = 'SesionUserName'
+                Width = 175
+              end
+              object tvDatosRutaFactura: TcxGridDBColumn
+                Caption = 'Printer Factura'
+                DataBinding.FieldName = 'RutaFactura'
+                Width = 250
+              end
+              object tvDatosRutaRecibo: TcxGridDBColumn
+                Caption = 'Printer Recibo'
+                DataBinding.FieldName = 'RutaRecibo'
+                Width = 250
+              end
+              object tvDatosRutaBarcode: TcxGridDBColumn
+                Caption = 'Codigo de Barra'
+                DataBinding.FieldName = 'RutaBarcode'
+                Width = 250
+              end
+              object tvDatosSucursalID: TcxGridDBColumn
+                Caption = 'Sucursal'
+                DataBinding.FieldName = 'SucursalID'
+              end
+            end
+          end
+          object cxComboBox1: TcxComboBox [2]
+            Left = 0
+            Top = 0
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            Style.ButtonStyle = btsHotFlat
+            Style.PopupBorderStyle = epbsSingle
+            TabOrder = 2
+            Text = 'cxComboBox1'
+            Visible = False
+            Width = 121
+          end
+        end
+      end
+      inherited tsDatos: TcxTabSheet
+        ExplicitWidth = 668
+        ExplicitHeight = 309
+        inherited lcDatos: TdxLayoutControl
+          Width = 736
+          Height = 493
+          ExplicitWidth = 668
+          ExplicitHeight = 309
+          object EdBarCode: TcxDBButtonEdit [0]
+            Left = 135
+            Top = 144
+            Hint = 'Ruta del Printer de C'#243'digo de Barra'
+            DataBinding.DataField = 'RutaBarcode'
+            DataBinding.DataSource = dsDatos
+            ParentShowHint = False
+            Properties.Buttons = <
+              item
+                Default = True
+                Kind = bkEllipsis
+              end>
+            Properties.OnButtonClick = EdBarCodePropertiesButtonClick
+            ShowHint = True
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            Style.ButtonStyle = btsHotFlat
+            TabOrder = 4
+            Width = 250
+          end
+          object EdReporte: TcxDBButtonEdit [1]
+            Left = 135
+            Top = 171
+            Hint = 'Ruta del Printer de los Listados'
+            DataBinding.DataField = 'RutaReportes'
+            DataBinding.DataSource = dsDatos
+            ParentShowHint = False
+            Properties.Buttons = <
+              item
+                Default = True
+                Kind = bkEllipsis
+              end>
+            Properties.OnButtonClick = EdReportePropertiesButtonClick
+            ShowHint = True
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            Style.ButtonStyle = btsHotFlat
+            TabOrder = 5
+            Width = 250
+          end
+          object EdRecibo: TcxDBButtonEdit [2]
+            Left = 135
+            Top = 117
+            Hint = 'Ruta del Printer de los Recibos'
+            DataBinding.DataField = 'RutaRecibo'
+            DataBinding.DataSource = dsDatos
+            ParentShowHint = False
+            Properties.Buttons = <
+              item
+                Default = True
+                Kind = bkEllipsis
+              end>
+            Properties.OnButtonClick = EdReciboPropertiesButtonClick
+            ShowHint = True
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            Style.ButtonStyle = btsHotFlat
+            TabOrder = 3
+            Width = 250
+          end
+          object EdFactura: TcxDBButtonEdit [3]
+            Left = 135
+            Top = 90
+            Hint = 'Ruta del Printer de las Facturas'
+            DataBinding.DataField = 'RutaFactura'
+            DataBinding.DataSource = dsDatos
+            ParentShowHint = False
+            Properties.Buttons = <
+              item
+                Default = True
+                Kind = bkEllipsis
+              end>
+            Properties.OnButtonClick = EdFacturaPropertiesButtonClick
+            ShowHint = True
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            Style.ButtonStyle = btsHotFlat
+            TabOrder = 2
+            Width = 250
+          end
+          object EdUserSesion: TcxDBButtonEdit [4]
+            Left = 135
+            Top = 63
+            DataBinding.DataField = 'SesionUserName'
+            DataBinding.DataSource = dsDatos
+            Properties.Buttons = <
+              item
+                Default = True
+                Kind = bkEllipsis
+              end>
+            Properties.ReadOnly = True
+            Properties.OnButtonClick = EdUserSesionPropertiesButtonClick
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.Color = clAqua
+            Style.HotTrack = False
+            Style.ButtonStyle = btsHotFlat
+            TabOrder = 1
+            Width = 250
+          end
+          object EdComputerName: TcxDBButtonEdit [5]
+            Left = 135
+            Top = 36
+            DataBinding.DataField = 'ComputerName'
+            DataBinding.DataSource = dsDatos
+            Properties.Buttons = <
+              item
+                Default = True
+                Kind = bkEllipsis
+              end>
+            Properties.ReadOnly = True
+            Properties.OnButtonClick = EdComputerNamePropertiesButtonClick
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.Color = clAqua
+            Style.HotTrack = False
+            Style.ButtonStyle = btsHotFlat
+            TabOrder = 0
+            Width = 250
+          end
+          object cboExtSucursal: TcxDBExtLookupComboBox [6]
+            Left = 135
+            Top = 198
+            Hint = 'Sucursal Asignado al Printer'
+            RepositoryItem = DM.elcSucursal
+            DataBinding.DataField = 'SucursalID'
+            DataBinding.DataSource = dsDatos
+            ParentShowHint = False
+            Properties.CharCase = ecUpperCase
+            ShowHint = True
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            Style.ButtonStyle = btsHotFlat
+            Style.PopupBorderStyle = epbsSingle
+            TabOrder = 6
+            Width = 250
+          end
+          object cboArea: TcxComboBox [7]
+            Left = 135
+            Top = 225
+            Properties.Items.Strings = (
+              'R-RECEPCION'
+              'L-LABORATORIO'
+              'B-BANCO DE SANGRE')
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            Style.ButtonStyle = btsHotFlat
+            Style.PopupBorderStyle = epbsSingle
+            TabOrder = 7
+            Text = 'cboArea'
+            Width = 250
+          end
+          inherited Group_Root: TdxLayoutGroup
+            object lcDatosGroup1: TdxLayoutGroup
+              Caption = 'General'
+              object lcDatosItem8: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Nombre P. C.'
+                Control = EdComputerName
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem3: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Usuario - Sesion'
+                Control = EdUserSesion
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem7: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Impresora de Facturas'
+                Control = EdFactura
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem6: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Impresora de Recibos'
+                Control = EdRecibo
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem4: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Codigos de Barra'
+                Control = EdBarCode
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem5: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Impresora de Reportes'
+                Control = EdReporte
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem2: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Sucursal'
+                Control = cboExtSucursal
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem1: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Area'
+                Control = cboArea
+                ControlOptions.ShowBorder = False
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+  inherited pnCaption: TPanel
+    Width = 692
+    ExplicitWidth = 692
+  end
+  inherited formStorage: TJvFormStorage
+    Left = 536
+    Top = 94
+  end
+  inherited dsDatos: TDataSource
+    DataSet = qrPrintersParam
+    Left = 76
+    Top = 2
+  end
+  inherited dxPrintGrid: TdxComponentPrinter
+    Left = 474
+    Top = 188
+    inherited dxPrintGridLink: TdxGridReportLink
+      PrinterPage.GrayShading = True
+      ReportDocument.CreationDate = 39995.675393483800000000
+      BuiltInReportLink = True
+    end
+    inherited dxPrintGridDatos: TdxLayoutControlReportLink
+      ReportDocument.CreationDate = 38932.673759942130000000
+      BuiltInReportLink = True
+      HiddenComponents = {}
+      ExcludedComponents = {}
+      AggregatedReportLinks = {}
+    end
+  end
+  inherited cxGridPopupMenu: TcxGridPopupMenu
+    Left = 412
+    Top = 188
+  end
+  inherited cxGridStyles: TcxStyleRepository
+    Left = 474
+    Top = 141
+  end
+  inherited SaveDialog: TSaveDialog
+    Left = 536
+    Top = 188
+  end
+  inherited qryHelper: TADOQuery
+    Left = 508
+    Top = 2
+  end
+  inherited alEdit: TActionList
+    Left = 396
+    Top = 2
+  end
+  inherited pmCustom: TPopupMenu
+    Top = 141
+  end
+  inherited qrDefaultView: TADOQuery
+    Left = 560
+    Top = 2
+  end
+  inherited strView: TJvStrHolder
+    Left = 474
+    Top = 94
+  end
+  inherited strTableNames: TJvStrHolder
+    Left = 412
+    Top = 141
+  end
+  inherited cxStyleRepository1: TcxStyleRepository
+    Left = 474
+    Top = 236
+  end
+  inherited qrUserFields: TABSQuery
+    Left = 536
+    Top = 236
+  end
+  inherited qrVistas: TABSQuery
+    Left = 412
+    Top = 94
+  end
+  inherited cxIntl1: TcxIntl
+    Left = 412
+    Top = 236
+  end
+  object qrPrintersParam: TADOQuery
+    Connection = DM.DataBase
+    CursorType = ctStatic
+    OnNewRecord = qrPrintersParamNewRecord
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT * FROM SysImpresorasPC')
+    Left = 24
+    Top = 2
+    object qrPrintersParamComputerName: TStringField
+      FieldName = 'ComputerName'
+      Required = True
+      Size = 100
+    end
+    object qrPrintersParamSesionUserName: TStringField
+      FieldName = 'SesionUserName'
+      Required = True
+      Size = 100
+    end
+    object qrPrintersParamRutaFactura: TStringField
+      FieldName = 'RutaFactura'
+      Size = 255
+    end
+    object qrPrintersParamRutaRecibo: TStringField
+      FieldName = 'RutaRecibo'
+      Size = 255
+    end
+    object qrPrintersParamRutaReportes: TStringField
+      FieldName = 'RutaReportes'
+      Size = 255
+    end
+    object qrPrintersParamRutaBarcode: TStringField
+      FieldName = 'RutaBarcode'
+      Size = 255
+    end
+    object qrPrintersParamRutaOtros1: TStringField
+      FieldName = 'RutaOtros1'
+      Size = 255
+    end
+    object qrPrintersParamRutaOtros2: TStringField
+      FieldName = 'RutaOtros2'
+      Size = 255
+    end
+    object qrPrintersParamSucursalID: TStringField
+      FieldName = 'SucursalID'
+      Size = 10
+    end
+    object qrPrintersParamArea: TStringField
+      FieldName = 'Area'
+      FixedChar = True
+      Size = 1
+    end
+  end
+  object PrintDialog1: TPrintDialog
+    Left = 322
+    Top = 2
+  end
+end

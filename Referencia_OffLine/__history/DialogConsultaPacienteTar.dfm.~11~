@@ -1,0 +1,237 @@
+inherited frmDialogConsultaPacienteTar: TfrmDialogConsultaPacienteTar
+  BorderIcons = [biSystemMenu]
+  Caption = 'Consulta de Pacientes-Tarjeta'
+  ClientHeight = 542
+  ClientWidth = 943
+  FormStyle = fsStayOnTop
+  KeyPreview = True
+  WindowState = wsMaximized
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  OnShow = FormShow
+  ExplicitWidth = 951
+  ExplicitHeight = 576
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dxLayoutControl1: TdxLayoutControl
+    Width = 943
+    Height = 542
+    ExplicitWidth = 943
+    ExplicitHeight = 542
+    inherited edbuscarpor: TcxComboBox
+      Properties.Items.Strings = (
+        'Identificaci'#243'n'
+        'Tel'#233'fono'
+        'Nombres'
+        'Paciente ID')
+    end
+    inherited edbuscar: TcxTextEdit
+      Properties.CharCase = ecUpperCase
+      Properties.OnChange = edbuscarPropertiesChange
+      OnExit = edbuscarExit
+    end
+    inherited cgDatos: TcxGrid
+      Width = 921
+      Height = 420
+      OnEnter = cgDatosEnter
+      OnExit = cgDatosExit
+      ExplicitWidth = 921
+      ExplicitHeight = 420
+      inherited dbDatos: TcxGridDBTableView
+        DataController.KeyFieldNames = 'CLIENTEID'
+        DataController.Summary.FooterSummaryItems = <
+          item
+            Kind = skCount
+          end>
+        OptionsView.Footer = True
+        object dbDatosCLIENTEID: TcxGridDBColumn
+          DataBinding.FieldName = 'CLIENTEID'
+          HeaderAlignmentHorz = taCenter
+          Width = 76
+        end
+        object dbDatosNOMBRE: TcxGridDBColumn
+          DataBinding.FieldName = 'NOMBRE'
+          HeaderAlignmentHorz = taCenter
+          Width = 274
+        end
+        object dbDatosTELEFONO: TcxGridDBColumn
+          DataBinding.FieldName = 'TELEFONO'
+          HeaderAlignmentHorz = taCenter
+          Width = 99
+        end
+        object dbDatosIDENTIFICACION: TcxGridDBColumn
+          DataBinding.FieldName = 'IDENTIFICACION'
+          HeaderAlignmentHorz = taRightJustify
+          Width = 116
+        end
+        object dbDatosTARJETAID: TcxGridDBColumn
+          DataBinding.FieldName = 'TARJETAID'
+          HeaderAlignmentHorz = taCenter
+          Width = 96
+        end
+        object dbDatosPUNTOSTOTAL: TcxGridDBColumn
+          DataBinding.FieldName = 'PUNTOSTOTAL'
+          HeaderAlignmentHorz = taCenter
+          Width = 94
+        end
+        object dbDatosPUNTOSUSADOS: TcxGridDBColumn
+          DataBinding.FieldName = 'PUNTOSUSADOS'
+          HeaderAlignmentHorz = taCenter
+          Width = 106
+        end
+        object dbDatosESTATUS: TcxGridDBColumn
+          DataBinding.FieldName = 'ESTATUS'
+          Width = 46
+        end
+      end
+    end
+    inherited btcancelar: TcxButton
+      Left = 682
+      Top = 496
+      Width = 250
+      Height = 35
+      Caption = 'Esc = &Cancelar'
+      Font.Charset = ANSI_CHARSET
+      Font.Height = -27
+      Font.Name = 'Times New Roman'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 5
+      ExplicitLeft = 682
+      ExplicitTop = 496
+      ExplicitWidth = 250
+      ExplicitHeight = 35
+    end
+    inherited btaceptar: TcxButton
+      Left = 426
+      Top = 496
+      Width = 250
+      Height = 35
+      Caption = 'F9 = &Aceptar'
+      Font.Charset = ANSI_CHARSET
+      Font.Height = -27
+      Font.Name = 'Times New Roman'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 4
+      ExplicitLeft = 426
+      ExplicitTop = 496
+      ExplicitWidth = 250
+      ExplicitHeight = 35
+    end
+    object BtNuevo: TcxButton [5]
+      Left = 20
+      Top = 496
+      Width = 400
+      Height = 35
+      Caption = 'F1 = Agregar un Nuevo &Paciente'
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Times New Roman'
+      Font.Style = [fsBold]
+      ModalResult = 2
+      ParentFont = False
+      TabOrder = 3
+    end
+    inherited dxLayoutControl1Group_Root: TdxLayoutGroup
+      inherited dxLayoutControl1Group2: TdxLayoutGroup
+        object dxLayoutControl1Item3: TdxLayoutItem [0]
+          ShowCaption = False
+          Control = BtNuevo
+          ControlOptions.ShowBorder = False
+        end
+      end
+    end
+  end
+  object cxLabel1: TcxLabel [1]
+    Left = 571
+    Top = 31
+    AutoSize = False
+    Caption = 'Enter = Buscar Paciente'
+    ParentColor = False
+    ParentFont = False
+    Properties.Alignment.Horz = taCenter
+    Properties.Alignment.Vert = taVCenter
+    Properties.LabelEffect = cxleCool
+    Properties.LabelStyle = cxlsRaised
+    Properties.ShadowedColor = clGray
+    Style.Color = 16311249
+    Style.Font.Charset = ANSI_CHARSET
+    Style.Font.Color = clBlack
+    Style.Font.Height = -21
+    Style.Font.Name = 'Tahoma'
+    Style.Font.Style = [fsBold]
+    Style.HotTrack = False
+    Style.TextColor = clBlack
+    Style.IsFontAssigned = True
+    Height = 28
+    Width = 260
+  end
+  inherited dsDatos: TDataSource
+    DataSet = qrPacientes
+    Left = 308
+    Top = 407
+  end
+  inherited cxIntl1: TcxIntl
+    Left = 544
+    Top = 240
+  end
+  object qrPacientes: TADOQuery
+    Connection = DM.DataBase
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT C.CLIENTEID,C.NOMBRE,TELEFONO,IDENTIFICACION,'
+      'T.TARJETAID,PUNTOSTOTAL,PUNTOSUSADOS,USEREMISION,FECHAEMISION,'
+      'USERMODIFICA,FECHAMODIFICA,T.ESTATUS '
+      'FROM PTCLIENTE C INNER JOIN PTTARJETA T'
+      'ON C.CLIENTEID = T.PACIENTEID'
+      '')
+    Left = 272
+    Top = 407
+    object qrPacientesCLIENTEID: TStringField
+      FieldName = 'CLIENTEID'
+      Size = 10
+    end
+    object qrPacientesNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      Size = 80
+    end
+    object qrPacientesTELEFONO: TStringField
+      FieldName = 'TELEFONO'
+    end
+    object qrPacientesIDENTIFICACION: TStringField
+      FieldName = 'IDENTIFICACION'
+    end
+    object qrPacientesTARJETAID: TStringField
+      FieldName = 'TARJETAID'
+    end
+    object qrPacientesPUNTOSTOTAL: TIntegerField
+      FieldName = 'PUNTOSTOTAL'
+    end
+    object qrPacientesPUNTOSUSADOS: TIntegerField
+      FieldName = 'PUNTOSUSADOS'
+    end
+    object qrPacientesUSEREMISION: TStringField
+      FieldName = 'USEREMISION'
+      Size = 10
+    end
+    object qrPacientesFECHAEMISION: TDateTimeField
+      FieldName = 'FECHAEMISION'
+    end
+    object qrPacientesUSERMODIFICA: TStringField
+      FieldName = 'USERMODIFICA'
+      Size = 10
+    end
+    object qrPacientesFECHAMODIFICA: TDateTimeField
+      FieldName = 'FECHAMODIFICA'
+    end
+    object qrPacientesESTATUS: TStringField
+      FieldName = 'ESTATUS'
+      FixedChar = True
+      Size = 1
+    end
+  end
+end

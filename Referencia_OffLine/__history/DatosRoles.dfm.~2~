@@ -1,0 +1,272 @@
+inherited frmDatosRoles: TfrmDatosRoles
+  Left = 471
+  Top = 202
+  Caption = 'Roles de Usuario'
+  ClientHeight = 257
+  ClientWidth = 623
+  ExplicitWidth = 631
+  ExplicitHeight = 291
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dxLayoutControl1: TdxLayoutControl
+    Width = 623
+    Height = 224
+    ExplicitWidth = 623
+    ExplicitHeight = 224
+    inherited pcDatos: TcxPageControl
+      Width = 518
+      Height = 299
+      ExplicitWidth = 518
+      ExplicitHeight = 299
+      ClientRectBottom = 299
+      ClientRectRight = 518
+      ClientRectTop = 24
+      inherited tsMain: TcxTabSheet
+        ExplicitWidth = 518
+        ExplicitHeight = 275
+        inherited lcGrid: TdxLayoutControl
+          Width = 518
+          Height = 275
+          ExplicitWidth = 518
+          ExplicitHeight = 275
+          inherited dgDatos: TcxGrid
+            Width = 574
+            Height = 229
+            ExplicitWidth = 574
+            ExplicitHeight = 229
+            inherited tvDatos: TcxGridDBTableView
+              DataController.KeyFieldNames = 'RolID'
+              object tvDatosRolID: TcxGridDBColumn
+                Caption = 'Rol'
+                DataBinding.FieldName = 'RolID'
+                Width = 51
+              end
+              object tvDatosDescripcion: TcxGridDBColumn
+                Caption = 'Descripci'#243'n'
+                DataBinding.FieldName = 'Descripcion'
+                Width = 273
+              end
+              object tvDatosAdministrador: TcxGridDBColumn
+                DataBinding.FieldName = 'Administrador'
+                PropertiesClassName = 'TcxCheckBoxProperties'
+                Width = 155
+              end
+              object tvDatosDesarrollador: TcxGridDBColumn
+                DataBinding.FieldName = 'Desarrollador'
+              end
+            end
+          end
+        end
+      end
+      inherited tsDatos: TcxTabSheet
+        ExplicitWidth = 518
+        ExplicitHeight = 275
+        inherited lcDatos: TdxLayoutControl
+          Width = 518
+          Height = 275
+          ExplicitWidth = 518
+          ExplicitHeight = 275
+          object cxDBTextEdit1: TcxDBTextEdit [0]
+            Tag = 99
+            Left = 155
+            Top = 36
+            DataBinding.DataField = 'RolID'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 0
+            Width = 74
+          end
+          object cxDBTextEdit2: TcxDBTextEdit [1]
+            Left = 155
+            Top = 63
+            DataBinding.DataField = 'Descripcion'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 1
+            Width = 121
+          end
+          object cxDBCheckBox1: TcxDBCheckBox [2]
+            Left = 155
+            Top = 122
+            DataBinding.DataField = 'Administrador'
+            DataBinding.DataSource = dsDatos
+            Properties.Alignment = taCenter
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 2
+            Width = 25
+          end
+          object cxDBCheckBox2: TcxDBCheckBox [3]
+            Left = 155
+            Top = 149
+            DataBinding.DataField = 'Desarrollador'
+            DataBinding.DataSource = dsDatos
+            Properties.Alignment = taCenter
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 3
+            Width = 25
+          end
+          inherited Group_Root: TdxLayoutGroup
+            object lcDatosGroup1: TdxLayoutGroup
+              Caption = 'General'
+              object lcDatosItem1: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Rol'
+                Control = cxDBTextEdit1
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem2: TdxLayoutItem
+                Caption = 'Descripci'#243'n'
+                Control = cxDBTextEdit2
+                ControlOptions.ShowBorder = False
+              end
+            end
+            object lcDatosGroup2: TdxLayoutGroup
+              Caption = 'Opciones'
+              object lcDatosItem3: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Administrador'
+                Control = cxDBCheckBox1
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem4: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Herramientas de Desarrollo'
+                Control = cxDBCheckBox2
+                ControlOptions.ShowBorder = False
+              end
+            end
+          end
+        end
+      end
+    end
+    object cxButton1: TcxButton [1]
+      Left = 536
+      Top = 7
+      Width = 75
+      Height = 25
+      Caption = 'Permisos'
+      TabOrder = 1
+      OnClick = cxButton1Click
+    end
+    inherited dxLayoutGroup2: TdxLayoutGroup
+      inherited dxLayoutControl1Group_Root: TdxLayoutGroup
+        inherited lgBotones: TdxLayoutGroup
+          object dxLayoutControl1Item1: TdxLayoutItem
+            Caption = 'cxButton1'
+            ShowCaption = False
+            Control = cxButton1
+            ControlOptions.ShowBorder = False
+          end
+        end
+      end
+    end
+  end
+  inherited pnCaption: TPanel
+    Width = 623
+    ExplicitWidth = 623
+  end
+  inherited dsDatos: TDataSource
+    DataSet = qrRoles
+  end
+  inherited dxPrintGrid: TdxComponentPrinter
+    Left = 124
+    Top = 120
+    inherited dxPrintGridLink: TdxGridReportLink
+      ReportDocument.CreationDate = 38064.592049016200000000
+      BuiltInReportLink = True
+    end
+    inherited dxPrintGridDatos: TdxLayoutControlReportLink
+      ReportDocument.CreationDate = 38498.627694027780000000
+      BuiltInReportLink = True
+      HiddenComponents = {}
+      ExcludedComponents = {}
+      AggregatedReportLinks = {}
+    end
+  end
+  inherited cxGridPopupMenu: TcxGridPopupMenu
+    Left = 48
+    Top = 140
+  end
+  inherited alEdit: TActionList
+    Left = 324
+    Top = 88
+  end
+  inherited qrDefaultView: TADOQuery
+    Left = 212
+    Top = 187
+  end
+  object qrRoles: TADOQuery
+    Connection = DM.DataBase
+    CursorType = ctStatic
+    BeforePost = qrRolesBeforePost
+    AfterPost = qrRolesAfterPost
+    BeforeDelete = qrRolesBeforeDelete
+    AfterDelete = qrRolesAfterDelete
+    OnNewRecord = qrRolesNewRecord
+    Parameters = <>
+    SQL.Strings = (
+      'select *'
+      '  from SysRoles')
+    Left = 176
+    Top = 215
+    object qrRolesRolID: TSmallintField
+      FieldName = 'RolID'
+      Origin = 'SysRoles.RolID'
+      Required = True
+    end
+    object qrRolesDescripcion: TStringField
+      FieldName = 'Descripcion'
+      Origin = 'SysRoles.Descripcion'
+      FixedChar = True
+    end
+    object qrRolesAdministrador: TBooleanField
+      FieldName = 'Administrador'
+      Origin = 'SysRoles.Administrador'
+      Required = True
+    end
+    object qrRolesDesarrollador: TBooleanField
+      FieldName = 'Desarrollador'
+    end
+  end
+  object sqlInsertaPermisos: TADOQuery
+    Connection = DM.DataBase
+    Parameters = <
+      item
+        Name = 'pRol'
+        Size = -1
+        Value = Null
+      end>
+    SQL.Strings = (
+      'INSERT INTO'
+      '   SysPermisos( RolId, OpcionID, Nivel )'
+      'SELECT :pRol, ObjectID, -1'
+      '  FROM SysMenu ')
+    Left = 428
+    Top = 147
+  end
+  object sqlDeletePermisos: TADOQuery
+    Connection = DM.DataBase
+    Parameters = <
+      item
+        Name = 'pRol'
+        Attributes = [paSigned]
+        DataType = ftSmallint
+        Precision = 5
+        Size = 2
+        Value = Null
+      end>
+    SQL.Strings = (
+      'DELETE FROM SysPermisos'
+      ' WHERE RolId = :pRol ')
+    Left = 296
+    Top = 127
+  end
+end

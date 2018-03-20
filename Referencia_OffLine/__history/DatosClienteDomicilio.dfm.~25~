@@ -1,0 +1,976 @@
+inherited frmDatosClienteDomicilio: TfrmDatosClienteDomicilio
+  BorderStyle = bsDialog
+  Caption = 'Clientes Domicilio'
+  ClientHeight = 570
+  ClientWidth = 677
+  ExplicitTop = -16
+  ExplicitWidth = 683
+  ExplicitHeight = 602
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dxLayoutControl1: TdxLayoutControl
+    Width = 677
+    Height = 537
+    ExplicitWidth = 677
+    ExplicitHeight = 537
+    inherited pcDatos: TcxPageControl
+      Width = 736
+      Height = 517
+      ExplicitWidth = 736
+      ExplicitHeight = 517
+      ClientRectBottom = 517
+      ClientRectRight = 736
+      ClientRectTop = 24
+      inherited tsMain: TcxTabSheet
+        inherited lcGrid: TdxLayoutControl
+          Width = 736
+          Height = 493
+          inherited dgDatos: TcxGrid
+            Width = 550
+            Height = 240
+            ExplicitWidth = 550
+            ExplicitHeight = 240
+            inherited tvDatos: TcxGridDBTableView
+              DataController.KeyFieldNames = 'CteDomID'
+              object tvDatosCteDomID: TcxGridDBColumn
+                DataBinding.FieldName = 'CteDomID'
+                Width = 73
+              end
+              object tvDatosTipo_Documento: TcxGridDBColumn
+                DataBinding.FieldName = 'Tipo_Documento'
+                Width = 42
+              end
+              object tvDatosDocumento: TcxGridDBColumn
+                DataBinding.FieldName = 'Documento'
+                Width = 78
+              end
+              object tvDatosNombre: TcxGridDBColumn
+                DataBinding.FieldName = 'Nombre'
+                Width = 55
+              end
+              object tvDatosDireccion: TcxGridDBColumn
+                DataBinding.FieldName = 'Direccion'
+                Width = 66
+              end
+              object tvDatosFecha_Nacimiento: TcxGridDBColumn
+                DataBinding.FieldName = 'Fecha_Nacimiento'
+                Width = 54
+              end
+              object tvDatosClienteID: TcxGridDBColumn
+                DataBinding.FieldName = 'ClienteID'
+                Width = 20
+              end
+              object tvDatosTel_Oficina: TcxGridDBColumn
+                DataBinding.FieldName = 'Tel_Oficina'
+                Width = 20
+              end
+              object tvDatosTel_Residencia: TcxGridDBColumn
+                DataBinding.FieldName = 'Tel_Residencia'
+                Width = 20
+              end
+              object tvDatosTel_Celular: TcxGridDBColumn
+                DataBinding.FieldName = 'Tel_Celular'
+                Width = 20
+              end
+              object tvDatosEmail: TcxGridDBColumn
+                DataBinding.FieldName = 'Email'
+                Width = 21
+              end
+              object tvDatosUserID: TcxGridDBColumn
+                DataBinding.FieldName = 'UserID'
+                Width = 20
+              end
+            end
+          end
+        end
+      end
+      inherited tsDatos: TcxTabSheet
+        inherited lcDatos: TdxLayoutControl
+          Width = 736
+          Height = 493
+          object EdClienteDom: TcxDBTextEdit [0]
+            Tag = 99
+            Left = 132
+            Top = 90
+            DataBinding.DataField = 'CteDomID'
+            DataBinding.DataSource = dsDatos
+            Properties.CharCase = ecUpperCase
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 2
+            Width = 121
+          end
+          object EdNombre: TcxDBTextEdit [1]
+            Left = 132
+            Top = 125
+            DataBinding.DataField = 'Nombre'
+            DataBinding.DataSource = dsDatos
+            Properties.CharCase = ecUpperCase
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 4
+            Width = 121
+          end
+          object cbExtDocumento: TcxExtLookupComboBox [2]
+            Left = 132
+            Top = 36
+            RepositoryItem = DM.elcDocumento
+            Properties.CharCase = ecUpperCase
+            Properties.OnChange = cbExtDocumentoPropertiesChange
+            Properties.OnCloseUp = cbExtDocumentoPropertiesChange
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            Style.ButtonStyle = btsHotFlat
+            Style.PopupBorderStyle = epbsSingle
+            TabOrder = 0
+            Width = 145
+          end
+          object cxDBMemo1: TcxDBMemo [3]
+            Left = 132
+            Top = 152
+            DataBinding.DataField = 'Direccion'
+            DataBinding.DataSource = dsDatos
+            Properties.CharCase = ecUpperCase
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 5
+            Height = 60
+            Width = 474
+          end
+          object EdFechaBorn: TcxDBDateEdit [4]
+            Left = 132
+            Top = 218
+            DataBinding.DataField = 'Fecha_Nacimiento'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            Style.ButtonStyle = btsHotFlat
+            Style.PopupBorderStyle = epbsSingle
+            TabOrder = 6
+            Width = 121
+          end
+          object CbSexo: TcxDBImageComboBox [5]
+            Left = 344
+            Top = 218
+            DataBinding.DataField = 'Sexo'
+            DataBinding.DataSource = dsDatos
+            Properties.Alignment.Horz = taLeftJustify
+            Properties.Items = <
+              item
+                Description = 'FEMENINO'
+                ImageIndex = 0
+                Value = 0
+              end
+              item
+                Description = 'MASCULINO'
+                Value = 1
+              end>
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            Style.ButtonStyle = btsHotFlat
+            Style.PopupBorderStyle = epbsSingle
+            TabOrder = 7
+            Width = 121
+          end
+          object mskTelResidencia: TcxDBMaskEdit [6]
+            Left = 132
+            Top = 245
+            DataBinding.DataField = 'Tel_Residencia'
+            DataBinding.DataSource = dsDatos
+            Properties.CharCase = ecUpperCase
+            Properties.MaskKind = emkRegExprEx
+            Properties.EditMask = '(\(\d\d\d\))-\d\d\d-\d\d\d\d'
+            Properties.MaxLength = 0
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 8
+            Width = 121
+          end
+          object mskTelCelular: TcxDBMaskEdit [7]
+            Left = 344
+            Top = 245
+            DataBinding.DataField = 'Tel_Celular'
+            DataBinding.DataSource = dsDatos
+            Properties.CharCase = ecUpperCase
+            Properties.MaskKind = emkRegExprEx
+            Properties.EditMask = '(\(\d\d\d\))-\d\d\d-\d\d\d\d'
+            Properties.MaxLength = 0
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 9
+            Width = 121
+          end
+          object mskTelOficina: TcxDBMaskEdit [8]
+            Left = 132
+            Top = 272
+            DataBinding.DataField = 'Tel_Oficina'
+            DataBinding.DataSource = dsDatos
+            Properties.CharCase = ecUpperCase
+            Properties.MaskKind = emkRegExprEx
+            Properties.EditMask = '(\(\d\d\d\))-\d\d\d-\d\d\d\d'
+            Properties.MaxLength = 0
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 10
+            Width = 121
+          end
+          object EdEmail: TcxDBTextEdit [9]
+            Left = 344
+            Top = 272
+            DataBinding.DataField = 'email'
+            DataBinding.DataSource = dsDatos
+            Properties.CharCase = ecUpperCase
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 11
+            Width = 184
+          end
+          object GridTransacciones: TcxGrid [10]
+            Left = 23
+            Top = 331
+            Width = 505
+            Height = 157
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 12
+            LookAndFeel.NativeStyle = True
+            object cxGridDBTableView1: TcxGridDBTableView
+              NavigatorButtons.ConfirmDelete = False
+              NavigatorButtons.Insert.Visible = False
+              NavigatorButtons.Delete.Visible = False
+              NavigatorButtons.Edit.Visible = False
+              NavigatorButtons.Post.Visible = False
+              NavigatorButtons.Cancel.Visible = False
+              DataController.DataModeController.SmartRefresh = True
+              DataController.DataSource = dsDatosTran
+              DataController.Filter.PercentWildcard = '*'
+              DataController.Filter.OnChanged = tvDatosDataControllerFilterChanged
+              DataController.Filter.Active = True
+              DataController.Filter.AutoDataSetFilter = True
+              DataController.KeyFieldNames = 'CteDomDet'
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <>
+              DataController.Summary.SummaryGroups = <>
+              OptionsBehavior.IncSearch = True
+              OptionsCustomize.ColumnsQuickCustomization = True
+              OptionsData.CancelOnExit = False
+              OptionsData.Deleting = False
+              OptionsData.DeletingConfirmation = False
+              OptionsData.Editing = False
+              OptionsData.Inserting = False
+              OptionsSelection.MultiSelect = True
+              OptionsView.ColumnAutoWidth = True
+              OptionsView.GroupByBox = False
+              OptionsView.Indicator = True
+              OptionsView.NewItemRowInfoText = 'Click here to add a new row'
+              Styles.Background = stGrDatos
+              Styles.Content = stGrDatos
+              OnCustomization = tvDatosCustomization
+              object cxGridDBTableView1CteDomID: TcxGridDBColumn
+                DataBinding.FieldName = 'CteDomID'
+                Width = 71
+              end
+              object cxGridDBTableView1CteDomDet: TcxGridDBColumn
+                DataBinding.FieldName = 'CteDomDet'
+                Width = 80
+              end
+              object cxGridDBTableView1Muestrano: TcxGridDBColumn
+                DataBinding.FieldName = 'Muestrano'
+                Width = 80
+              end
+              object cxGridDBTableView1Fecha: TcxGridDBColumn
+                DataBinding.FieldName = 'Fecha'
+                Width = 60
+              end
+              object cxGridDBTableView1Hora: TcxGridDBColumn
+                DataBinding.FieldName = 'Hora'
+                Width = 57
+              end
+              object cxGridDBTableView1Resultado_Via: TcxGridDBColumn
+                DataBinding.FieldName = 'Resultado_Via'
+                Width = 55
+              end
+              object cxGridDBTableView1Usuario_Toma: TcxGridDBColumn
+                DataBinding.FieldName = 'Usuario_Toma'
+                Width = 46
+              end
+              object cxGridDBTableView1Observacion: TcxGridDBColumn
+                DataBinding.FieldName = 'Observacion'
+                Width = 20
+              end
+              object cxGridDBTableView1Refrecid: TcxGridDBColumn
+                DataBinding.FieldName = 'Refrecid'
+                Width = 20
+              end
+            end
+            object cxGridLevel1: TcxGridLevel
+              GridView = cxGridDBTableView1
+            end
+          end
+          object EdCedula: TcxMaskEdit [11]
+            Left = 132
+            Top = 63
+            Properties.CharCase = ecUpperCase
+            Properties.EditMask = '###-#####-#'
+            Properties.MaxLength = 0
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 1
+            Text = '   -     - '
+            OnExit = EdCedulaExit
+            Width = 89
+          end
+          object imgFoto: TcxImage [12]
+            Left = 283
+            Top = 36
+            Properties.GraphicClassName = 'TJPEGImage'
+            Properties.Stretch = True
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 3
+            Height = 83
+            Width = 83
+          end
+          inherited Group_Root: TdxLayoutGroup
+            object lcDatosGroup1: TdxLayoutGroup
+              Caption = 'General'
+              object lcDatosGroup10: TdxLayoutGroup
+                ShowCaption = False
+                Hidden = True
+                LayoutDirection = ldHorizontal
+                ShowBorder = False
+                object lcDatosGroup12: TdxLayoutGroup
+                  ShowCaption = False
+                  Hidden = True
+                  ShowBorder = False
+                  object lcDatosItem3: TdxLayoutItem
+                    AutoAligns = [aaVertical]
+                    Caption = 'Tipo Documento:'
+                    Control = cbExtDocumento
+                    ControlOptions.ShowBorder = False
+                  end
+                  object lcDatosGroup11: TdxLayoutGroup
+                    ShowCaption = False
+                    Hidden = True
+                    ShowBorder = False
+                    object lcDatosItem7: TdxLayoutItem
+                      AutoAligns = [aaVertical]
+                      Caption = 'Identificaci'#243'n:'
+                      Control = EdCedula
+                      ControlOptions.ShowBorder = False
+                    end
+                    object lcDatosItem1: TdxLayoutItem
+                      AutoAligns = [aaVertical]
+                      Caption = 'Cliente Dom.:'
+                      Control = EdClienteDom
+                      ControlOptions.ShowBorder = False
+                    end
+                  end
+                end
+                object lcDatosItem13: TdxLayoutItem
+                  Control = imgFoto
+                  ControlOptions.ShowBorder = False
+                end
+              end
+              object lcDatosGroup2: TdxLayoutGroup
+                ShowCaption = False
+                Hidden = True
+                ShowBorder = False
+                object lcDatosItem2: TdxLayoutItem
+                  Caption = 'Nombre:'
+                  Control = EdNombre
+                  ControlOptions.ShowBorder = False
+                end
+                object lcDatosItem4: TdxLayoutItem
+                  Caption = 'Direcci'#243'n:'
+                  Control = cxDBMemo1
+                  ControlOptions.ShowBorder = False
+                end
+                object lcDatosGroup4: TdxLayoutGroup
+                  ShowCaption = False
+                  Hidden = True
+                  ShowBorder = False
+                  object lcDatosGroup7: TdxLayoutGroup
+                    ShowCaption = False
+                    Hidden = True
+                    LayoutDirection = ldHorizontal
+                    ShowBorder = False
+                    object lcDatosItem5: TdxLayoutItem
+                      AutoAligns = [aaVertical]
+                      Caption = 'Fecha de Nacimiento:'
+                      Control = EdFechaBorn
+                      ControlOptions.ShowBorder = False
+                    end
+                    object lcDatosItem6: TdxLayoutItem
+                      Caption = 'Sexo:'
+                      Control = CbSexo
+                      ControlOptions.ShowBorder = False
+                    end
+                  end
+                  object lcDatosGroup5: TdxLayoutGroup
+                    ShowCaption = False
+                    Hidden = True
+                    ShowBorder = False
+                    object lcDatosGroup6: TdxLayoutGroup
+                      ShowCaption = False
+                      Hidden = True
+                      LayoutDirection = ldHorizontal
+                      ShowBorder = False
+                      object lcDatosItem8: TdxLayoutItem
+                        AutoAligns = [aaVertical]
+                        Caption = 'Tel'#233'fono Residencia:'
+                        Control = mskTelResidencia
+                        ControlOptions.ShowBorder = False
+                      end
+                      object lcDatosItem9: TdxLayoutItem
+                        Caption = 'Tel'#233'fono Celular:'
+                        Control = mskTelCelular
+                        ControlOptions.ShowBorder = False
+                      end
+                    end
+                    object lcDatosGroup8: TdxLayoutGroup
+                      ShowCaption = False
+                      Hidden = True
+                      LayoutDirection = ldHorizontal
+                      ShowBorder = False
+                      object lcDatosItem10: TdxLayoutItem
+                        AutoAligns = [aaVertical]
+                        Caption = 'Tel'#233'fono Oficina:'
+                        Control = mskTelOficina
+                        ControlOptions.ShowBorder = False
+                      end
+                      object lcDatosItem11: TdxLayoutItem
+                        AutoAligns = [aaVertical]
+                        Caption = 'Email:'
+                        Control = EdEmail
+                        ControlOptions.ShowBorder = False
+                      end
+                    end
+                  end
+                end
+              end
+            end
+            object lcDatosGroup9: TdxLayoutGroup
+              Caption = 'Transacciones'
+              object lcDatosItem12: TdxLayoutItem
+                Control = GridTransacciones
+                ControlOptions.ShowBorder = False
+              end
+            end
+          end
+        end
+      end
+    end
+    object btPaciente: TcxButton [1]
+      Left = 565
+      Top = 7
+      Width = 100
+      Height = 25
+      Hint = 'Consulta de Pacientes a Domicilio'
+      Caption = 'F3 = Pacientes'
+      TabOrder = 1
+    end
+    object btTransacciones: TcxButton [2]
+      Left = 565
+      Top = 38
+      Width = 100
+      Height = 25
+      Hint = 'Buscar Transacciones Registradas'
+      Caption = 'F5 = Transacciones'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 2
+    end
+    object bteliminar: TcxButton [3]
+      Left = 565
+      Top = 69
+      Width = 82
+      Height = 25
+      Hint = 'Eliminar Linea'
+      Caption = 'F6 = Eliminar'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 3
+    end
+    object btcancelar: TcxButton [4]
+      Left = 565
+      Top = 100
+      Width = 82
+      Height = 25
+      Hint = 'Cancelar Operaci'#243'n'
+      Caption = 'F7 = Cancelar'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 4
+    end
+    object btgrabar: TcxButton [5]
+      Left = 565
+      Top = 131
+      Width = 82
+      Height = 25
+      Hint = 'Grabar '
+      Caption = 'F8 = Grabar'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 5
+    end
+    object btimprimir: TcxButton [6]
+      Left = 565
+      Top = 162
+      Width = 82
+      Height = 25
+      Hint = 'Impresiones'
+      Caption = 'F9 = Imprimir'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 6
+      Kind = cxbkDropDown
+    end
+    inherited dxLayoutGroup2: TdxLayoutGroup
+      inherited dxLayoutControl1Group_Root: TdxLayoutGroup
+        inherited lgBotones: TdxLayoutGroup
+          object dxLayoutControl1Item2: TdxLayoutItem
+            Caption = 'New Item'
+            ShowCaption = False
+            Control = btPaciente
+            ControlOptions.ShowBorder = False
+          end
+          object dxLayoutControl1Item1: TdxLayoutItem
+            Caption = 'New Item'
+            ShowCaption = False
+            Control = btTransacciones
+            ControlOptions.ShowBorder = False
+          end
+          object dxLayoutControl1Item3: TdxLayoutItem
+            Caption = 'New Item'
+            ShowCaption = False
+            Control = bteliminar
+            ControlOptions.ShowBorder = False
+          end
+          object dxLayoutControl1Item4: TdxLayoutItem
+            Caption = 'New Item'
+            ShowCaption = False
+            Control = btcancelar
+            ControlOptions.ShowBorder = False
+          end
+          object dxLayoutControl1Item5: TdxLayoutItem
+            Caption = 'New Item'
+            ShowCaption = False
+            Control = btgrabar
+            ControlOptions.ShowBorder = False
+          end
+          object dxLayoutControl1Item6: TdxLayoutItem
+            Caption = 'New Item'
+            ShowCaption = False
+            Control = btimprimir
+            ControlOptions.ShowBorder = False
+          end
+        end
+      end
+    end
+  end
+  inherited pnCaption: TPanel
+    Width = 677
+    ExplicitWidth = 677
+  end
+  object spDetalleTransacciones: TLMDSimplePanel [3]
+    Left = 121
+    Top = 57
+    Width = 432
+    Height = 295
+    Bevel.StyleInner = bvFrameLowered
+    Bevel.StyleOuter = bvFrameRaised
+    Bevel.BorderWidth = 8
+    Bevel.BorderInnerWidth = 2
+    Bevel.LightColor = 12582911
+    Bevel.Mode = bmCustom
+    Bevel.StandardStyle = lsLowered
+    Color = clMenuBar
+    TabOrder = 2
+    Visible = False
+    object LMDLabel1: TLMDLabel
+      Left = 13
+      Top = 11
+      Width = 405
+      Height = 19
+      Bevel.StyleInner = bvShadow
+      Bevel.StyleOuter = bvShadow
+      Bevel.WidthOuter = 2
+      Bevel.LightColor = clBlack
+      Bevel.Mode = bmCustom
+      FontFX.LightColor = clSilver
+      FontFX.ShadowColor = clBlack
+      FontFX.Tracing = 1
+      Alignment = agCenter
+      AutoSize = False
+      Color = clActiveCaption
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = []
+      Options = []
+      ParentColor = False
+      ParentFont = False
+      Transparent = False
+      Caption = 'Detalle Transacciones'
+    end
+    object LMDButton1: TLMDButton
+      Left = 335
+      Top = 237
+      Width = 80
+      Height = 41
+      Caption = '&Cancelar'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+      ButtonLayout.AlignText2Glyph = taBottom
+      ButtonLayout.Spacing = 0
+      ListIndex = 15
+      NumGlyphs = 2
+    end
+    object btAceptaPG: TLMDButton
+      Left = 249
+      Top = 237
+      Width = 80
+      Height = 41
+      Caption = '&Aceptar'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 1
+      ButtonLayout.AlignText2Glyph = taBottom
+      ButtonLayout.Spacing = 0
+      ListIndex = 15
+      NumGlyphs = 2
+    end
+    object cxLabel3: TcxLabel
+      Left = 41
+      Top = 148
+      Caption = 'Usuario Toma :'
+    end
+    object cxLabel7: TcxLabel
+      Left = 41
+      Top = 174
+      Caption = 'Observaci'#243'n..:'
+    end
+    object cxLabel1: TcxLabel
+      Left = 41
+      Top = 58
+      Caption = 'Cliente Dom. :'
+    end
+    object cxLabel2: TcxLabel
+      Left = 41
+      Top = 36
+      Caption = 'Detalle ID....:'
+    end
+    object cxLabel4: TcxLabel
+      Left = 41
+      Top = 88
+      Caption = 'Fecha........:'
+    end
+    object cxDBDateEdit1: TcxDBDateEdit
+      Left = 117
+      Top = 84
+      DataBinding.DataField = 'Fecha_Nacimiento'
+      DataBinding.DataSource = dsDatos
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      Style.ButtonStyle = btsHotFlat
+      Style.PopupBorderStyle = epbsSingle
+      TabOrder = 7
+      Width = 121
+    end
+    object cxLabel5: TcxLabel
+      Left = 300
+      Top = 88
+      Caption = 'Hora........:'
+    end
+    object cxDBMaskEdit1: TcxDBMaskEdit
+      Left = 363
+      Top = 84
+      Properties.EditMask = '##:##'
+      Properties.MaxLength = 0
+      TabOrder = 9
+      Width = 52
+    end
+    object cboResultados: TcxDBImageComboBox
+      Left = 117
+      Top = 113
+      DataBinding.DataField = 'Sexo'
+      DataBinding.DataSource = dsDatos
+      Properties.Alignment.Horz = taLeftJustify
+      Properties.Items = <
+        item
+          Description = 'NINGUNO'
+          ImageIndex = 0
+          Value = 'N'
+        end
+        item
+          Description = 'PERSONAL'
+          Value = 'P'
+        end
+        item
+          Description = 'FAX'
+          Value = 'F'
+        end>
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      Style.ButtonStyle = btsHotFlat
+      Style.PopupBorderStyle = epbsSingle
+      TabOrder = 10
+      Width = 121
+    end
+    object cxLabel6: TcxLabel
+      Left = 41
+      Top = 117
+      Caption = 'Resultados Via:'
+    end
+    object cxDBTextEdit4: TcxDBTextEdit
+      Left = 117
+      Top = 143
+      DataBinding.DataField = 'USERID'
+      Properties.CharCase = ecUpperCase
+      Properties.ReadOnly = True
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      TabOrder = 12
+      Width = 121
+    end
+    object cxDBMemo2: TcxDBMemo
+      Left = 117
+      Top = 173
+      DataBinding.DataField = 'Direccion'
+      DataBinding.DataSource = dsDatos
+      Properties.CharCase = ecUpperCase
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      TabOrder = 13
+      Height = 60
+      Width = 298
+    end
+    object cxDBMaskEdit2: TcxDBMaskEdit
+      Left = 118
+      Top = 32
+      Properties.EditMask = '##:##'
+      Properties.MaxLength = 0
+      TabOrder = 14
+      Width = 79
+    end
+    object cxDBMaskEdit3: TcxDBMaskEdit
+      Left = 118
+      Top = 54
+      Properties.EditMask = '##:##'
+      Properties.MaxLength = 0
+      TabOrder = 15
+      Width = 79
+    end
+  end
+  inherited formStorage: TJvFormStorage
+    Left = 360
+    Top = 65534
+  end
+  inherited dsDatos: TDataSource
+    DataSet = qrClienteDomicilio
+    Left = 164
+  end
+  inherited dxPrintGrid: TdxComponentPrinter
+    Left = 204
+    Top = 4
+    inherited dxPrintGridLink: TdxGridReportLink
+      ReportDocument.CreationDate = 38922.351883680550000000
+      BuiltInReportLink = True
+    end
+    inherited dxPrintGridDatos: TdxLayoutControlReportLink
+      ReportDocument.CreationDate = 38922.351883854160000000
+      BuiltInReportLink = True
+      HiddenComponents = {}
+      ExcludedComponents = {}
+      AggregatedReportLinks = {}
+    end
+  end
+  inherited cxGridPopupMenu: TcxGridPopupMenu
+    Left = 320
+    Top = 8
+  end
+  inherited cxGridStyles: TcxStyleRepository
+    Left = 440
+    Top = 36
+  end
+  inherited SaveDialog: TSaveDialog
+    Left = 233
+    Top = 8
+  end
+  inherited qryHelper: TADOQuery
+    Left = 428
+    Top = 2
+  end
+  inherited alEdit: TActionList
+    Left = 252
+    Top = 40
+  end
+  inherited pmCustom: TPopupMenu
+    Left = 376
+    Top = 36
+  end
+  inherited qrDefaultView: TADOQuery
+    Left = 488
+    Top = 2
+  end
+  inherited strView: TJvStrHolder
+    Left = 564
+    Top = 12
+  end
+  inherited strTableNames: TJvStrHolder
+    Left = 528
+    Top = 12
+  end
+  inherited cxStyleRepository1: TcxStyleRepository
+    Left = 280
+    Top = 12
+  end
+  inherited qrUserFields: TABSQuery
+    Left = 344
+    Top = 36
+  end
+  inherited qrVistas: TABSQuery
+    Left = 396
+    Top = 0
+  end
+  inherited cxIntl1: TcxIntl
+    Left = 304
+    Top = 40
+  end
+  object qrClienteDomicilio: TADOQuery
+    Connection = DM.DataBase
+    CursorType = ctStatic
+    BeforePost = qrClienteDomicilioBeforePost
+    AfterPost = qrClienteDomicilioAfterPost
+    OnNewRecord = qrClienteDomicilioNewRecord
+    Parameters = <>
+    SQL.Strings = (
+      'Select *  From PtClienteDom')
+    Left = 128
+    Top = 2
+    object qrClienteDomicilioCteDomID: TIntegerField
+      FieldName = 'CteDomID'
+    end
+    object qrClienteDomicilioTipo_Documento: TIntegerField
+      FieldName = 'Tipo_Documento'
+    end
+    object qrClienteDomicilioDocumento: TStringField
+      FieldName = 'Documento'
+    end
+    object qrClienteDomicilioNombre: TStringField
+      FieldName = 'Nombre'
+      Size = 80
+    end
+    object qrClienteDomicilioSexo: TSmallintField
+      FieldName = 'Sexo'
+    end
+    object qrClienteDomicilioDireccion: TStringField
+      FieldName = 'Direccion'
+      Size = 100
+    end
+    object qrClienteDomicilioFecha_Nacimiento: TDateTimeField
+      FieldName = 'Fecha_Nacimiento'
+    end
+    object qrClienteDomicilioClienteID: TStringField
+      FieldName = 'ClienteID'
+    end
+    object qrClienteDomicilioTel_Oficina: TStringField
+      FieldName = 'Tel_Oficina'
+    end
+    object qrClienteDomicilioTel_Residencia: TStringField
+      FieldName = 'Tel_Residencia'
+    end
+    object qrClienteDomicilioTel_Celular: TStringField
+      FieldName = 'Tel_Celular'
+    end
+    object qrClienteDomicilioEmail: TStringField
+      FieldName = 'Email'
+      Size = 80
+    end
+    object qrClienteDomicilioUserID: TStringField
+      FieldName = 'UserID'
+      Size = 10
+    end
+  end
+  object qrClienteDomDet: TADOQuery
+    Connection = DM.DataBase
+    CursorType = ctStatic
+    BeforePost = qrClienteDomicilioBeforePost
+    AfterPost = qrClienteDomicilioAfterPost
+    OnNewRecord = qrClienteDomicilioNewRecord
+    Parameters = <>
+    SQL.Strings = (
+      'Select *  From PtClienteDomDetalle')
+    Left = 56
+    Top = 2
+    object qrClienteDomDetCteDomID: TIntegerField
+      FieldName = 'CteDomID'
+    end
+    object qrClienteDomDetCteDomDet: TIntegerField
+      FieldName = 'CteDomDet'
+    end
+    object qrClienteDomDetMuestrano: TStringField
+      FieldName = 'Muestrano'
+    end
+    object qrClienteDomDetFecha: TDateTimeField
+      FieldName = 'Fecha'
+    end
+    object qrClienteDomDetHora: TStringField
+      FieldName = 'Hora'
+    end
+    object qrClienteDomDetResultado_Via: TStringField
+      FieldName = 'Resultado_Via'
+      FixedChar = True
+      Size = 1
+    end
+    object qrClienteDomDetUsuario_Toma: TStringField
+      FieldName = 'Usuario_Toma'
+      Size = 10
+    end
+    object qrClienteDomDetObservacion: TStringField
+      FieldName = 'Observacion'
+      Size = 200
+    end
+    object qrClienteDomDetRefrecid: TLargeintField
+      FieldName = 'Refrecid'
+    end
+  end
+  object dsDatosTran: TDataSource
+    AutoEdit = False
+    DataSet = qrClienteDomDet
+    OnStateChange = dsDatosStateChange
+    Left = 90
+    Top = 3
+  end
+end

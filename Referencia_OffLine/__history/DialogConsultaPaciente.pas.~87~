@@ -1,0 +1,805 @@
+unit DialogConsultaPaciente;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DialogConsulta, cxGraphics, Menus, cxLookAndFeelPainters, cxStyles,
+  cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, DB, cxDBData,
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, ADODB,
+  dxLayoutControl, cxGridLevel, cxClasses, cxControls, cxGridCustomView, cxGrid,
+  StdCtrls, cxButtons, cxTextEdit, cxContainer, cxMaskEdit, cxDropDownEdit,
+  DialogCobro, cxintl, cxLabel,dlgmensajes;
+
+type
+  TfrmDialogConsultaPaciente = class(TfrmDialogConsulta)
+    dbDatosPacienteID: TcxGridDBColumn;
+    dbDatosIdentificacion: TcxGridDBColumn;
+    dbDatosNombre: TcxGridDBColumn;
+    dbDatosTelefono: TcxGridDBColumn;
+    qrPacientes: TADOQuery;
+    cxLabel1: TcxLabel;
+    dxLayoutControl1Item3: TdxLayoutItem;
+    BtNuevo: TcxButton;
+    dbDatosTipo: TcxGridDBColumn;
+    qrPacientesClienteID: TStringField;
+    qrPacientesNombre: TStringField;
+    qrPacientesTipo: TStringField;
+    qrPacientesTelefono: TStringField;
+    qrPacientesEstatus: TIntegerField;
+    qrPacientesSeguro: TStringField;
+    qrPacientesCiudadID: TStringField;
+    qrPacientesDireccion: TStringField;
+    qrPacientesTelefono2: TStringField;
+    qrPacientesFax: TStringField;
+    qrPacientesEmail: TStringField;
+    qrPacientesSexo: TIntegerField;
+    qrPacientesFechaNacimiento: TDateTimeField;
+    qrPacientesEnvioResultado: TIntegerField;
+    qrPacientesCobrarDiferencia: TIntegerField;
+    procedure edbuscarKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure BtNuevoClick(Sender: TObject);
+    procedure edbuscarExit(Sender: TObject);
+    procedure cgDatosExit(Sender: TObject);
+    procedure cgDatosEnter(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormShow(Sender: TObject);
+    procedure edbuscarPropertiesChange(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure BuscarData;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure Run;
+  end;
+
+var
+  frmDialogConsultaPaciente: TfrmDialogConsultaPaciente;
+  adentrogrid, _buscar : Boolean;
+
+implementation
+
+uses DataModule, PuntoVenta, Main;
+
+{$R *.dfm}
+
+
+procedure TfrmDialogConsultaPaciente.BtNuevoClick(Sender: TObject);
+begin
+{
+//  inherited;
+//  frmMain.CustPtoVta := '';
+//  frmMain.LanzaVentana(1100);
+  frmMain.frmTmp.RegistrarNuevoPaciente1.Click;
+}
+end;
+
+procedure TfrmDialogConsultaPaciente.BuscarData;
+var
+ sqlString : String;
+begin
+ DM.qrParametro.Close;
+ DM.qrParametro.Open;
+
+ sqlString := 'SELECT ClienteID,Nombre,g.Descripcion Tipo,Telefono,Estatus,Seguro,CiudadID,Direccion,Telefono2,Fax,Email,Sexo,FechaNacimiento,'+
+              ' EnvioResultado,CobrarDiferencia,PublicarInternet FROM PTCliente c Inner Join PtGrupoCliente g On c.GrupoCliente=g.GrupoCliente WHERE c.GrupoCliente IN ('+ #39 +
+              DM.qrParametroGrupoVip.Value + #39 + ',' + #39 +
+              DM.qrParametroGrupoAcc.Value + #39 + ',' + #39 +
+              DM.qrParametroGrupoEmp.Value + #39 + ',' + #39 +
+              DM.qrParametroGrupoPriv.Value + #39 + ') ';
+
+ if edbuscar.Text <> '' then begin
+   case edbuscarpor.ItemIndex of
+     4 : sqlString := sqlString + ' AND c.ClienteID like '+#39+'%'+edbuscar.Text+'%'+#39;
+     3 : sqlString := sqlString + ' AND c.ClienteID In (Select PacienteID from PtTarjeta Where TarjetaID='+#39+edbuscar.Text+#39+' and Estatus='+#39+'1'+#39+')';
+     2 : sqlString := sqlString + ' AND c.Nombre like '+#39+'%'+edbuscar.Text+'%'+#39;
+     0 : sqlString := sqlString + ' AND c.Identificacion like '+#39+'%'+edbuscar.Text+'%'+#39;
+     1 : sqlString := sqlString + ' AND c.Telefono like '+#39+'%'+edbuscar.Text+'%'+#39;
+   end;
+ end;
+
+ If (Trim(edbuscar.Text) = EmptyStr) or (Length(Trim(edbuscar.Text)) < 5) then
+ begin
+      EtMensajeDlg('Debe escribir criterio de búsqueda más exacto en el Texto.  Verifique.', etAviso, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
+      edbuscar.SetFocus;
+      Exit;
+ end;
+
+ sqlString := sqlString + ' AND c.DataAreaId = ' + #39 + DM.CurEmpresa + #39+' AND g.DataAreaId = ' + #39 + DM.CurEmpresa + #39;
+ sqlString := sqlString + ' AND c.Estatus ='+'0';
+ sqlString := sqlString + ' ORDER BY ClienteID ';
+
+ qrPacientes.Close;
+ qrPacientes.SQL.Text := sqlString;
+ qrPacientes.Open;
+end;
+
+procedure TfrmDialogConsultaPaciente.cgDatosEnter(Sender: TObject);
+begin
+  inherited;
+  adentrogrid := True;
+  _buscar := False;
+end;
+
+procedure TfrmDialogConsultaPaciente.cgDatosExit(Sender: TObject);
+begin
+  inherited;
+  adentrogrid := False;
+  _buscar := True;
+end;
+
+procedure TfrmDialogConsultaPaciente.edbuscarExit(Sender: TObject);
+begin
+  inherited;
+  _buscar := True;
+  adentrogrid := False;
+end;
+
+procedure TfrmDialogConsultaPaciente.edbuscarKeyUp(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+  If (edbuscarpor.ItemIndex = 3) And (Length(edbuscar.Text) = 6) then
+  begin
+      If (AdentroGrid) then
+        Begin
+          Close;
+          ModalResult := mrOk;
+        end
+      Else
+        BuscarData;
+  end;
+end;
+
+procedure TfrmDialogConsultaPaciente.edbuscarPropertiesChange(Sender: TObject);
+begin
+  inherited;
+  _buscar := True;
+  adentrogrid := False;
+//  BuscarData;
+end;
+
+procedure TfrmDialogConsultaPaciente.FormCreate(Sender: TObject);
+begin
+  inherited;
+  dsDatos.DataSet := qrPacientes;
+  edbuscarpor.ItemIndex := 0
+end;
+
+procedure TfrmDialogConsultaPaciente.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if (key = Vk_Down) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+
+  if (key = 13) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+
+  if (key = Vk_Up) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 1, 0);
+
+  if (key = 13) and (AdentroGrid) then
+    begin
+      Close;
+      ModalResult := mrOk;
+    end;
+
+  if (key = 13) and (_buscar) then
+    begin
+      If (AdentroGrid) then
+        Begin
+          Close;
+          ModalResult := mrOk;
+        end
+      Else
+        BuscarData;
+    end;
+
+  if (key = 27) then
+    begin
+      Close;
+    end;
+
+  if (key = vk_f1) then
+    begin
+      BtNuevo.Click;
+    end;
+
+  if (key = vk_f9) then
+    begin
+      Close;
+
+      if (qrPacientes.RecordCount >0) then
+        ModalResult := mrOk;
+    end;
+end;
+
+procedure TfrmDialogConsultaPaciente.FormShow(Sender: TObject);
+begin
+  inherited;
+  _buscar := True;
+  adentrogrid := False;
+  edbuscar.SetFocus;
+end;
+
+
+procedure TfrmDialogConsultaPaciente.Run;
+Var
+ qfind : TADOQuery;
+ qfindciudad : TADOquery;
+ ClienteFactura, strNombreCliente : string;
+begin
+  _buscar := True;
+ AdentroGrid := false;
+ showmodal;
+
+ if ModalResult = mrOk then
+  begin
+   If Factura_St = 'T' then
+   begin
+     frmMain.frmTar.qrTarjeta.Edit;
+     frmMain.frmTar.qrTarjetaPacienteId.Value   := qrPacientesCLIENTEID.Value;
+     frmMain.frmTar.lblNombrePaciente.Caption   := qrPacientesNombre.Value;
+     exit;
+   end;
+   If (frmMain.Exis_Vta = True) then
+   Begin
+          If (qrPacientes.RecordCount > 0) And
+            (qrPacientesESTATUS.Value > 0) Then
+          Begin
+              If (qrPacientesESTATUS.Value = 1) Then
+                Raise exception.CreateFmt(' El Paciente: (' + qrPacientesClienteID.AsString + ') ' + qrPacientesNombre.AsString + #13 +
+                                         ' NO Puede Facturarse porque: '+ #13 + ' Tiene el CREDITO CANCELADO.!!! ' + #13 +
+                                         ' Si Desea, Puede Comunicarse con el Departamento de Cobros.!!!', []);
+
+              If (qrPacientesESTATUS.Value = 2) Then
+                Raise exception.CreateFmt(' El Paciente: (' + qrPacientesClienteID.AsString + ') ' + qrPacientesNombre.AsString + #13 +
+                                         ' NO Puede Facturarse porque: '+ #13 + ' El Paciente Esta INACTIVO.!!! ' + #13 +
+                                         ' Si Desea, Puede Comunicarse con el Departamento de Cobros.!!!', []);
+          End;
+
+          // validación SEGUROS PLATINIUM
+          dm.Plan_Premium := EmptyStr;
+          If dm.Verifica_Plan_ClienteEx(qrPacientes.FieldByName('Seguro').AsString) Then
+          begin
+              strNombreCliente := dm.GetSucursalS(qrPacientes.FieldByName('Seguro').AsString);
+              If Not dm.Verifica_Plan_Ex(qrPacientes.FieldByName('Seguro').AsString,dm.CurSucursal) Then
+              Begin
+                If MessageDlg(' El Paciente: (' + qrPacientes.FieldByName('Nombre').AsString + ') con ' + Copy(strNombreCliente,4,50) + #13 +
+                              ' NO Puede Facturarse '+ #13 + ' en esta sucursal.' + #13 +
+                              ' Sólo puede facturarlo como privado.  Desea incluirlo como privado? ',mtConfirmation, [mbYes,mbNo], 0) = mrYes then
+                begin
+                      dm.Plan_Premium :='S';
+                end
+                else
+                      exit;
+
+//                qrPacientes.FieldByName('Seguro').AsString := qrPacientes.FieldByName('ClienteID').AsString;
+//                Raise exception.CreateFmt(' El Paciente: (' + qrPacientes.FieldByName('Nombre').AsString + ') con ' + Copy(strNombreCliente,4,50) + #13 +
+//                                          ' NO Puede Facturarse '+ #13 + ' en esta sucursal.' + #13 +
+//                                          ' Sólo puede facturarlo como privado.', []);
+              End;
+          end;
+          DM.qrParametro.Close;
+          DM.qrParametro.Open;
+
+          qfindciudad := DM.Find_Ldr('Select * from PTCIUDAD Where CiudadID = :ciu', qrPacientesCiudadID.AsString);
+
+          If Factura_St = 'I' Then
+          begin
+            frmMain.frmTmp.qrEntradaPaciente.Edit;
+            frmMain.frmTmp.qrEntradaPacientePacienteID.Value := qrPacientesClienteID.Value;
+            if DM.Empleado_Existe(frmMain.frmTmp.qrEntradaPacientePacienteID.Value) then
+            begin
+               frmMain.frmTmp.cxDbPaciente.Properties.ReadOnly := True;
+               frmMain.frmTmp.cxDbPaciente.Style.Color := ClAqua;
+            end
+            else
+            begin
+               frmMain.frmTmp.cxDbPaciente.Properties.ReadOnly := False;
+               frmMain.frmTmp.cxDbPaciente.Style.Color := ClWindow;
+            end;
+            frmMain.frmTmp.qrEntradaPacienteNombrePaciente.Value := qrPacientesNombre.Value;
+            if copy(qrPacientesNombre.Value,1,8)<> 'PACIENTE' then
+            begin
+              If (qfindciudad.RecordCount > 0) then
+              begin
+                frmMain.frmTmp.qrEntradaPacienteDireccion.Value := qrPacientesDireccion.Value + #13 +
+                                                                  qfindciudad.FieldByName('Descripcion').AsString;
+              end
+              else
+              frmMain.frmTmp.qrEntradaPacienteDireccion.Value := qrPacientesDireccion.Value;
+            end
+            else
+            frmMain.frmTmp.qrEntradaPacienteDireccion.Value := EmptyStr;
+            frmMain.frmTmp.qrEntradaPacienteTelefonos.Value := qrPacientesTelefono.Value;
+            frmMain.frmTmp.qrEntradaPacienteTelefono2.Value := qrPacientesTelefono2.Value;
+            frmMain.frmTmp.qrEntradaPacienteFax.Value       := qrPacientesFax.Value;
+            frmMain.frmTmp.qrEntradaPacienteEmail.Value     := qrPacientesEMail.Value;
+            frmMain.frmTmp.qrEntradaPacienteSexo.Value      := qrPacientesSexo.Value;
+            frmMain.frmTmp.qrEntradaPacienteFECHANACIMIENTO.Value   := qrPacientesFECHANACIMIENTO.Value;
+            frmMain.frmTmp.qrEntradaPacienteEdadPaciente.Value      := Trunc((StrtoInt(FormatDateTime('yyyymmdd', DM.SystemDate))-StrtoInt(FormatDateTime('yyyymmdd', qrPacientesFechaNacimiento.Value)))/10000);
+            frmMain.frmTmp.qrEntradaPacientePUBLICARINTERNET.Value  := 0;
+            if frmMain.frmTmp.Verifica_Autorizacion then
+            begin
+              If dm.qrParametroServidor_AS400.value <> EmptyStr then
+              begin
+                frmMain.frmTmp.btAutoriza.Enabled := True;
+              end;
+            end;
+        end
+        else
+        if Factura_St = 'M' Then
+        begin
+           frmMain.frmTmpMod.qrEntradaPaciente.Edit;
+           frmMain.frmTmpMod.qrEntradaPacientePacienteID.Value := qrPacientesClienteID.Value;
+           if DM.Empleado_Existe(frmMain.frmTmpMod.qrEntradaPacientePacienteID.Value) then
+           begin
+               frmMain.frmTmpMod.cxDbPaciente.Properties.ReadOnly := True;
+               frmMain.frmTmpMod.cxDbPaciente.Style.Color := ClAqua;
+           end
+           else
+           begin
+               frmMain.frmTmpMod.cxDbPaciente.Properties.ReadOnly := False;
+               frmMain.frmTmpMod.cxDbPaciente.Style.Color := ClWindow;
+           end;
+           frmMain.frmTmpMod.qrEntradaPacienteNombrePaciente.Value := qrPacientesNombre.Value;
+           if copy(qrPacientesNombre.Value,1,8)<> 'PACIENTE' then
+           begin
+             If (qfindciudad.RecordCount > 0) then
+             begin
+               frmMain.frmTmpMod.qrEntradaPacienteDireccion.Value := qrPacientesDireccion.Value + #13 +
+                                                                  qfindciudad.FieldByName('Descripcion').AsString;
+             end
+             else
+                frmMain.frmTmpMod.qrEntradaPacienteDireccion.Value := qrPacientesDireccion.Value;
+           end
+           else
+               frmMain.frmTmpMod.qrEntradaPacienteDireccion.Value := EmptyStr;
+           frmMain.frmTmpMod.qrEntradaPacienteTelefonos.Value := qrPacientesTelefono.Value;
+           frmMain.frmTmpMod.qrEntradaPacienteTelefono2.Value := qrPacientesTelefono2.Value;
+           frmMain.frmTmpMod.qrEntradaPacienteFax.Value := qrPacientesFax.Value;
+           frmMain.frmTmpMod.qrEntradaPacienteEmail.Value := qrPacientesEMail.Value;
+           frmMain.frmTmpMod.qrEntradaPacienteSexo.Value := qrPacientesSexo.Value;
+           frmMain.frmTmpMod.qrEntradaPacienteFECHANACIMIENTO.Value := qrPacientesFECHANACIMIENTO.Value;
+           frmMain.frmTmpMod.qrEntradaPacienteEdadPaciente.Value := Trunc((StrtoInt(FormatDateTime('yyyymmdd', DM.SystemDate))-StrtoInt(FormatDateTime('yyyymmdd', qrPacientesFechaNacimiento.Value)))/10000);
+           frmMain.frmTmpMod.qrEntradaPacientePUBLICARINTERNET.Value := 0;
+           If dm.qrParametroServidor_AS400.value <> EmptyStr then
+           begin
+              frmMain.frmTmpMod.btAutoriza.Enabled := True;
+           end;
+        end
+        else
+        if Factura_St = 'L' Then
+        begin
+           frmMain.frmTmpLab.qrEntradaPaciente.Edit;
+           frmMain.frmTmpLab.qrEntradaPacientePacienteID.Value := qrPacientesClienteID.Value;
+           frmMain.frmTmpLab.qrEntradaPacienteNombrePaciente.Value := qrPacientesNombre.Value;
+           if copy(qrPacientesNombre.Value,1,8)<> 'PACIENTE' then
+           begin
+             If (qfindciudad.RecordCount > 0) then
+             begin
+               frmMain.frmTmpLab.qrEntradaPacienteDireccion.Value := qrPacientesDireccion.Value + #13 +
+                                                                  qfindciudad.FieldByName('Descripcion').AsString;
+             end
+             else
+             frmMain.frmTmpLab.qrEntradaPacienteDireccion.Value := qrPacientesDireccion.Value;
+           end
+           else
+               frmMain.frmTmpLab.qrEntradaPacienteDireccion.Value := EmptyStr;
+           frmMain.frmTmpLab.qrEntradaPacienteTelefonos.Value := qrPacientesTelefono.Value;
+           frmMain.frmTmpLab.qrEntradaPacienteTelefono2.Value := qrPacientesTelefono2.Value;
+           frmMain.frmTmpLab.qrEntradaPacienteFax.Value := qrPacientesFax.Value;
+           frmMain.frmTmpLab.qrEntradaPacienteEmail.Value := qrPacientesEMail.Value;
+           frmMain.frmTmpLab.qrEntradaPacienteSexo.Value := qrPacientesSexo.Value;
+           frmMain.frmTmpLab.qrEntradaPacienteFECHANACIMIENTO.Value := qrPacientesFECHANACIMIENTO.Value;
+           frmMain.frmTmpLab.qrEntradaPacienteEdadPaciente.Value := Trunc((StrtoInt(FormatDateTime('yyyymmdd', DM.SystemDate))-StrtoInt(FormatDateTime('yyyymmdd', qrPacientesFechaNacimiento.Value)))/10000);
+           frmMain.frmTmpLab.qrEntradaPacientePUBLICARINTERNET.Value := 0;
+        end
+        else
+        If Factura_St = 'C' Then
+        begin
+           frmMain.frmClinica.qrEntradaPaciente.Edit;
+           frmMain.frmClinica.qrEntradaPacientePacienteID.Value := qrPacientesClienteID.Value;
+           frmMain.frmClinica.qrEntradaPacienteNombrePaciente.Value := qrPacientesNombre.Value;
+           if copy(qrPacientesNombre.Value,1,8)<> 'PACIENTE' then
+           begin
+             If (qfindciudad.RecordCount > 0) then
+             begin
+               frmMain.frmClinica.qrEntradaPacienteDireccion.Value    := qrPacientesDireccion.Value + #13 +
+                                                                         qfindciudad.FieldByName('Descripcion').AsString;
+             end
+             else
+             frmMain.frmClinica.qrEntradaPacienteDireccion.Value      := qrPacientesDireccion.Value;
+           end
+           else
+               frmMain.frmClinica.qrEntradaPacienteDireccion.Value    := EmptyStr;
+           frmMain.frmClinica.qrEntradaPacienteTelefonos.Value        := qrPacientesTelefono.Value;
+           frmMain.frmClinica.qrEntradaPacienteTelefono2.Value        := qrPacientesTelefono2.Value;
+           frmMain.frmClinica.qrEntradaPacienteFax.Value              := qrPacientesFax.Value;
+           frmMain.frmClinica.qrEntradaPacienteEmail.Value            := qrPacientesEMail.Value;
+           frmMain.frmClinica.qrEntradaPacienteSexo.Value             := qrPacientesSexo.Value;
+           frmMain.frmClinica.qrEntradaPacienteFECHANACIMIENTO.Value  := qrPacientesFECHANACIMIENTO.Value;
+           frmMain.frmClinica.qrEntradaPacienteEdadPaciente.Value     := Trunc((StrtoInt(FormatDateTime('yyyymmdd', DM.SystemDate))-StrtoInt(FormatDateTime('yyyymmdd', qrPacientesFechaNacimiento.Value)))/10000);
+           frmMain.frmClinica.qrEntradaPacientePUBLICARINTERNET.Value := 0;
+        end
+        else
+        If Factura_St = 'N' Then
+        begin
+           frmMain.frmTmpNCR.qrEntradaPaciente.Edit;
+           frmMain.frmTmpNCR.qrEntradaPacientePacienteID.Value := qrPacientesClienteID.Value;
+           if DM.Empleado_Existe(frmMain.frmTmpNCR.qrEntradaPacientePacienteID.Value) then
+           begin
+               frmMain.frmTmpNCR.cxDbPaciente.Properties.ReadOnly := True;
+               frmMain.frmTmpNCR.cxDbPaciente.Style.Color := ClAqua;
+           end
+           else
+           begin
+               frmMain.frmTmpNCR.cxDbPaciente.Properties.ReadOnly := False;
+               frmMain.frmTmpNCR.cxDbPaciente.Style.Color := ClWindow;
+           end;
+           frmMain.frmTmpNCR.qrEntradaPacienteNombrePaciente.Value := qrPacientesNombre.Value;
+           if copy(qrPacientesNombre.Value,1,8)<> 'PACIENTE' then
+           begin
+             If (qfindciudad.RecordCount > 0) then
+             begin
+               frmMain.frmTmpNCR.qrEntradaPacienteDireccion.Value :=  qrPacientesDireccion.Value + #13 +
+                                                                      qfindciudad.FieldByName('Descripcion').AsString;
+             end
+             else
+             frmMain.frmTmpNCR.qrEntradaPacienteDireccion.Value := qrPacientesDireccion.Value;
+           end
+           else
+               frmMain.frmTmpNCR.qrEntradaPacienteDireccion.Value     := EmptyStr;
+           frmMain.frmTmpNCR.qrEntradaPacienteTelefonos.Value         := qrPacientesTelefono.Value;
+           frmMain.frmTmpNCR.qrEntradaPacienteTelefono2.Value         := qrPacientesTelefono2.Value;
+           frmMain.frmTmpNCR.qrEntradaPacienteFax.Value               := qrPacientesFax.Value;
+           frmMain.frmTmpNCR.qrEntradaPacienteEmail.Value             := qrPacientesEMail.Value;
+           frmMain.frmTmpNCR.qrEntradaPacienteSexo.Value              := qrPacientesSexo.Value;
+           frmMain.frmTmpNCR.qrEntradaPacienteFECHANACIMIENTO.Value   := qrPacientesFECHANACIMIENTO.Value;
+           frmMain.frmTmpNCR.qrEntradaPacienteEdadPaciente.Value      := Trunc((StrtoInt(FormatDateTime('yyyymmdd', DM.SystemDate))-StrtoInt(FormatDateTime('yyyymmdd', qrPacientesFechaNacimiento.Value)))/10000);
+           frmMain.frmTmpNCR.qrEntradaPacientePUBLICARINTERNET.Value  := 0;
+        end
+        else
+        if Factura_St = 'F' Then
+        begin
+           frmMain.frmTmpND.qrEntradaPaciente.Edit;
+           frmMain.frmTmpND.qrEntradaPacientePacienteID.Value := qrPacientesClienteID.Value;
+           if DM.Empleado_Existe(frmMain.frmTmpND.qrEntradaPacientePacienteID.Value) then
+           begin
+               frmMain.frmTmpND.cxDbPaciente.Properties.ReadOnly := True;
+               frmMain.frmTmpND.cxDbPaciente.Style.Color := ClAqua;
+           end
+           else
+           begin
+               frmMain.frmTmpND.cxDbPaciente.Properties.ReadOnly := False;
+               frmMain.frmTmpND.cxDbPaciente.Style.Color := ClWindow;
+           end;
+           frmMain.frmTmpND.qrEntradaPacienteNombrePaciente.Value := qrPacientesNombre.Value;
+           if copy(qrPacientesNombre.Value,1,8)<> 'PACIENTE' then
+           begin
+             If (qfindciudad.RecordCount > 0) then
+             begin
+               frmMain.frmTmpND.qrEntradaPacienteDireccion.Value :=  qrPacientesDireccion.Value + #13 +
+                                                                      qfindciudad.FieldByName('Descripcion').AsString;
+             end
+             else
+             frmMain.frmTmpND.qrEntradaPacienteDireccion.Value := qrPacientesDireccion.Value;
+           end
+           else
+               frmMain.frmTmpND.qrEntradaPacienteDireccion.Value     := EmptyStr;
+           frmMain.frmTmpND.qrEntradaPacienteTelefonos.Value         := qrPacientesTelefono.Value;
+           frmMain.frmTmpND.qrEntradaPacienteTelefono2.Value         := qrPacientesTelefono2.Value;
+           frmMain.frmTmpND.qrEntradaPacienteFax.Value               := qrPacientesFax.Value;
+           frmMain.frmTmpND.qrEntradaPacienteEmail.Value             := qrPacientesEMail.Value;
+           frmMain.frmTmpND.qrEntradaPacienteSexo.Value              := qrPacientesSexo.Value;
+           frmMain.frmTmpND.qrEntradaPacienteFECHANACIMIENTO.Value   := qrPacientesFECHANACIMIENTO.Value;
+           frmMain.frmTmpND.qrEntradaPacienteEdadPaciente.Value      := Trunc((StrtoInt(FormatDateTime('yyyymmdd', DM.SystemDate))-StrtoInt(FormatDateTime('yyyymmdd', qrPacientesFechaNacimiento.Value)))/10000);
+           frmMain.frmTmpND.qrEntradaPacientePUBLICARINTERNET.Value  := 0;
+           if frmMain.frmTmpND.Verifica_Autorizacion then
+           begin
+              If dm.qrParametroServidor_AS400.value <> EmptyStr then
+              begin
+                frmMain.frmTmpND.btAutoriza.Enabled := True;
+              end;
+           end;
+        end;
+
+       {
+       //OJO - GRUPO DE PRECIO Y FORMA DE PAGO.
+       frmMain.frmTmp.qrEntradaPacienteGrupoDescuentoTotal.Value   := qrPacientesGrupoDescuentoTotal.Value;
+       frmMain.frmTmp.qrEntradaPacienteGrupoDescuentoLinea.Value   := qrPacientesGrupoDescuentoLinea.Value;
+       frmMain.frmTmp.qrEntradaPacienteGrupoPrecio.Value           := qrPacientesGrupoPrecio.Value;
+       frmMain.frmTmp.qrEntradaPacienteFormadePago.Value           := qrPacientesFormaPago.Value;
+       frmMain.frmTmp.Val_Forma_Pago(frmMain.frmTmp.qrEntradaPacienteFormadePago.Value);
+       //OJO - GRUPO DE PRECIO Y FORMA DE PAGO.
+}
+{
+       //Buscando el Descuento Configurado al Cliente.
+       frmMain.frmTmp.qrEntradaPacienteDescuentoPorc.Value := DM.DescCliente(frmMain.frmTmp.ClienteFactura);
+       frmMain.frmTmp.ActTotales;
+
+       //Buscando el Cargo - Gasto Configurado al Cliente.
+       DM.VerificarGastosVarios(frmMain.frmTmp.ClienteFactura, frmMain.frmTmp.qrEntradaPacienteRecid.value);
+       frmMain.frmTmp.ActTotales;
+}
+/////// Llenar Los Parametros de los Pacientes. ////////////////////////////////
+        if Factura_St = 'I' Then
+        begin
+           frmMain.frmTmp.qrEntradaPacienteResultadoPaciente.Value      := qrPacientesEnvioResultado.Value
+        end
+        else
+        if Factura_St = 'M' Then
+        begin
+           frmMain.frmTmpMod.qrEntradaPacienteResultadoPaciente.Value   := qrPacientesEnvioResultado.Value;
+        end
+        else
+        if Factura_St = 'L' Then
+        begin
+           frmMain.frmTmpLab.qrEntradaPacienteResultadoPaciente.Value   := qrPacientesEnvioResultado.Value;
+        end
+        else
+        if Factura_St = 'C' Then
+        begin
+           frmMain.frmClinica.qrEntradaPacienteResultadoPaciente.Value  := qrPacientesEnvioResultado.Value;
+        end
+        else
+        if Factura_St = 'N' Then
+        begin
+           frmMain.frmTmpNCR.qrEntradaPacienteResultadoPaciente.Value  := qrPacientesEnvioResultado.Value;
+        end
+        else
+        if Factura_St = 'F' Then
+        begin
+           frmMain.frmTmpND.qrEntradaPacienteResultadoPaciente.Value  := qrPacientesEnvioResultado.Value;
+        end;
+
+////WILLIAMS
+//     frmMain.frmTmp.qrentradaPacientePublicarInternet.value := qrPacientesPublicarInternet.Value;
+///
+//       frmMain.frmTmp.qrentradaPacientePublicarInternet.value := qrPacientesSiempreInternet.Value;
+
+        if Factura_St = 'I' Then
+        begin
+           if frmMain.frmTmp.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoSeg.Value then
+            begin
+             if (qrPacientesCobrarDiferencia.Value = 1) then
+              begin
+                frmMain.frmTmp.EliminarDescuentoAplicado1Click(Nil);
+    //            frmMain.frmTmp.qrEntradaPacienteDescuentoValor.Value := 0;
+    //            frmMain.frmTmp.ActTotales;
+              end;
+            end;
+           If ( (frmMain.frmTmp.qrEntradaPacienteOrigen.IsNull) Or
+                (frmMain.frmTmp.qrEntradaPacienteOrigen.Value = '') Or
+                (frmMain.frmTmp.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoVip.Value) Or
+                (frmMain.frmTmp.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoAcc.Value) Or
+                (frmMain.frmTmp.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoEmp.Value) Or
+                (frmMain.frmTmp.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoSeg.Value) Or
+                (frmMain.frmTmp.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoPriv.Value) ) Then
+             Begin
+               frmMain.frmTmp.qrEntradaPacienteClienteID.Value := '';
+               frmMain.frmTmp.Agregar_Clientes(qrPacientesClienteID.Value);
+             End;
+        end else if Factura_St = 'M' Then
+        begin
+           if frmMain.frmTmpMod.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoSeg.Value then
+            begin
+             if (qrPacientesCobrarDiferencia.Value = 1) then
+              begin
+                frmMain.frmTmpMod.EliminarDescuentoAplicado1Click(Nil);
+    //            frmMain.frmTmp.qrEntradaPacienteDescuentoValor.Value := 0;
+    //            frmMain.frmTmp.ActTotales;
+              end;
+            end;
+             If ( (frmMain.frmTmpMod.qrEntradaPacienteOrigen.IsNull) Or
+                  (frmMain.frmTmpMod.qrEntradaPacienteOrigen.Value = '') Or
+                  (frmMain.frmTmpMod.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoVip.Value) Or
+                  (frmMain.frmTmpMod.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoAcc.Value) Or
+                  (frmMain.frmTmpMod.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoEmp.Value) Or
+                  (frmMain.frmTmpMod.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoSeg.Value) Or
+                  (frmMain.frmTmpMod.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoPriv.Value) ) Then
+               Begin
+                 frmMain.frmTmpMod.qrEntradaPacienteClienteID.Value := '';
+                 frmMain.frmTmpMod.Agregar_Clientes(qrPacientesClienteID.Value);
+               End;
+        end else if Factura_St = 'L' Then
+        begin
+           if frmMain.frmTmpLab.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoSeg.Value then
+            begin
+             if (qrPacientesCobrarDiferencia.Value = 1) then
+              begin
+                frmMain.frmTmpLab.EliminarDescuentoAplicado1Click(Nil);
+    //            frmMain.frmTmp.qrEntradaPacienteDescuentoValor.Value := 0;
+    //            frmMain.frmTmp.ActTotales;
+              end;
+            end;
+             If ( (frmMain.frmTmpLab.qrEntradaPacienteOrigen.IsNull) Or
+                  (frmMain.frmTmpLab.qrEntradaPacienteOrigen.Value = '') Or
+                  (frmMain.frmTmpLab.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoVip.Value) Or
+                  (frmMain.frmTmpLab.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoAcc.Value) Or
+                  (frmMain.frmTmpLab.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoEmp.Value) Or
+                  (frmMain.frmTmpMod.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoSeg.Value) Or
+                  (frmMain.frmTmpLab.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoPriv.Value) ) Then
+               Begin
+                 frmMain.frmTmpLab.qrEntradaPacienteClienteID.Value := '';
+                 frmMain.frmTmpLab.Agregar_Clientes(qrPacientesClienteID.Value);
+               End;
+        end else if Factura_St = 'C' Then
+        begin
+           if frmMain.frmClinica.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoSeg.Value then
+            begin
+             if (qrPacientesCobrarDiferencia.Value = 1) then
+              begin
+                frmMain.frmClinica.EliminarDescuentoAplicado1Click(Nil);
+              end;
+            end;
+             If ( (frmMain.frmClinica.qrEntradaPacienteOrigen.IsNull) Or
+                  (frmMain.frmClinica.qrEntradaPacienteOrigen.Value = '') Or
+                  (frmMain.frmClinica.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoVip.Value) Or
+                  (frmMain.frmClinica.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoAcc.Value) Or
+                  (frmMain.frmClinica.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoEmp.Value) Or
+                  (frmMain.frmClinica.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoPriv.Value) ) Then
+               Begin
+                 frmMain.frmClinica.qrEntradaPacienteClienteID.Value := '';
+                 frmMain.frmClinica.Agregar_Clientes(qrPacientesClienteID.Value);
+               End;
+        end else if Factura_St = 'N' Then
+        begin
+           if frmMain.frmTmpNCR.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoSeg.Value then
+            begin
+             if (qrPacientesCobrarDiferencia.Value = 1) then
+              begin
+                frmMain.frmTmpNCR.EliminarDescuentoAplicado1Click(Nil);
+              end;
+            end;
+             If ( (frmMain.frmTmpNCR.qrEntradaPacienteOrigen.IsNull) Or
+                  (frmMain.frmTmpNCR.qrEntradaPacienteOrigen.Value = '') Or
+                  (frmMain.frmTmpNCR.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoVip.Value) Or
+                  (frmMain.frmTmpNCR.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoAcc.Value) Or
+                  (frmMain.frmTmpNCR.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoEmp.Value) Or
+                  (frmMain.frmTmpNCR.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoPriv.Value) ) Then
+               Begin
+                 frmMain.frmTmpNCR.qrEntradaPacienteClienteID.Value := '';
+                 frmMain.frmTmpNCR.Agregar_Clientes(qrPacientesClienteID.Value);
+               End;
+        end else if Factura_St = 'F' Then
+        begin
+           if frmMain.frmTmpND.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoSeg.Value then
+            begin
+             if (qrPacientesCobrarDiferencia.Value = 1) then
+              begin
+                frmMain.frmTmpND.EliminarDescuentoAplicado1Click(Nil);
+              end;
+            end;
+             If ( (frmMain.frmTmpND.qrEntradaPacienteOrigen.IsNull) Or
+                  (frmMain.frmTmpND.qrEntradaPacienteOrigen.Value = '') Or
+                  (frmMain.frmTmpND.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoVip.Value) Or
+                  (frmMain.frmTmpND.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoAcc.Value) Or
+                  (frmMain.frmTmpND.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoEmp.Value) Or
+                  (frmMain.frmTmpND.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoPriv.Value) ) Then
+               Begin
+                 frmMain.frmTmpND.qrEntradaPacienteClienteID.Value := '';
+                 frmMain.frmTmpND.Agregar_Clientes(qrPacientesClienteID.Value);
+               End;
+        end;
+
+/////// Llenar Los Parametros de los Pacientes. ////////////////////////////////
+{
+       frmMain.frmTmp.qrEntradaPacienteDescuentoPorc.Value := DM.DescCliente(ClienteFactura);
+       DM.VerificarGastosVarios(ClienteFactura,frmMain.frmTmp.qrEntradaPacienteRecid.value);
+       frmMain.frmTmp.ActTotales;
+
+       frmMain.frmTmp.qrEntradaPacienteClienteID.Value := qrPacientesSeguroID.Value;
+       frmMain.frmTmp.qrEntradaPacienteClienteNombre.Value := qfind.FieldByName('Nombre').AsString;
+       frmMain.frmTmp.qrEntradaPacientePolizaID.Value := qrPacientesPolizaSeguro.Value;
+       frmMain.frmTmp.qrentradapacienteorigen.Value := qfind.FieldByName('Origen').AsInteger;
+}
+       //Validando Los Parametros de Descuentos.
+//       frmMain.frmTmp.Val_Descuento;
+//       frmMain.frmTmp.VerificarPagoDiferencia;
+//       frmMain.frmTmp.ActTotales;
+
+// OJO - BLOQUEADO PARA DAR MAYOR RAPIDEZ.       frmMain.frmTmp.RefrescarInterface;
+
+     end;
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+   If (frmMain.Exis_Cli = True) And (frmMain.Tran_fer <> True) then
+     Begin
+       If (qrPacientes.RecordCount > 0) And
+          (qrPacientesESTATUS.Value > 0) Then
+         Begin
+           If (qrPacientesESTATUS.Value = 1) Then
+             Raise exception.CreateFmt(' El Paciente: (' + qrPacientesClienteID.AsString + ') ' + qrPacientesNombre.AsString + #13 +
+                                       ' NO Puede Facturarse porque: '+ #13 + ' Tiene el CREDITO CANCELADO.!!! ' + #13 +
+                                       ' Si Desea, Puede Comunicarse con el Departamento de Cobros.!!!', []);
+
+           If (qrPacientesESTATUS.Value = 2) Then
+             Raise exception.CreateFmt(' El Paciente: (' + qrPacientesClienteID.AsString + ') ' + qrPacientesNombre.AsString + #13 +
+                                       ' NO Puede Facturarse porque: '+ #13 + ' El Paciente Esta INACTIVO.!!! ' + #13 +
+                                       ' Si Desea, Puede Comunicarse con el Departamento de Cobros.!!!', []);
+         End;
+
+       DM.qrParametro.Close;
+       DM.qrParametro.Open;
+
+       qfindciudad := DM.Find_Ldr('Select * from PTCIUDAD Where CiudadID = :ciu', qrPacientesCiudadID.AsString);
+
+       frmMain.frmClinica.qrEntradaPacientePacienteID.Value := qrPacientesClienteID.Value;
+       frmMain.frmClinica.qrEntradaPacienteNombrePaciente.Value := qrPacientesNombre.Value;
+       frmMain.frmClinica.qrEntradaPacienteDireccion.Value := qrPacientesDireccion.Value;
+       frmMain.frmClinica.qrEntradaPacienteTelefonos.Value := qrPacientesTelefono.Value;
+       frmMain.frmClinica.qrEntradaPacienteTelefono2.Value := qrPacientesTelefono2.Value;
+       frmMain.frmClinica.qrEntradaPacienteFax.Value := qrPacientesFax.Value;
+       frmMain.frmClinica.qrEntradaPacienteEmail.Value := qrPacientesEMail.Value;
+       frmMain.frmClinica.qrEntradaPacienteSexo.Value := qrPacientesSexo.Value;
+//       frmMain.frmClinica.qrEntradaPacienteFECHANACIMIENTO.Value := qrPacientesFECHANACIMIENTO.Value;
+       frmMain.frmClinica.qrEntradaPacienteEdadPaciente.Value := Trunc((StrtoInt(FormatDateTime('yyyymmdd', DM.SystemDate))-StrtoInt(FormatDateTime('yyyymmdd', qrPacientesFechaNacimiento.Value)))/10000);
+       If qfindciudad.RecordCount > 0 then
+         frmMain.frmClinica.qrEntradaPacienteDireccion.Value := frmMain.frmClinica.qrEntradaPacienteDireccion.Value + #13 +
+                                                                    qfindciudad.FieldByName('Descripcion').AsString;
+
+/////// Llenar Los Parametros de los Pacientes. ////////////////////////////////
+       frmMain.frmClinica.qrEntradaPacienteResultadoPaciente.Value := qrPacientesEnvioResultado.Value;
+       frmMain.frmClinica.qrentradaPacientePublicarInternet.value := qrPacientesPublicarInternet.Value;
+
+       if frmMain.frmClinica.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoSeg.Value then
+        begin
+         if (qrPacientesCobrarDiferencia.Value = 1) then
+          begin
+            frmMain.frmClinica.EliminarDescuentoAplicado1Click(Nil);
+          end;
+        end;
+
+       //Validando Los Parametros de Descuentos.
+//       frmMain.frmClinica.Val_Descuento;
+//       frmMain.frmClinica.VerificarPagoDiferencia;
+//       frmMain.frmClinica.ActTotales;
+
+// OJO - BLOQUEADO PARA DAR MAYOR RAPIDEZ.       frmMain.frmClinica.RefrescarInterface;
+
+        If ( (frmMain.frmClinica.qrEntradaPacienteOrigen.IsNull) Or
+            (frmMain.frmClinica.qrEntradaPacienteOrigen.Value = '') Or
+            (frmMain.frmClinica.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoVip.Value) Or
+            (frmMain.frmClinica.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoAcc.Value) Or
+            (frmMain.frmClinica.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoEmp.Value) Or
+            (frmMain.frmClinica.qrEntradaPacienteOrigen.Value = DM.qrParametroGrupoPriv.Value) ) Then
+        Begin
+           frmMain.frmClinica.qrEntradaPacienteClienteID.Value := '';
+           frmMain.frmClinica.Agregar_Clientes(qrPacientesClienteID.Value);
+        End;
+     end;
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+  If (frmMain.Tran_fer = True) then
+  Begin
+        If (qrPacientes.RecordCount > 0) And
+         (qrPacientesESTATUS.Value > 0) Then
+        Begin
+          If (qrPacientesESTATUS.Value = 1) Then
+            Raise exception.CreateFmt(' El Paciente: (' + qrPacientesClienteID.AsString + ') ' + qrPacientesNombre.AsString + #13 +
+                                      ' NO Puede Facturarse porque: '+ #13 + ' Tiene el CREDITO CANCELADO.!!! ' + #13 +
+                                      ' Si Desea, Puede Comunicarse con el Departamento de Cobros.!!!', []);
+
+          If (qrPacientesESTATUS.Value = 2) Then
+            Raise exception.CreateFmt(' El Paciente: (' + qrPacientesClienteID.AsString + ') ' + qrPacientesNombre.AsString + #13 +
+                                      ' NO Puede Facturarse porque: '+ #13 + ' El Paciente Esta INACTIVO.!!! ' + #13 +
+                                      ' Si Desea, Puede Comunicarse con el Departamento de Cobros.!!!', []);
+         End;
+
+      frmMain.frmTransferencia.EdPaciente.Text := qrPacientesClienteID.AsString;
+      frmMain.frmTransferencia.EdPacienteNombre.Text := qrPacientesNombre.AsString;
+  end;
+
+    FreeAndNil(qfindCiudad);
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+  end;
+end;
+
+
+end.
+

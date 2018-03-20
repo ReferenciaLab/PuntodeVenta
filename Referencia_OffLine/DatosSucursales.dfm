@@ -1,0 +1,781 @@
+inherited frmDatosSucursales: TfrmDatosSucursales
+  Caption = 'Sucursales'
+  ClientHeight = 584
+  ClientWidth = 727
+  OnClose = nil
+  OnCloseQuery = nil
+  OnPaint = nil
+  ExplicitWidth = 735
+  ExplicitHeight = 618
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dxLayoutControl1: TdxLayoutControl
+    Top = 18
+    Width = 727
+    Height = 566
+    ExplicitWidth = 678
+    ExplicitHeight = 457
+    inherited pcDatos: TcxPageControl
+      Width = 736
+      Height = 517
+      ExplicitWidth = 736
+      ExplicitHeight = 517
+      ClientRectBottom = 517
+      ClientRectRight = 736
+      ClientRectTop = 24
+      inherited tsMain: TcxTabSheet
+        inherited lcGrid: TdxLayoutControl
+          Width = 736
+          Height = 493
+          ExplicitWidth = 577
+          ExplicitHeight = 542
+          inherited dgDatos: TcxGrid
+            Width = 575
+            Height = 370
+            ExplicitWidth = 575
+            ExplicitHeight = 370
+            inherited tvDatos: TcxGridDBTableView
+              DataController.KeyFieldNames = 'SucursalID'
+              object tvDatosSUCURSALID: TcxGridDBColumn
+                Caption = 'Sucursal Id'
+                DataBinding.FieldName = 'SUCURSALID'
+                Width = 75
+              end
+              object tvDatosNOMBRE: TcxGridDBColumn
+                Caption = 'Nombre de la Sucursal'
+                DataBinding.FieldName = 'NOMBRE'
+                Width = 200
+              end
+              object tvDatosSUCURSAL: TcxGridDBColumn
+                Caption = 'No. AS-400'
+                DataBinding.FieldName = 'SUCURSAL'
+                Width = 75
+              end
+              object tvDatosIMPRESIONES: TcxGridDBColumn
+                Caption = 'Imprimir'
+                DataBinding.FieldName = 'IMPRESIONES'
+                Width = 60
+              end
+            end
+          end
+          inherited dxLayoutGroup1: TdxLayoutGroup
+            inherited lcGridGroup2: TdxLayoutGroup
+              object lcGridItem3: TdxLayoutItem
+                Caption = 'cxDBCheckBox2'
+                ShowCaption = False
+                Control = chkFueraLinea
+                ControlOptions.ShowBorder = False
+              end
+              object lcGridItem2: TdxLayoutItem
+                Caption = 'cxDBCheckBox3'
+                ShowCaption = False
+                Control = chkImpLabel
+                ControlOptions.ShowBorder = False
+              end
+              object lcGridItem1: TdxLayoutItem
+                Caption = 'cxDBCheckBox2'
+                ShowCaption = False
+                Control = chkPlanSocial
+                ControlOptions.ShowBorder = False
+              end
+            end
+          end
+        end
+      end
+      inherited tsDatos: TcxTabSheet
+        inherited lcDatos: TdxLayoutControl
+          Width = 736
+          Height = 493
+          object EdSucursal: TcxDBTextEdit [0]
+            Tag = 99
+            Left = 124
+            Top = 36
+            DataBinding.DataField = 'SucursalID'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 0
+            Width = 121
+          end
+          object EdNombre: TcxDBTextEdit [1]
+            Left = 124
+            Top = 90
+            DataBinding.DataField = 'Nombre'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 5
+            Width = 300
+          end
+          object cxDBMemo1: TcxDBMemo [2]
+            Left = 124
+            Top = 149
+            DataBinding.DataField = 'Direccion'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 6
+            Height = 75
+            Width = 400
+          end
+          object cxDBTextEdit3: TcxDBTextEdit [3]
+            Left = 124
+            Top = 230
+            DataBinding.DataField = 'TELEFONO'
+            DataBinding.DataSource = dsDatos
+            Properties.CharCase = ecUpperCase
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 7
+            Width = 121
+          end
+          object cxDBTextEdit4: TcxDBTextEdit [4]
+            Left = 350
+            Top = 230
+            DataBinding.DataField = 'FAX'
+            DataBinding.DataSource = dsDatos
+            Properties.CharCase = ecUpperCase
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 8
+            Width = 121
+          end
+          object cxDBExtLookupComboBox1: TcxDBExtLookupComboBox [5]
+            Left = 124
+            Top = 257
+            RepositoryItem = DM.elcClientes
+            DataBinding.DataField = 'Cliente_Uno'
+            DataBinding.DataSource = dsDatos
+            Properties.CharCase = ecUpperCase
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            Style.ButtonStyle = btsHotFlat
+            Style.PopupBorderStyle = epbsSingle
+            TabOrder = 9
+            Width = 121
+          end
+          object cxDBExtLookupComboBox3: TcxDBExtLookupComboBox [6]
+            Left = 350
+            Top = 257
+            RepositoryItem = DM.elcClientes
+            DataBinding.DataField = 'Cliente_Dos'
+            DataBinding.DataSource = dsDatos
+            Properties.CharCase = ecUpperCase
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            Style.ButtonStyle = btsHotFlat
+            Style.PopupBorderStyle = epbsSingle
+            TabOrder = 10
+            Width = 121
+          end
+          object cxDBExtLookupComboBox2: TcxDBExtLookupComboBox [7]
+            Left = 124
+            Top = 392
+            RepositoryItem = DM.elcGrupoCliente
+            DataBinding.DataField = 'GRUPOID'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            Style.ButtonStyle = btsHotFlat
+            Style.PopupBorderStyle = epbsSingle
+            TabOrder = 17
+            Width = 121
+          end
+          object CbImpresiones: TcxDBCheckBox [8]
+            Left = 124
+            Top = 365
+            DataBinding.DataField = 'Impresiones'
+            DataBinding.DataSource = dsDatos
+            Properties.ValueChecked = 1
+            Properties.ValueUnchecked = 0
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 16
+            Width = 121
+          end
+          object EdSucursalAS400: TcxDBTextEdit [9]
+            Left = 124
+            Top = 63
+            DataBinding.DataField = 'SUCURSAL'
+            DataBinding.DataSource = dsDatos
+            Properties.ReadOnly = True
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.Color = clAqua
+            Style.HotTrack = False
+            TabOrder = 1
+            Width = 121
+          end
+          object cxDBCurrencyEdit1: TcxDBCurrencyEdit [10]
+            Left = 124
+            Top = 338
+            DataBinding.DataField = 'MONTO_CANT'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 15
+            Width = 121
+          end
+          object cxDBCurrencyEdit2: TcxDBCurrencyEdit [11]
+            Left = 350
+            Top = 338
+            DataBinding.DataField = 'MONTO_PORC'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 19
+            Width = 121
+          end
+          object cxDBCheckBox1: TcxDBCheckBox [12]
+            Left = 350
+            Top = 365
+            DataBinding.DataField = 'SINPRFILTER'
+            DataBinding.DataSource = dsDatos
+            Properties.ValueChecked = 1
+            Properties.ValueUnchecked = 0
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 20
+            Width = 121
+          end
+          object cxDBTextEdit1: TcxDBTextEdit [13]
+            Left = 124
+            Top = 284
+            DataBinding.DataField = 'Banco_Nombre_1'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 11
+            Width = 121
+          end
+          object cxDBTextEdit2: TcxDBTextEdit [14]
+            Left = 350
+            Top = 284
+            DataBinding.DataField = 'Banco_Cuenta_1'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 12
+            Width = 121
+          end
+          object cxDBTextEdit5: TcxDBTextEdit [15]
+            Left = 350
+            Top = 311
+            DataBinding.DataField = 'Banco_Cuenta_2'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 14
+            Width = 121
+          end
+          object cxDBTextEdit6: TcxDBTextEdit [16]
+            Left = 124
+            Top = 311
+            DataBinding.DataField = 'Banco_Nombre_2'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 13
+            Width = 121
+          end
+          object EdRutaFoto: TcxDBTextEdit [17]
+            Left = 350
+            Top = 392
+            DataBinding.DataField = 'Ruta_Foto'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 21
+            Width = 121
+          end
+          object chkPlanSocial: TcxDBCheckBox [18]
+            Left = 124
+            Top = 419
+            DataBinding.DataField = 'StPlanSocial'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 4
+            Width = 116
+          end
+          object EdUserUniversal: TcxDBTextEdit [19]
+            Left = 350
+            Top = 419
+            DataBinding.DataField = 'CodUserUniv'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 22
+            Width = 121
+          end
+          object chkImpLabel: TcxDBCheckBox [20]
+            Left = 124
+            Top = 446
+            DataBinding.DataField = 'StImpLabelLab'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 3
+            Width = 121
+          end
+          object meGrupoTarifaSuc: TcxDBMaskEdit [21]
+            Left = 350
+            Top = 446
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 23
+            Width = 121
+          end
+          object chkFueraLinea: TcxDBCheckBox [22]
+            Left = 124
+            Top = 473
+            DataBinding.DataField = 'Fuera_Linea'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 2
+            Width = 121
+          end
+          object chkFeriado: TcxDBCheckBox [23]
+            Left = 350
+            Top = 473
+            DataBinding.DataField = 'Feriado'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 24
+            Width = 121
+          end
+          object chkImpFactLab: TcxDBCheckBox [24]
+            Left = 124
+            Top = 500
+            DataBinding.DataField = 'StImpFactLab'
+            DataBinding.DataSource = dsDatos
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 18
+            Width = 121
+          end
+          inherited Group_Root: TdxLayoutGroup
+            object lcDatosGroup1: TdxLayoutGroup
+              Caption = 'General'
+              object lcDatosItem1: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Sucursal'
+                Control = EdSucursal
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem10: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Sucursal AS-400'
+                Control = EdSucursalAS400
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem2: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Nombre'
+                Control = EdNombre
+                ControlOptions.ShowBorder = False
+              end
+            end
+            object lcDatosGroup2: TdxLayoutGroup
+              Caption = 'Contacto'
+              object lcDatosItem3: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Direcci'#243'n'
+                Control = cxDBMemo1
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosGroup3: TdxLayoutGroup
+                ShowCaption = False
+                Hidden = True
+                LayoutDirection = ldHorizontal
+                ShowBorder = False
+                object lcDatosItem4: TdxLayoutItem
+                  AutoAligns = [aaVertical]
+                  Caption = 'Telefono'
+                  Control = cxDBTextEdit3
+                  ControlOptions.ShowBorder = False
+                end
+                object lcDatosItem5: TdxLayoutItem
+                  AutoAligns = [aaVertical]
+                  Caption = 'Fax'
+                  Control = cxDBTextEdit4
+                  ControlOptions.ShowBorder = False
+                end
+              end
+              object lcDatosGroup4: TdxLayoutGroup
+                ShowCaption = False
+                Hidden = True
+                LayoutDirection = ldHorizontal
+                ShowBorder = False
+                object lcDatosItem6: TdxLayoutItem
+                  AutoAligns = [aaVertical]
+                  Caption = 'Cliente Obligatorio 1'
+                  Control = cxDBExtLookupComboBox1
+                  ControlOptions.ShowBorder = False
+                end
+                object lcDatosItem8: TdxLayoutItem
+                  AutoAligns = [aaVertical]
+                  Caption = 'Cliente Obligatorio 2'
+                  Control = cxDBExtLookupComboBox3
+                  ControlOptions.ShowBorder = False
+                end
+              end
+              object lcDatosGroup7: TdxLayoutGroup
+                ShowCaption = False
+                Hidden = True
+                LayoutDirection = ldHorizontal
+                ShowBorder = False
+                object lcDatosItem14: TdxLayoutItem
+                  AutoAligns = []
+                  Caption = 'Banco 1'
+                  Control = cxDBTextEdit1
+                  ControlOptions.ShowBorder = False
+                end
+                object lcDatosItem15: TdxLayoutItem
+                  AutoAligns = []
+                  Caption = 'Cuenta 1'
+                  Control = cxDBTextEdit2
+                  ControlOptions.ShowBorder = False
+                end
+              end
+              object lcDatosGroup5: TdxLayoutGroup
+                ShowCaption = False
+                Hidden = True
+                ShowBorder = False
+                object lcDatosGroup9: TdxLayoutGroup
+                  ShowCaption = False
+                  Hidden = True
+                  LayoutDirection = ldHorizontal
+                  ShowBorder = False
+                  object lcDatosItem17: TdxLayoutItem
+                    AutoAligns = []
+                    Caption = 'Banco 2'
+                    Control = cxDBTextEdit6
+                    ControlOptions.ShowBorder = False
+                  end
+                  object lcDatosItem16: TdxLayoutItem
+                    AutoAligns = []
+                    Caption = 'Cuenta 2'
+                    Control = cxDBTextEdit5
+                    ControlOptions.ShowBorder = False
+                  end
+                end
+                object lcDatosGroup10: TdxLayoutGroup
+                  ShowCaption = False
+                  Hidden = True
+                  LayoutDirection = ldHorizontal
+                  ShowBorder = False
+                  object lcDatosGroup8: TdxLayoutGroup
+                    ShowCaption = False
+                    Hidden = True
+                    ShowBorder = False
+                    object lcDatosItem11: TdxLayoutItem
+                      AutoAligns = [aaVertical]
+                      Caption = 'Valor'
+                      Control = cxDBCurrencyEdit1
+                      ControlOptions.ShowBorder = False
+                    end
+                    object lcDatosItem9: TdxLayoutItem
+                      AutoAligns = [aaVertical]
+                      Caption = 'Permitir Impresiones'
+                      Control = CbImpresiones
+                      ControlOptions.ShowBorder = False
+                    end
+                    object lcDatosItem7: TdxLayoutItem
+                      AutoAligns = [aaVertical]
+                      Caption = 'Grupo de Cliente'
+                      Control = cxDBExtLookupComboBox2
+                      ControlOptions.ShowBorder = False
+                    end
+                    object lcDatosItem20: TdxLayoutItem
+                      AutoAligns = [aaVertical]
+                      Caption = 'Plan Social'
+                      Control = chkPlanSocial
+                      ControlOptions.ShowBorder = False
+                    end
+                    object lcDatosItem21: TdxLayoutItem
+                      AutoAligns = [aaVertical]
+                      Caption = 'Suc. Imprime Label'
+                      Control = chkImpLabel
+                      ControlOptions.ShowBorder = False
+                    end
+                    object lcDatosItem23: TdxLayoutItem
+                      Caption = 'Suc. Fuera de Linea'
+                      Control = chkFueraLinea
+                      ControlOptions.ShowBorder = False
+                    end
+                    object lcDatosItem25: TdxLayoutItem
+                      Caption = 'Imprime Fact. Label'
+                      Control = chkImpFactLab
+                      ControlOptions.ShowBorder = False
+                    end
+                  end
+                  object lcDatosGroup6: TdxLayoutGroup
+                    ShowCaption = False
+                    Hidden = True
+                    ShowBorder = False
+                    object lcDatosGroup11: TdxLayoutGroup
+                      ShowCaption = False
+                      Hidden = True
+                      ShowBorder = False
+                      object lcDatosItem12: TdxLayoutItem
+                        AutoAligns = [aaVertical]
+                        Caption = 'Porciento'
+                        Control = cxDBCurrencyEdit2
+                        ControlOptions.ShowBorder = False
+                      end
+                      object lcDatosItem13: TdxLayoutItem
+                        AutoAligns = [aaVertical]
+                        Caption = 'Calcular'
+                        Control = cxDBCheckBox1
+                        ControlOptions.ShowBorder = False
+                      end
+                    end
+                    object lcDatosItem18: TdxLayoutItem
+                      Caption = 'Ruta Foto'
+                      Control = EdRutaFoto
+                      ControlOptions.ShowBorder = False
+                    end
+                    object lcDatosItem19: TdxLayoutItem
+                      Caption = 'User Ars. Universal'
+                      Control = EdUserUniversal
+                      ControlOptions.ShowBorder = False
+                    end
+                    object lcDatosItem22: TdxLayoutItem
+                      Caption = 'Grupo Tarifa Suc.'
+                      Control = meGrupoTarifaSuc
+                      ControlOptions.ShowBorder = False
+                    end
+                    object lcDatosItem24: TdxLayoutItem
+                      Caption = 'Feriado'
+                      Control = chkFeriado
+                      ControlOptions.ShowBorder = False
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+    object cxButton1: TcxButton [1]
+      Left = 615
+      Top = 7
+      Width = 100
+      Height = 25
+      Caption = 'Crear Documentos'
+      TabOrder = 1
+      OnClick = cxButton1Click
+      LookAndFeel.NativeStyle = True
+    end
+    inherited dxLayoutGroup2: TdxLayoutGroup
+      inherited dxLayoutControl1Group_Root: TdxLayoutGroup
+        inherited lgBotones: TdxLayoutGroup
+          object dxLayoutControl1Item1: TdxLayoutItem
+            Caption = 'cxButton1'
+            ShowCaption = False
+            Control = cxButton1
+            ControlOptions.ShowBorder = False
+          end
+        end
+      end
+    end
+  end
+  inherited pnCaption: TPanel
+    Width = 727
+    Height = 18
+    ExplicitWidth = 678
+    ExplicitHeight = 18
+  end
+  inherited dsDatos: TDataSource
+    DataSet = qrSucursales
+    Left = 196
+  end
+  inherited dxPrintGrid: TdxComponentPrinter
+    inherited dxPrintGridLink: TdxGridReportLink
+      ReportDocument.CreationDate = 38921.951684560190000000
+      BuiltInReportLink = True
+    end
+    inherited dxPrintGridDatos: TdxLayoutControlReportLink
+      ReportDocument.CreationDate = 38921.951684745370000000
+      BuiltInReportLink = True
+      HiddenComponents = {}
+      ExcludedComponents = {}
+      AggregatedReportLinks = {}
+    end
+  end
+  inherited qryHelper: TADOQuery
+    Left = 637
+    Top = 291
+  end
+  inherited alEdit: TActionList
+    Left = 228
+    Top = 256
+  end
+  inherited pmCustom: TPopupMenu
+    Left = 400
+    Top = 356
+    inherited miJumpToTable: TMenuItem
+      OnClick = miJumpToTableClick
+    end
+  end
+  inherited qrDefaultView: TADOQuery
+    Left = 648
+    Top = 251
+  end
+  inherited strView: TJvStrHolder
+    Left = 348
+    Top = 260
+  end
+  inherited qrUserFields: TABSQuery
+    Top = 260
+  end
+  object qrSucursales: TADOQuery
+    Connection = DM.DataBase
+    CursorType = ctStatic
+    BeforePost = qrSucursalesBeforePost
+    OnNewRecord = qrSucursalesNewRecord
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT * FROM PTSucursal'
+      'WHERE DataAreaId = '#39'ldr'#39)
+    Left = 136
+    Top = 3
+    object qrSucursalesSUCURSALID: TStringField
+      FieldName = 'SUCURSALID'
+      Size = 10
+    end
+    object qrSucursalesSUCURSAL: TIntegerField
+      FieldName = 'SUCURSAL'
+      ReadOnly = True
+    end
+    object qrSucursalesNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      Size = 50
+    end
+    object qrSucursalesDIRECCION: TMemoField
+      FieldName = 'DIRECCION'
+      BlobType = ftMemo
+    end
+    object qrSucursalesTELEFONO: TStringField
+      FieldName = 'TELEFONO'
+    end
+    object qrSucursalesFAX: TStringField
+      FieldName = 'FAX'
+    end
+    object qrSucursalesCLIENTEID: TStringField
+      FieldName = 'CLIENTEID'
+    end
+    object qrSucursalesGRUPOID: TStringField
+      FieldName = 'GRUPOID'
+      Size = 10
+    end
+    object qrSucursalesCLIENTE_UNO: TStringField
+      FieldName = 'CLIENTE_UNO'
+      Size = 10
+    end
+    object qrSucursalesCLIENTE_DOS: TStringField
+      FieldName = 'CLIENTE_DOS'
+      Size = 10
+    end
+    object qrSucursalesIMPRESIONES: TIntegerField
+      FieldName = 'IMPRESIONES'
+    end
+    object qrSucursalesSINPRFILTER: TIntegerField
+      DisplayLabel = 'Calcular'
+      FieldName = 'SINPRFILTER'
+    end
+    object qrSucursalesMONTO_PORC: TBCDField
+      DisplayLabel = 'Porciento'
+      FieldName = 'MONTO_PORC'
+      EditFormat = '###,###,##0.00'
+      Precision = 19
+    end
+    object qrSucursalesMONTO_CANT: TBCDField
+      DisplayLabel = 'Valor'
+      FieldName = 'MONTO_CANT'
+      EditFormat = '###,###,##0.00'
+      Precision = 19
+    end
+    object qrSucursalesBanco_Cuenta_1: TStringField
+      FieldName = 'Banco_Cuenta_1'
+      Size = 25
+    end
+    object qrSucursalesBanco_Nombre_1: TStringField
+      FieldName = 'Banco_Nombre_1'
+      Size = 100
+    end
+    object qrSucursalesBanco_Cuenta_2: TStringField
+      FieldName = 'Banco_Cuenta_2'
+      Size = 25
+    end
+    object qrSucursalesBanco_Nombre_2: TStringField
+      FieldName = 'Banco_Nombre_2'
+      Size = 100
+    end
+    object qrSucursalesRuta_Foto: TStringField
+      FieldName = 'Ruta_Foto'
+      Size = 100
+    end
+    object qrSucursalesDATAAREAID: TStringField
+      FieldName = 'DATAAREAID'
+      Size = 3
+    end
+    object qrSucursalesRECID: TLargeintField
+      FieldName = 'RECID'
+    end
+    object qrSucursalesStPlanSocial: TStringField
+      FieldName = 'StPlanSocial'
+      FixedChar = True
+      Size = 1
+    end
+    object qrSucursalesCodUserUniv: TStringField
+      FieldName = 'CodUserUniv'
+      Size = 10
+    end
+    object qrSucursalesStImpLabelLab: TStringField
+      FieldName = 'StImpLabelLab'
+      FixedChar = True
+      Size = 1
+    end
+    object qrSucursalesGrupoTarifaSuc: TWordField
+      FieldName = 'GrupoTarifaSuc'
+    end
+    object qrSucursalesFuera_Linea: TBooleanField
+      FieldName = 'Fuera_Linea'
+    end
+    object qrSucursalesFeriado: TBooleanField
+      FieldName = 'Feriado'
+    end
+    object qrSucursalesStImpFactLab: TBooleanField
+      FieldName = 'StImpFactLab'
+    end
+  end
+end

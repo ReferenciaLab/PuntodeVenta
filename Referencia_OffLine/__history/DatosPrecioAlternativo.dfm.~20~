@@ -1,0 +1,354 @@
+inherited frmDatosPreciosAlt: TfrmDatosPreciosAlt
+  Caption = 'Precios Alternativos'
+  ClientHeight = 351
+  ClientWidth = 630
+  ExplicitWidth = 638
+  ExplicitHeight = 385
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dxLayoutControl1: TdxLayoutControl
+    Width = 630
+    Height = 318
+    ExplicitWidth = 630
+    ExplicitHeight = 318
+    inherited pcDatos: TcxPageControl
+      Width = 497
+      Height = 429
+      ActivePage = tsMain
+      ExplicitWidth = 497
+      ExplicitHeight = 429
+      ClientRectBottom = 429
+      ClientRectRight = 497
+      ClientRectTop = 24
+      inherited tsMain: TcxTabSheet
+        ExplicitWidth = 497
+        ExplicitHeight = 405
+        inherited lcGrid: TdxLayoutControl
+          Width = 497
+          Height = 405
+          ExplicitWidth = 497
+          ExplicitHeight = 405
+          inherited dgDatos: TcxGrid
+            Width = 582
+            Height = 210
+            ExplicitWidth = 582
+            ExplicitHeight = 210
+            inherited tvDatos: TcxGridDBTableView
+              object tvDatosPruebaID: TcxGridDBColumn
+                DataBinding.FieldName = 'PruebaID'
+                HeaderAlignmentHorz = taCenter
+                Width = 78
+              end
+              object tvDatosDescripcion: TcxGridDBColumn
+                Caption = 'Descripci'#243'n'
+                DataBinding.FieldName = 'PruebaID'
+                PropertiesClassName = 'TcxLookupComboBoxProperties'
+                Properties.KeyFieldNames = 'PRUEBAID'
+                Properties.ListColumns = <
+                  item
+                    FieldName = 'DESCRIPCION'
+                  end>
+                Properties.ListSource = DM.dsPruebas
+                Properties.ReadOnly = False
+                HeaderAlignmentHorz = taCenter
+                Options.Editing = False
+                Width = 217
+              end
+              object tvDatosPrecio: TcxGridDBColumn
+                DataBinding.FieldName = 'Precio'
+                HeaderAlignmentHorz = taCenter
+                Width = 66
+              end
+              object tvDatosSucursalId: TcxGridDBColumn
+                Caption = 'SucID'
+                DataBinding.FieldName = 'SucursalId'
+                HeaderAlignmentHorz = taCenter
+                Width = 48
+              end
+              object tvDatosPrecioDolares: TcxGridDBColumn
+                Caption = 'D'#243'lares'
+                DataBinding.FieldName = 'PrecioDolares'
+                HeaderAlignmentHorz = taCenter
+                Width = 49
+              end
+              object tvDatosActivo: TcxGridDBColumn
+                Caption = 'Act'
+                DataBinding.FieldName = 'Activo'
+                HeaderAlignmentHorz = taCenter
+                Width = 47
+              end
+              object tvDatosDataareaid: TcxGridDBColumn
+                Caption = 'Cia'
+                DataBinding.FieldName = 'Dataareaid'
+                HeaderAlignmentHorz = taCenter
+                Width = 35
+              end
+              object tvDatosRecid: TcxGridDBColumn
+                DataBinding.FieldName = 'Recid'
+                HeaderAlignmentHorz = taCenter
+                Width = 28
+              end
+            end
+          end
+        end
+      end
+      inherited tsDatos: TcxTabSheet
+        ExplicitWidth = 497
+        ExplicitHeight = 405
+        inherited lcDatos: TdxLayoutControl
+          Width = 497
+          Height = 405
+          ExplicitWidth = 497
+          ExplicitHeight = 405
+          object cxDBCurrencyEdit1: TcxDBCurrencyEdit [0]
+            Left = 83
+            Top = 90
+            DataBinding.DataField = 'Precio'
+            DataBinding.DataSource = dsDatos
+            Properties.DisplayFormat = '0.00;(0.00)'
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 2
+            Width = 145
+          end
+          object cxDBCheckBox2: TcxDBCheckBox [1]
+            Left = 83
+            Top = 144
+            DataBinding.DataField = 'Activo'
+            DataBinding.DataSource = dsDatos
+            Properties.Alignment = taLeftJustify
+            Properties.ValueChecked = 1
+            Properties.ValueGrayed = 0
+            Properties.ValueUnchecked = '0'
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 4
+            Width = 121
+          end
+          object cxDBCurrencyEdit2: TcxDBCurrencyEdit [2]
+            Left = 83
+            Top = 117
+            DataBinding.DataField = 'PrecioDolares'
+            DataBinding.DataSource = dsDatos
+            Properties.DisplayFormat = '0.00;(0.00)'
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            TabOrder = 3
+            Width = 145
+          end
+          object CbTipoPrueba: TcxDBImageComboBox [3]
+            Left = 83
+            Top = 63
+            DataBinding.DataField = 'SucursalId'
+            DataBinding.DataSource = dsDatos
+            Properties.Items = <
+              item
+                Description = 'CENTRO DEL ESTE'
+                ImageIndex = 0
+                Value = 'CE'
+              end
+              item
+                Description = 'HIGUEY'
+                Value = 'HI'
+              end
+              item
+                Description = 'SAN FRANCISCO DE MACORIS'
+                Value = 'SF'
+              end
+              item
+                Description = 'SANTIAGO'
+                Value = 'SA'
+              end
+              item
+                Description = 'JARABACOA'
+                Value = 'JA'
+              end>
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            Style.ButtonStyle = btsHotFlat
+            Style.PopupBorderStyle = epbsSingle
+            TabOrder = 1
+            Width = 240
+          end
+          object cxDBExtLookupComboBox4: TcxDBExtLookupComboBox [4]
+            Left = 83
+            Top = 36
+            RepositoryItem = DM.elcPruebas
+            DataBinding.DataField = 'PruebaID'
+            DataBinding.DataSource = dsDatos
+            Properties.CharCase = ecUpperCase
+            Style.BorderColor = clTeal
+            Style.BorderStyle = ebsSingle
+            Style.HotTrack = False
+            Style.ButtonStyle = btsHotFlat
+            Style.PopupBorderStyle = epbsSingle
+            TabOrder = 0
+            Width = 349
+          end
+          inherited Group_Root: TdxLayoutGroup
+            object lcDatosGroup1: TdxLayoutGroup
+              AutoAligns = []
+              AlignHorz = ahClient
+              Caption = 'General'
+              object lcDatosItem14: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Pruebas'
+                Control = cxDBExtLookupComboBox4
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosTipos: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Sucursal'
+                Control = CbTipoPrueba
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem4: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Precio RD$'
+                Control = cxDBCurrencyEdit1
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem7: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Precio US$'
+                Control = cxDBCurrencyEdit2
+                ControlOptions.ShowBorder = False
+              end
+              object lcDatosItem6: TdxLayoutItem
+                AutoAligns = [aaVertical]
+                Caption = 'Activo'
+                Control = cxDBCheckBox2
+                ControlOptions.ShowBorder = False
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+  inherited pnCaption: TPanel
+    Width = 630
+    ExplicitWidth = 630
+  end
+  inherited formStorage: TJvFormStorage
+    Left = 389
+    Top = 178
+  end
+  inherited dsDatos: TDataSource
+    DataSet = qrPrecioAlternativo
+    Left = 200
+  end
+  inherited dxPrintGrid: TdxComponentPrinter
+    Left = 393
+    Top = 241
+    inherited dxPrintGridLink: TdxGridReportLink
+      ReportDocument.CreationDate = 38922.606807361110000000
+      BuiltInReportLink = True
+    end
+    inherited dxPrintGridDatos: TdxLayoutControlReportLink
+      ReportDocument.CreationDate = 38922.606807361110000000
+      BuiltInReportLink = True
+      HiddenComponents = {}
+      ExcludedComponents = {}
+      AggregatedReportLinks = {}
+    end
+  end
+  inherited cxGridPopupMenu: TcxGridPopupMenu
+    Left = 341
+    Top = 241
+  end
+  inherited cxGridStyles: TcxStyleRepository
+    Left = 341
+    Top = 178
+  end
+  inherited SaveDialog: TSaveDialog
+    Left = 238
+    Top = 208
+  end
+  inherited qryHelper: TADOQuery
+    Left = 384
+    Top = 2
+  end
+  inherited alEdit: TActionList
+    Left = 393
+    Top = 208
+  end
+  inherited pmCustom: TPopupMenu
+    Left = 285
+    Top = 208
+  end
+  inherited qrDefaultView: TADOQuery
+    Left = 308
+    Top = 2
+  end
+  inherited strView: TJvStrHolder
+    Left = 281
+    Top = 178
+  end
+  inherited strTableNames: TJvStrHolder
+    Left = 237
+    Top = 178
+  end
+  inherited cxStyleRepository1: TcxStyleRepository
+    Left = 341
+    Top = 208
+  end
+  inherited qrUserFields: TABSQuery
+    Left = 285
+    Top = 241
+  end
+  inherited qrVistas: TABSQuery
+    Left = 233
+    Top = 241
+  end
+  inherited cxIntl1: TcxIntl
+    Left = 3
+    Top = 2
+  end
+  object qrPrecioAlternativo: TADOQuery
+    Connection = DM.DataBase
+    CursorType = ctStatic
+    BeforeInsert = qrPrecioAlternativoBeforeInsert
+    BeforePost = qrPrecioAlternativoBeforePost
+    AfterPost = qrPrecioAlternativoAfterPost
+    AfterScroll = qrPrecioAlternativoAfterScroll
+    OnNewRecord = qrPrecioAlternativoNewRecord
+    Parameters = <>
+    SQL.Strings = (
+      'select a.pruebaid,a.precio,a.sucursalid,a.preciodolares,'
+      
+        'a.activo,a.dataareaid,a.recid from ptprecioalternativo a (nolock' +
+        ')')
+    Left = 128
+    Top = 3
+    object qrPrecioAlternativoPruebaID: TStringField
+      FieldName = 'PruebaID'
+    end
+    object qrPrecioAlternativoPrecio: TBCDField
+      FieldName = 'Precio'
+      Precision = 19
+    end
+    object qrPrecioAlternativoSucursalId: TStringField
+      FieldName = 'SucursalId'
+      Size = 10
+    end
+    object qrPrecioAlternativoPrecioDolares: TBCDField
+      FieldName = 'PrecioDolares'
+      Precision = 19
+    end
+    object qrPrecioAlternativoActivo: TBooleanField
+      FieldName = 'Activo'
+    end
+    object qrPrecioAlternativoDataareaid: TStringField
+      FieldName = 'Dataareaid'
+      Size = 3
+    end
+    object qrPrecioAlternativorecid: TLargeintField
+      FieldName = 'recid'
+    end
+  end
+end

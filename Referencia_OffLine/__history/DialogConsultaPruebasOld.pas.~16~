@@ -1,0 +1,467 @@
+unit DialogConsultaPruebasOld;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DialogConsulta, cxGraphics, Menus, cxLookAndFeelPainters, cxStyles,
+  cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, DB, cxDBData,
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, ADODB,
+  dxLayoutControl, cxGridLevel, cxClasses, cxControls, cxGridCustomView, cxGrid,
+  StdCtrls, cxButtons, cxTextEdit, cxContainer, cxMaskEdit, cxDropDownEdit,
+  cxintl;
+
+type
+  TfrmDialogConsultaPruebasOld = class(TfrmDialogConsulta)
+    dbDatosPruebaID: TcxGridDBColumn;
+    dbDatosDescripcion: TcxGridDBColumn;
+    dbDatosPrecio: TcxGridDBColumn;
+    dbDatosPrecioDolares: TcxGridDBColumn;
+    qrPruebas: TADOQuery;
+    qrPruebasPRUEBAID: TStringField;
+    qrPruebasALIAS: TStringField;
+    qrPruebasDESCRIPCION: TStringField;
+    qrPruebasESTATUS: TIntegerField;
+    qrPruebasGRUPOPRUEBAID: TStringField;
+    qrPruebasDEPARTAMENTO: TStringField;
+    qrPruebasPRECIO: TBCDField;
+    qrPruebasPERMITECAMBIOPRECIO: TIntegerField;
+    qrPruebasCODIGOAXAPTA: TStringField;
+    qrPruebasPRECIODOLARES: TBCDField;
+    qrPruebasCOSTO: TBCDField;
+    qrPruebasEXTERIOR: TIntegerField;
+    qrPruebasFACTURARCABECERA: TIntegerField;
+    qrPruebasPRUEBAS: TIntegerField;
+    qrPruebasTIPO: TStringField;
+    qrPruebasORINA: TIntegerField;
+    qrPruebasSANGRE: TIntegerField;
+    qrPruebasCONDPACIENTE: TStringField;
+    qrPruebasCONDMUESTRA: TStringField;
+    qrPruebasCODDIAPROC: TStringField;
+    qrPruebasDIASRESULTADO: TIntegerField;
+    qrPruebasUNIDAD: TStringField;
+    qrPruebasABREVIACION: TStringField;
+    qrPruebasMEDIO: TIntegerField;
+    qrPruebasCOLOR: TIntegerField;
+    qrPruebasDEPID: TStringField;
+    qrPruebasTIPOAS400: TStringField;
+    qrPruebasCODIGOIDAS400: TStringField;
+    qrPruebasMEDIOAS400: TStringField;
+    qrPruebasNOPROCESAR: TIntegerField;
+    qrPruebasCOMENTARIONOPROCESAR: TStringField;
+    qrPruebasDATAAREAID: TStringField;
+    qrPruebasTIPOMUESTRA: TStringField;
+    qrPruebasRECID: TLargeintField;
+    procedure edbuscarExit(Sender: TObject);
+    procedure cgDatosExit(Sender: TObject);
+    procedure cgDatosEnter(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormShow(Sender: TObject);
+    procedure edbuscarPropertiesChange(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure BuscarData;
+    Function  Verifica_Pruebas_Aceptadas: Boolean;
+    Function  Verifica_Seleccion: Boolean;
+    Function  Verifica_Pruebas_CargoUSA: Boolean;
+    Function  TotalPruebas_USA : Integer;
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure Run;
+  end;
+
+var
+  frmDialogConsultaPruebasOld: TfrmDialogConsultaPruebasOld;
+  adentrogrid : Boolean;
+
+implementation
+
+uses DataModule, UInterfaseAs400, Main;
+
+{$R *.dfm}
+
+
+procedure TfrmDialogConsultaPruebasOld.BuscarData;
+var
+ sqlString : String;
+begin
+ sqlString := ' SELECT * FROM PTPrueba WHERE IsNull(PruebaID,'+#39+#39+')<>'+#39+#39;
+ if edbuscar.Text <> '' then
+  begin
+   case edbuscarpor.ItemIndex of
+     0 : sqlString := sqlString + ' AND PruebaID LIKE '+#39+'%'+edbuscar.Text+'%'+#39;
+     1 : sqlString := sqlString + ' AND Descripcion LIKE '+#39+'%'+edbuscar.Text+'%'+#39;
+   end;
+ end;
+
+ If Factura_st='I' then
+ Begin
+     //Filtrando las Pruebas del Exterior
+     If (frmMain.Exis_Vta = True) And (frmMain.frmTmp.qrEntradaPacienteFactExterior.Value = 1) Then
+       sqlString := sqlString + ' AND Exterior = '+ #39 + '1' + #39;
+
+     //Filtrando las Pruebas del Exterior
+     If (frmMain.Exis_Cli = True) And (frmMain.frmClinica.qrEntradaPacienteFactExterior.Value = 1) Then
+       sqlString := sqlString + ' AND Exterior = '+ #39 + '1' + #39;
+ end
+ else if Factura_st='M' then
+ Begin
+     //Filtrando las Pruebas del Exterior
+     If (frmMain.Exis_Vta = True) And (frmMain.frmTmpMod.qrEntradaPacienteFactExterior.Value = 1) Then
+       sqlString := sqlString + ' AND Exterior = '+ #39 + '1' + #39;
+
+     //Filtrando las Pruebas del Exterior
+     If (frmMain.Exis_Cli = True) And (frmMain.frmClinica.qrEntradaPacienteFactExterior.Value = 1) Then
+       sqlString := sqlString + ' AND Exterior = '+ #39 + '1' + #39;
+ end
+ else if Factura_st='F' then
+ Begin
+     //Filtrando las Pruebas del Exterior
+     If (frmMain.Exis_Vta = True) And (frmMain.frmTmpND.qrEntradaPacienteFactExterior.Value = 1) Then
+       sqlString := sqlString + ' AND Exterior = '+ #39 + '1' + #39;
+
+     //Filtrando las Pruebas del Exterior
+     If (frmMain.Exis_Cli = True) And (frmMain.frmClinica.qrEntradaPacienteFactExterior.Value = 1) Then
+       sqlString := sqlString + ' AND Exterior = '+ #39 + '1' + #39;
+ end;
+
+ sqlString := sqlString + ' AND DataAreaId = ' + #39 + DM.CurEmpresa + #39;
+ sqlString := sqlString + ' ORDER BY PruebaID ';
+
+ qrPruebas.Close;
+ qrPruebas.SQL.Text := sqlString;
+ qrPruebas.Open;
+end;
+
+
+procedure TfrmDialogConsultaPruebasOld.Run;
+Var
+ qfind : TADOQuery;
+begin
+ showmodal;
+ if ModalResult = mrOk then
+  begin
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+   If (frmMain.Exis_Vta = True) then
+     Begin
+{
+       If (qrPruebas.RecordCount > 0) And
+          (qrPruebasTipo.Value = 'P') And
+          (qrPruebasGrupoPruebaId.Value = 'PRU') Then
+         Begin
+           //Confirmando el Mensaje No Reactivo del AS-400.
+           InterfaseAS400.Confirmar_No_Reactivo(qrPruebasCODIGOIDAS400.Value,
+                                                qrPruebasPRUEBAID.Value,
+                                                qrPruebasDESCRIPCION.Value);
+         end;
+}
+       If (qrPruebas.RecordCount > 0) And
+          (qrPruebasEstatus.Value = 0) Then
+       Begin
+           //Confirmando el Mensaje de la Prueba Inactiva.
+           Raise exception.CreateFmt(' La Prueba: (' + qrPruebasPRUEBAID.AsString + ') ' + qrPruebasDESCRIPCION.AsString + #13 +
+                                     ' NO Puede Ser Seleccionada. ESTA PROHIBIDA SU FACTURACION. '+ #13 +
+                                     ' Por Favor, Comuniquese con el Departamento Tecnico Correspondiente.!!!', []);
+       end;
+       If (Verifica_Seleccion) And (Verifica_Pruebas_Aceptadas) then
+       begin
+            DsDatos.Enabled := True;
+            Raise exception.CreateFmt(' La Prueba: (' + qrPruebasPruebaID.AsString + ') ' + qrPruebasDescripcion.AsString + #13 +
+                                        ' Ya fué Seleccionada. Favor verificar Pruebas Seleccionadas.', []);
+       end;
+       If (Verifica_Pruebas_CargoUSA) then
+       begin
+            Raise exception.CreateFmt(' Ya fué seleccionado un Cargo USA. Favor verificar.', []);
+       end;
+
+       If (TotalPruebas_USA) = 1 And Not (qrPruebas.Locate('PruebaID','00003978',[])) then
+       begin
+            Raise exception.CreateFmt(' Cargo USA NO correcto. Favor verificar.', []);
+       end
+       else
+       If (TotalPruebas_USA) = 2 And Not (qrPruebas.Locate('PruebaID','00003981',[])) then
+       begin
+            Raise exception.CreateFmt(' Cargo USA NO correcto. Favor verificar.', []);
+       end
+       else
+       If (TotalPruebas_USA) >= 3 And Not (qrPruebas.Locate('PruebaID','00003982',[])) then
+       begin
+            Raise exception.CreateFmt(' Cargo USA NO correcto. Favor verificar.', []);
+       end;
+
+       If Factura_st = 'I' then
+       Begin
+           frmMain.frmTmp.qrEntradaPacienteDetalle.Insert;
+           frmMain.frmTmp.qrEntradaPacienteDetalleRefRecid.Value    := frmMain.frmTmp.qrEntradaPacienteRECID.Value;
+           frmMain.frmTmp.qrEntradaPacienteDetalleSecuencia.Value   := frmMain.frmTmp.MaxSecuenciaLinea;
+           frmMain.frmTmp.qrEntradaPacienteDetalleRECID.Value       := frmMain.frmTmp.GetSecuenciaId;
+           frmMain.frmTmp.qrEntradaPacienteDetalleMuestraNo.Value   := frmMain.frmTmp.qrEntradaPacienteMuestraNo.Value;
+           frmMain.frmTmp.qrEntradaPacienteDetalleDATAAREAID.Value  := frmMain.frmTmp.qrEntradaPacienteDATAAREAID.Value;
+           frmMain.frmTmp.qrEntradaPacienteDetallePruebaID.Value    := qrPruebasPruebaID.Value;
+           frmMain.frmTmp.qrEntradaPacienteDetalle.Post;
+       end
+       else if Factura_st = 'M' then
+       begin
+           frmMain.frmTmpMod.qrEntradaPacienteDetalle.Insert;
+           frmMain.frmTmpMod.qrEntradaPacienteDetalleRefRecid.Value   := frmMain.frmTmpMod.qrEntradaPacienteRECID.Value;
+           frmMain.frmTmpMod.qrEntradaPacienteDetalleSecuencia.Value  := frmMain.frmTmpMod.MaxSecuenciaLinea;
+           frmMain.frmTmpMod.qrEntradaPacienteDetalleRECID.Value      := frmMain.frmTmpMod.GetSecuenciaId;
+           frmMain.frmTmpMod.qrEntradaPacienteDetalleMuestraNo.Value  := frmMain.frmTmpMod.qrEntradaPacienteMuestraNo.Value;
+           frmMain.frmTmpMod.qrEntradaPacienteDetalleDATAAREAID.Value := frmMain.frmTmpMod.qrEntradaPacienteDATAAREAID.Value;
+           frmMain.frmTmpMod.qrEntradaPacienteDetallePruebaID.Value   := qrPruebasPruebaID.Value;
+           frmMain.frmTmpMod.qrEntradaPacienteDetalle.Post;
+       end
+       else if Factura_st = 'F' then
+       begin
+           frmMain.frmTmpND.qrEntradaPacienteDetalle.Insert;
+           frmMain.frmTmpND.qrEntradaPacienteDetalleRefRecid.Value   := frmMain.frmTmpND.qrEntradaPacienteRECID.Value;
+           frmMain.frmTmpND.qrEntradaPacienteDetalleSecuencia.Value  := frmMain.frmTmpND.MaxSecuenciaLinea;
+           frmMain.frmTmpND.qrEntradaPacienteDetalleRECID.Value      := frmMain.frmTmpND.GetSecuenciaId;
+           frmMain.frmTmpND.qrEntradaPacienteDetalleMuestraNo.Value  := frmMain.frmTmpND.qrEntradaPacienteMuestraNo.Value;
+           frmMain.frmTmpND.qrEntradaPacienteDetalleDATAAREAID.Value := frmMain.frmTmpND.qrEntradaPacienteDATAAREAID.Value;
+           frmMain.frmTmpND.qrEntradaPacienteDetallePruebaID.Value   := qrPruebasPruebaID.Value;
+           frmMain.frmTmpND.qrEntradaPacienteDetalle.Post;
+       end;
+{
+       frmMain.frmTmp.qrEntradaPacienteDetalleRefRecid.Value := frmMain.frmTmp.recid;
+       frmMain.frmTmp.qrEntradaPacienteDetallePrecio.Value := DM.PrecioPrueba(qrPruebasPruebaID.Value,
+                                                                              frmMain.frmTmp.qrEntradaPacienteClienteID.Value,
+                                                                              frmMain.frmTmp.qrEntradaPacienteMonedaID.Value) * frmMain.frmTmp.factor;
+       frmMain.frmTmp.qrEntradaPacienteDetalleDescripcion.Value := qrPruebasDescripcion.Value;
+       frmMain.frmTmp.qrEntradaPacienteDetalleDescuento.Value := 0;
+       frmMain.frmTmp.qrEntradaPacienteDetalleDescPct.Value := 0;
+       frmMain.frmTmp.qrEntradaPacienteDetalleSecuencia.Value := frmMain.frmTmp.MaxSecuenciaLinea;
+       frmMain.frmTmp.qrEntradaPacienteDetalleCoberturaAplica.Value := DM.CoberturaAplica(frmMain.frmTmp.qrEntradaPacienteClienteID.Value,
+                                                                                          frmMain.frmTmp.qrEntradaPacientePacienteID.Value,
+                                                                                          frmMain.frmTmp.curCoberturaAplicada,
+                                                                                          frmMain.frmTmp.qrEntradaPacienteRecid.value);
+       if frmMain.frmTmp.qrEntradaPacienteDetalleCoberturaAplica.Value then
+         frmMain.frmTmp.curCoberturaAplicada := frmMain.frmTmp.curCoberturaAplicada + 1;
+
+       frmMain.frmTmp.qrEntradaPacienteDetalleCoberturaEspecial.Value := DM.CoberturaPrueba(qrPruebasPruebaID.Value,
+                                                                                            frmMain.frmTmp.qrEntradaPacienteClienteID.Value,
+                                                                                            frmMain.frmTmp.qrEntradaPacienteMonedaID.Value) * frmMain.frmTmp.factor;
+       if frmMain.frmTmp.qrEntradaPacienteDetalleCoberturaEspecial.Value <> 0 then
+         frmMain.frmTmp.qrEntradaPacienteDetalleCoberturaExpPorc.Value := DM.CoberturaPruebaPorc(qrPruebasPruebaID.Value,
+                                                                                                 frmMain.frmTmp.qrEntradaPacienteClienteID.Value,
+                                                                                                 frmMain.frmTmp.qrEntradaPacienteMonedaID.Value)
+       else
+         frmMain.frmTmp.qrEntradaPacienteDetalleCoberturaExpPorc.Value := false;
+
+       frmMain.frmTmp.qrEntradaPacienteDetalleCoberturaEspecialPorc.Value := 0;
+       frmMain.frmTmp.qrEntradaPacienteDetalleMuestraNo.Value := frmMain.frmTmp.qrEntradaPacienteMuestraNo.Value;
+}
+     end;
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+   If (frmMain.Exis_Cli = True) then
+     Begin
+{
+       If (qrPruebas.RecordCount > 0) And
+          (qrPruebasTipo.Value = 'P') And
+          (qrPruebasGrupoPruebaId.Value = 'PRU') Then
+         Begin
+           //Confirmando el Mensaje No Reactivo del AS-400.
+           InterfaseAS400.Confirmar_No_Reactivo(qrPruebasCODIGOIDAS400.Value,
+                                                qrPruebasPRUEBAID.Value,
+                                                qrPruebasDESCRIPCION.Value);
+         end;
+}
+       If (qrPruebas.RecordCount > 0) And
+          (qrPruebasEstatus.Value = 0) Then
+         Begin
+           //Confirmando el Mensaje de la Prueba Inactiva.
+           Raise exception.CreateFmt(' La Prueba: (' + qrPruebasPRUEBAID.AsString + ') ' + qrPruebasDESCRIPCION.AsString + #13 +
+                                     ' NO Puede Ser Seleccionada. ESTA PROHIBIDA SU FACTURACION. '+ #13 +
+                                     ' Por Favor, Comuniquese con el Departamento Tecnico Correspondiente.!!!', []);
+         end;
+
+       frmMain.frmClinica.qrEntradaPacienteDetalle.Insert;
+       frmMain.frmClinica.qrEntradaPacienteDetalleRefRecid.Value := frmMain.frmClinica.qrEntradaPacienteRECID.Value;
+       frmMain.frmClinica.qrEntradaPacienteDetalleSecuencia.Value := frmMain.frmClinica.MaxSecuenciaLinea;
+       frmMain.frmClinica.qrEntradaPacienteDetalleRECID.Value := frmMain.frmClinica.GetSecuenciaId;
+       frmMain.frmClinica.qrEntradaPacienteDetalleMuestraNo.Value := frmMain.frmClinica.qrEntradaPacienteMuestraNo.Value;
+       frmMain.frmClinica.qrEntradaPacienteDetalleDATAAREAID.Value := frmMain.frmClinica.qrEntradaPacienteDATAAREAID.Value;
+       frmMain.frmClinica.qrEntradaPacienteDetallePruebaID.Value := qrPruebasPruebaID.Value;
+//       frmMain.frmClinica.qrEntradaPacienteDetalleCOMENTARIO.Required := True;
+       frmMain.frmClinica.qrEntradaPacienteDetalle.Post;
+     end;
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+  end;
+end;
+
+
+procedure TfrmDialogConsultaPruebasOld.cgDatosEnter(Sender: TObject);
+begin
+  inherited;
+  adentrogrid := true;
+end;
+
+procedure TfrmDialogConsultaPruebasOld.cgDatosExit(Sender: TObject);
+begin
+  inherited;
+  adentrogrid := false;
+end;
+
+procedure TfrmDialogConsultaPruebasOld.edbuscarExit(Sender: TObject);
+begin
+  inherited;
+  BuscarData;
+end;
+
+procedure TfrmDialogConsultaPruebasOld.edbuscarPropertiesChange(Sender: TObject);
+begin
+  inherited;
+  BuscarData;
+end;
+
+procedure TfrmDialogConsultaPruebasOld.FormCreate(Sender: TObject);
+begin
+  inherited;
+  qrPruebas.Close;
+  qrPruebas.Open;
+  edbuscarpor.ItemIndex := 1;
+  BuscarData;
+end;
+
+procedure TfrmDialogConsultaPruebasOld.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if (key = Vk_Down) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+
+  if (key = 13) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 0, 0);
+
+  if (key = 13) and (AdentroGrid) then
+  begin
+   Close;
+   ModalResult := mrOk;
+  end;
+
+  if (key = Vk_Up) and (not AdentroGrid) then
+     PostMessage(Handle, Wm_NextDlgCtl, 1, 0);
+
+  if (key = 27) then
+  begin
+   Close;
+  end;
+
+end;
+
+procedure TfrmDialogConsultaPruebasOld.FormShow(Sender: TObject);
+begin
+  inherited;
+  edbuscar.SetFocus;
+end;
+Function TfrmDialogConsultaPruebasOld.Verifica_Pruebas_Aceptadas: Boolean;
+begin
+  inherited;
+  Result:=false;
+    if Factura_St = 'I' Then
+    begin
+        if frmMain.frmTmp.qrEntradaPacienteDetalle.Locate('PruebaID',qrPruebasPruebaID.AsString,[]) then
+            Result:=true
+    end else if Factura_St = 'M' Then
+    begin
+        if frmMain.frmTmpMod.qrEntradaPacienteDetalle.Locate('PruebaID',qrPruebasPruebaID.AsString,[]) then
+            Result:=true
+    end else if Factura_St = 'L' Then
+    begin
+        if frmMain.frmTmpLab.qrEntradaPacienteDetalle.Locate('PruebaID',qrPruebasPruebaID.AsString,[]) then
+            Result:=true
+    end else if Factura_St = 'C' Then
+    begin
+        if frmMain.frmClinica.qrEntradaPacienteDetalle.Locate('PruebaID',qrPruebasPruebaID.AsString,[]) then
+            Result:=true
+    end else if Factura_St = 'F' Then
+    begin
+        if frmMain.frmTmpND.qrEntradaPacienteDetalle.Locate('PruebaID',qrPruebasPruebaID.AsString,[]) then
+            Result:=true
+    end;
+
+End;
+Function TfrmDialogConsultaPruebasOld.Verifica_Seleccion: Boolean;
+begin
+  inherited;
+  Result:=false;
+    if qrPruebas.Locate('PruebaID',qrPruebasPruebaID.AsString,[]) then
+        Result:=true
+End;
+Function TfrmDialogConsultaPruebasOld.Verifica_Pruebas_CargoUSA: Boolean;
+begin
+  inherited;
+  Result:=false;
+    if Factura_St = 'I' Then
+    begin
+        if frmMain.frmTmp.qrEntradaPacienteDetalle.Locate('PruebaID','00003978',[]) Or
+           frmMain.frmTmp.qrEntradaPacienteDetalle.Locate('PruebaID','00003981',[]) Or
+           frmMain.frmTmp.qrEntradaPacienteDetalle.Locate('PruebaID','00003982',[]) then
+           Result:=true
+    end else if Factura_St = 'M' Then
+    begin
+        if frmMain.frmTmpMod.qrEntradaPacienteDetalle.Locate('PruebaID','00003978',[]) Or
+           frmMain.frmTmpMod.qrEntradaPacienteDetalle.Locate('PruebaID','00003981',[]) Or
+           frmMain.frmTmpMod.qrEntradaPacienteDetalle.Locate('PruebaID','00003982',[]) then
+           Result:=true
+    end else if Factura_St = 'L' Then
+    begin
+        if frmMain.frmTmpLab.qrEntradaPacienteDetalle.Locate('PruebaID','00003978',[]) Or
+           frmMain.frmTmpLab.qrEntradaPacienteDetalle.Locate('PruebaID','00003981',[]) Or
+           frmMain.frmTmpLab.qrEntradaPacienteDetalle.Locate('PruebaID','00003982',[]) then
+           Result:=true
+    end else if Factura_St = 'C' Then
+    begin
+        if frmMain.frmClinica.qrEntradaPacienteDetalle.Locate('PruebaID','00003978',[]) Or
+           frmMain.frmClinica.qrEntradaPacienteDetalle.Locate('PruebaID','00003981',[]) Or
+           frmMain.frmClinica.qrEntradaPacienteDetalle.Locate('PruebaID','00003982',[]) then
+           Result:=true
+    end else if Factura_St = 'F' Then
+    begin
+        if frmMain.frmTmpND.qrEntradaPacienteDetalle.Locate('PruebaID','00003978',[]) Or
+           frmMain.frmTmpND.qrEntradaPacienteDetalle.Locate('PruebaID','00003981',[]) Or
+           frmMain.frmTmpND.qrEntradaPacienteDetalle.Locate('PruebaID','00003982',[]) then
+           Result:=true
+    end;
+End;
+Function TDM.TotalPruebas_USA : Integer;
+Var
+ qfind : TADOQuery;
+begin
+ qfind := DM.NewQuery;
+ qfind.Close;
+ qfind.SQL.Text := ' SELECT Count(*) As Total FROM ptentradapacientedetalle '+
+                   ' WHERE exterior=1 and pruebaid in (SELECT pruebaid FROM PTPRUEBA '+
+                   ' WHERE exterior=1 and permitecambioprecio='+#39+'1'+#39+')';
+  if Factura_St = 'I' Then
+  begin
+        qfind.SQL.Text:= qfind.SQL.Text+' And Muestrano'+#39+frmMain.frmTmp.qrEntradaPacienteDetalleMuestrano+#39;
+  end else if Factura_St = 'M' Then
+  begin
+        qfind.SQL.Text:=qfind.SQL.Text+' And Muestrano'+#39+frmMain.frmTmpMod.qrEntradaPacienteDetalleMuestrano+#39;
+  end else if Factura_St = 'L' Then
+  begin
+        qfind.SQL.Text:=qfind.SQL.Text+' And Muestrano'+#39+frmMain.frmTmpLab.qrEntradaPacienteDetalleMuestrano+#39;
+  end else if Factura_St = 'C' Then
+  begin
+        qfind.SQL.Text:=qfind.SQL.Text+' And Muestrano'+#39+frmMain.frmClinica.qrEntradaPacienteDetalleMuestrano+#39;
+   end else if Factura_St = 'F' Then
+  begin
+        qfind.SQL.Text:=qfind.SQL.Text+' And Muestrano'+#39+frmMain.frmTmpND.qrEntradaPacienteDetalleMuestrano+#39;
+  end;
+ qfind.Open;
+
+ if qfind.RecordCount > 0 then
+   result := qfind.FieldByName('Total').AsString
+ else
+   result := '';
+
+ FreeAndNil(qfind);
+end;
+
+end.

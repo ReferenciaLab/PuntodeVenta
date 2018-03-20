@@ -1,0 +1,110 @@
+<XmlTransformation Version="1.0"><Transform Direction="ToCds" DataEncoding="utf-8"><SelectEach dest="DATAPACKET\ROWDATA\ROW" from="\Envelope\Body\WScancela_reclamacion_6Response\WScancela_reclamacion_6Result\diffgram\NewDataSet\Table"><Select dest="@_x003A_B1" from="\_x003A_B1"/></SelectEach></Transform><XmlSchema RootName="Envelope"><![CDATA[<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Envelope" type="EnvelopeType"/>
+  <xs:complexType name="EnvelopeType">
+    <xs:sequence>
+      <xs:element name="soap:Body" type="soap:BodyType"/>
+    </xs:sequence>
+    <xs:attribute name="xmlns:soap" type="xs:string"/>
+    <xs:attribute name="xmlns:xsi" type="xs:string"/>
+    <xs:attribute name="xmlns:xsd" type="xs:string"/>
+  </xs:complexType>
+  <xs:element name="Body" type="BodyType"/>
+  <xs:complexType name="BodyType">
+    <xs:sequence>
+      <xs:element name="WScancela_reclamacion_6Response" type="WScancela_reclamacion_6ResponseType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WScancela_reclamacion_6Response" type="WScancela_reclamacion_6ResponseType"/>
+  <xs:complexType name="WScancela_reclamacion_6ResponseType">
+    <xs:sequence>
+      <xs:element name="WScancela_reclamacion_6Result" type="WScancela_reclamacion_6ResultType"/>
+    </xs:sequence>
+    <xs:attribute name="xmlns" type="xs:string"/>
+  </xs:complexType>
+  <xs:element name="WScancela_reclamacion_6Result" type="WScancela_reclamacion_6ResultType"/>
+  <xs:complexType name="WScancela_reclamacion_6ResultType">
+    <xs:sequence>
+      <xs:element name="xs:schema" type="xs:schemaType"/>
+      <xs:element name="diffgr:diffgram" type="diffgr:diffgramType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="schema" type="schemaType"/>
+  <xs:complexType name="schemaType">
+    <xs:sequence>
+      <xs:element name="xs:element" type="xs:elementType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="xmlns" type="xs:string"/>
+    <xs:attribute name="xmlns:xs" type="xs:string"/>
+    <xs:attribute name="xmlns:msdata" type="xs:string"/>
+    <xs:attribute name="xmlns:msprop" type="xs:string"/>
+  </xs:complexType>
+  <xs:element name="element" type="elementType"/>
+  <xs:complexType name="elementType">
+    <xs:sequence>
+      <xs:element name="xs:complexType" type="xs:complexTypeType"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string"/>
+  </xs:complexType>
+  <xs:element name="complexType" type="complexTypeType"/>
+  <xs:complexType name="complexTypeType">
+    <xs:sequence>
+      <xs:element name="xs:choice" type="xs:choiceType"/>
+      <xs:element name="xs:sequence" type="xs:sequenceType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="choice" type="choiceType"/>
+  <xs:complexType name="choiceType">
+    <xs:sequence>
+      <xs:element name="xs:element" type="xs:elementType"/>
+    </xs:sequence>
+    <xs:attribute name="minOccurs" type="xs:string"/>
+    <xs:attribute name="maxOccurs" type="xs:string"/>
+  </xs:complexType>
+  <xs:element name="element" type="elementType"/>
+  <xs:complexType name="elementType">
+    <xs:sequence>
+      <xs:element name="xs:complexType" type="xs:complexTypeType"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string"/>
+  </xs:complexType>
+  <xs:element name="sequence" type="sequenceType"/>
+  <xs:complexType name="sequenceType">
+    <xs:sequence>
+      <xs:element name="xs:element" type="xs:elementType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="element" type="elementType"/>
+  <xs:complexType name="elementType">
+    <xs:sequence/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="type" type="xs:string"/>
+    <xs:attribute name="minOccurs" type="xs:string"/>
+  </xs:complexType>
+  <xs:element name="diffgram" type="diffgramType"/>
+  <xs:complexType name="diffgramType">
+    <xs:sequence>
+      <xs:element name="NewDataSet" type="NewDataSetType"/>
+    </xs:sequence>
+    <xs:attribute name="xmlns:msdata" type="xs:string"/>
+    <xs:attribute name="xmlns:diffgr" type="xs:string"/>
+  </xs:complexType>
+  <xs:element name="NewDataSet" type="NewDataSetType"/>
+  <xs:complexType name="NewDataSetType">
+    <xs:sequence>
+      <xs:element name="Table" type="TableType"/>
+    </xs:sequence>
+    <xs:attribute name="xmlns" type="xs:string"/>
+  </xs:complexType>
+  <xs:element name="Table" type="TableType"/>
+  <xs:complexType name="TableType">
+    <xs:sequence>
+      <xs:element name="_x003A_B1" type="_x003A_B1Type"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="_x003A_B1" type="_x003A_B1Type"/>
+  <xs:simpleType name="_x003A_B1Type">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+</xs:schema>]]></XmlSchema><CdsSkeleton/><XslTransform/><Skeleton><![CDATA[<?xml version="1.0"?><DATAPACKET Version="2.0"><METADATA><FIELDS><FIELD attrname="_x003A_B1" fieldtype="string" WIDTH="2"/></FIELDS><PARAMS/></METADATA><ROWDATA/><METADATA><FIELDS><FIELD attrname="_x003A_B1" fieldtype="string" WIDTH="2"/></FIELDS><PARAMS/></METADATA><ROWDATA/></DATAPACKET>
+]]></Skeleton></XmlTransformation>

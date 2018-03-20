@@ -1,0 +1,417 @@
+inherited frmDialogConsultaPaciente: TfrmDialogConsultaPaciente
+  BorderIcons = [biSystemMenu]
+  Caption = 'Consulta de Pacientes'
+  ClientHeight = 542
+  ClientWidth = 943
+  FormStyle = fsStayOnTop
+  KeyPreview = True
+  WindowState = wsMaximized
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  OnShow = FormShow
+  ExplicitWidth = 951
+  ExplicitHeight = 576
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dxLayoutControl1: TdxLayoutControl
+    Width = 943
+    Height = 542
+    ExplicitWidth = 943
+    ExplicitHeight = 542
+    inherited edbuscarpor: TcxComboBox
+      Properties.Items.Strings = (
+        'Cedula'
+        'Telefono'
+        'Nombre'
+        'N'#250'mero Tarjeta'
+        'Paciente'
+        ''
+        '')
+    end
+    inherited edbuscar: TcxTextEdit
+      Properties.CharCase = ecUpperCase
+      Properties.OnChange = edbuscarPropertiesChange
+      OnExit = edbuscarExit
+      OnKeyUp = edbuscarKeyUp
+    end
+    inherited cgDatos: TcxGrid
+      Width = 623
+      Height = 333
+      OnEnter = cgDatosEnter
+      OnExit = cgDatosExit
+      ExplicitWidth = 623
+      ExplicitHeight = 333
+      inherited dbDatos: TcxGridDBTableView
+        DataController.KeyFieldNames = 'CLIENTEID'
+        DataController.Summary.FooterSummaryItems = <
+          item
+            Kind = skCount
+            Column = dbDatosPacienteID
+          end>
+        OptionsView.Footer = True
+        object dbDatosPacienteID: TcxGridDBColumn
+          Caption = 'Paciente Id'
+          DataBinding.FieldName = 'CLIENTEID'
+          HeaderAlignmentHorz = taCenter
+          Width = 83
+        end
+        object dbDatosNombre: TcxGridDBColumn
+          Caption = 'Nombre del Paciente'
+          DataBinding.FieldName = 'NOMBRE'
+          HeaderAlignmentHorz = taCenter
+          Width = 342
+        end
+        object dbDatosTipo: TcxGridDBColumn
+          DataBinding.FieldName = 'Tipo'
+          HeaderAlignmentHorz = taCenter
+          Width = 192
+        end
+        object dbDatosIdentificacion: TcxGridDBColumn
+          Caption = 'Cedula'
+          DataBinding.FieldName = 'IDENTIFICACION'
+          HeaderAlignmentHorz = taCenter
+          Width = 172
+        end
+        object dbDatosTelefono: TcxGridDBColumn
+          Caption = 'Telefono'
+          DataBinding.FieldName = 'TELEFONO'
+          HeaderAlignmentHorz = taCenter
+          Width = 118
+        end
+      end
+    end
+    inherited btcancelar: TcxButton
+      Left = 682
+      Top = 496
+      Width = 250
+      Height = 35
+      Caption = 'Esc = &Cancelar'
+      Font.Charset = ANSI_CHARSET
+      Font.Height = -27
+      Font.Name = 'Times New Roman'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 5
+      ExplicitLeft = 682
+      ExplicitTop = 496
+      ExplicitWidth = 250
+      ExplicitHeight = 35
+    end
+    inherited btaceptar: TcxButton
+      Left = 426
+      Top = 496
+      Width = 250
+      Height = 35
+      Caption = 'F9 = &Aceptar'
+      Font.Charset = ANSI_CHARSET
+      Font.Height = -27
+      Font.Name = 'Times New Roman'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 4
+      ExplicitLeft = 426
+      ExplicitTop = 496
+      ExplicitWidth = 250
+      ExplicitHeight = 35
+    end
+    object BtNuevo: TcxButton [5]
+      Left = 20
+      Top = 496
+      Width = 400
+      Height = 35
+      Caption = 'F1 = Agregar un Nuevo &Paciente'
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Times New Roman'
+      Font.Style = [fsBold]
+      ModalResult = 2
+      ParentFont = False
+      TabOrder = 3
+      OnClick = BtNuevoClick
+    end
+    inherited dxLayoutControl1Group_Root: TdxLayoutGroup
+      inherited dxLayoutControl1Group2: TdxLayoutGroup
+        object dxLayoutControl1Item3: TdxLayoutItem [0]
+          ShowCaption = False
+          Control = BtNuevo
+          ControlOptions.ShowBorder = False
+        end
+      end
+    end
+  end
+  object cxLabel1: TcxLabel [1]
+    Left = 571
+    Top = 31
+    AutoSize = False
+    Caption = 'Enter = Buscar Paciente'
+    ParentColor = False
+    ParentFont = False
+    Properties.Alignment.Horz = taCenter
+    Properties.Alignment.Vert = taVCenter
+    Properties.LabelEffect = cxleCool
+    Properties.LabelStyle = cxlsRaised
+    Properties.ShadowedColor = clGray
+    Style.Color = 16311249
+    Style.Font.Charset = ANSI_CHARSET
+    Style.Font.Color = clBlack
+    Style.Font.Height = -21
+    Style.Font.Name = 'Tahoma'
+    Style.Font.Style = [fsBold]
+    Style.HotTrack = False
+    Style.TextColor = clBlack
+    Style.IsFontAssigned = True
+    Height = 28
+    Width = 260
+  end
+  inherited dsDatos: TDataSource
+    Left = 324
+    Top = 407
+  end
+  inherited cxIntl1: TcxIntl
+    Left = 544
+    Top = 240
+  end
+  object qrPacientes: TADOQuery
+    Connection = DM.DataBase
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      
+        'SELECT c.*,g.Descripcion as Tipo FROM PtCliente c Inner Join PtG' +
+        'rupoCliente g On'
+      'c.GrupoCliente=g.GrupoCliente'
+      'WHERE Origen = 0'
+      'AND c.DataAreaId = '#39'ldr'#39' AND g.DataAreaId = '#39'ldr'#39' ')
+    Left = 272
+    Top = 407
+    object qrPacientesCLIENTEID: TStringField
+      FieldName = 'CLIENTEID'
+      Size = 10
+    end
+    object qrPacientesNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      Size = 80
+    end
+    object qrPacientesCONTACTO: TStringField
+      FieldName = 'CONTACTO'
+      Size = 80
+    end
+    object qrPacientesTELEFONO: TStringField
+      FieldName = 'TELEFONO'
+    end
+    object qrPacientesFAX: TStringField
+      FieldName = 'FAX'
+    end
+    object qrPacientesGRUPOCLIENTE: TStringField
+      FieldName = 'GRUPOCLIENTE'
+      Size = 10
+    end
+    object qrPacientesINCLUIRPRECIOTICKET: TIntegerField
+      FieldName = 'INCLUIRPRECIOTICKET'
+    end
+    object qrPacientesAUTOCONFIRMAR: TIntegerField
+      FieldName = 'AUTOCONFIRMAR'
+    end
+    object qrPacientesEMPLEADOID: TStringField
+      FieldName = 'EMPLEADOID'
+      Size = 10
+    end
+    object qrPacientesCODIGOAXAPTA: TStringField
+      FieldName = 'CODIGOAXAPTA'
+      Size = 10
+    end
+    object qrPacientesEMAIL: TStringField
+      FieldName = 'EMAIL'
+      Size = 80
+    end
+    object qrPacientesDIRECCIONWEB: TStringField
+      FieldName = 'DIRECCIONWEB'
+      Size = 80
+    end
+    object qrPacientesTELEFONO2: TStringField
+      FieldName = 'TELEFONO2'
+    end
+    object qrPacientesMONEDAID: TStringField
+      FieldName = 'MONEDAID'
+      Size = 3
+    end
+    object qrPacientesIDENTIFICACION: TStringField
+      FieldName = 'IDENTIFICACION'
+    end
+    object qrPacientesORIGEN: TIntegerField
+      FieldName = 'ORIGEN'
+    end
+    object qrPacientesDIRECCION: TStringField
+      FieldName = 'DIRECCION'
+      Size = 255
+    end
+    object qrPacientesCIUDADID: TStringField
+      FieldName = 'CIUDADID'
+      Size = 10
+    end
+    object qrPacientesPRUEBASPORDIA: TIntegerField
+      FieldName = 'PRUEBASPORDIA'
+    end
+    object qrPacientesCOBERTURAPORC: TBCDField
+      FieldName = 'COBERTURAPORC'
+      Precision = 28
+      Size = 12
+    end
+    object qrPacientesPRINCIPAL: TStringField
+      FieldName = 'PRINCIPAL'
+      Size = 10
+    end
+    object qrPacientesENVIORESULTADO: TIntegerField
+      FieldName = 'ENVIORESULTADO'
+    end
+    object qrPacientesPUBLICARINTERNET: TIntegerField
+      FieldName = 'PUBLICARINTERNET'
+    end
+    object qrPacientesFECHANACIMIENTO: TDateTimeField
+      FieldName = 'FECHANACIMIENTO'
+    end
+    object qrPacientesSEGURO: TStringField
+      FieldName = 'SEGURO'
+      Size = 10
+    end
+    object qrPacientesCARNETNUMERO: TStringField
+      FieldName = 'CARNETNUMERO'
+      Size = 10
+    end
+    object qrPacientesPOLIZA: TStringField
+      FieldName = 'POLIZA'
+    end
+    object qrPacientesCOBRARDIFERENCIA: TIntegerField
+      FieldName = 'COBRARDIFERENCIA'
+    end
+    object qrPacientesENVIARFAX: TIntegerField
+      FieldName = 'ENVIARFAX'
+    end
+    object qrPacientesACTIVARDESCUENTOS: TIntegerField
+      FieldName = 'ACTIVARDESCUENTOS'
+    end
+    object qrPacientesUSARALIASNOMBRE: TIntegerField
+      FieldName = 'USARALIASNOMBRE'
+    end
+    object qrPacientesUSARALIASPRUEBAS: TIntegerField
+      FieldName = 'USARALIASPRUEBAS'
+    end
+    object qrPacientesSIEMPREINTERNET: TIntegerField
+      FieldName = 'SIEMPREINTERNET'
+    end
+    object qrPacientesIMPRIMIRALIASNOMBRE: TIntegerField
+      FieldName = 'IMPRIMIRALIASNOMBRE'
+    end
+    object qrPacientesIMPRIMIRALIASPRUEBA: TIntegerField
+      FieldName = 'IMPRIMIRALIASPRUEBA'
+    end
+    object qrPacientesIMPRIMIRSOLOTOTALES: TIntegerField
+      FieldName = 'IMPRIMIRSOLOTOTALES'
+    end
+    object qrPacientesIMPRIMIRALIASRESULTADOS: TIntegerField
+      FieldName = 'IMPRIMIRALIASRESULTADOS'
+    end
+    object qrPacientesUSARACUERDOPROPIO: TIntegerField
+      FieldName = 'USARACUERDOPROPIO'
+    end
+    object qrPacientesALIAS: TStringField
+      FieldName = 'ALIAS'
+      Size = 100
+    end
+    object qrPacientesQUIENPAGA: TStringField
+      FieldName = 'QUIENPAGA'
+      Size = 5
+    end
+    object qrPacientesTIPOCLIENTE: TStringField
+      FieldName = 'TIPOCLIENTE'
+      Size = 5
+    end
+    object qrPacientesENTREGARRESULTADOS: TStringField
+      FieldName = 'ENTREGARRESULTADOS'
+      Size = 5
+    end
+    object qrPacientesTEXTOREFERENCIA: TStringField
+      FieldName = 'TEXTOREFERENCIA'
+    end
+    object qrPacientesSIEMPREIMPRIMIR: TIntegerField
+      FieldName = 'SIEMPREIMPRIMIR'
+    end
+    object qrPacientesTIPOSANGRE: TStringField
+      FieldName = 'TIPOSANGRE'
+      Size = 5
+    end
+    object qrPacientesPACIENTECIAID: TStringField
+      FieldName = 'PACIENTECIAID'
+      Size = 10
+    end
+    object qrPacientesSECTOR: TStringField
+      FieldName = 'SECTOR'
+      Size = 100
+    end
+    object qrPacientesUSUARIOINTERNET: TStringField
+      FieldName = 'USUARIOINTERNET'
+      Size = 10
+    end
+    object qrPacientesCLAVEINTERNET: TStringField
+      FieldName = 'CLAVEINTERNET'
+      Size = 10
+    end
+    object qrPacientesTIPOINTERNET: TStringField
+      FieldName = 'TIPOINTERNET'
+      Size = 2
+    end
+    object qrPacientesCLASECREDITO: TStringField
+      FieldName = 'CLASECREDITO'
+      Size = 5
+    end
+    object qrPacientesDOCTORID: TStringField
+      FieldName = 'DOCTORID'
+      Size = 10
+    end
+    object qrPacientesSEXO: TIntegerField
+      FieldName = 'SEXO'
+    end
+    object qrPacientesESTATUS: TIntegerField
+      FieldName = 'ESTATUS'
+    end
+    object qrPacientesTIPOCLIENTEAS400: TIntegerField
+      FieldName = 'TIPOCLIENTEAS400'
+    end
+    object qrPacientesCODIGOIDAS400: TStringField
+      FieldName = 'CODIGOIDAS400'
+      Size = 10
+    end
+    object qrPacientesGRUPOPRECIO: TStringField
+      FieldName = 'GRUPOPRECIO'
+      Size = 10
+    end
+    object qrPacientesFORMAPAGO: TStringField
+      FieldName = 'FORMAPAGO'
+      Size = 10
+    end
+    object qrPacientesDATAAREAID: TStringField
+      FieldName = 'DATAAREAID'
+      Size = 3
+    end
+    object qrPacientesGRUPODESCUENTOLINEA: TStringField
+      FieldName = 'GRUPODESCUENTOLINEA'
+      Size = 10
+    end
+    object qrPacientesGRUPODESCUENTOTOTAL: TStringField
+      FieldName = 'GRUPODESCUENTOTOTAL'
+      Size = 10
+    end
+    object qrPacientesSINPRFILTER: TIntegerField
+      FieldName = 'SINPRFILTER'
+    end
+    object qrPacientesTipo: TStringField
+      FieldName = 'Tipo'
+      Size = 50
+    end
+    object qrPacientesRECID: TLargeintField
+      FieldName = 'RECID'
+    end
+  end
+end
