@@ -10821,7 +10821,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -13804,7 +13804,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -14996,7 +14996,7 @@ object DM: TDM
           DataPipeline = ppCorteDetalle
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -15328,7 +15328,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -17733,7 +17733,7 @@ object DM: TDM
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -18951,7 +18951,7 @@ object DM: TDM
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -19932,7 +19932,7 @@ object DM: TDM
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -23051,7 +23051,7 @@ object DM: TDM
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -23755,7 +23755,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -24422,7 +24422,7 @@ object DM: TDM
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -26358,7 +26358,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -27959,7 +27959,7 @@ object DM: TDM
           DataPipeline = ppCorteDetalle
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -28210,7 +28210,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -29171,7 +29171,7 @@ object DM: TDM
           DataPipeline = ppCorteDetalle
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -29484,7 +29484,7 @@ object DM: TDM
           DataPipeline = ppCorteSucursal
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -30144,7 +30144,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -31331,7 +31331,7 @@ object DM: TDM
           DataPipeline = ppCorteDetalle
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -31721,7 +31721,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -32681,7 +32681,7 @@ object DM: TDM
           DataPipeline = ppCorteDetalle
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -32994,7 +32994,7 @@ object DM: TDM
           DataPipeline = ppCorteSucursal
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -33598,7 +33598,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -34128,7 +34128,7 @@ object DM: TDM
           DataPipeline = ppCobro
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -34761,7 +34761,7 @@ object DM: TDM
           DataPipeline = ppCorteDetalle
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -35038,7 +35038,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -35568,7 +35568,7 @@ object DM: TDM
           DataPipeline = ppCobro
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -36109,7 +36109,7 @@ object DM: TDM
           DataPipeline = ppCorteDetalle
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -36661,7 +36661,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -37361,7 +37361,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -38520,7 +38520,7 @@ object DM: TDM
           DataPipeline = ppCorteDetalle
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -38817,7 +38817,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -40044,7 +40044,7 @@ object DM: TDM
           DataPipeline = ppCorteDetalle
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -40341,7 +40341,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -41568,7 +41568,7 @@ object DM: TDM
           DataPipeline = ppCorteDetalle
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -41865,7 +41865,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -42893,7 +42893,7 @@ object DM: TDM
           DataPipeline = ppCorteDetalle
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -43206,7 +43206,7 @@ object DM: TDM
           DataPipeline = ppCorteSucursal
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -43663,7 +43663,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -44691,7 +44691,7 @@ object DM: TDM
           DataPipeline = ppCorteDetalle
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -45004,7 +45004,7 @@ object DM: TDM
           DataPipeline = ppCorteSucursal
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -49079,7 +49079,7 @@ object DM: TDM
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -50266,7 +50266,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -50816,7 +50816,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -52632,7 +52632,7 @@ object DM: TDM
   object ppCobroTicketRep: TppReport
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -58697,7 +58697,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -59970,7 +59970,7 @@ object DM: TDM
           DataPipeline = ppCorteDetalle
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -60221,7 +60221,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -60751,7 +60751,7 @@ object DM: TDM
           DataPipeline = ppCobro
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -61292,7 +61292,7 @@ object DM: TDM
           DataPipeline = ppCorteDetalle
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -61569,7 +61569,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -62597,7 +62597,7 @@ object DM: TDM
           DataPipeline = ppCorteDetalle
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -62910,7 +62910,7 @@ object DM: TDM
           DataPipeline = ppCorteSucursal
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+          PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.mmMarginBottom = 6350
           PrinterSetup.mmMarginLeft = 6350
@@ -63367,7 +63367,7 @@ object DM: TDM
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -63780,7 +63780,7 @@ object DM: TDM
   object ppReport1: TppReport
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
+    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
