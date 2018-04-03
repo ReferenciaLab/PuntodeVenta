@@ -15,6 +15,7 @@ object frmImpresionVarios: TfrmImpresionVarios
   KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
+  OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
@@ -157,7 +158,7 @@ object frmImpresionVarios: TfrmImpresionVarios
         'GENERAL POR CLIENTE'
         'COMISIONES DE DOCTORES'
         'PACIENTES REFERIDOS POR MEDICOS'
-        'LISTADO GENERAL POR ZONAS')
+        'LISTADO GENERAL POR RUTAS')
       Properties.OEMConvert = True
       Style.BorderColor = clTeal
       Style.BorderStyle = ebsSingle
@@ -372,7 +373,7 @@ object frmImpresionVarios: TfrmImpresionVarios
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
+    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -1113,7 +1114,8 @@ object frmImpresionVarios: TfrmImpresionVarios
         Name = 'Cant_Entradas'
         DataType = ftInteger
       end>
-    Left = 160
+    Left = 296
+    Top = 120
     object JvReporteFecha: TStringField
       FieldName = 'Fecha'
       Size = 10
@@ -1479,7 +1481,7 @@ object frmImpresionVarios: TfrmImpresionVarios
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
+    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -2193,7 +2195,7 @@ object frmImpresionVarios: TfrmImpresionVarios
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
+    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -2848,7 +2850,7 @@ object frmImpresionVarios: TfrmImpresionVarios
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
+    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -4108,7 +4110,7 @@ object frmImpresionVarios: TfrmImpresionVarios
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
+    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -5049,7 +5051,7 @@ object frmImpresionVarios: TfrmImpresionVarios
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
+    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -5738,7 +5740,7 @@ object frmImpresionVarios: TfrmImpresionVarios
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
+    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -6452,7 +6454,7 @@ object frmImpresionVarios: TfrmImpresionVarios
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
+    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -6845,7 +6847,7 @@ object frmImpresionVarios: TfrmImpresionVarios
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
+    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -8046,7 +8048,7 @@ object frmImpresionVarios: TfrmImpresionVarios
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
+    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -8956,7 +8958,7 @@ object frmImpresionVarios: TfrmImpresionVarios
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
+    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -9827,7 +9829,7 @@ object frmImpresionVarios: TfrmImpresionVarios
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter 8 1/2 x 11 in'
+    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -10200,23 +10202,82 @@ object frmImpresionVarios: TfrmImpresionVarios
   object QlistadoZonas: TADOQuery
     Connection = DM.DataBase
     CursorType = ctStatic
-    Parameters = <>
+    Parameters = <
+      item
+        Name = 'f1'
+        DataType = ftDateTime
+        NumericScale = 3
+        Precision = 23
+        Size = 16
+        Value = 42736d
+      end
+      item
+        Name = 'f2'
+        DataType = ftDateTime
+        NumericScale = 3
+        Precision = 23
+        Size = 16
+        Value = 42860d
+      end>
     SQL.Strings = (
       
-        'SELECT TOP 500 A.NOMBRE, A.CLIENTEID, B.USU1 AS ZONA , SUM(C.NET' +
-        'O) AS TOTALVENTA'
-      'FROM PTCLIENTE A, MSTCLIEN B, PTENTRADAPACIENTE C'
+        'SELECT A.NOMBRE, A.CLIENTEID, D.RUT_DESCRIPCION AS RUTA , CASE D' +
+        'ATEPART(MONTH, C.FECHA) '
       
-        'WHERE CAST(A.CODIGOIDAS400 AS CHAR(10)) = CAST(B.NUMCLI AS CHAR(' +
-        '10))'
+        '                                                         WHEN 1 ' +
+        'THEN '#39'ENERO'#39
+      #9#9#9#9#9#9#9#9#9#9#9#9#9#9' WHEN 2 THEN '#39'FEBRERO'#39
+      #9#9#9#9#9#9#9#9#9#9#9#9#9#9' WHEN 3 THEN '#39'MARZO'#39
+      #9#9#9#9#9#9#9#9#9#9#9#9#9#9' WHEN 4 THEN '#39'ABRIL'#39
+      #9#9#9#9#9#9#9#9#9#9#9#9#9#9' WHEN 5 THEN '#39'MAYO'#39
+      #9#9#9#9#9#9#9#9#9#9#9#9#9#9' WHEN 6 THEN '#39'JUNIO'#39
+      #9#9#9#9#9#9#9#9#9#9#9#9#9#9' WHEN 7 THEN '#39'JULIO'#39
+      #9#9#9#9#9#9#9#9#9#9#9#9#9#9' WHEN 8 THEN '#39'AGOSTO'#39
+      #9#9#9#9#9#9#9#9#9#9#9#9#9#9' WHEN 9 THEN '#39'SEPTIEMBRE'#39
+      #9#9#9#9#9#9#9#9#9#9#9#9#9#9' WHEN 10 THEN '#39'OCTUBRE'#39
+      #9#9#9#9#9#9#9#9#9#9#9#9#9#9' WHEN 11 THEN '#39'NOVIEMBRE'#39
+      #9#9#9#9#9#9#9#9#9#9#9#9#9#9' WHEN 12 THEN '#39'DICIEMBRE'#39
+      'END AS DESMES,  SUM(C.NETO) AS TOTALVENTA'
+      
+        'FROM PTCLIENTE A, PTCLIENTES_RUTAS B, PTENTRADAPACIENTE C, RUTAS' +
+        ' D'
+      'WHERE A.CLIENTEID = B.CLIENTEID'
       'AND A.CLIENTEID = C.CLIENTEID'
-      'AND YEAR(C.FECHA) = 2017'
-      'AND MONTH(C.FECHA) = 1'
+      'AND B.RUT_CODIGO = D.RUT_CODIGO'
+      'AND C.FECHA  BETWEEN :f1 AND :f2'
       'AND A.ORIGEN = 7'
-      'GROUP BY A.NOMBRE, A.CLIENTEID, B.USU1'
-      'ORDER BY B.USU1')
+      
+        'GROUP BY A.NOMBRE, A.CLIENTEID, D.RUT_DESCRIPCION, DATEPART(MONT' +
+        'H, C.FECHA)'
+      'ORDER BY DATEPART(MONTH, C.FECHA)'
+      ''
+      '')
     Left = 312
     Top = 392
+    object QlistadoZonasNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      Size = 80
+    end
+    object QlistadoZonasCLIENTEID: TStringField
+      FieldName = 'CLIENTEID'
+      Size = 10
+    end
+    object QlistadoZonasRUTA: TStringField
+      FieldName = 'RUTA'
+      FixedChar = True
+      Size = 10
+    end
+    object QlistadoZonasDESMES: TStringField
+      FieldName = 'DESMES'
+      ReadOnly = True
+      Size = 10
+    end
+    object QlistadoZonasTOTALVENTA: TBCDField
+      FieldName = 'TOTALVENTA'
+      ReadOnly = True
+      Precision = 32
+      Size = 12
+    end
   end
   object DSzonas: TDataSource
     DataSet = QlistadoZonas
@@ -10232,6 +10293,7 @@ object frmImpresionVarios: TfrmImpresionVarios
   object ppListadoVentasZonas: TppReport
     AutoStop = False
     DataPipeline = ppDBPipeline1
+    PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.PaperName = 'Letter (8.5" x 11")'
@@ -10243,12 +10305,15 @@ object frmImpresionVarios: TfrmImpresionVarios
     PrinterSetup.mmPaperHeight = 279401
     PrinterSetup.mmPaperWidth = 215900
     PrinterSetup.PaperSize = 1
+    AllowPrintToArchive = True
+    AllowPrintToFile = True
     DeviceType = 'Screen'
     EmailSettings.ReportFormat = 'PDF'
     OutlineSettings.CreateNode = True
     OutlineSettings.CreatePageNodes = True
     OutlineSettings.Enabled = True
     OutlineSettings.Visible = True
+    PreviewFormSettings.WindowState = wsMaximized
     TextSearchSettings.DefaultString = '<FindText>'
     TextSearchSettings.Enabled = True
     Left = 392
@@ -10257,19 +10322,536 @@ object frmImpresionVarios: TfrmImpresionVarios
     mmColumnWidth = 0
     DataPipelineName = 'ppDBPipeline1'
     object ppHeaderBand10: TppHeaderBand
+      BeforePrint = ppHeaderBand10BeforePrint
       mmBottomOffset = 0
-      mmHeight = 43921
+      mmHeight = 46831
       mmPrintPosition = 0
+      object ppShape6: TppShape
+        UserName = 'Shape6'
+        mmHeight = 8996
+        mmLeft = 1323
+        mmTop = 37571
+        mmWidth = 201877
+        BandType = 0
+      end
+      object ppLabel182: TppLabel
+        UserName = 'Label182'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        Caption = 'RUTA'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 4233
+        mmLeft = 4498
+        mmTop = 41010
+        mmWidth = 9525
+        BandType = 0
+      end
+      object ppLabel183: TppLabel
+        UserName = 'Label183'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        Caption = 'CLEINTEID'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 4233
+        mmLeft = 34131
+        mmTop = 41010
+        mmWidth = 18521
+        BandType = 0
+      end
+      object ppLabel184: TppLabel
+        UserName = 'Label184'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        Caption = 'NOMBRE'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 4233
+        mmLeft = 59002
+        mmTop = 41010
+        mmWidth = 15610
+        BandType = 0
+      end
+      object ppLabel185: TppLabel
+        UserName = 'Label1'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        Caption = 'FACTURADO'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 4233
+        mmLeft = 179388
+        mmTop = 41010
+        mmWidth = 21960
+        BandType = 0
+      end
+      object ppLabel186: TppLabel
+        UserName = 'Label2'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        Caption = 'MES'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 4233
+        mmLeft = 141023
+        mmTop = 41010
+        mmWidth = 7673
+        BandType = 0
+      end
+      object ppLabel193: TppLabel
+        UserName = 'Label193'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        Caption = 'Fecha.:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = []
+        Transparent = True
+        mmHeight = 4022
+        mmLeft = 153194
+        mmTop = 7673
+        mmWidth = 11726
+        BandType = 0
+      end
+      object ppLabel196: TppLabel
+        UserName = 'Label196'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        Caption = 'Hora.:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = []
+        Transparent = True
+        mmHeight = 4022
+        mmLeft = 155311
+        mmTop = 13758
+        mmWidth = 9567
+        BandType = 0
+      end
+      object ppLabel197: TppLabel
+        UserName = 'Label197'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        Caption = 'Pagina.:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = []
+        Transparent = True
+        mmHeight = 4022
+        mmLeft = 152136
+        mmTop = 20373
+        mmWidth = 12827
+        BandType = 0
+      end
+      object ppSystemVariable37: TppSystemVariable
+        UserName = 'SystemVariable1'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3969
+        mmLeft = 165894
+        mmTop = 7673
+        mmWidth = 17463
+        BandType = 0
+      end
+      object ppSystemVariable38: TppSystemVariable
+        UserName = 'SystemVariable2'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        VarType = vtTime
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3969
+        mmLeft = 166159
+        mmTop = 13758
+        mmWidth = 21167
+        BandType = 0
+      end
+      object ppSystemVariable39: TppSystemVariable
+        UserName = 'SystemVariable3'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        VarType = vtPageSet
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = []
+        Transparent = True
+        mmHeight = 4022
+        mmLeft = 166952
+        mmTop = 20373
+        mmWidth = 8805
+        BandType = 0
+      end
+      object ppLabel198: TppLabel
+        UserName = 'Label198'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        Caption = 'Laboratorio de Referencia'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 14
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 5821
+        mmLeft = 2117
+        mmTop = 5027
+        mmWidth = 71967
+        BandType = 0
+      end
+      object ppLabel199: TppLabel
+        UserName = 'Label5'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        Caption = 'Listado General de Ventas por Rutas'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 12
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 4995
+        mmLeft = 2646
+        mmTop = 13229
+        mmWidth = 74041
+        BandType = 0
+      end
+      object ppVariable1: TppVariable
+        UserName = 'Variable1'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        BlankWhenZero = False
+        CalcOrder = 3
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 12
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 5027
+        mmLeft = 2646
+        mmTop = 20108
+        mmWidth = 18785
+        BandType = 0
+      end
     end
     object ppDetailBand11: TppDetailBand
       mmBottomOffset = 0
-      mmHeight = 13229
+      mmHeight = 5027
       mmPrintPosition = 0
+      object ppDBText88: TppDBText
+        UserName = 'DBText88'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        DataField = 'RUTA'
+        DataPipeline = ppDBPipeline1
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        DataPipelineName = 'ppDBPipeline1'
+        mmHeight = 3175
+        mmLeft = 4498
+        mmTop = 794
+        mmWidth = 31485
+        BandType = 4
+      end
+      object ppDBText89: TppDBText
+        UserName = 'DBText89'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        DataField = 'CLIENTEID'
+        DataPipeline = ppDBPipeline1
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        DataPipelineName = 'ppDBPipeline1'
+        mmHeight = 3175
+        mmLeft = 34131
+        mmTop = 529
+        mmWidth = 23548
+        BandType = 4
+      end
+      object ppDBText90: TppDBText
+        UserName = 'DBText90'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        DataField = 'NOMBRE'
+        DataPipeline = ppDBPipeline1
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        DataPipelineName = 'ppDBPipeline1'
+        mmHeight = 3175
+        mmLeft = 59002
+        mmTop = 529
+        mmWidth = 79904
+        BandType = 4
+      end
+      object ppDBText91: TppDBText
+        UserName = 'DBText91'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        DataField = 'DESMES'
+        DataPipeline = ppDBPipeline1
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        DataPipelineName = 'ppDBPipeline1'
+        mmHeight = 3175
+        mmLeft = 141023
+        mmTop = 529
+        mmWidth = 17198
+        BandType = 4
+      end
+      object ppDBText92: TppDBText
+        UserName = 'DBText92'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        DataField = 'TOTALVENTA'
+        DataPipeline = ppDBPipeline1
+        DisplayFormat = '###,###.00'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = [fsBold]
+        TextAlignment = taRightJustified
+        Transparent = True
+        DataPipelineName = 'ppDBPipeline1'
+        mmHeight = 4233
+        mmLeft = 182827
+        mmTop = 0
+        mmWidth = 17198
+        BandType = 4
+      end
     end
     object ppFooterBand8: TppFooterBand
       mmBottomOffset = 0
-      mmHeight = 35983
+      mmHeight = 16140
       mmPrintPosition = 0
+    end
+    object ppGroup6: TppGroup
+      BreakName = 'DESMES'
+      DataPipeline = ppDBPipeline1
+      KeepTogether = True
+      OutlineSettings.CreateNode = True
+      UserName = 'Group6'
+      mmNewColumnThreshold = 0
+      mmNewPageThreshold = 0
+      DataPipelineName = 'ppDBPipeline1'
+      object ppGroupHeaderBand6: TppGroupHeaderBand
+        mmBottomOffset = 0
+        mmHeight = 10583
+        mmPrintPosition = 0
+        object ppLabel190: TppLabel
+          UserName = 'Label3'
+          Border.BorderPositions = []
+          Border.Color = clBlack
+          Border.Style = psSolid
+          Border.Visible = False
+          Caption = 'MES'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlue
+          Font.Name = 'Arial'
+          Font.Size = 10
+          Font.Style = [fsBold]
+          Transparent = True
+          mmHeight = 4191
+          mmLeft = 4498
+          mmTop = 1323
+          mmWidth = 7662
+          BandType = 3
+          GroupNo = 0
+        end
+        object ppDBText94: TppDBText
+          UserName = 'DBText94'
+          Border.BorderPositions = []
+          Border.Color = clBlack
+          Border.Style = psSolid
+          Border.Visible = False
+          DataField = 'DESMES'
+          DataPipeline = ppDBPipeline1
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlue
+          Font.Name = 'Arial'
+          Font.Size = 10
+          Font.Style = [fsBold]
+          Transparent = True
+          DataPipelineName = 'ppDBPipeline1'
+          mmHeight = 4191
+          mmLeft = 18785
+          mmTop = 1323
+          mmWidth = 17198
+          BandType = 3
+          GroupNo = 0
+        end
+        object ppLine1: TppLine
+          UserName = 'Line1'
+          Border.BorderPositions = []
+          Border.Color = clBlack
+          Border.Style = psSolid
+          Border.Visible = False
+          Weight = 0.750000000000000000
+          mmHeight = 529
+          mmLeft = 5027
+          mmTop = 6615
+          mmWidth = 197644
+          BandType = 3
+          GroupNo = 0
+        end
+      end
+      object ppGroupFooterBand6: TppGroupFooterBand
+        mmBottomOffset = 0
+        mmHeight = 7938
+        mmPrintPosition = 0
+        object ppLabel192: TppLabel
+          UserName = 'Label4'
+          Border.BorderPositions = []
+          Border.Color = clBlack
+          Border.Style = psSolid
+          Border.Visible = False
+          Caption = 'TOTAL MES'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlue
+          Font.Name = 'Arial'
+          Font.Size = 10
+          Font.Style = [fsBold]
+          Transparent = True
+          mmHeight = 4233
+          mmLeft = 146050
+          mmTop = 1852
+          mmWidth = 20108
+          BandType = 5
+          GroupNo = 0
+        end
+        object ppDBCalc58: TppDBCalc
+          UserName = 'DBCalc58'
+          Border.BorderPositions = []
+          Border.Color = clBlack
+          Border.Style = psSolid
+          Border.Visible = False
+          DataField = 'TOTALVENTA'
+          DataPipeline = ppDBPipeline1
+          DisplayFormat = '###,###.00'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlue
+          Font.Name = 'Arial'
+          Font.Size = 10
+          Font.Style = [fsBold]
+          ResetGroup = ppGroup6
+          TextAlignment = taRightJustified
+          Transparent = True
+          DataPipelineName = 'ppDBPipeline1'
+          mmHeight = 4191
+          mmLeft = 169598
+          mmTop = 1852
+          mmWidth = 30163
+          BandType = 5
+          GroupNo = 0
+        end
+        object ppLine2: TppLine
+          UserName = 'Line2'
+          Border.BorderPositions = []
+          Border.Color = clBlack
+          Border.Style = psSolid
+          Border.Visible = False
+          Weight = 0.750000000000000000
+          mmHeight = 1323
+          mmLeft = 141288
+          mmTop = 0
+          mmWidth = 58473
+          BandType = 5
+          GroupNo = 0
+        end
+      end
     end
   end
 end

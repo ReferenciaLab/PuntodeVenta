@@ -567,6 +567,42 @@ type
     ppHeaderBand10: TppHeaderBand;
     ppDetailBand11: TppDetailBand;
     ppFooterBand8: TppFooterBand;
+    QlistadoZonasNOMBRE: TStringField;
+    QlistadoZonasCLIENTEID: TStringField;
+    QlistadoZonasRUTA: TStringField;
+    QlistadoZonasDESMES: TStringField;
+    QlistadoZonasTOTALVENTA: TBCDField;
+    ppLabel182: TppLabel;
+    ppLabel183: TppLabel;
+    ppLabel184: TppLabel;
+    ppLabel185: TppLabel;
+    ppLabel186: TppLabel;
+    ppShape6: TppShape;
+    ppDBText88: TppDBText;
+    ppDBText89: TppDBText;
+    ppDBText90: TppDBText;
+    ppDBText91: TppDBText;
+    ppDBText92: TppDBText;
+    ppGroup6: TppGroup;
+    ppGroupHeaderBand6: TppGroupHeaderBand;
+    ppGroupFooterBand6: TppGroupFooterBand;
+    ppLabel190: TppLabel;
+    ppDBText94: TppDBText;
+    ppLine1: TppLine;
+    ppLabel192: TppLabel;
+    ppDBCalc58: TppDBCalc;
+    ppLine2: TppLine;
+    ppLabel193: TppLabel;
+    ppLabel196: TppLabel;
+    ppLabel197: TppLabel;
+    ppSystemVariable37: TppSystemVariable;
+    ppSystemVariable38: TppSystemVariable;
+    ppSystemVariable39: TppSystemVariable;
+    ppLabel198: TppLabel;
+    ppLabel199: TppLabel;
+    ppVariable1: TppVariable;
+    procedure FormDestroy(Sender: TObject);
+    procedure ppHeaderBand10BeforePrint(Sender: TObject);
     procedure cboReporteExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -598,6 +634,19 @@ begin
      cbExtCategoria.Enabled:= True;
 end;
 
+procedure TfrmImpresionVarios.FormDestroy(Sender: TObject);
+begin
+  With DM.qrSucursal.SQL do
+  begin
+     Close;
+     Clear;
+     Text :='SELECT * FROM PTSucursal (nolock) '+
+            ' WHERE DataAreaId = '+#39+'ldr'+#39+
+            ' And Sucursal <> '+#39+'0'+#39;
+      DM.qrSucursal.Open;
+  end;
+end;
+
 procedure TfrmImpresionVarios.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
@@ -615,8 +664,19 @@ end;
 
 procedure TfrmImpresionVarios.FormShow(Sender: TObject);
 begin
-  If not DM.qrSucursal.Active then
-    DM.qrSucursal.Open;
+  With DM.qrSucursal.SQL do
+  begin
+     Close;
+     Clear;
+     Text :='SELECT * FROM PTSucursal (nolock) '+
+            ' WHERE DataAreaId = '+#39+'ldr'+#39+
+            ' And Sucursal <> '+#39+'0'+#39+
+            ' Union All '+
+            ' SELECT * FROM PTSucursal (nolock) '+
+            ' WHERE DataAreaId = '+#39+'ldr'+#39+
+            ' And SucursalID in ('+#39+'SP'+#39+','+#39+'SL'+#39+')';
+      DM.qrSucursal.Open;
+  end;
   If not DM.qrUsuario.Active then
     DM.qrUsuario.Open;
   cboReporte.Properties.Items.Clear;
@@ -634,6 +694,7 @@ begin
     cboReporte.Properties.Items.Add('DE ENTRADAS POR SEGUROS (ARS)');
     cboReporte.Properties.Items.Add('DE ENTRADAS A CREDITO SIN FACTURAR');
     cboReporte.Properties.Items.Add('GENERAL POR CLIENTE');
+
   end
   else if (dm.CurRol = 12) or (dm.CurRol = 15) or (dm.CurRol = 17) or (dm.CurRol = 8) Then
   begin
@@ -655,6 +716,7 @@ begin
     cboReporte.Properties.Items.Add('COMISIONES DE DOCTORES');
     cboReporte.Properties.Items.Add('PACIENTES REFERIDOS POR MEDICOS');
   end;
+  cboReporte.Properties.Items.Add('LISTADO GENERAL POR RUTAS');
   FechaIni.Date := DM.Buscar_Fecha_Actual;
   FechaFin.Date := DM.Buscar_Fecha_Actual;
 end;
@@ -663,6 +725,20 @@ procedure TfrmImpresionVarios.Listado_por_Zonas;
 begin
     //********** Generera Listado de Ventas Por Zonas *****************************
 
+    QlistadoZonas.Close;
+    QlistadoZonas.Parameters.ParamByName('f1').Value:=   FormatDateTime('dd/mm/yyyy', FechaIni.Date);
+    QlistadoZonas.Parameters.ParamByName('f2').Value:=   FormatDateTime('dd/mm/yyyy', FechaFin.Date);
+    QlistadoZonas.Open;
+
+    ppListadoVentasZonas.print;
+
+
+
+end;
+
+procedure TfrmImpresionVarios.ppHeaderBand10BeforePrint(Sender: TObject);
+begin
+ppVariable1.Value := 'Desde ' + FormatDateTime('dd/mm/yyyy', FechaIni.Date) + ' Hasta ' + FormatDateTime('dd/mm/yyyy', FechaFin.Date);
 end;
 
 procedure TfrmImpresionVarios.Run;
@@ -687,6 +763,11 @@ begin
     CodCategoria := DM.qrGrupoCliente.FieldByName('GrupoCliente').AsString;
 
     Seleccion := EmptyStr;
+
+    if cboReporte.Text = 'LISTADO GENERAL POR RUTAS' then
+    begin
+       Listado_por_Zonas;
+    end;
     if cboReporte.Text = 'MODIFICACIONES ENTRADAS Y/O CAMBIOS' then
     begin
       Seleccion :=  ' Select distinct a.fecha,a.muestrano,e.nombrepaciente,e.Neto,e.ClienteNombre,e.Userid as Usuario_Entrada,a.UserId as Usuario_Modifica,comentario '+
