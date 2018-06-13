@@ -304,6 +304,8 @@ type
     ActConsultaCobroCliente: TAction;
     ActReporte607: TAction;
     ActGrupoClienteFac: TAction;
+    ActPuntoVentaNCF: TAction;
+    procedure ActPuntoVentaNCFExecute(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure ApplicationEvents1Message(var Msg: tagMSG; var Handled: Boolean);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -506,7 +508,8 @@ uses DataModule, ActionsDM, DatosModule, CustomModule,
   ImpresionVarios,ImpresionEst,ImpresionDetVentas,AutorizacionArs,AutorizacionArsMod,AutorizacionArsND,
   DialogFiliacion,DialogCobroPesosND,DialogCobroDolaresND,ConfirmarCoberturaTardiaND,DialogNCD,ActPlanSAut,uActualizaPto,
   DialogConsultaDependientes,DialogConsultaPacienteDom,DialogConsultaPacienteTar,ActNCF,TransferenciaPOSV_SAP,
-  TransferenciaCuadre_SAP,VerificaCuadre_PtoVta,TransferenciaNC_SAP,TransferenciaCON_ARS,ImpresionAcuerdo,DatosGrupoClientesFac;
+  TransferenciaCuadre_SAP,VerificaCuadre_PtoVta,TransferenciaNC_SAP,TransferenciaCON_ARS,ImpresionAcuerdo,DatosGrupoClientesFac,
+  UntPuntoVentaNCF;
 
 {$R *.dfm}
 
@@ -542,6 +545,12 @@ begin
  end;
 end;
 
+
+procedure TfrmMain.ActPuntoVentaNCFExecute(Sender: TObject);
+begin
+  ImageIndex := TAction(Sender).ImageIndex;
+  LanzaVentana( ( Sender As TAction ).Tag );
+end;
 
 procedure TfrmMain.ApplicationEvents1Message(var Msg: tagMSG;
   var Handled: Boolean);
@@ -1571,7 +1580,13 @@ begin
               frm := TfrmRepExplorer.Create(Self) ;
               ShowForm(frm);
            end;
-
+      1800:Begin
+             // Factura_St := 'I';
+              frm := TFrmPuntoVentaNCF.Create(Self) ;
+              //frmTmp := frm as TFrmPuntoVentaNCF;
+              TFrmCustomModule(frm).SetSecurity(iParam);
+              ShowForm(frm);
+            end;
      end;
     if Assigned(frm) then begin
       (frm as TfrmCustomModule).MyWindowTag := iOpcion;

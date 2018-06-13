@@ -170,7 +170,8 @@
 			<VersionInfoKeys Name="ProductName">Sistema de Laboratorio</VersionInfoKeys>
 			<VersionInfoKeys Name="ProductVersion">2.0.0.0</VersionInfoKeys>
 			<VersionInfoKeys Name="Comments"></VersionInfoKeys>
-		</VersionInfoKeys>  <Excluded_Packages>
+		</VersionInfoKeys>  
+    <Excluded_Packages>
       <Excluded_Packages Name="C:\Users\williamsg.DOM01\Documents\Borland Studio Projects\Bpl\SapAPI.bpl">(untitled)</Excluded_Packages>
     </Excluded_Packages>
   </Delphi.Personality>

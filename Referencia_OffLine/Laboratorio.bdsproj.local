@@ -542,6 +542,10 @@
     <Transaction>2017/03/29 14:20:30.054.dfm,C:\Users\williamsg.DOM01\Dropbox\Referencia_OffLine\ImpresionDetVentas.dfm=C:\Users\williamsg.DOM01\Dropbox\Referencia_OffLine\GeneracionArchivo607.dfm</Transaction>
     <Transaction>2017/11/27 13:03:51.119.pas,C:\Users\williamsg.DOM01\Dropbox\Referencia_OffLine\DatosGrupoClientes.pas=C:\Users\williamsg.DOM01\Dropbox\Referencia_OffLine\DatosGrupoClientesFac.pas</Transaction>
     <Transaction>2017/11/27 13:03:51.119.dfm,C:\Users\williamsg.DOM01\Dropbox\Referencia_OffLine\DatosGrupoClientes.dfm=C:\Users\williamsg.DOM01\Dropbox\Referencia_OffLine\DatosGrupoClientesFac.dfm</Transaction>
+    <Transaction>2018/05/01 11:25:44.812.pas,C:\Users\williamsg.DOM01\Documents\GitHub\PuntodeVenta\Referencia_OffLine\Unit2.pas=C:\Users\williamsg.DOM01\Documents\GitHub\PuntodeVenta\Referencia_OffLine\UntPuntoVentaNCF.pas</Transaction>
+    <Transaction>2018/05/01 11:25:44.812.dfm,C:\Users\williamsg.DOM01\Documents\GitHub\PuntodeVenta\Referencia_OffLine\Unit2.dfm=C:\Users\williamsg.DOM01\Documents\GitHub\PuntodeVenta\Referencia_OffLine\UntPuntoVentaNCF.dfm</Transaction>
+    <Transaction>2018/05/15 12:41:27.507.pas,C:\Users\williamsg.DOM01\Documents\GitHub\PuntodeVenta\Referencia_OffLine\Unit2.pas=C:\Users\williamsg.DOM01\Documents\GitHub\PuntodeVenta\Referencia_OffLine\UntBuscarEntradas.pas</Transaction>
+    <Transaction>2018/05/15 12:41:27.507.dfm,C:\Users\williamsg.DOM01\Documents\GitHub\PuntodeVenta\Referencia_OffLine\Unit2.dfm=C:\Users\williamsg.DOM01\Documents\GitHub\PuntodeVenta\Referencia_OffLine\UntBuscarEntradas.dfm</Transaction>
   </Transactions>
 	<IPServerDescMap></IPServerDescMap>
 	<StarTeamShortcuts>; 1; 0; False; 0; -1; </StarTeamShortcuts>

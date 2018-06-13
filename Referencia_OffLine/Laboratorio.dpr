@@ -425,7 +425,9 @@ uses
   DialogCobroPesos in 'DialogCobroPesos.pas' {frmDialogCobroPesos},
   ConsultaWebAzul in 'ConsultaWebAzul.pas' {frmConsultaWebAzul},
   ImpresionDetVentas in 'ImpresionDetVentas.pas' {frmImpresionDetVentas},
-  DatosGrupoClientes in 'DatosGrupoClientes.pas' {frmDatosGrupoClientes};
+  DatosGrupoClientes in 'DatosGrupoClientes.pas' {frmDatosGrupoClientes},
+  UntPuntoVentaNCF in 'UntPuntoVentaNCF.pas' {FrmPuntoVentaNCF},
+  UntBuscarEntradas in 'UntBuscarEntradas.pas' {FrmbuscarEntradas};
 
 {$R *.res}
 
