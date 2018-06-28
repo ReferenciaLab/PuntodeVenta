@@ -154,7 +154,7 @@ begin
                   '   ,sAct           Int'+
                   ' ) '+
                   ' Select @Total_Mayor=sum(INVOICEAMOUNTMST)+Sum(EndDiscMST) '+
-                  ' From  AX2009.dbo.custinvoicejour '+
+                  ' From  AX2009..custinvoicejour '+
                   ' Where invoicedate between '+#39+FormatDateTime('yyyymmdd', FechaIni.Date)+#39+ ' AND '+#39+FormatDateTime('yyyymmdd', FechaFin.Date)+#39+
                   ' and dataareaid='+#39+'ldr'+#39+' and Not InvoiceId like '+#39+'%.%'+#39+
                   ' set @Total_Neto='+#39+'0.00'+#39+

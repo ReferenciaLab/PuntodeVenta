@@ -27,7 +27,7 @@ uses
   SOAPHTTPClient, Provider, Xmlxform, DBClient, ppRichTx,Printers,
   cxLookAndFeels, dxLayoutcxEditAdapters, cxintl,SenasaRefWS, ppBarCod,WS_Autorizaciones,
   ppBarCode2D, jpeg, Clipbrd, AppEvnts, wsreferenciaAutorizacion,SimetricaWS,Palic,
-  Universal,XSBuiltIns;
+  Universal,XSBuiltIns,WSdgii;
 type
   TfrmPuntoVenta = class(TfrmCustomModule)
     dxLayoutControl1Group_Root: TdxLayoutGroup;
@@ -1259,6 +1259,11 @@ type
     Label1:   TLabel;
     Panel1:   TPanel;
     ppMemo5:  TppMemo;
+    ppDBText151: TppDBText;
+    ppMemo6: TppMemo;
+    ppMemo7: TppMemo;
+    ppMemo8: TppMemo;
+    procedure mskRNCExit(Sender: TObject);
     procedure ppImpInternetBeforePrint(Sender: TObject);
     procedure edbuscarExit(Sender: TObject);
     procedure btCancelClick(Sender: TObject);
@@ -1469,8 +1474,9 @@ type
 
 
   private
-    { Private declarations }         
+    { Private declarations }
 //      WSUniv                        : TWebService1Soap;
+      WsConsultaRnc                 : RNCDGII;
       WSUniv                        : UniversalSoap;
 //      WSPalic                       : TWebServicePalicSoap;  //WS_AutorizacionesSoap;
 //      WSUnivD                       : WebSvcUtils;
@@ -3260,64 +3266,66 @@ end;
 procedure TfrmPuntoVenta.btAceptaNCFClick(Sender: TObject);
 begin
   inherited;
-  If (Length(trim(mskRNC.Text))=13) and (Not Dm.GetDigitoVerificador(copy(DM.Cortar_Char('-', mskRNC.Text),1,11),'0')) Then
-  Begin
-       EtMensajeDlg('Favor digitar Número de Cédula Válido.', etError, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
-       mskRNC.Text := EmptyStr;
-       mskRNC.Setfocus;
-       Exit;
-  end
-  else
-  If (Length(trim(mskRNC.Text))=11) and (Not dm.ValidaRNC(mskRNC.Text)) Then
-  begin
-     EtMensajeDlg('RNC no válido.  Verifique.', etAviso, [etOk],0, dm.Imagenes.Items[6].Bitmap,true);
-     if mskRNC.enabled then  mskRNC.SetFocus;
-     exit;
-  end
-  else
-  Begin
-       If Not DM.ActNCF(Copy(cboTipoNCF.Text,1,2),txtNombreCia.Text,qrEntradaPacienteRecID.value,qrEntradaPacienteMuestrano.Value,qrEntradaPacienteEntradaID.Value,mskRNC.Text,qrEntradaPacienteTotalPagado.Value) Then
-       begin
-         Raise exception.CreateFmt( ' NO Se Pudo Generar el NCF. '+ #13 +
-                                    ' Se Ha Generado Un Error en el SP. '+ #13 +
-                                    ' Por Favor, Intentelo Nuevamente.!!!', []);
-       end;
-  End;
-  txtNombrecia.Text       :=EmptyStr;
-  mskRNC.EditValue        :=EmptyStr;
-  cboTipoNCF.ItemIndex    := 0;
-  spImpresionNCF.Visible  := False;
-  If not ((Trim(qrEntradaPacienteEntradaid.value) ='') OR (Copy(qrEntradaPacienteEntradaid.value,1,3)='HOL')) Then
-  begin
-      DM.qrParametro.close;
-      DM.qrParametro.open;
-      qrEntradaPaciente.Refresh;
-      dm.qrNCF.Close;
-      dm.qrNCF.SQL.Text := ' Select Convert(Varchar(50),CASE NCFTYPEID  WHEN '+#39+'01'+#39+' THEN '+#39+'Factura Crédito Fiscal'+#39+
-                           ' WHEN '+#39+'12'+#39+' THEN '+#39+'Factura Valor Unico'+#39+
-                           ' WHEN '+#39+'14'+#39+' THEN '+#39+'Factura Régimen Especial'+#39+
-                           ' WHEN '+#39+'15'+#39+' THEN '+#39+'Factura Régimen Gubernamental'+#39+
-                           ' END) As NCFTYPEID,Muestrano,EntradaID,NCFID,NCFNAME,RNC,Fecha From dbo.NCFTABLEPTV (nolock) '+
-                           ' Where muestrano='+#39+qrEntradaPacienteMuestrano.value+#39+' And EntradaID='+#39+qrEntradaPacienteEntradaid.value+#39+' And DataAreaID='+#39+DM.CurEmpresa+#39;
-      dm.qrNCF.Open;
-      if Ruta_Factura <> EmptyStr then
-      Begin
-             Buscar_Campos_Extras(qrEntradaPacientePACIENTEID.Value,'FNCF');
-             ppImpFactPacienteNCF.ShowPrintDialog := False;
-             ppImpFactPacienteNCF.DeviceType := dtPrinter;
-             ppImpFactPacienteNCF.PrinterSetup.PaperHeight := 8.5;
-             ppImpFactPacienteNCF.PrinterSetup.PaperName := 'Custom';
-             ppImpFactPacienteNCF.PrinterSetup.PaperWidth := 4;
-             ppImpFactPacienteNCF.PrinterSetup.PrinterName := Ruta_Factura;
-             ppImpFactPacienteNCF.Print;
-      End
-      Else
-      Begin
-             Buscar_Campos_Extras(qrEntradaPacientePACIENTEID.Value,'FNCF');
-             ppImpFactPacienteNCF.DeviceType := dtScreen;
-             ppImpFactPacienteNCF.Print;
-      End;
-    end;
+    If (Length(trim(mskRNC.Text))=13) and (Not Dm.GetDigitoVerificador(copy(DM.Cortar_Char('-', mskRNC.Text),1,11),'0')) Then
+    Begin
+         EtMensajeDlg('Favor digitar Número de Cédula Válido.', etError, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
+         mskRNC.Text := EmptyStr;
+         mskRNC.Setfocus;
+         Exit;
+    end
+    else
+    If (Length(trim(mskRNC.Text))=11) and (Not dm.ValidaRNC(mskRNC.Text)) Then
+    begin
+       EtMensajeDlg('RNC no válido.  Verifique.', etAviso, [etOk],0, dm.Imagenes.Items[6].Bitmap,true);
+       if mskRNC.enabled then  mskRNC.SetFocus;
+       exit;
+    end
+    else
+    Begin
+         If Not DM.ActNCF(Copy(cboTipoNCF.Text,1,2),txtNombreCia.Text,qrEntradaPacienteRecID.value,qrEntradaPacienteMuestrano.Value,qrEntradaPacienteEntradaID.Value,mskRNC.Text,qrEntradaPacienteTotalPagado.Value) Then
+         begin
+           Raise exception.CreateFmt( ' NO Se Pudo Generar el NCF. '+ #13 +
+                                      ' Se Ha Generado Un Error en el SP. '+ #13 +
+                                      ' Por Favor, Intentelo Nuevamente.!!!', []);
+         end;
+    End;
+    txtNombrecia.Text       :=EmptyStr;
+    mskRNC.EditValue        :=EmptyStr;
+    cboTipoNCF.ItemIndex    := 0;
+    spImpresionNCF.Visible  := False;
+    If not ((Trim(qrEntradaPacienteEntradaid.value) ='') OR (Copy(qrEntradaPacienteEntradaid.value,1,3)='HOL')) Then
+    begin
+        DM.qrParametro.close;
+        DM.qrParametro.open;
+        qrEntradaPaciente.Refresh;
+        dm.qrNCF.Close;
+        dm.qrNCF.SQL.Text := ' Select CASE NCFTYPEID  WHEN '+#39+'01'+#39+' THEN '+#39+'Factura para Crédito Fiscal'+#39+
+                             ' WHEN '+#39+'12'+#39+' THEN '+#39+'Factura para Valor Unico'+#39+
+                             ' WHEN '+#39+'14'+#39+' THEN '+#39+'Factura para Régimen Especial'+#39+
+                             ' WHEN '+#39+'15'+#39+' THEN '+#39+'Factura para Régimen Gubernamental'+#39+
+                             ' END NCFTYPEID,Muestrano,EntradaID,NCFID,NCFNAME,RNC,Fecha,Case When Fecha <= '+#39+formatdatetime('yyyymmdd',DM.qrParametroFecha_Valida_Comp.AsDateTime)+#39+' Then '+#39+'Válida hasta: '+formatdatetime('dd/mm/yyyy',DM.qrParametroFecha_Valida_Comp.AsDateTime)+#39+
+                                                                      '  When Fecha > '+#39+formatdatetime('yyyymmdd',DM.qrParametroFecha_Valida_Comp.AsDateTime)+#39+' Then '+#39+'Válida hasta: '+formatdatetime('dd/mm/yyyy',DM.qrParametroFecha_Valida_Comp_Dos.AsDateTime)+#39+
+                                                                      ' End as MENSAJE_VALIDA From NCFTABLEPTV '+
+                             ' Where muestrano='+#39+qrEntradaPacienteMuestrano.value+#39+' And EntradaID='+#39+qrEntradaPacienteEntradaid.value+#39+' And DataAreaID='+#39+DM.CurEmpresa+#39;
+        dm.qrNCF.Open;
+        if Ruta_Factura <> EmptyStr then
+        Begin
+               Buscar_Campos_Extras(qrEntradaPacientePACIENTEID.Value,'FNCF');
+               ppImpFactPacienteNCF.ShowPrintDialog := False;
+               ppImpFactPacienteNCF.DeviceType := dtPrinter;
+               ppImpFactPacienteNCF.PrinterSetup.PaperHeight := 8.5;
+               ppImpFactPacienteNCF.PrinterSetup.PaperName := 'Custom';
+               ppImpFactPacienteNCF.PrinterSetup.PaperWidth := 4;
+               ppImpFactPacienteNCF.PrinterSetup.PrinterName := Ruta_Factura;
+               ppImpFactPacienteNCF.Print;
+        End
+        Else
+        Begin
+               Buscar_Campos_Extras(qrEntradaPacientePACIENTEID.Value,'FNCF');
+               ppImpFactPacienteNCF.DeviceType := dtScreen;
+               ppImpFactPacienteNCF.Print;
+        End;
+      end;
 
 end;
 
@@ -4086,7 +4094,7 @@ begin
         btAutoriza.Enabled := True;
         qAutoriza := DM.NewQuery;
         qAutoriza.Close;
-        qAutoriza.SQL.Text := ' SELECT distinct CodProveedor,dbo.rellena(Right(a.CodProveedor,5),5) as CodProvUniv,a.WsArsid,p.Url,p.Password,p.Usuario,a.SucEx,a.proveedor,a.Monto_Limite '+
+        qAutoriza.SQL.Text := ' SELECT distinct CodProveedor,rellena(Right(a.CodProveedor,5),5) as CodProvUniv,a.WsArsid,p.Url,p.Password,p.Usuario,a.SucEx,a.proveedor,a.Monto_Limite '+
                               ' from ptars a (nolock) inner join ptcliente c (nolock) on c.CarnetNumero = a.CodProveedor inner join ptProveedor p (nolock) on a.proveedor=p.proveedorid '+
                               ' where clienteid='+#39+qrEntradaPacienteClienteID.Asstring+#39;
         qAutoriza.Open;
@@ -5386,6 +5394,34 @@ end;
 procedure TfrmPuntoVenta.btpacienteClick(Sender: TObject);
 begin
   inherited;
+    If not ((Trim(qrEntradaPacienteEntradaid.value) ='') Or (Copy(qrEntradaPacienteEntradaid.value,1,3)='HOL')) then
+    begin
+           If dm.qrParametroServidor_AS400.value <> EmptyStr then
+           begin
+                if dm.PingHost(dm.qrParametroServidor_AS400.value,1) then
+                begin
+                   spMensaje.Visible := True;
+                   InterfaseAS400.ASConnection.Close;
+                   InterfaseAS400.ASConnection.Open;
+                   While not qrEntradaPacienteDetalle.Eof Do
+                   begin
+                                if Not((qrEntradaPacienteDetalleTipoPrueba.Value ='C') or
+                                        (qrEntradaPacienteDetalleExterior.Value = 1)) Then
+                                begin
+                                      If InterfaseAS400.Verifica_Resultado(qrEntradaPacienteMuestraNo.Value,DM.BuscaCodigoIDAs400(qrEntradaPacienteDetallePruebaID.Value)) Then
+                                      begin
+                                              InterfaseAS400.ASConnection.Close;
+                                              EtMensajeDlg('No puede cambiar paciente.  Tiene prueba(s) reportada(s).  Verifique Departamento Técnico.', etError, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
+                                              Abort;
+                                      end;
+                                end;
+                        qrEntradaPacienteDetalle.Next
+  		             end;
+		                InterfaseAS400.ASConnection.Close;
+                end;
+           end;
+      spMensaje.Visible := False;
+    end;
   if Copy(qrEntradaPacienteClienteNombre.Asstring,1,15)='PERFIL GENETICO' then
   begin
     frmMain.LanzaVentana(-7979);
@@ -5394,8 +5430,6 @@ begin
   begin
     frmMain.LanzaVentana(-7999);
   end;
-//  Val_Balance;
-// Val_Paciente;
 end;
 
 procedure TfrmPuntoVenta.btpruebaClick(Sender: TObject);
@@ -5445,7 +5479,7 @@ begin
        End
 {       qAutoriza := DM.NewQuery;
        qAutoriza.Close;
-       qAutoriza.SQL.Text := ' SELECT distinct CodProveedor,dbo.rellena(Right(a.CodProveedor,5),5) as CodProvUniv,a.WsArsid,p.Url,p.Password,p.Usuario,a.SucEx,a.proveedor,a.Monto_Limite '+
+       qAutoriza.SQL.Text := ' SELECT distinct CodProveedor,rellena(Right(a.CodProveedor,5),5) as CodProvUniv,a.WsArsid,p.Url,p.Password,p.Usuario,a.SucEx,a.proveedor,a.Monto_Limite '+
                               ' from ptars a (nolock) inner join ptcliente c (nolock) on c.CarnetNumero = a.CodProveedor inner join ptProveedor p (nolock) on a.proveedor=p.proveedorid '+
                               ' where clienteid='+#39+qrEntradaPacienteClienteID.Asstring+#39;
        qAutoriza.Open;
@@ -9220,11 +9254,24 @@ end;
 procedure TfrmPuntoVenta.FacturaconNCF1Click(Sender: TObject);
 begin
   inherited;
+
+    If (qrEntradaPacienteNeto.value > 0) And
+       ((qrEntradaPacienteNeto.value - qrEntradaPacienteTotalPagado.value)<> 0) then
+    Begin
+         EtMensajeDlg('Balan.  Verifique.', etError, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
+         Exit;
+    end;
+    If (qrEntradaPacienteCuadreUsuario.value <> EmptyStr) And
+       (dm.Verifica_Pago_Filtro(qrEntradaPacienteRecid.AsString)=true) then
+    Begin
+         EtMensajeDlg('No puede generar NCF.  Favor comunicarse con Depto. Facturación.', etError, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
+         Exit;
+    end;
     With DM.qrDocumento, sql do
     begin
       Close;
       Clear;
-      Text :='Select *  From PtDocumento Where TipoDocID IN (1,2,3)';
+      Text :='Select *  From PtDocumento Where TipoDocID IN (1,2,6)';
       Open;
     end;
     if qrEntradaPacienteEntradaID.Value <> EmptyStr then
@@ -9232,11 +9279,13 @@ begin
       if qrEntradaPacienteTotalPendiente.Value <= 0 then
       begin
           dm.qrNCF.Close;
-          dm.qrNCF.SQL.Text := ' Select CASE NCFTYPEID  WHEN '+#39+'01'+#39+' THEN '+#39+'Factura Crédito Fiscal'+#39+
-                               ' WHEN '+#39+'12'+#39+' THEN '+#39+'Factura Valor Unico'+#39+
-                               ' WHEN '+#39+'14'+#39+' THEN '+#39+'Factura Régimen Especial'+#39+
-                               ' WHEN '+#39+'15'+#39+' THEN '+#39+'Factura Régimen Gubernamental'+#39+
-                               ' END NCFTYPEID,Muestrano,EntradaID,NCFID,NCFNAME,RNC,Fecha From dbo.NCFTABLEPTV (nolock) '+
+          dm.qrNCF.SQL.Text := ' Select CASE NCFTYPEID  WHEN '+#39+'01'+#39+' THEN '+#39+'Factura para Crédito Fiscal'+#39+
+                               ' WHEN '+#39+'12'+#39+' THEN '+#39+'Factura para Valor Unico'+#39+
+                               ' WHEN '+#39+'14'+#39+' THEN '+#39+'Factura para Régimen Especial'+#39+
+                               ' WHEN '+#39+'15'+#39+' THEN '+#39+'Factura para Régimen Gubernamental'+#39+
+                               ' END NCFTYPEID,Muestrano,EntradaID,NCFID,NCFNAME,RNC,Fecha,Case When Fecha <= '+#39+formatdatetime('yyyymmdd',DM.qrParametroFecha_Valida_Comp.AsDateTime)+#39+' Then '+#39+'Válida hasta: '+formatdatetime('dd/mm/yyyy',DM.qrParametroFecha_Valida_Comp.AsDateTime)+#39+
+                                                                        '  When Fecha > '+#39+formatdatetime('yyyymmdd',DM.qrParametroFecha_Valida_Comp.AsDateTime)+#39+' Then '+#39+'Válida hasta: '+formatdatetime('dd/mm/yyyy',DM.qrParametroFecha_Valida_Comp_Dos.AsDateTime)+#39+
+                                                                        ' End as MENSAJE_VALIDA From NCFTABLEPTV '+
                                ' Where muestrano='+#39+qrEntradaPacienteMuestrano.value+#39+' And EntradaID='+#39+qrEntradaPacienteEntradaid.value+#39+' And DataAreaID='+#39+DM.CurEmpresa+#39;
           dm.qrNCF.Open;
           If (dm.qrNCF.RecordCount = 0) Then
@@ -10984,8 +11033,17 @@ begin
     ppMemo3.Visible:=False;
     ppLabel284.Visible:=False;
     ppLine7.Visible:=False;
+  end;
+  if dm.VerificaPruebaAntiHiv(qrEntradaPacienteRecid.AsString) then
+  begin
+    if qrEntradaPacienteNO_INDICACION.Value = True then
+       ppMemo6.Top := 2.2395999
+    else
+       ppMemo6.Top := 1.8958;
+    ppMemo6.Visible:=True;
+    ppMemo6.Lines.Clear;
+    ppMemo6.Lines.Append(DM.qrParametroNotaFacturaPacienteHiv.Value);
   end
-
 end;
 
 procedure TfrmPuntoVenta.ppImpInternetBeforePrint(Sender: TObject);
@@ -11157,6 +11215,18 @@ begin
     If (dm.Verifica_Envase_Unifix_CoprolArs(qrEntradaPacienteRecId.AsString)) Then
         ppMemo5.Lines.Append(DM.qrParametroNotaFacturaEnvase.Value);
   end;
+  if dm.VerificaPruebaAntiHiv(qrEntradaPacienteRecid.AsString) then
+  begin
+      If (qrEntradaPacienteOrigen.Value = dm.qrParametroGrupoSeg.Value) And
+         ((dm.Verifica_Universal_UroCopro(qrEntradaPacienteRecId.AsString)) Or
+         (dm.Verifica_Envase_Unifix_CoprolArs(qrEntradaPacienteRecId.AsString))) Then
+       ppMemo7.Top := 1.9583
+    else
+       ppMemo7.Top := 1.6979001;
+    ppMemo7.Visible:=True;
+    ppMemo7.Lines.Clear;
+    ppMemo7.Lines.Append(DM.qrParametroNotaFacturaPacienteHiv.Value);
+  end;
 
   qSerial := DM.NewQuery;
   qSerial.Close;
@@ -11315,6 +11385,13 @@ begin
   ppMemoFactSinSeg.Lines.Clear;
   if qrEntradaPacienteOrigen.Value <> dm.qrParametroGrupoCia.Value then
     ppMemoFactSinSeg.Lines.Append(DM.qrParametroNotaFacturaNoSeguro.Value);
+
+  if dm.VerificaPruebaAntiHiv(qrEntradaPacienteRecid.AsString) then
+  begin
+    ppMemo8.Visible:=True;
+    ppMemo8.Lines.Clear;
+    ppMemo8.Lines.Append(DM.qrParametroNotaFacturaPacienteHiv.Value);
+  end;
 
   if qSerial.RecordCount > 0 then
   begin
@@ -12723,6 +12800,38 @@ begin
 end;
 
 
+procedure TfrmPuntoVenta.mskRNCExit(Sender: TObject);
+Var CRnc : ResultRnc; Rnc : String;
+begin
+  inherited;
+      If (mskRNC.EditValue = dm.qrParametroRNC.Value) then
+      begin
+              EtMensajeDlg('Rnc '+dm.qrParametroEmpresa.value+' NO PERMITIDO.  Verifique.', etAviso, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
+              mskRNC.Clear;
+              exit;
+      end;
+      Rnc:=trim(StringReplace(mskRNC.EditValue,'-','',[rfReplaceAll]));
+      if (Length(Rnc)=9) and  (cbExtDocumento.ItemIndex = 0) Or
+         (Length(Rnc)=11) and (cbExtDocumento.ItemIndex = 1) Or
+         (Length(Rnc)>0) and (cbExtDocumento.ItemIndex = 2) then
+      begin
+	      spMensaje.Visible := True;
+        WsConsultaRnc := GetRNCDGII(False,dm.qrParametroLink_Rnc.value);
+        CRnc          := ResultRnc.Create;
+        CRnc          := GetRNCDGII(false,dm.qrParametroLink_Rnc.value).ValidarRNC(Rnc);
+	      spMensaje.Visible := False;
+        if Length(CRnc.CedulaRnc)> 0 then
+        begin
+          If CRnc.Estado <> 'ACTIVO' Then
+          begin
+              EtMensajeDlg('Rnc ó Cédula con estado '+CRnc.Estado+'.  Verifique.', etAviso, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
+              exit;
+          end;
+          txtNombreCia.Text := CRnc.Nombre;
+        end;
+      end;
+end;
+
 procedure TfrmPuntoVenta.Act_RecIdDetalle;
 begin
  If MessageDlg('Este Proceso ACTUALIZARA Todas Las Pruebas Registradas.!!!' + #13 +
@@ -13517,7 +13626,7 @@ begin
   Add('      When dbo.RestaFechaDia('+#39+FormatDateTime('yyyymmdd',qrEntradapacienteFechaNacimiento.Value)+#39+','+#39+FormatDateTime('yyyymmdd',DM.SystemDate)+#39+') > 0 Then Cast(dbo.RestaFechaDia('+#39+FormatDateTime('yyyymmdd',qrEntradapacienteFechaNacimiento.Value)+#39+','+#39+FormatDateTime('yyyymmdd',DM.SystemDate)+#39+') as varchar(10))+'+#39+' Dia(s)'+#39);
   Add(' else '#39+#39+' End as Edad,(Select Top 1 Telefono from PTSucursal Where SucursalId='+#39+qrEntradapacienteSucursalID.Value+#39+') as Tel_Sucursal, ');
   Add('(Select Top 1 Nombre from PTSucursal Where SucursalId='+#39+qrEntradapacienteSucursalID.Value+#39+') as Nombre_Sucursal, ');
-  Add('(Select CarnetNumero from ptcliente (nolock) Where ClienteID='+#39+qrEntradaPacienteClienteID.value+#39+' And DataAreaId = '+#39+DM.CurEmpresa+#39+') As CarnetNumero, ');
+  Add('IsNull(( Select CarnetNumero from ptcliente (nolock) Where ClienteID='+#39+qrEntradaPacienteClienteID.value+#39+' And DataAreaId = '+#39+DM.CurEmpresa+#39+'),'+#39+'0'+#39+') As CarnetNumero, ');
   Add('IsNull(( SELECT WsArsid from ptars a (nolock) ,ptcliente c (nolock)  where a.CodProveedor=c.CarnetNumero  and c.Clienteid='+#39+qrEntradaPacienteClienteID.value+#39+'),'+#39+'0'+#39+') As WsArsID, ');
   Add('IsNull(( SELECT Descripcion from PTDiagnostico (nolock) Where cod_diag='+#39+Trim(qrEntradaPacienteCOD_DIAG.value)+#39+' and Cod_Ars in ( SELECT WsArsid from ptars a (nolock) ,ptcliente c (nolock)  where a.CodProveedor=c.CarnetNumero  and c.Clienteid='+#39+qrEntradaPacienteClienteID.value+#39+')'+'),'+#39+''+#39+') As Desc_Diag ');
   Add('FROM PTCliente c (nolock) ');
@@ -14134,7 +14243,7 @@ begin
   Try
       qAutoriza := DM.NewQuery;
       qAutoriza.Close;
-      qAutoriza.SQL.Text := ' SELECT distinct CodProveedor,dbo.rellena(Right(a.CodProveedor,5),5) as CodProvUniv,a.WsArsid,p.Url,p.Password,p.Usuario,a.SucEx,a.proveedor,a.Monto_Limite '+
+      qAutoriza.SQL.Text := ' SELECT distinct CodProveedor,rellena(Right(a.CodProveedor,5),5) as CodProvUniv,a.WsArsid,p.Url,p.Password,p.Usuario,a.SucEx,a.proveedor,a.Monto_Limite '+
                             ' from ptars a (nolock) inner join ptcliente c (nolock) on c.CarnetNumero = a.CodProveedor inner join ptProveedor p (nolock) on a.proveedor=p.proveedorid '+
                             ' where clienteid='+#39+qrEntradaPacienteClienteID.Asstring+#39;
       qAutoriza.Open;

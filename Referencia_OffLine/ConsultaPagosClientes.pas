@@ -542,7 +542,7 @@ begin
                                    ' When '+#39+'PGK'+#39+' Then '+#39+'Cheques.'+#39+' End As Forma_Pago, '+
                    ' Monto,CuadreUsuario,CuadreGlobal,Devuelta,BancoID,Numero_Referencia, '+
                    ' Numero_Aprobacion from ptcobrodetalle d '+
-                   ' Where d.Orden='+#39+'8'+#39+' and d.CobroID in (Select cobroid from dbo.PTCobro Where UsuarioID='+#39+edbuscar.Text+#39+')';
+                   ' Where d.Orden='+#39+'8'+#39+' and d.CobroID in (Select cobroid from PTCobro Where UsuarioID='+#39+edbuscar.Text+#39+')';
          Open;
        end
      end
@@ -561,7 +561,7 @@ begin
                                    ' When '+#39+'PGK'+#39+' Then '+#39+'Cheques.'+#39+' End As Forma_Pago, '+
                    ' Monto,CuadreUsuario,CuadreGlobal,Devuelta,BancoID,Numero_Referencia, '+
                    ' Numero_Aprobacion from ptcobrodetalle d '+
-                   ' Where d.Orden='+#39+'8'+#39+' and d.CobroID in (Select cobroid from dbo.PTCobro Where Fecha between '+#39+FormatDateTime('yyyymmdd', dtFechaIni.Date)+#39+ ' AND '+#39+FormatDateTime('yyyymmdd', dtFechaFin.Date)+#39+')';
+                   ' Where d.Orden='+#39+'8'+#39+' and d.CobroID in (Select cobroid from PTCobro Where Fecha between '+#39+FormatDateTime('yyyymmdd', dtFechaIni.Date)+#39+ ' AND '+#39+FormatDateTime('yyyymmdd', dtFechaFin.Date)+#39+')';
          Open;
        end
      end;

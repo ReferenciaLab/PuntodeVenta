@@ -192,14 +192,14 @@ begin
  qcobros.SQL.Text := ' SELECT B.fecha, B.SucursalId, B.UsuarioId, B.CuadreGlobal, C.FormadePagoId, '+
                      ' C.MonedaId, C.SinPrFilter, '+
                      ' SUM(C.Monto) AS Monto, SUM(C.MontoMST) AS MontoMST '+
-                     ' FROM PTCobro B (nolock) , PTCobroDetalle C (nolock) '+
-                     ' WHERE B.cobroid = C.cobroid '+
-                     ' AND B.fecha = :fec '+
+                     ' FROM PTCobro B (nolock) Inner Join PTCobroDetalle C (nolock) '+
+                     ' ON B.cobroid = C.cobroid '+
+                     ' WHERE B.fecha = :fec '+
                      ' AND B.CuadreGlobal <> '+#39+'CA'+#39;
                      If dm.qrParametroServidor_AS400.value <> EmptyStr then
-                        qcobros.SQL.Text :=qcobros.SQL.Text +' AND Isnull(c.Fuera_Linea,'+#39+'0'+#39+') = 0'
+                        qcobros.SQL.Text :=qcobros.SQL.Text +' AND Isnull(b.Fuera_Linea,'+#39+'0'+#39+') = 0'
                      else
-                        qcobros.SQL.Text :=qcobros.SQL.Text +' AND Isnull(c.Fuera_Linea,'+#39+'0'+#39+') = 1';
+                        qcobros.SQL.Text :=qcobros.SQL.Text +' AND Isnull(b.Fuera_Linea,'+#39+'0'+#39+') = 1';
 
                      qcobros.SQL.Text :=qcobros.SQL.Text +' GROUP BY B.fecha, B.SucursalId, B.UsuarioId, B.CuadreGlobal, C.FormadePagoId, C.MonedaId, C.SinPrFilter ';
                      qcobros.SQL.Text :=qcobros.SQL.Text +' ORDER BY B.fecha, B.SucursalId, B.UsuarioId, B.CuadreGlobal, C.FormadePagoId, C.MonedaId, C.SinPrFilter ';
@@ -254,9 +254,9 @@ begin
                          ' And SucursalID = :suc '+
                          ' And CuadreGlobal <> '+#39+'CA'+#39;
                      If dm.qrParametroServidor_AS400.value <> EmptyStr then
-                        qbuscar.SQL.Text :=qbuscar.SQL.Text +' AND Isnull(c.Fuera_Linea,'+#39+'0'+#39+') = 0'
+                        qbuscar.SQL.Text :=qbuscar.SQL.Text +' AND Isnull(Fuera_Linea,'+#39+'0'+#39+') = 0'
                      else
-                        qbuscar.SQL.Text :=qbuscar.SQL.Text +' AND Isnull(c.Fuera_Linea,'+#39+'0'+#39+') = 1';
+                        qbuscar.SQL.Text :=qbuscar.SQL.Text +' AND Isnull(Fuera_Linea,'+#39+'0'+#39+') = 1';
 
                      qbuscar.SQL.Text :=qbuscar.SQL.Text +' Order by CuadreGlobal ';
      qbuscar.Parameters.ParamByName('fec').Value := edfechacorte.Date;

@@ -20,7 +20,8 @@ uses
   ComCtrls, JvDBGridFooter, Grids, DBGrids, JvExDBGrids, JvDBGrid, JvDBUltimGrid,
   cxintl, ppModule, raCodMod, ppParameter,dlgmensajes,Ced2000EditLib, RAWPrinter,
   cxDBEditRepository, cxExtEditRepositoryItems, cxEditRepositoryItems,ShellApi,
-  ppRichTx, ppBarCod;
+  ppRichTx, ppBarCod, LMDCustomControl, LMDCustomPanel, LMDCustomBevelPanel,
+  LMDSimplePanel;
 
 type
   TfrmPuntoVentaLab = class(TfrmCustomModule)
@@ -997,6 +998,10 @@ type
     qrInternetRECID: TLargeintField;
     dsInternet: TDataSource;
     ppMemo5: TppMemo;
+    spMensaje: TLMDSimplePanel;
+    Shape1: TShape;
+    Label1: TLabel;
+    Panel1: TPanel;
     procedure ppImpInternetBeforePrint(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure cxDBDateEdit6Exit(Sender: TObject);
@@ -3521,9 +3526,37 @@ end;
 procedure TfrmPuntoVentaLab.btpacienteClick(Sender: TObject);
 begin
   inherited;
+    If not ((Trim(qrEntradaPacienteEntradaid.value) ='') Or (Copy(qrEntradaPacienteEntradaid.value,1,3)='HOL')) then
+    begin
+           If dm.qrParametroServidor_AS400.value <> EmptyStr then
+           begin
+                if dm.PingHost(dm.qrParametroServidor_AS400.value,1) then
+                begin
+                   spMensaje.Visible := True;
+                   InterfaseAS400.ASConnection.Close;
+                   InterfaseAS400.ASConnection.Open;
+                   While not qrEntradaPacienteDetalle.Eof Do
+                   begin
+                                if Not((qrEntradaPacienteDetalleTipoPrueba.Value ='C') or
+                                        (qrEntradaPacienteDetalleExterior.Value = 1)) Then
+                                begin
+                                      If InterfaseAS400.Verifica_Resultado(qrEntradaPacienteMuestraNo.Value,DM.BuscaCodigoIDAs400(qrEntradaPacienteDetallePruebaID.Value)) Then
+                                      begin
+                                              InterfaseAS400.ASConnection.Close;
+                                              EtMensajeDlg('No puede cambiar paciente.  Tiene prueba(s) reportada(s).  Verifique Departamento Técnico.', etError, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
+                                              Abort;
+                                      end;
+                                end;
+                        qrEntradaPacienteDetalle.Next
+  		             end;
+		                InterfaseAS400.ASConnection.Close;
+                end;
+           end;
+      spMensaje.Visible := False;
+    end;
+
   frmMain.LanzaVentana(-7999);
   EdPaciente.SetFocus;
-//  actinterface;
 end;
 
 procedure TfrmPuntoVentaLab.btpruebaClick(Sender: TObject);

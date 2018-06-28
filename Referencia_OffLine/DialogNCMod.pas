@@ -154,7 +154,7 @@ begin
             Close;
             Clear;
             Text :=' Select Convert(Varchar(10),Numero) As EMPLID,Nombre+'+#39+' '+#39+'+Isnull(Apellido1,'+#39+#39+')+'+#39+' '+#39+'+Isnull(Apellido2,'+#39+#39+')'+' as NAME '+
-                   ' FROM [RHMercuryPrueba].dbo.Empleados Where Estatus='+#39+'A'+#39;
+                   ' FROM [RHMercuryPrueba]..Empleados Where Estatus='+#39+'A'+#39;
             Open;
         end;
     end;

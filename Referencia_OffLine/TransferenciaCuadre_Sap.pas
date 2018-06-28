@@ -425,7 +425,7 @@ begin
             end;
             qPagos := DM.NewQuery;
             qPagos.Close;
-            qPagos.SQL.Text := ' Update POSInterfaz.dbo.Pagos_Head_Mensual '+
+            qPagos.SQL.Text := ' Update POSInterfaz..Pagos_Head_Mensual '+
                                ' Set Estado='+#39+'1'+#39+
                                ' Where Fecha_Desde='+#39+FormatDateTime('yyyymmdd', JvMemoryData1Fecha_Desde.AsDateTime)+#39+
                                ' And Fecha_Hasta='+#39+FormatDateTime('yyyymmdd', JvMemoryData1Fecha_Hasta.AsDateTime)+#39;
@@ -452,7 +452,7 @@ procedure TfrmTransferenciaCuadre_SAP.Buscar_Pagos_Abiertos_Detalle;
 begin
   qrPagos.Close;
   qrPagos.SQL.Text := ' Select * From Pagos_Mensual '+
-                      ' Where Fecha_Deposito between '+#39+FormatDateTime('yyyymmdd', JvMemoryData1Fecha_Desde.AsDateTime)+#39+
+                      ' Where Fecha between '+#39+FormatDateTime('yyyymmdd', JvMemoryData1Fecha_Desde.AsDateTime)+#39+
                       ' And '+#39+FormatDateTime('yyyymmdd', JvMemoryData1Fecha_Hasta.AsDateTime);
   qrPagos.Open;
   If qrPagos.RecordCount > 0 then qrPagos.First;
@@ -541,7 +541,7 @@ begin
       begin
           Close;
           SQL.Text := ' Select * From Pagos_Mensual '+
-                      ' Where Fecha_Deposito between '+#39+FormatDateTime('yyyymmdd', JvMemoryData1Fecha_Desde.AsDateTime)+#39+
+                      ' Where Fecha between '+#39+FormatDateTime('yyyymmdd', JvMemoryData1Fecha_Desde.AsDateTime)+#39+
                       ' And '+#39+FormatDateTime('yyyymmdd', JvMemoryData1Fecha_Hasta.AsDateTime)+#39+
                       ' Order By SucursalID,Cuadre_Referencia,TurnoID ';
           Open;
@@ -671,14 +671,14 @@ begin
             spMensaje.Visible :=True;
             qPagos := DM.NewQuery;
             qPagos.Close;
-            qPagos.SQL.Text := ' Update POSInterfaz.dbo.Pagos_Head_Mensual '+
+            qPagos.SQL.Text := ' Update POSInterfaz..Pagos_Head_Mensual '+
                                ' Set Porcentaje_Aplicado='+#39+spePorcentaje.EditText+#39+
                                ' Where Fecha_Desde='+#39+FormatDateTime('yyyymmdd', JvMemoryData1Fecha_Desde.AsDateTime)+#39+
                                ' And Fecha_Hasta='+#39+FormatDateTime('yyyymmdd', JvMemoryData1Fecha_Hasta.AsDateTime)+#39;
             qPagos.ExecSQL;
-            qPagos.SQL.Text := ' Update POSInterfaz.dbo.Pagos_Mensual '+
+            qPagos.SQL.Text := ' Update POSInterfaz..Pagos_Mensual '+
                                ' Set Monto_EFE= Monto_EFE_ORI - (Monto_EFE_ORI * ('+spePorcentaje.EditText+'*.01))'+
-                               ' Where Fecha_Deposito between '+#39+FormatDateTime('yyyymmdd', JvMemoryData1Fecha_Desde.AsDateTime)+#39+
+                               ' Where Fecha between '+#39+FormatDateTime('yyyymmdd', JvMemoryData1Fecha_Desde.AsDateTime)+#39+
                                ' And '+#39+FormatDateTime('yyyymmdd', JvMemoryData1Fecha_Hasta.AsDateTime)+#39;
             qPagos.ExecSQL;
             spMensaje.Visible := False;
@@ -750,7 +750,7 @@ begin
       For Fecha_Procesoc := Fecha_Procesoc to Fecha_FinC do
       begin
           qPagosH.Close;
-          qPagosH.SQL.Text := ' Select Fecha from POSInterfaz.dbo.Pagos_Head '+
+          qPagosH.SQL.Text := ' Select Fecha from POSInterfaz..Pagos_Head '+
                               ' Where Fecha = '+#39+FormatDateTime('yyyymmdd', Fecha_Proceso)+#39+
                               ' And Estado='+#39+'1'+#39;
           qPagosH.Open;
@@ -770,7 +770,7 @@ begin
       end;
       qPagosH := DM.NewQuery;
       qPagosH.Close;
-      qPagosH.SQL.Text := ' Select top 1 Fecha from POSInterfaz.dbo.Pagos_Head '+
+      qPagosH.SQL.Text := ' Select top 1 Fecha from POSInterfaz..Pagos_Head '+
                           ' Where Fecha between '+#39+FormatDateTime('yyyymmdd', dtFechaDesde.Date)+#39+
                           ' And '+#39+FormatDateTime('yyyymmdd', dtFechaHasta.Date)+#39+' And Estado='+#39+'1'+#39;
       qPagosH.Open;
@@ -785,17 +785,17 @@ begin
           spMensaje.Visible :=True;
           qPagos := DM.NewQuery;
           qPagos.Close;
-          qPagos.SQL.Text := ' Insert Into POSInterfaz.dbo.Pagos_Head_Mensual (Fecha_Desde,Fecha_Hasta,Cuadre_Total,Estado,UserID_Creacion) '+
+          qPagos.SQL.Text := ' Insert Into POSInterfaz..Pagos_Head_Mensual (Fecha_Desde,Fecha_Hasta,Cuadre_Total,Estado,UserID_Creacion) '+
                              ' Values ('+#39+FormatDateTime('yyyymmdd', dtfechaDesde.Date)+#39+','+#39+FormatDateTime('yyyymmdd', dtFechaHasta.Date)+#39+','+#39+'0.00'+#39+','+#39+'0'+#39+','+#39+Dm.CurUser+#39+')';
           qPagos.ExecSQL;
 //          qPagosH := DM.NewQuery;
           qrPagosH.Close;
-          qrPagosH.SQL.Text := ' Insert Into POSInterfaz.dbo.Pagos_Mensual (ID,Fecha,SucursalID,Monto_EFE,Monto_Efe_Ori,Monto_TC,Monto_TD,Monto_CK,'+
+          qrPagosH.SQL.Text := ' Insert Into POSInterfaz..Pagos_Mensual (ID,Fecha,SucursalID,Monto_EFE,Monto_Efe_Ori,Monto_TC,Monto_TD,Monto_CK,'+
                               ' Monto_TB,Monto_US,Monto_DON,Monto_FSOB,Cuadre_Referencia,TurnoID,Cuenta_Banco,Banco_Deposito,Monto_Comp,Fecha_Deposito,TurnoID_Dep) '+
                               '	SELECT ID,Fecha,SucursalID, Monto_EFE, Monto_EFE,Monto_TC,Monto_TD, Monto_CK, Monto_TB, Monto_US, Monto_DON, Monto_FSOB,'+
-                              ' Cuadre_Referencia,TurnoID,Cuenta_Banco,Banco_Deposito,Monto_Comp,Fecha_Deposito,[dbo].[ObtTurnoID_Dep](Fecha_Deposito,sucursalID,ID) As TurnoID_Dep from POSInterfaz.dbo.Pagos '+
-                              ' Where fecha_Deposito between '+#39+FormatDateTime('yyyymmdd',dtfechaDesde.Date)+#39+' and '+#39+FormatDateTime('yyyymmdd',dtfechaHasta.Date)+#39+
-                              ' and fecha_Deposito in (Select Fecha from POSInterfaz.dbo.Pagos_Head Where Estado='#39+'1'+#39+')'+
+                              ' Cuadre_Referencia,TurnoID,Cuenta_Banco,Banco_Deposito,Monto_Comp,Fecha_Deposito,[dbo].[ObtTurnoID_Dep](Fecha,sucursalID,ID) As TurnoID_Dep from POSInterfaz..Pagos '+
+                              ' Where fecha between '+#39+FormatDateTime('yyyymmdd',dtfechaDesde.Date)+#39+' and '+#39+FormatDateTime('yyyymmdd',dtfechaHasta.Date)+#39+
+                              ' and fecha in (Select Fecha from POSInterfaz..Pagos_Head Where Estado='#39+'1'+#39+')'+
                               ' Order By SucursalID,Cuadre_Referencia,TurnoID_Dep ';
           qrPagosH.ExecSQL;
 // Inserta Detalle de Pagos Via SP
@@ -888,7 +888,7 @@ begin
       begin
           Close;
           SQL.Text := ' Select * From Pagos_Mensual '+
-                      ' Where Fecha_Deposito between '+#39+FormatDateTime('yyyymmdd', JvMemoryData1Fecha_Desde.AsDateTime)+#39+
+                      ' Where Fecha between '+#39+FormatDateTime('yyyymmdd', JvMemoryData1Fecha_Desde.AsDateTime)+#39+
                       ' And '+#39+FormatDateTime('yyyymmdd', JvMemoryData1Fecha_Hasta.AsDateTime)+#39+
                       ' Order By SucursalID,Cuadre_Referencia,TurnoID ';
           Open;

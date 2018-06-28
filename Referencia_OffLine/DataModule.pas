@@ -4499,6 +4499,11 @@ type
     qrGrupoClienteFactSINPRFILTERGROUP: TIntegerField;
     qrGrupoClienteFactSINPRFILTERGROUP_UNO: TIntegerField;
     qrParametroServidor_Sap: TStringField;
+    qrNCFMENSAJE_VALIDA: TStringField;
+    qrParametroFecha_Valida_Comp: TDateTimeField;
+    qrParametroFecha_Valida_Comp_Dos: TDateTimeField;
+    qrParametroLink_Rnc: TStringField;
+    qrParametroNotaFacturaPacienteHiv: TStringField;
     procedure ppImpInternetBeforePrint(Sender: TObject);
     procedure ppCuadreSucursalGlobalBeforePrint(Sender: TObject);
     procedure qrCorteGlobalCalcFields(DataSet: TDataSet);
@@ -4700,6 +4705,7 @@ type
     Plan_Premium      : String;
     GroupPrivado      : String;
     GrupoPrecioPriv   : String;
+    Filtro_UnoDos     : Integer;
     NombAplicacion, NombreExe,Token,PacienteID : String;
 //NullEqualityRule: TNullCompareRule;
 //NullMagnitudeRule: TNullCompareRule;
@@ -4853,6 +4859,9 @@ type
     Function  Busca_Servidor_Fuera_Linea: String;
     Function  Verifica_Pagos_Usuario_FueraLinea(_fecha: TDate): Boolean;
     Function  Verifica_Pagos_Sucursal_FueraLinea(_fecha: TDate): Boolean;
+    Function  Verifica_Filtro_UnoDos(_Sucursal: String): Boolean;
+    Function  Verifica_Pago_Filtro(_Recid: String): Boolean;
+    Function  VerificaPruebaAntiHiv(Recid: String): Boolean;
     CONST     TipoTarjeta : array [0..4] of string = ('No válida', 'Amex', 'Visa', 'Mastercard', 'Discover');
     procedure AppError(Texto: String;
                        frozen          : boolean;
@@ -5580,9 +5589,6 @@ begin
   qrUserRol.Parameters.ParamByName('pUser').Value := CurUser;
   qrUserRol.Open;
 
- { DescuentoTope := qrUserRolDescuentoTope.AsFloat;
-  CambiarPrecio := qrUserRolCambiarPrecio.Value; }
-
   if qrUserRolInterface.AsString <> '' then
     CurInterface := qrUserRolInterface.Value
   else
@@ -5669,7 +5675,6 @@ begin
               ' AND C.SucursalId = :suc '+
               ' AND C.UsuarioId = :usr '+
               ' AND C.CuadreUsuario = :cdr '+
-// esto es para verificar un (RECIBO / ENTRADA) en particular.              ' AND C.EntradaId = '+ #39 + 'FAC014001716' + #39 +
               ' GROUP BY D.CobroId, D.FormadePagoId, D.MonedaId '+
               ' ORDER BY D.CobroId, D.FormadePagoId, D.MonedaId ';
    end;
@@ -5695,7 +5700,6 @@ begin
     qformacobros.sql.Text := _texto;
     qformacobros.Parameters.ParamByName('rec').Value := DM.qrCobro.FieldByName('CobroId').AsString;
     qformacobros.Parameters.ParamByName('suc').Value := DM.qrCobro.FieldByName('SucursalId').AsString;
-//    qformacobros.Parameters.ParamByName('fec').Value := DM.qrCobro.FieldByName('Fecha').AsString;
     qformacobros.Parameters.ParamByName('usr').Value := DM.qrCobro.FieldByName('UsuarioId').AsString;
     if (Cobro_Var = 'Usuario') then
       qformacobros.Parameters.ParamByName('cdr').Value := DM.qrCobro.FieldByName('CuadreUsuario').AsString;
@@ -5828,57 +5832,117 @@ begin
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+///
+///
+  If DM.Filtro_UnoDos =1 then
+  begin
+      qrCorteCajaDetRepTotal_Bruto_Dos.Value := (Redondeo(qrCorteCajaDetRep.FieldByName('Total_Bruto_Dos').Value +
+                                                            qrCorteCajaDetRep.FieldByName('Total_Bruto_Tres').Value));
 
-  qrCorteCajaDetRepPendientexPagarDos.Value := Redondeo(qrCorteCajaDetRep.FieldByName('Total_Contado_Dos').Value -
-                                                        qrCorteCajaDetRep.FieldByName('Cobros_Today_Dos').Value);
+      qrCorteCajaDetRepTotal_Gastos_Dos.Value := (Redondeo(qrCorteCajaDetRep.FieldByName('Total_Gastos_Dos').Value +
+                                                            qrCorteCajaDetRep.FieldByName('Total_Gastos_Tres').Value));
 
-  qrCorteCajaDetRepLbDiferenciaPesosDos.Value := '';
-  qrCorteCajaDetRepLbDiferenciaDollarDos.Value := '';
+      qrCorteCajaDetRepTotal_Cobertura_Dos.Value := (Redondeo(qrCorteCajaDetRep.FieldByName('Total_Cobertura_Dos').Value +
+                                                            qrCorteCajaDetRep.FieldByName('Total_Cobertura_Tres').Value));
 
-  qrCorteCajaDetRepDiferenciaPesosDos.Value := Redondeo(qrCorteCajaDetRep.FieldByName('Efectivo_Reportado').Value -
-                                                        qrCorteCajaDetRep.FieldByName('Total_ContRD_Dos').Value);
+      qrCorteCajaDetRepTotal_Descuento_Dos.Value := (Redondeo(qrCorteCajaDetRep.FieldByName('Total_Descuento_Dos').Value +
+                                                            qrCorteCajaDetRep.FieldByName('Total_Descuento_Tres').Value));
 
-  qrCorteCajaDetRepDiferenciaDollarDos.Value := Redondeo(qrCorteCajaDetRep.FieldByName('Dollares_Reportado').Value -
-                                                         qrCorteCajaDetRep.FieldByName('Total_ContUS_Dos').Value);
+      qrCorteCajaDetRepTotal_Credito_Dos.Value := (Redondeo(qrCorteCajaDetRep.FieldByName('Total_Credito_Dos').Value +
+                                                            qrCorteCajaDetRep.FieldByName('Total_Credito_Tres').Value));
 
-  if (qrCorteCajaDetRepDiferenciaPesosDos.Value >= 0.01) then
-    qrCorteCajaDetRepLbDiferenciaPesosDos.Value := 'S O B R A N T E (RD$) ';
+      qrCorteCajaDetRepTotal_Contado_Dos.Value := (Redondeo(qrCorteCajaDetRep.FieldByName('Total_Contado_Dos').Value +
+                                                            qrCorteCajaDetRep.FieldByName('Total_Contado_Tres').Value));
 
-  if (qrCorteCajaDetRepDiferenciaPesosDos.Value <= -0.01) then
-    qrCorteCajaDetRepLbDiferenciaPesosDos.Value := 'F A L T A N T E (RD$) ';
+      qrCorteCajaDetRepTotal_VtaRD_Dos.Value := (Redondeo(qrCorteCajaDetRep.FieldByName('Total_VtaRD_Dos').Value +
+                                                            qrCorteCajaDetRep.FieldByName('Total_VtaRD_Tres').Value));
 
-  if (qrCorteCajaDetRepDiferenciaDollarDos.Value >= 0.01) then
-    qrCorteCajaDetRepLbDiferenciaDollarDos.Value := 'S O B R A N T E (US$) ';
+      qrCorteCajaDetRepTotal_PagoRD_Dos.Value := (Redondeo(qrCorteCajaDetRep.FieldByName('Total_PagoRD_Dos').Value +
+                                                            qrCorteCajaDetRep.FieldByName('Total_PagoRD_Tres').Value));
 
-  if (qrCorteCajaDetRepDiferenciaDollarDos.Value <= -0.01) then
-    qrCorteCajaDetRepLbDiferenciaDollarDos.Value := 'F A L T A N T E (US$) ';
+      qrCorteCajaDetRepTotal_ContRD_Dos.Value := (Redondeo(qrCorteCajaDetRep.FieldByName('Total_ContRD_Dos').Value +
+                                                            qrCorteCajaDetRep.FieldByName('Total_ContRD_Tres').Value));
 
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
+      qrCorteCajaDetRepPendientexPagarDos.Value := (Redondeo(qrCorteCajaDetRep.FieldByName('Total_Contado_Dos').Value -
+                                                            qrCorteCajaDetRep.FieldByName('Cobros_Today_Dos').Value))+
+                                                   (Redondeo(qrCorteCajaDetRep.FieldByName('Total_Contado_Tres').Value -
+                                                            qrCorteCajaDetRep.FieldByName('Cobros_Today_Tres').Value));
 
-  qrCorteCajaDetRepPendientexPagarTres.Value := Redondeo(qrCorteCajaDetRep.FieldByName('Total_Contado_Tres').Value -
-                                                        qrCorteCajaDetRep.FieldByName('Cobros_Today_Tres').Value);
+      qrCorteCajaDetRepLbDiferenciaPesosDos.Value := '';
+      qrCorteCajaDetRepLbDiferenciaDollarDos.Value := '';
+      qrCorteCajaDetRepLbDiferenciaPesosTres.Value := '';
+      qrCorteCajaDetRepLbDiferenciaDollarTres.Value := '';
 
-  qrCorteCajaDetRepLbDiferenciaPesosTres.Value := '';
-  qrCorteCajaDetRepLbDiferenciaDollarTres.Value := '';
+      qrCorteCajaDetRepDiferenciaPesosDos.Value := (Redondeo(qrCorteCajaDetRep.FieldByName('Efectivo_Reportado').Value -
+                                                            qrCorteCajaDetRep.FieldByName('Total_ContRD_Dos').Value))+
+                                                   (Redondeo(qrCorteCajaDetRep.FieldByName('Efectivo_Reportado').Value -
+                                                            qrCorteCajaDetRep.FieldByName('Total_ContRD_Tres').Value));
 
-  qrCorteCajaDetRepDiferenciaPesosTres.Value :=  Redondeo(qrCorteCajaDetRep.FieldByName('Efectivo_Reportado').Value -
-                                                        qrCorteCajaDetRep.FieldByName('Total_ContRD_Tres').Value);
+      qrCorteCajaDetRepDiferenciaDollarDos.Value := Redondeo(qrCorteCajaDetRep.FieldByName('Dollares_Reportado').Value -
+                                                             qrCorteCajaDetRep.FieldByName('Total_ContUS_Dos').Value);
 
-  qrCorteCajaDetRepDiferenciaDollarTres.Value := 0;//Redondeo(qrCorteCajaDetRep.FieldByName('Dollares_Reportado_Tres').Value -
-                                                 //        qrCorteCajaDetRep.FieldByName('Total_ContUS_Tres').Value);
+      if (qrCorteCajaDetRepDiferenciaPesosDos.Value >= 0.01) then
+        qrCorteCajaDetRepLbDiferenciaPesosDos.Value := 'S O B R A N T E (RD$) ';
 
-  if (qrCorteCajaDetRepDiferenciaPesosTres.Value >= 0.01) then
-    qrCorteCajaDetRepLbDiferenciaPesosTres.Value := 'S O B R A N T E (RD$) ';
+      if (qrCorteCajaDetRepDiferenciaPesosDos.Value <= -0.01) then
+        qrCorteCajaDetRepLbDiferenciaPesosDos.Value := 'F A L T A N T E (RD$) ';
 
-  if (qrCorteCajaDetRepDiferenciaPesosTres.Value <= -0.01) then
-    qrCorteCajaDetRepLbDiferenciaPesosTres.Value := 'F A L T A N T E (RD$) ';
+      if (qrCorteCajaDetRepDiferenciaDollarDos.Value >= 0.01) then
+        qrCorteCajaDetRepLbDiferenciaDollarDos.Value := 'S O B R A N T E (US$) ';
 
-  if (qrCorteCajaDetRepDiferenciaDollarTres.Value >= 0.01) then
-    qrCorteCajaDetRepLbDiferenciaDollarTres.Value := 'S O B R A N T E (US$) ';
+      if (qrCorteCajaDetRepDiferenciaDollarDos.Value <= -0.01) then
+        qrCorteCajaDetRepLbDiferenciaDollarDos.Value := 'F A L T A N T E (US$) ';
+  end
+  else
+  If DM.Filtro_UnoDos = 0 then
+  begin
+      qrCorteCajaDetRepPendientexPagarDos.Value := Redondeo(qrCorteCajaDetRep.FieldByName('Total_Contado_Dos').Value -
+                                                            qrCorteCajaDetRep.FieldByName('Cobros_Today_Dos').Value);
 
-  if (qrCorteCajaDetRepDiferenciaDollarTres.Value <= -0.01) then
-    qrCorteCajaDetRepLbDiferenciaDollarTres.Value := 'F A L T A N T E (US$) ';
+      qrCorteCajaDetRepLbDiferenciaPesosDos.Value := '';
+      qrCorteCajaDetRepLbDiferenciaDollarDos.Value := '';
+
+      qrCorteCajaDetRepDiferenciaPesosDos.Value := Redondeo(qrCorteCajaDetRep.FieldByName('Efectivo_Reportado').Value -
+                                                            qrCorteCajaDetRep.FieldByName('Total_ContRD_Dos').Value);
+
+      qrCorteCajaDetRepDiferenciaDollarDos.Value := Redondeo(qrCorteCajaDetRep.FieldByName('Dollares_Reportado').Value -
+                                                             qrCorteCajaDetRep.FieldByName('Total_ContUS_Dos').Value);
+
+      if (qrCorteCajaDetRepDiferenciaPesosDos.Value >= 0.01) then
+        qrCorteCajaDetRepLbDiferenciaPesosDos.Value := 'S O B R A N T E (RD$) ';
+
+      if (qrCorteCajaDetRepDiferenciaPesosDos.Value <= -0.01) then
+        qrCorteCajaDetRepLbDiferenciaPesosDos.Value := 'F A L T A N T E (RD$) ';
+
+      if (qrCorteCajaDetRepDiferenciaDollarDos.Value >= 0.01) then
+        qrCorteCajaDetRepLbDiferenciaDollarDos.Value := 'S O B R A N T E (US$) ';
+
+      if (qrCorteCajaDetRepDiferenciaDollarDos.Value <= -0.01) then
+        qrCorteCajaDetRepLbDiferenciaDollarDos.Value := 'F A L T A N T E (US$) ';
+
+      qrCorteCajaDetRepPendientexPagarTres.Value := Redondeo(qrCorteCajaDetRep.FieldByName('Total_Contado_Tres').Value -
+                                                            qrCorteCajaDetRep.FieldByName('Cobros_Today_Tres').Value);
+
+      qrCorteCajaDetRepLbDiferenciaPesosTres.Value := '';
+      qrCorteCajaDetRepLbDiferenciaDollarTres.Value := '';
+
+      qrCorteCajaDetRepDiferenciaPesosTres.Value :=  Redondeo(qrCorteCajaDetRep.FieldByName('Efectivo_Reportado').Value -
+                                                            qrCorteCajaDetRep.FieldByName('Total_ContRD_Tres').Value);
+
+      qrCorteCajaDetRepDiferenciaDollarTres.Value := 0;//Redondeo(qrCorteCajaDetRep.FieldByName('Dollares_Reportado_Tres').Value -
+                                                     //        qrCorteCajaDetRep.FieldByName('Total_ContUS_Tres').Value);
+      if (qrCorteCajaDetRepDiferenciaPesosTres.Value >= 0.01) then
+        qrCorteCajaDetRepLbDiferenciaPesosTres.Value := 'S O B R A N T E (RD$) ';
+
+      if (qrCorteCajaDetRepDiferenciaPesosTres.Value <= -0.01) then
+        qrCorteCajaDetRepLbDiferenciaPesosTres.Value := 'F A L T A N T E (RD$) ';
+
+      if (qrCorteCajaDetRepDiferenciaDollarTres.Value >= 0.01) then
+        qrCorteCajaDetRepLbDiferenciaDollarTres.Value := 'S O B R A N T E (US$) ';
+
+      if (qrCorteCajaDetRepDiferenciaDollarTres.Value <= -0.01) then
+        qrCorteCajaDetRepLbDiferenciaDollarTres.Value := 'F A L T A N T E (US$) ';
+  end;
 
 end;
 
@@ -5921,30 +5985,45 @@ begin
                ' GROUP BY CorteID, Usuario, MonedaId, FormaDePagoId '+
                ' ORDER BY CorteID, Usuario, MonedaId, FormaDePagoId ';
    End;
-
- If (Cuadre_Imp = 'FILTRO') Then
-   Begin
-     _texto := ' SELECT CorteID, Usuario, MonedaId, FormaDePagoId, '+
-               ' SUM(Valor) AS Valor, SUM(ValorMST) AS ValorMST '+
-               ' FROM PTCorteSucursal (nolock)'+
-               ' WHERE CorteID = :num '+
-               ' AND Usuario = :usr '+
-               ' AND SinPrFilter = 1 '+
-               ' GROUP BY CorteID, Usuario, MonedaId, FormaDePagoId '+
-               ' ORDER BY CorteID, Usuario, MonedaId, FormaDePagoId ';
-   End;
-
- If (Cuadre_Imp = 'FILTRO_DOS') Then
-   Begin
-     _texto := ' SELECT CorteID, Usuario, MonedaId, FormaDePagoId, '+
-               ' SUM(Valor) AS Valor, SUM(ValorMST) AS ValorMST '+
-               ' FROM PTCorteSucursal (nolock)'+
-               ' WHERE CorteID = :num '+
-               ' AND Usuario = :usr '+
-               ' AND SinPrFilter = 2 '+
-               ' GROUP BY CorteID, Usuario, MonedaId, FormaDePagoId '+
-               ' ORDER BY CorteID, Usuario, MonedaId, FormaDePagoId ';
-   End;
+  If DM.Filtro_UnoDos =1 then
+  begin
+     If (Cuadre_Imp = 'FILTRO') Then
+       Begin
+         _texto := ' SELECT CorteID, Usuario, MonedaId, FormaDePagoId, '+
+                   ' SUM(Valor) AS Valor, SUM(ValorMST) AS ValorMST '+
+                   ' FROM PTCorteSucursal (nolock)'+
+                   ' WHERE CorteID = :num '+
+                   ' AND Usuario = :usr '+
+                   ' AND SinPrFilter in (1,2) '+
+                   ' GROUP BY CorteID, Usuario, MonedaId, FormaDePagoId '+
+                   ' ORDER BY CorteID, Usuario, MonedaId, FormaDePagoId ';
+       End;
+  end
+  else If DM.Filtro_UnoDos =0 then
+  begin
+     If (Cuadre_Imp = 'FILTRO') Then
+       Begin
+         _texto := ' SELECT CorteID, Usuario, MonedaId, FormaDePagoId, '+
+                   ' SUM(Valor) AS Valor, SUM(ValorMST) AS ValorMST '+
+                   ' FROM PTCorteSucursal (nolock)'+
+                   ' WHERE CorteID = :num '+
+                   ' AND Usuario = :usr '+
+                   ' AND SinPrFilter = 1 '+
+                   ' GROUP BY CorteID, Usuario, MonedaId, FormaDePagoId '+
+                   ' ORDER BY CorteID, Usuario, MonedaId, FormaDePagoId ';
+       End;
+     If (Cuadre_Imp = 'FILTRO_DOS') Then
+       Begin
+         _texto := ' SELECT CorteID, Usuario, MonedaId, FormaDePagoId, '+
+                   ' SUM(Valor) AS Valor, SUM(ValorMST) AS ValorMST '+
+                   ' FROM PTCorteSucursal (nolock)'+
+                   ' WHERE CorteID = :num '+
+                   ' AND Usuario = :usr '+
+                   ' AND SinPrFilter = 2 '+
+                   ' GROUP BY CorteID, Usuario, MonedaId, FormaDePagoId '+
+                   ' ORDER BY CorteID, Usuario, MonedaId, FormaDePagoId ';
+       End;
+  end;
 
  if (Cobro_Var <> 'Cualquier Cosa') then
    Begin
@@ -5976,14 +6055,11 @@ begin
                                      ' WHERE CorteID = :num '+
                                      ' AND Usuario = :usr '+
                                      ' AND FormaDePagoId = :frm '+
-//                                     ' AND (FormaDePagoId = :fr1 OR FormaDePagoId = :fr2) '+
                                      ' GROUP BY CorteID, Usuario, MonedaId, FormaDePagoId, SinPrFilter '+
                                      ' ORDER BY CorteID, Usuario, MonedaId, FormaDePagoId, SinPrFilter ';
               qrEfectivo.Parameters.ParamByName('num').Value := DM.qrCorteSucursal.FieldByName('CorteId').AsString;
               qrEfectivo.Parameters.ParamByName('usr').Value := DM.qrCorteSucursal.FieldByName('Usuario').AsString;
               qrEfectivo.Parameters.ParamByName('frm').Value := qformacobros.FieldByName('FormaDePagoId').AsString;
-//              qrEfectivo.Parameters.ParamByName('fr1').Value := 'EFE';
-//              qrEfectivo.Parameters.ParamByName('fr2').Value := 'CK';
               qrEfectivo.Active := True;
               While Not qrEfectivo.Eof do
               Begin
@@ -5991,22 +6067,40 @@ begin
                   Begin
                     qrCorteSucursalTotalNormal.Value := Redondeo(qrCorteSucursalTotalNormal.Value +
                                                                  qrEfectivo.FieldByName('Valor').AsFloat)
-//                                                                 +qrCorteSucursalTotalCheque.Value)
                   end;
 
-                if (qrEfectivo.FieldByName('SinPrFilter').AsInteger = 1) then
-                  Begin
-                    qrCorteSucursalTotalFiltro.Value := Redondeo(qrCorteSucursalTotalFiltro.Value +
-                                                                 qrEfectivo.FieldByName('Valor').AsFloat);
-                  end;
+                If DM.Filtro_UnoDos =1 then
+                begin
+                  ppdbText724.Visible := False;
+                  ppdbCalc123.Visible := False;
+                  if (qrEfectivo.FieldByName('SinPrFilter').AsInteger = 1) then
+                    Begin
+                      qrCorteSucursalTotalFiltro.Value := Redondeo(qrCorteSucursalTotalFiltro.Value +
+                                                                   qrEfectivo.FieldByName('Valor').AsFloat);
+                    end;
 
-                if (qrEfectivo.FieldByName('SinPrFilter').AsInteger = 2) then
-                  Begin
-                    qrCorteSucursalTotalFiltro_Dos.Value := Redondeo(qrCorteSucursalTotalFiltro_Dos.Value +
-                                                                 qrEfectivo.FieldByName('Valor').AsFloat);
-                  end;
+                  if (qrEfectivo.FieldByName('SinPrFilter').AsInteger = 2) then
+                    Begin
+                      qrCorteSucursalTotalFiltro.Value :=  Redondeo(qrCorteSucursalTotalFiltro.Value +
+                                                                   qrEfectivo.FieldByName('Valor').AsFloat);
+                    end;
+                end
+                else If DM.Filtro_UnoDos =0 then
+                begin
+                  if (qrEfectivo.FieldByName('SinPrFilter').AsInteger = 1) then
+                    Begin
+                      qrCorteSucursalTotalFiltro.Value := Redondeo(qrCorteSucursalTotalFiltro.Value +
+                                                                   qrEfectivo.FieldByName('Valor').AsFloat);
+                    end;
 
-                 qrEfectivo.Next;
+                  if (qrEfectivo.FieldByName('SinPrFilter').AsInteger = 2) then
+                    Begin
+                      qrCorteSucursalTotalFiltro_Dos.Value := Redondeo(qrCorteSucursalTotalFiltro_Dos.Value +
+                                                                   qrEfectivo.FieldByName('Valor').AsFloat);
+                    end;
+
+                end;
+                qrEfectivo.Next;
               end;
             If (qformacobros.FieldByName('FormaDePagoId').AsString = 'CK') then
             begin
@@ -6147,19 +6241,34 @@ begin
                                                                  qrEfectivo.FieldByName('Valor').AsFloat+
                                                                  qrCorteSucursalTotalCheque.Value);
                   end;
+                  If DM.Filtro_UnoDos =1 then
+                  begin
+                    if (qrEfectivo.FieldByName('SinPrFilter').AsInteger = 1) then
+                      Begin
+                        qrCorteDepositoTotalFiltro.Value := Redondeo(qrCorteDepositoTotalFiltro.Value +
+                                                                     qrEfectivo.FieldByName('Valor').AsFloat);
+                      end;
 
-                if (qrEfectivo.FieldByName('SinPrFilter').AsInteger = 1) then
-                  Begin
-                    qrCorteDepositoTotalFiltro.Value := Redondeo(qrCorteDepositoTotalFiltro.Value +
-                                                                 qrEfectivo.FieldByName('Valor').AsFloat);
+                    if (qrEfectivo.FieldByName('SinPrFilter').AsInteger = 2) then
+                      Begin
+                        qrCorteDepositoTotalFiltro.Value := qrCorteDepositoTotalFiltro.Value + Redondeo(qrCorteDepositoTotalFiltro_Dos.Value +
+                                                                     qrEfectivo.FieldByName('Valor').AsFloat);
+                      end;
+                  end
+                  Else  If DM.Filtro_UnoDos =0 then
+                  begin
+                    if (qrEfectivo.FieldByName('SinPrFilter').AsInteger = 1) then
+                      Begin
+                        qrCorteDepositoTotalFiltro.Value := Redondeo(qrCorteDepositoTotalFiltro.Value +
+                                                                     qrEfectivo.FieldByName('Valor').AsFloat);
+                      end;
+
+                    if (qrEfectivo.FieldByName('SinPrFilter').AsInteger = 2) then
+                      Begin
+                        qrCorteDepositoTotalFiltro_Dos.Value := Redondeo(qrCorteDepositoTotalFiltro_Dos.Value +
+                                                                     qrEfectivo.FieldByName('Valor').AsFloat);
+                      end;
                   end;
-
-                if (qrEfectivo.FieldByName('SinPrFilter').AsInteger = 2) then
-                  Begin
-                    qrCorteDepositoTotalFiltro_Dos.Value := Redondeo(qrCorteDepositoTotalFiltro_Dos.Value +
-                                                                 qrEfectivo.FieldByName('Valor').AsFloat);
-                  end;
-
                  qrEfectivo.Next;
                end;
             end;
@@ -6348,17 +6457,33 @@ begin
                                                            qrEfectivo.FieldByName('Valor').AsFloat);
 //                                                           qrCorteGlobalTotalCheque.Value);
               end;
+              If DM.Filtro_UnoDos =1 then
+              begin
+                  if (qrEfectivo.FieldByName('SinPrFilter').AsInteger = 1) then
+                    Begin
+                      qrCorteGlobalTotalFiltro.Value := Redondeo(qrCorteGlobalTotalFiltro.Value +
+                                                                 qrEfectivo.FieldByName('Valor').AsFloat);
+                    end;
 
-            if (qrEfectivo.FieldByName('SinPrFilter').AsInteger = 1) then
-              Begin
-                qrCorteGlobalTotalFiltro.Value := Redondeo(qrCorteGlobalTotalFiltro.Value +
-                                                           qrEfectivo.FieldByName('Valor').AsFloat);
-              end;
+                  if (qrEfectivo.FieldByName('SinPrFilter').AsInteger = 2) then
+                    Begin
+                      qrCorteGlobalTotalFiltro.Value := qrCorteGlobalTotalFiltro.Value + Redondeo(qrCorteGlobalTotalFiltro_Dos.Value +
+                                                                 qrEfectivo.FieldByName('Valor').AsFloat);
+                    end;
+              end
+              else If DM.Filtro_UnoDos =0 then
+              begin
+                  if (qrEfectivo.FieldByName('SinPrFilter').AsInteger = 1) then
+                    Begin
+                      qrCorteGlobalTotalFiltro.Value := Redondeo(qrCorteGlobalTotalFiltro.Value +
+                                                                 qrEfectivo.FieldByName('Valor').AsFloat);
+                    end;
 
-            if (qrEfectivo.FieldByName('SinPrFilter').AsInteger = 2) then
-              Begin
-                qrCorteGlobalTotalFiltro_Dos.Value := Redondeo(qrCorteGlobalTotalFiltro_Dos.Value +
-                                                           qrEfectivo.FieldByName('Valor').AsFloat);
+                  if (qrEfectivo.FieldByName('SinPrFilter').AsInteger = 2) then
+                    Begin
+                      qrCorteGlobalTotalFiltro_Dos.Value := Redondeo(qrCorteGlobalTotalFiltro_Dos.Value +
+                                                                 qrEfectivo.FieldByName('Valor').AsFloat);
+                    end;
               end;
 
             qrEfectivo.Next;
@@ -6843,8 +6968,6 @@ procedure TDM.ppGroupHeaderBand3BeforePrint(Sender: TObject);
 Var
  qfind : TADOQuery;
 begin
-// qfind := Find_Ldr('SELECT * FROM PTDepartamentos WHERE DepartamentoId = :depto', qrEntradaCabDetRepORIGEN.AsString);
-// ppLbDepartamento.Caption := 'Departamento: ('+ qrEntradaCabDetRepORIGEN.AsString + ')' + qfind.FieldByName('DESCRIPCION').AsString;
  qfind := Find_Ldr('SELECT Name FROM LDRDEPARTMENTS (nolock) WHERE LDRDEPARTAMENTOID = :depto', qrEntradaCabDetRepORIGEN.AsString);
  ppLbDepartamento.Caption := 'Departamento: ('+ qrEntradaCabDetRepORIGEN.AsString + ') - ' + qfind.FieldByName('Name').AsString;
  FreeAndNil(qfind);
@@ -9679,7 +9802,7 @@ begin
          Close;
          Clear;
          Add(' DECLARE @return_value int, @r_result bit ');
-         Add(' EXEC	@return_value = [dbo].[verif_digito]  ');
+         Add(' EXEC	@return_value = [verif_digito]  ');
          Add(' @p_clave =N'+#39+Cedula+#39+',');
          Add(' @r_result='+'0');
          Add(' Select	@return_value as Resultado ');
@@ -9746,7 +9869,7 @@ begin
   begin
     close;
     Clear;
-    add('select top 1 * from FotosCedulados.dbo.Fotos (nolock) '+
+    add('select top 1 * from FotosCedulados..Fotos (nolock) '+
                            ' WHERE MUN_CED ='+#39+MUN_CED+#39+
                            ' AND   SEQ_CED ='+#39+SEQ_CED+#39+
                            ' AND   VER_CED ='+#39+VER_CED+#39);
@@ -9755,7 +9878,7 @@ begin
     Begin
       close;
       Clear;
-      add('select top 1 * from Fotos2016.dbo.Fotos (nolock) '+
+      add('select top 1 * from Fotos2016..Fotos (nolock) '+
                            ' WHERE MUN_CED ='+#39+MUN_CED+#39+
                            ' AND   SEQ_CED ='+#39+SEQ_CED+#39+
                            ' AND   VER_CED ='+#39+VER_CED+#39);
@@ -10103,7 +10226,7 @@ begin
  for i := 1 to Cant do
  begin
      qfind.Close;
-     qfind.SQL.Text := ' Select DBO.NthWordSql('+#39+SCobertura+#39+','#39+','+#39+inttostr(i)+#39+' as Cobertura ';
+     qfind.SQL.Text := ' Select dbo.NthWordSql('+#39+SCobertura+#39+','#39+','+#39+inttostr(i)+#39+' as Cobertura ';
      qfind.Open;
      if qfind.RecordCount > 0 Then
      begin
@@ -10417,7 +10540,7 @@ begin
   strCadena_One:=EmptyStr;strCadena_Two:=EmptyStr;strCadena_Three:=EmptyStr;
   qCadena := DM.NewQuery;
   qCadena.Close;
-  qCadena.SQL.Text := ' Select DBO.NthWordSql('+#39+Cadena+#39+','+#39+' '+#39+','+#39+'1'+#39+') As Cadena';
+  qCadena.SQL.Text := ' Select dbo.NthWordSql('+#39+Cadena+#39+','+#39+' '+#39+','+#39+'1'+#39+') As Cadena';
   qCadena.Open;
   if Length(qCadena.FieldByName('Cadena').Value) > 0 then
     strCadena_One := qCadena.FieldByName('Cadena').Value
@@ -10427,7 +10550,7 @@ begin
   begin
     qCadena := DM.NewQuery;
     qCadena.Close;
-    qCadena.SQL.Text := ' Select DBO.NthWordSql('+#39+Cadena+#39+','+#39+' '+#39+','+#39+'2'+#39+') As Cadena';
+    qCadena.SQL.Text := ' Select dbo.NthWordSql('+#39+Cadena+#39+','+#39+' '+#39+','+#39+'2'+#39+') As Cadena';
     qCadena.Open;
     if (Length(qCadena.FieldByName('Cadena').Value) > 0) then
     begin
@@ -10439,7 +10562,7 @@ begin
       begin
         qCadena := DM.NewQuery;
         qCadena.Close;
-        qCadena.SQL.Text := ' Select DBO.NthWordSql('+#39+Cadena+#39+','+#39+' '+#39+','+#39+'3'+#39+') As Cadena';
+        qCadena.SQL.Text := ' Select dbo.NthWordSql('+#39+Cadena+#39+','+#39+' '+#39+','+#39+'3'+#39+') As Cadena';
         qCadena.Open;
         if Length(qCadena.FieldByName('Cadena').Value) > 0 then
         Begin
@@ -11501,7 +11624,7 @@ begin
    qfind := DM.NewQuery;
    result := False;
    qfind.Close;
-   qfind.SQL.Text := ' SELECT COUNT(D.FORMADEPAGOID) AS TOTAL FROM dbo.PTCOBRO C (nolock) INNER JOIN dbo.PTCOBRODETALLE D (nolock) '+
+   qfind.SQL.Text := ' SELECT COUNT(D.FORMADEPAGOID) AS TOTAL FROM PTCOBRO C (nolock) INNER JOIN PTCOBRODETALLE D (nolock) '+
                      ' ON C.COBROID=D.COBROID WHERE C.FECHA < '+#39+FormatDateTime('yyyymmdd',_fecha)+#39+
                      ' AND C.USUARIOID= :usr '+
                      ' AND C.TIPODOC='+#39+'RI'+#39+
@@ -11525,7 +11648,7 @@ begin
    qfind := DM.NewQuery;
    result := False;
    qfind.Close;
-   qfind.SQL.Text := ' SELECT COUNT(D.FORMADEPAGOID) AS TOTAL FROM dbo.PTCOBRO C (nolock) INNER JOIN dbo.PTCOBRODETALLE D (nolock) '+
+   qfind.SQL.Text := ' SELECT COUNT(D.FORMADEPAGOID) AS TOTAL FROM PTCOBRO C (nolock) INNER JOIN PTCOBRODETALLE D (nolock) '+
                      ' ON C.COBROID=D.COBROID WHERE C.FECHA < '+#39+FormatDateTime('yyyymmdd',_fecha)+#39+
                      ' AND C.SUCURSALID='+#39+DM.CurSucursal+#39+
                      ' AND C.TIPODOC='+#39+'RI'+#39+
@@ -11556,6 +11679,68 @@ begin
    begin
      result := qfind.Fieldbyname('Servidor').AsString;
    end;
+   FreeAndNil(qfind);
+end;
+
+Function TDM.Verifica_Filtro_UnoDos(_Sucursal: String): Boolean;
+var
+ qfind : TADOQuery;
+
+begin
+   qfind := DM.NewQuery;
+   result := False;
+   qfind.Close;
+   qfind.SQL.Text := ' select Sucursal from ptsucursal where MONTO_PORC > 0 '+
+                     'and Monto_Porc_1 > 0  And SUCURSALID='+#39+_Sucursal+#39;
+   qfind.Open;
+   If (qfind.Fieldbyname('Sucursal').AsInteger > 0) Then
+   begin
+     qfind.First;
+     result := True;
+   end
+   else
+     result := False;
+   FreeAndNil(qfind);
+end;
+Function TDM.Verifica_Pago_Filtro(_Recid: String): Boolean;
+var
+ qfind : TADOQuery;
+
+begin
+   qfind := DM.NewQuery;
+   result := False;
+   qfind.Close;
+   qfind.SQL.Text := ' Select Sinprfilter from Ptcobro where '+
+                     ' refrecid='+#39+_Recid+#39+
+                     ' and TipoDoc='+#39+'RI'+#39;
+   qfind.Open;
+   If (qfind.Fieldbyname('SinprFilter').AsInteger > 0) Then
+   begin
+     qfind.First;
+     result := True;
+   end
+   else
+     result := False;
+   FreeAndNil(qfind);
+end;
+Function TDM.VerificaPruebaAntiHiv(Recid: String): Boolean;
+var
+ qfind : TADOQuery;
+
+begin
+   qfind := DM.NewQuery;
+   result := False;
+   qfind.Close;
+   qfind.SQL.Text := ' Select PruebaId from PtentradaPacienteDetalle where '+
+                     ' refrecid='+#39+Recid+#39+' and PruebaId='+#39+'SER00049'+#39;
+   qfind.Open;
+   If (Length(qfind.Fieldbyname('PruebaId').AsString) > 0) Then
+   begin
+     qfind.First;
+     result := True;
+   end
+   else
+     result := False;
    FreeAndNil(qfind);
 end;
 

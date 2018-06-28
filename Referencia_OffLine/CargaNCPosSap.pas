@@ -193,7 +193,7 @@ begin
              begin
                  With qrVerificaCliente, sql do
                  begin
-                    Text := ' Select CardCode from '+ DM.qrParametroServidor_Sap.AsString+'.dbo.OCRD Where CardCode='+#39+qconsulta.Fieldbyname('ClienteID').AsString+#39;
+                    Text := ' Select CardCode from '+ DM.qrParametroServidor_Sap.AsString+'..OCRD Where CardCode='+#39+qconsulta.Fieldbyname('ClienteID').AsString+#39;
                     Open;
                     if (qrVerificaCliente.FieldByname('CardCode').AsString = EmptyStr) Then
                     begin
@@ -203,7 +203,7 @@ begin
                  With qrVerificaCFiscal, sql do
                  begin
                     Close;
-                    Text := ' SELECT U_Comprob from '+ DM.qrParametroServidor_Sap.AsString+'.dbo.OCRD Where CardCode='+#39+qconsulta.Fieldbyname('ClienteID').AsString+#39;
+                    Text := ' SELECT U_Comprob from '+ DM.qrParametroServidor_Sap.AsString+'..OCRD Where CardCode='+#39+qconsulta.Fieldbyname('ClienteID').AsString+#39;
                     Open;
                     if (qrVerificaCFiscal.FieldByname('U_Comprob').AsString = EmptyStr) Then
                     begin
@@ -264,7 +264,7 @@ begin
                  With qrVerificaCliente, sql do
                  begin
                     Close;
-                    Text := ' Select ItemCode From '+ DM.qrParametroServidor_Sap.AsString+'.dbo.OITM Where ItemCode='+#39+qconsulta.Fieldbyname('PruebaID').AsString+#39+' And ItmsGrpCod in (125,118)';
+                    Text := ' Select ItemCode From '+ DM.qrParametroServidor_Sap.AsString+'..OITM Where ItemCode='+#39+qconsulta.Fieldbyname('PruebaID').AsString+#39+' And ItmsGrpCod in (125,118)';
                     Open;
                     if (qrVerificaCliente.FieldByname('ItemCode').AsString = EmptyStr) Then
                     begin
@@ -389,7 +389,7 @@ begin
                   ' c.GrupoCliente=g.GrupoCliente '+
                   ' WHERE c.GrupoCliente Not in  ('+#39+'03'+#39+','+#39+'04'+#39+','+#39+'05'+#39+')'+
                   ' AND c.DataAreaId = '+#39+'ldr'+#39+' And g.DataAreaId = '+#39+'ldr'+#39+
-                  ' AND clienteid in (Select clienteID from [dbo].[ptClienteBlk] Where GruPoIDFac='+#39+cbExtGrupoCliente.EditValue+#39+')';
+                  ' AND clienteid in (Select clienteID from ptClienteBlk Where GruPoIDFac='+#39+cbExtGrupoCliente.EditValue+#39+')';
           Open;
        end;
   end;

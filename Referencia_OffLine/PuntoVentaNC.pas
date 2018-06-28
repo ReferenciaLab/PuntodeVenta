@@ -6217,7 +6217,8 @@ begin
  With qsecdoc,sql do
  begin
    Close;
-   Clear;                                                                   Add(' DECLARE	@return_value int,@r_result bigint,@r_result2 bigint,@r_result3 bit ');
+   Clear;
+   Add(' DECLARE	@return_value int,@r_result bigint,@r_result2 bigint,@r_result3 bit ');
    Add(' EXEC	@return_value = [dbo].[Sec_Documentos] ');
    Add(' @Tipo_Doc = N'+#39+tipodoc+#39+',');
    Add(' @SucursalID = N'+#39+DM.CurSucursal+#39+',');

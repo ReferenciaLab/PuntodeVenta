@@ -7,6 +7,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
   OnKeyDown = FormKeyDown
   OnPaint = nil
   OnShow = FormShow
+  ExplicitTop = -150
   ExplicitWidth = 1020
   ExplicitHeight = 659
   PixelsPerInch = 96
@@ -42,8 +43,6 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
       object TabGeneral: TcxTabSheet
         Caption = 'General'
         ImageIndex = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object lcGeneral: TdxLayoutControl
           Left = 0
           Top = 0
@@ -2520,6 +2519,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
       Properties.MaxLength = 0
       TabOrder = 2
       Text = '   -     - '
+      OnExit = mskRNCExit
       Width = 81
     end
     object txtNombreCia: TcxTextEdit
@@ -2805,8 +2805,8 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
       object Label1: TLabel
         Left = 14
         Top = 14
-        Width = 383
-        Height = 24
+        Width = 430
+        Height = 81
         Align = alClient
         Alignment = taCenter
         Caption = 'PROCESANDO POR FAVOR ESPERE...'
@@ -2818,6 +2818,8 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         ParentFont = False
         Transparent = True
         Layout = tlCenter
+        ExplicitWidth = 383
+        ExplicitHeight = 24
       end
       object Panel1: TPanel
         Left = 14
@@ -7428,13 +7430,13 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
-        Font.Size = 9
+        Font.Size = 10
         Font.Style = []
         Stretch = True
         Transparent = True
         mmHeight = 15080
         mmLeft = 2117
-        mmTop = 25928
+        mmTop = 25400
         mmWidth = 85725
         BandType = 7
         mmBottomOffset = 0
@@ -7668,13 +7670,38 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
-        Font.Size = 9
+        Font.Size = 10
         Font.Style = []
         Stretch = True
         Transparent = True
         mmHeight = 6350
         mmLeft = 2117
-        mmTop = 43127
+        mmTop = 42333
+        mmWidth = 85725
+        BandType = 7
+        mmBottomOffset = 0
+        mmOverFlowOffset = 0
+        mmStopPosition = 0
+        mmLeading = 0
+      end
+      object ppMemo7: TppMemo
+        UserName = 'Memo7'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        Caption = 'Memo7'
+        CharWrap = True
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = []
+        Stretch = True
+        Transparent = True
+        mmHeight = 8731
+        mmLeft = 2117
+        mmTop = 50006
         mmWidth = 85725
         BandType = 7
         mmBottomOffset = 0
@@ -8941,7 +8968,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 20638
         mmLeft = 1588
-        mmTop = 27696
+        mmTop = 25929
         mmWidth = 85196
         BandType = 7
         mmBottomOffset = 0
@@ -8975,7 +9002,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 7673
         mmLeft = 1323
-        mmTop = 50800
+        mmTop = 47361
         mmWidth = 85725
         BandType = 7
         mmBottomOffset = 0
@@ -9017,6 +9044,32 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         mmTop = 67998
         mmWidth = 64558
         BandType = 7
+      end
+      object ppMemo6: TppMemo
+        UserName = 'ppMemoNotaX1'
+        ForceJustifyLastLine = True
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        Caption = 'ppMemoNotaX1'
+        CharWrap = True
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = []
+        Stretch = True
+        Transparent = True
+        mmHeight = 7673
+        mmLeft = 1323
+        mmTop = 55827
+        mmWidth = 85725
+        BandType = 7
+        mmBottomOffset = 0
+        mmOverFlowOffset = 0
+        mmStopPosition = 0
+        mmLeading = 0
       end
     end
   end
@@ -11793,7 +11846,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         DataPipelineName = 'ppEntradaPaciente'
         mmHeight = 4233
         mmLeft = 23813
-        mmTop = 48948
+        mmTop = 50800
         mmWidth = 64029
         BandType = 0
       end
@@ -11814,7 +11867,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3704
         mmLeft = 3175
-        mmTop = 48948
+        mmTop = 50800
         mmWidth = 19579
         BandType = 0
       end
@@ -11835,7 +11888,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3704
         mmLeft = 3175
-        mmTop = 71173
+        mmTop = 73025
         mmWidth = 16140
         BandType = 0
       end
@@ -11858,7 +11911,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         DataPipelineName = 'ppEntradaPaciente'
         mmHeight = 4233
         mmLeft = 20638
-        mmTop = 71173
+        mmTop = 73025
         mmWidth = 60325
         BandType = 0
       end
@@ -11878,7 +11931,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3704
         mmLeft = 3175
-        mmTop = 90488
+        mmTop = 92340
         mmWidth = 18521
         BandType = 0
       end
@@ -11901,7 +11954,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         DataPipelineName = 'ppEntradaPaciente'
         mmHeight = 4233
         mmLeft = 55563
-        mmTop = 23813
+        mmTop = 25665
         mmWidth = 32015
         BandType = 0
       end
@@ -11922,7 +11975,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 4233
         mmLeft = 3175
-        mmTop = 80698
+        mmTop = 82550
         mmWidth = 77788
         BandType = 0
       end
@@ -11943,7 +11996,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3704
         mmLeft = 64294
-        mmTop = 95515
+        mmTop = 97367
         mmWidth = 14288
         BandType = 0
       end
@@ -11967,7 +12020,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         DataPipelineName = 'ppEntradaPaciente'
         mmHeight = 4233
         mmLeft = 79375
-        mmTop = 95515
+        mmTop = 97367
         mmWidth = 7408
         BandType = 0
       end
@@ -11988,7 +12041,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3704
         mmLeft = 3175
-        mmTop = 75936
+        mmTop = 77788
         mmWidth = 16140
         BandType = 0
       end
@@ -12011,7 +12064,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         DataPipelineName = 'ppEntradaPaciente'
         mmHeight = 4233
         mmLeft = 20638
-        mmTop = 75936
+        mmTop = 77788
         mmWidth = 60325
         BandType = 0
       end
@@ -12025,7 +12078,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Weight = 0.750000000000000000
         mmHeight = 3440
         mmLeft = 27252
-        mmTop = 90752
+        mmTop = 92604
         mmWidth = 36777
         BandType = 0
       end
@@ -12048,7 +12101,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         DataPipelineName = 'ppEntradaPaciente'
         mmHeight = 4233
         mmLeft = 23813
-        mmTop = 52917
+        mmTop = 54769
         mmWidth = 32544
         BandType = 0
       end
@@ -12069,7 +12122,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3969
         mmLeft = 3175
-        mmTop = 52917
+        mmTop = 54769
         mmWidth = 19844
         BandType = 0
       end
@@ -12091,10 +12144,10 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         ParentDataPipeline = False
         Transparent = True
         DataPipelineName = 'ppParametro'
-        mmHeight = 4233
+        mmHeight = 4191
         mmLeft = 19315
-        mmTop = 28310
-        mmWidth = 30480
+        mmTop = 30163
+        mmWidth = 21082
         BandType = 0
       end
       object ppLabel186: TppLabel
@@ -12113,7 +12166,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 4191
         mmLeft = 2116
-        mmTop = 28310
+        mmTop = 30163
         mmWidth = 12700
         BandType = 0
       end
@@ -12133,7 +12186,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 4191
         mmLeft = 2116
-        mmTop = 23813
+        mmTop = 25665
         mmWidth = 13504
         BandType = 0
       end
@@ -12153,7 +12206,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3969
         mmLeft = 45773
-        mmTop = 28310
+        mmTop = 30163
         mmWidth = 7673
         BandType = 0
       end
@@ -12174,7 +12227,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 4233
         mmLeft = 3175
-        mmTop = 85461
+        mmTop = 87313
         mmWidth = 77788
         BandType = 0
       end
@@ -12195,7 +12248,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3704
         mmLeft = 3175
-        mmTop = 57415
+        mmTop = 59267
         mmWidth = 19844
         BandType = 0
       end
@@ -12216,7 +12269,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3704
         mmLeft = 56621
-        mmTop = 57415
+        mmTop = 59267
         mmWidth = 10319
         BandType = 0
       end
@@ -12237,7 +12290,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3704
         mmLeft = 3175
-        mmTop = 62177
+        mmTop = 64029
         mmWidth = 16404
         BandType = 0
       end
@@ -12260,7 +12313,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         DataPipelineName = 'ppEntradaPaciente'
         mmHeight = 4233
         mmLeft = 20108
-        mmTop = 62177
+        mmTop = 64029
         mmWidth = 24606
         BandType = 0
       end
@@ -12281,7 +12334,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3704
         mmLeft = 46038
-        mmTop = 62177
+        mmTop = 64029
         mmWidth = 12700
         BandType = 0
       end
@@ -12302,7 +12355,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3704
         mmLeft = 3175
-        mmTop = 66675
+        mmTop = 68527
         mmWidth = 16140
         BandType = 0
       end
@@ -12325,7 +12378,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         DataPipelineName = 'ppEntradaPaciente'
         mmHeight = 4233
         mmLeft = 20373
-        mmTop = 66675
+        mmTop = 68527
         mmWidth = 60590
         BandType = 0
       end
@@ -12346,7 +12399,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3704
         mmLeft = 56621
-        mmTop = 52917
+        mmTop = 54769
         mmWidth = 10054
         BandType = 0
       end
@@ -12367,7 +12420,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3704
         mmLeft = 3175
-        mmTop = 95515
+        mmTop = 97367
         mmWidth = 14023
         BandType = 0
       end
@@ -12390,7 +12443,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         DataPipelineName = 'ppEntradaPaciente'
         mmHeight = 4233
         mmLeft = 17727
-        mmTop = 95515
+        mmTop = 97367
         mmWidth = 31750
         BandType = 0
       end
@@ -12474,7 +12527,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3704
         mmLeft = 3175
-        mmTop = 41275
+        mmTop = 43127
         mmWidth = 18785
         BandType = 0
       end
@@ -12493,7 +12546,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3175
         mmLeft = 65881
-        mmTop = 53181
+        mmTop = 55033
         mmWidth = 21960
         BandType = 0
       end
@@ -12512,7 +12565,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3440
         mmLeft = 24077
-        mmTop = 57415
+        mmTop = 59267
         mmWidth = 22225
         BandType = 0
       end
@@ -12531,7 +12584,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3440
         mmLeft = 67469
-        mmTop = 57679
+        mmTop = 59531
         mmWidth = 20373
         BandType = 0
       end
@@ -12550,7 +12603,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3175
         mmLeft = 59531
-        mmTop = 62442
+        mmTop = 64294
         mmWidth = 21431
         BandType = 0
       end
@@ -12569,7 +12622,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3704
         mmLeft = 54240
-        mmTop = 28575
+        mmTop = 30427
         mmWidth = 33338
         BandType = 0
       end
@@ -12592,7 +12645,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         DataPipelineName = 'ppNCF'
         mmHeight = 4191
         mmLeft = 2117
-        mmTop = 18256
+        mmTop = 17727
         mmWidth = 85461
         BandType = 0
       end
@@ -12614,7 +12667,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         DataPipelineName = 'ppNCF'
         mmHeight = 3810
         mmLeft = 23813
-        mmTop = 41275
+        mmTop = 43127
         mmWidth = 64029
         BandType = 0
       end
@@ -12634,7 +12687,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3810
         mmLeft = 3175
-        mmTop = 37042
+        mmTop = 38894
         mmWidth = 19315
         BandType = 0
       end
@@ -12656,7 +12709,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         DataPipelineName = 'ppNCF'
         mmHeight = 3810
         mmLeft = 23813
-        mmTop = 37042
+        mmTop = 38894
         mmWidth = 64294
         BandType = 0
       end
@@ -12676,7 +12729,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3387
         mmLeft = 3175
-        mmTop = 33073
+        mmTop = 34925
         mmWidth = 18521
         BandType = 0
       end
@@ -12698,7 +12751,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         DataPipelineName = 'ppNCF'
         mmHeight = 3810
         mmLeft = 23813
-        mmTop = 33073
+        mmTop = 34925
         mmWidth = 64029
         BandType = 0
       end
@@ -12718,7 +12771,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 3810
         mmLeft = 3175
-        mmTop = 44979
+        mmTop = 46831
         mmWidth = 20320
         BandType = 0
       end
@@ -12740,7 +12793,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         DataPipelineName = 'ppNCF'
         mmHeight = 3704
         mmLeft = 23813
-        mmTop = 44979
+        mmTop = 46831
         mmWidth = 64294
         BandType = 0
       end
@@ -12759,7 +12812,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 4233
         mmLeft = 19315
-        mmTop = 23813
+        mmTop = 25665
         mmWidth = 35719
         BandType = 0
       end
@@ -12784,11 +12837,35 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         Transparent = True
         mmHeight = 32015
         mmLeft = 82021
-        mmTop = 62177
+        mmTop = 64029
         mmWidth = 5556
         BandType = 0
         mmBarWidth = 254
         mmWideBarRatio = 76200
+      end
+      object ppDBText76: TppDBText
+        UserName = 'DBText76'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        Border.Weight = 1.000000000000000000
+        DataField = 'MENSAJE_VALIDA'
+        DataPipeline = DM.ppNCF
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        ParentDataPipeline = False
+        TextAlignment = taCentered
+        Transparent = True
+        DataPipelineName = 'ppNCF'
+        mmHeight = 3387
+        mmLeft = 2117
+        mmTop = 21960
+        mmWidth = 85461
+        BandType = 0
       end
     end
     object ppColumnHeaderBand3: TppColumnHeaderBand
@@ -12873,7 +12950,7 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
     object ppSummaryBand2: TppSummaryBand
       PrintHeight = phDynamic
       mmBottomOffset = 0
-      mmHeight = 24871
+      mmHeight = 39158
       mmPrintPosition = 0
       object ppLabel206: TppLabel
         UserName = 'Label20'
@@ -13097,6 +13174,30 @@ inherited frmPuntoVentaMod: TfrmPuntoVentaMod
         mmTop = 20108
         mmWidth = 29633
         BandType = 7
+      end
+      object ppMemo8: TppMemo
+        UserName = 'Memo8'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        Caption = 'Memo8'
+        CharWrap = False
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = []
+        Transparent = True
+        mmHeight = 10054
+        mmLeft = 265
+        mmTop = 26723
+        mmWidth = 85990
+        BandType = 7
+        mmBottomOffset = 0
+        mmOverFlowOffset = 0
+        mmStopPosition = 0
+        mmLeading = 0
       end
     end
     object ppParameterList4: TppParameterList

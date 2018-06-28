@@ -274,7 +274,7 @@ begin
   begin
     Close;
     Clear;
-    Text :='Select BankCode,BankName from '+ DM.qrParametroServidor_Sap.AsString+'.dbo.ODSC ';
+    Text :='Select BankCode,BankName from '+ DM.qrParametroServidor_Sap.AsString+'..ODSC ';
     Open;
   end;
   notac := TcxStyle.Create(Self);
@@ -339,7 +339,7 @@ begin
           spMensaje.Visible :=True;
           qPagos := DM.NewQuery;
           qPagos.Close;
-          qPagos.SQL.Text := ' Delete POSInterfaz.dbo.PagosDetalle Where CobroID = '+#39+DPago+#39;
+          qPagos.SQL.Text := ' Delete POSInterfaz..PagosDetalle Where CobroID = '+#39+DPago+#39;
           qPagos.ExecSQL;
           spMensaje.Visible := False;
           ShowMessage('Pago CobroID No'+ DPago+' Eliminado.  Verifique.');
@@ -583,7 +583,7 @@ begin
             spMensaje.Visible :=True;
             qPagos := DM.NewQuery;
             qPagos.Close;
-            qPagos.SQL.Text := ' Update POSInterfaz.dbo.Pagos_Head '+
+            qPagos.SQL.Text := ' Update POSInterfaz..Pagos_Head '+
                                ' Set Estado='+#39+'1'+#39+
                                ' Where Fecha='+#39+FormatDateTime('yyyymmdd', JvMemoryData1Fecha.AsDateTime)+#39;
             qPagos.ExecSQL;
@@ -888,8 +888,8 @@ begin
           spMensaje.Visible :=True;
           qCuadre := DM.NewQuery;
           qCuadre.Close;
-          qCuadre.SQL.Text := ' Delete POSInterfaz.dbo.PagosDetalle Where IDRef = '+#39+qrPagosID.Value+#39+
-                              ' Delete POSInterfaz.dbo.Pagos Where ID='+#39+qrPagosID.AsString+#39+' And Cuadre_Referencia ='+#39+DCuadre+#39;
+          qCuadre.SQL.Text := ' Delete POSInterfaz..PagosDetalle Where IDRef = '+#39+qrPagosID.Value+#39+
+                              ' Delete POSInterfaz..Pagos Where ID='+#39+qrPagosID.AsString+#39+' And Cuadre_Referencia ='+#39+DCuadre+#39;
           qCuadre.ExecSQL;
           spMensaje.Visible := False;
           ShowMessage('Cuadre '+ DCuadre+' Eliminado.  Verifique.');
@@ -943,7 +943,7 @@ begin
   begin
       qPagosH := DM.NewQuery;
       qPagosH.Close;
-      qPagosH.SQL.Text := ' Select top 1 Fecha from POSInterfaz.dbo.Pagos_Head '+
+      qPagosH.SQL.Text := ' Select top 1 Fecha from POSInterfaz..Pagos_Head '+
                           ' Where Fecha='+#39+FormatDateTime('yyyymmdd', dtfechaCarga.Date)+#39;
       qPagosH.Open;
       if (qPagosH.RecordCount > 0) then
@@ -957,12 +957,12 @@ begin
           spMensaje.Visible :=True;
           qPagos := DM.NewQuery;
           qPagos.Close;
-          qPagos.SQL.Text := ' Insert Into POSInterfaz.dbo.Pagos_Head (Fecha,Cuadre_Total,Estado,UserID_Creacion) '+
+          qPagos.SQL.Text := ' Insert Into POSInterfaz..Pagos_Head (Fecha,Cuadre_Total,Estado,UserID_Creacion) '+
                              ' Values ('+#39+FormatDateTime('yyyymmdd', dtfechaCarga.Date)+#39+','+#39+'0.00'+#39+','+#39+'0'+#39+','+#39+Dm.CurUser+#39+')';
           qPagos.ExecSQL;
           qPagosH := DM.NewQuery;
           qPagosH.Close;
-          qPagosH.SQL.Text := ' Insert Into POSInterfaz.dbo.Pagos (ID,Fecha, SucursalID, Monto_EFE, Monto_TC, Monto_CK, Monto_TB, Monto_US, Monto_DON,Monto_FSOB,Monto_COMP,Cuadre_Referencia,TurnoID,Cuenta_Banco,Banco_Deposito,Fecha_Deposito) '+
+          qPagosH.SQL.Text := ' Insert Into POSInterfaz..Pagos (ID,Fecha, SucursalID, Monto_EFE, Monto_TC, Monto_CK, Monto_TB, Monto_US, Monto_DON,Monto_FSOB,Monto_COMP,Cuadre_Referencia,TurnoID,Cuenta_Banco,Banco_Deposito,Fecha_Deposito) '+
                               '	SELECT NEWID() As ID, C.Fecha,C.SucursalID,	Isnull(sum(Case When ((TipoDoc='+#39+'RI'+#39+' OR TipoDoc='+#39+'DV'+#39+') And d.FormadePagoId='+#39+'EFE'+#39+')'+
 							                ' Then D.Monto End),0) AS Monto_EFE,'+
                               ' Isnull(sum(Case When ((TipoDoc='+#39+'RI'+#39+' OR TipoDoc='+#39+'DV'+#39+') And d.FormadePagoId='+#39+'TC'+#39+') Then D.Monto End),0)+'+
@@ -1277,7 +1277,7 @@ begin
   With qDetalle, sql do
   begin
       Close;
-      SQL.Text := ' Select * from POSInterfaz.dbo.pagos  '+
+      SQL.Text := ' Select * from POSInterfaz..pagos  '+
                   ' Where Fecha='+#39+FormatDateTime('yyyymmdd', JvMemoryData1Fecha.AsDateTime)+#39+' And Isnull(Cuenta_Banco,'+#39+#39+')='+#39+#39;
       Open;
       if (RecordCount > 0) then

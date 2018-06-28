@@ -41,8 +41,6 @@ inherited frmConsultaPagosClientes: TfrmConsultaPagosClientes
       object cxTabSheet1: TcxTabSheet
         Caption = 'cxTabSheet1'
         ImageIndex = 0
-        ExplicitWidth = 975
-        ExplicitHeight = 418
         object dxLayoutControl2: TdxLayoutControl
           Left = 0
           Top = 0
@@ -52,8 +50,6 @@ inherited frmConsultaPagosClientes: TfrmConsultaPagosClientes
           TabOrder = 0
           AutoContentSizes = [acsWidth, acsHeight]
           LookAndFeel = dmAppActions.lnfWeb
-          ExplicitWidth = 975
-          ExplicitHeight = 418
           object edbuscarpor: TcxComboBox
             Left = 80
             Top = 36
@@ -856,7 +852,7 @@ inherited frmConsultaPagosClientes: TfrmConsultaPagosClientes
     DataPipeline = ppCobroCliente
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'Letter'
+    PrinterSetup.PaperName = 'Letter (8.5" x 11")'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350

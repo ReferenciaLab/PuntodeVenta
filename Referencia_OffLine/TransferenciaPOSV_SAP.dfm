@@ -725,7 +725,7 @@ inherited frmTransferenciaPOSV_SAP: TfrmTransferenciaPOSV_SAP
     end
   end
   object spServicio: TLMDSimplePanel [5]
-    Left = 212
+    Left = 217
     Top = 56
     Width = 432
     Height = 210

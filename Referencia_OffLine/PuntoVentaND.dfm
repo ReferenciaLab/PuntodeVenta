@@ -41,8 +41,6 @@ inherited frmPuntoVentaND: TfrmPuntoVentaND
       object TabGeneral: TcxTabSheet
         Caption = 'General'
         ImageIndex = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object lcGeneral: TdxLayoutControl
           Left = 0
           Top = -7
@@ -2278,8 +2276,8 @@ inherited frmPuntoVentaND: TfrmPuntoVentaND
     object Label1: TLabel
       Left = 14
       Top = 14
-      Width = 383
-      Height = 24
+      Width = 430
+      Height = 81
       Align = alClient
       Alignment = taCenter
       Caption = 'PROCESANDO POR FAVOR ESPERE...'
@@ -2291,6 +2289,8 @@ inherited frmPuntoVentaND: TfrmPuntoVentaND
       ParentFont = False
       Transparent = True
       Layout = tlCenter
+      ExplicitWidth = 383
+      ExplicitHeight = 24
     end
     object Panel1: TPanel
       Left = 14

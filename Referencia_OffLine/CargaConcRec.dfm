@@ -50,11 +50,11 @@ object frmCargaConcRec: TfrmCargaConcRec
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 5
+      TabOrder = 6
       OnClick = btaceptarcuadreClick
     end
     object btcancelarcuadre: TcxButton
-      Left = 548
+      Left = 580
       Top = 110
       Width = 200
       Height = 22
@@ -66,7 +66,7 @@ object frmCargaConcRec: TfrmCargaConcRec
       Font.Style = []
       ModalResult = 2
       ParentFont = False
-      TabOrder = 6
+      TabOrder = 7
     end
     object cbExtGrupoArs: TcxExtLookupComboBox
       Left = 91
@@ -102,7 +102,7 @@ object frmCargaConcRec: TfrmCargaConcRec
       Top = 145
       Width = 749
       Height = 200
-      TabOrder = 7
+      TabOrder = 8
       object cxGrid1DBTableView1: TcxGridDBTableView
         NavigatorButtons.ConfirmDelete = False
         DataController.DataSource = dsCSV
@@ -140,7 +140,7 @@ object frmCargaConcRec: TfrmCargaConcRec
       end
     end
     object chkHumano: TcxCheckBox
-      Left = 582
+      Left = 659
       Top = 36
       Caption = 'Humano Completo'
       ParentColor = False
@@ -148,7 +148,7 @@ object frmCargaConcRec: TfrmCargaConcRec
       Style.BorderStyle = ebsSingle
       Style.Color = 16311249
       Style.HotTrack = False
-      TabOrder = 4
+      TabOrder = 5
       Width = 121
     end
     object dtFechaInicio: TcxDateEdit
@@ -172,6 +172,15 @@ object frmCargaConcRec: TfrmCargaConcRec
       Style.PopupBorderStyle = epbsSingle
       TabOrder = 3
       Width = 117
+    end
+    object mdLongitud: TcxMaskEdit
+      Left = 628
+      Top = 63
+      Style.BorderColor = clTeal
+      Style.BorderStyle = ebsSingle
+      Style.HotTrack = False
+      TabOrder = 4
+      Width = 25
     end
     object dxLayoutGroup2: TdxLayoutGroup
       ShowCaption = False
@@ -226,6 +235,11 @@ object frmCargaConcRec: TfrmCargaConcRec
                   Control = dtFechaFin
                   ControlOptions.ShowBorder = False
                 end
+                object dxLayoutControl3Item7: TdxLayoutItem
+                  Caption = 'Longitud'
+                  Control = mdLongitud
+                  ControlOptions.ShowBorder = False
+                end
               end
             end
             object dxLayoutControl3Item4: TdxLayoutItem
@@ -272,7 +286,7 @@ object frmCargaConcRec: TfrmCargaConcRec
   end
   object spMensaje: TLMDSimplePanel
     Left = 159
-    Top = 90
+    Top = 94
     Width = 458
     Height = 133
     Bevel.StyleInner = bvFrameLowered
@@ -323,9 +337,9 @@ object frmCargaConcRec: TfrmCargaConcRec
     end
   end
   object ProgressBar1: TProgressBar
-    Left = 288
-    Top = -8
-    Width = 150
+    Left = 709
+    Top = 36
+    Width = 35
     Height = 17
     TabOrder = 2
   end

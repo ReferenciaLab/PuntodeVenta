@@ -178,7 +178,7 @@ begin
     begin
       Close;
       Clear;
-      Text :='Select BankCode,BankName from dbo.ODSC ';
+      Text :='Select BankCode,BankName from ODSC ';
       Open;
     end;
 end;

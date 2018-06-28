@@ -286,7 +286,7 @@ begin
   begin
     Close;
     Clear;
-    Text :='Select BankCode,BankName from dbo.ODSC ';
+    Text :='Select BankCode,BankName from ODSC ';
     Open;
   end;
   If not DM.qrCliente.Active then
@@ -780,10 +780,10 @@ begin
           qfind.Close;
           qfind.SQL.Text:=' SELECT NOMBRES,APELLIDO1,ISNULL(APELLIDO2,'+#39+#39+') AS APELLIDO2,FECHA_NAC,SEXO,COD_SANGRE,COD_NACION,P.COD_MUNICIPIO,P.COD_CIUDAD,'+
                                '  P.COD_SECTOR,ISNULL(CALLE,'+#39+#39+') AS CALLE,ISNULL(CASA,'+#39+#39+') AS CASA,ISNULL(EDIFICIO,'+#39+#39+') AS EDIFICIO, ISNULL(PISO,'+#39+#39+') AS PISO, ISNULL(APTO,'+#39+#39+') AS APTO,ISNULL(S.DESCRIPCION,'+#39+#39+') AS SECTOR,C.CIUDADID AS CIUDAD '+
-                               '   FROM '+Db1Servidor+'.dbo.CEDULADOS P left join '+Db1Servidor+'.dbo.SECTOR_PARAJE S on  '+
+                               '   FROM '+Db1Servidor+'..CEDULADOS P left join '+Db1Servidor+'..SECTOR_PARAJE S on  '+
                                '   		(S.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI)  '+
                                '   		AND (S.COD_SECTOR COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_SECTOR COLLATE SQL_AltDiction_CP850_CI_AI ) INNER JOIN   '+
-                               '   '+Db1Servidor+'.dbo.MUNICIPIO M ON  '+
+                               '   '+Db1Servidor+'..MUNICIPIO M ON  '+
                                '   		M.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI '+
                                '   		LEFT OUTER JOIN PTCIUDAD C ON '+
                                '   		C.COD_NUM_PADRON COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI '+
@@ -804,10 +804,10 @@ begin
                  qfind.Close;
                  qfind.SQL.Text:=' SELECT NOMBRES,APELLIDO1,ISNULL(APELLIDO2,'+#39+#39+') AS APELLIDO2,FECHA_NAC,SEXO,COD_SANGRE,COD_NACION,P.COD_MUNICIPIO,P.COD_CIUDAD,'+
                                        '  P.COD_SECTOR,ISNULL(CALLE,'+#39+#39+') AS CALLE,ISNULL(CASA,'+#39+#39+') AS CASA,ISNULL(EDIFICIO,'+#39+#39+') AS EDIFICIO, ISNULL(PISO,'+#39+#39+') AS PISO, ISNULL(APTO,'+#39+#39+') AS APTO,ISNULL(S.DESCRIPCION,'+#39+#39+') AS SECTOR,C.CIUDADID AS CIUDAD '+
-                                       '   FROM '+Db2Servidor+'.dbo.CEDULADOS P left join '+Db2Servidor+'.dbo.SECTOR_PARAJE S on  '+
+                                       '   FROM '+Db2Servidor+'..CEDULADOS P left join '+Db2Servidor+'..SECTOR_PARAJE S on  '+
                                        '   		(S.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI)  '+
                                        '   		AND (S.COD_SECTOR COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_SECTOR COLLATE SQL_AltDiction_CP850_CI_AI ) INNER JOIN   '+
-                                       '   '+Db2Servidor+'.dbo.MUNICIPIO M ON  '+
+                                       '   '+Db2Servidor+'..MUNICIPIO M ON  '+
                                        '   		M.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI '+
                                        '   		LEFT OUTER JOIN PTCIUDAD C ON '+
                                        '   		C.COD_NUM_PADRON COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI '+

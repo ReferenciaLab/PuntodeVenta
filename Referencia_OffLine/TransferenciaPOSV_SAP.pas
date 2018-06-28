@@ -430,7 +430,7 @@ begin
           DPrueba :=qrPedidoDetallePruebaID.AsString+' '+qrPedidoDetalleDescripcion.AsString;
           qArticulo := DM.NewQuery;
           qArticulo.Close;
-          qArticulo.SQL.Text := ' Delete POSInterfaz.dbo.PedidoVentaDetalle '+
+          qArticulo.SQL.Text := ' Delete POSInterfaz..PedidoVentaDetalle '+
                                 ' Where RecID='+qrPedidoDetalleRecID.AsString+' And PruebaID ='+#39+qrPedidoDetallePruebaID.AsString+#39;
           qArticulo.ExecSQL;
           Buscar_Pedidos(Get_Estado(qrPedido_HeadEstado.AsString));
@@ -623,19 +623,19 @@ begin
                 spMensaje.Visible :=True;
 //                qPedidos := DM.NewQuery;
                 qrPed.Close;
-                qrPed.SQL.Text := ' Delete POSInterfaz.dbo.PedidoVentaDetalle '+
-                                     ' Where Recid in (Select RecID From POSInterfaz.dbo.PedidoVenta Where ClienteID='+#39+qrPedido_HeadClienteID.AsString+#39+
+                qrPed.SQL.Text := ' Delete POSInterfaz..PedidoVentaDetalle '+
+                                     ' Where Recid in (Select RecID From POSInterfaz..PedidoVenta Where ClienteID='+#39+qrPedido_HeadClienteID.AsString+#39+
                                      ' And Fecha_Desde ='+#39+FormatDateTime('yyyymmdd', qrPedido_HeadFecha_Desde.AsDateTime)+#39+
                                      ' And Fecha_Hasta ='+#39+FormatDateTime('yyyymmdd', qrPedido_HeadFecha_Hasta.AsDateTime)+#39+')'+
-                                     ' Delete POSInterfaz.dbo.PedidoVenta '+
+                                     ' Delete POSInterfaz..PedidoVenta '+
                                      ' Where ClienteID='+#39+qrPedido_HeadClienteID.AsString+#39+
                                      ' And Fecha_Desde ='+#39+FormatDateTime('yyyymmdd', qrPedido_HeadFecha_Desde.AsDateTime)+#39+
                                      ' And Fecha_Hasta ='+#39+FormatDateTime('yyyymmdd', qrPedido_HeadFecha_Hasta.AsDateTime)+#39+
-                                     ' Delete POSInterfaz.dbo.PedidoVenta_Head '+
+                                     ' Delete POSInterfaz..PedidoVenta_Head '+
                                      ' Where ClienteID='+#39+qrPedido_HeadClienteID.AsString+#39+
                                      ' And Fecha_Desde ='+#39+FormatDateTime('yyyymmdd', qrPedido_HeadFecha_Desde.AsDateTime)+#39+
                                      ' And Fecha_Hasta ='+#39+FormatDateTime('yyyymmdd', qrPedido_HeadFecha_Hasta.AsDateTime)+#39+
-                                     ' Update LaboratorioDb.dbo.PtEntradaPaciente '+
+                                     ' Update LaboratorioDb..PtEntradaPaciente '+
                                      ' Set Estatus_Sap='+#39+'A'+#39+' Where ClienteID='+#39+qrPedido_HeadClienteID.AsString+#39+
                                      ' And Fecha between '+#39+FormatDateTime('yyyymmdd', qrPedido_HeadFecha_Desde.AsDateTime)+#39+
                                      ' And '+#39+FormatDateTime('yyyymmdd', qrPedido_HeadFecha_Hasta.AsDateTime)+#39;
@@ -780,7 +780,7 @@ begin
        For Fecha_Procesoc := Fecha_Procesoc to Fecha_FinC do
        begin
             qPagosH.Close;
-            qPagosH.SQL.Text := ' Select Fecha from POSInterfaz.dbo.Pagos_Head '+
+            qPagosH.SQL.Text := ' Select Fecha from POSInterfaz..Pagos_Head '+
                                 ' Where Fecha = '+#39+FormatDateTime('yyyymmdd', Fecha_Proceso)+#39+
                                 ' And Estado='+#39+'1'+#39;
             qPagosH.Open;
@@ -1202,7 +1202,7 @@ begin
    With qconsulta, sql do
    begin
       Close;
-      Text := ' Select Top 1 RecID from PosInterfaz.dbo.PedidoVenta '+#13+
+      Text := ' Select Top 1 RecID from PosInterfaz..PedidoVenta '+#13+
               ' Where Estado = '+#39+Estado+#39+' And ClienteID='#39+ClienteID+#39;
       Open;
    end;
@@ -1303,7 +1303,7 @@ begin
    With qconsulta, sql do
    begin
       Close;
-      Text := ' Select Top 1 Rate from '+ DM.qrParametroServidor_Sap.AsString+'.dbo.ORTT Where RateDate='+#39+Fecha+#39;
+      Text := ' Select Top 1 Rate from '+ DM.qrParametroServidor_Sap.AsString+'..ORTT Where RateDate='+#39+Fecha+#39;
       Open;
    end;
   if (qconsulta.RecordCount > 0) then

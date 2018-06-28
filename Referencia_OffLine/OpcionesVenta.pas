@@ -256,6 +256,7 @@ type
     dxLayoutControl2Group1: TdxLayoutGroup;
     qrParametrosNotaFacturaEnvase: TMemoField;
     cxDBMemo4: TcxDBMemo;
+    qrParametrosNotaFacturaPacienteHiv: TStringField;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }

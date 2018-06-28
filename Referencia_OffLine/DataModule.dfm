@@ -947,6 +947,7 @@ object DM: TDM
       OptionsData.Inserting = False
       OptionsView.ColumnAutoWidth = True
       OptionsView.GroupByBox = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwDoctoresDoctorID: TcxGridDBColumn
         Caption = 'Doctor'
         DataBinding.FieldName = 'DoctorID'
@@ -971,6 +972,7 @@ object DM: TDM
       OptionsData.Inserting = False
       OptionsView.ColumnAutoWidth = True
       OptionsView.GroupByBox = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwProyectosProyectoID: TcxGridDBColumn
         Caption = 'Proyecto'
         DataBinding.FieldName = 'ProyectoID'
@@ -982,6 +984,8 @@ object DM: TDM
       object vwProyectosEstatus: TcxGridDBColumn
         DataBinding.FieldName = 'Estatus'
         PropertiesClassName = 'TcxCheckBoxProperties'
+        Properties.DisplayChecked = 'True'
+        Properties.DisplayUnchecked = 'False'
       end
     end
     object vwFlebotomista: TcxGridDBTableView
@@ -998,6 +1002,7 @@ object DM: TDM
       OptionsData.Inserting = False
       OptionsView.ColumnAutoWidth = True
       OptionsView.GroupByBox = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwFlebotomistaFlebotomistaID: TcxGridDBColumn
         DataBinding.FieldName = 'FlebotomistaID'
       end
@@ -1008,6 +1013,8 @@ object DM: TDM
       object vwFlebotomistaEstatus: TcxGridDBColumn
         DataBinding.FieldName = 'Estatus'
         PropertiesClassName = 'TcxCheckBoxProperties'
+        Properties.DisplayChecked = 'True'
+        Properties.DisplayUnchecked = 'False'
       end
     end
     object vwGrupoCliente: TcxGridDBTableView
@@ -1024,6 +1031,7 @@ object DM: TDM
       OptionsData.Inserting = False
       OptionsView.ColumnAutoWidth = True
       OptionsView.GroupByBox = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwGrupoClienteGrupoCliente: TcxGridDBColumn
         Caption = 'Tipo Cliente'
         DataBinding.FieldName = 'GRUPOCLIENTE'
@@ -1049,6 +1057,7 @@ object DM: TDM
       OptionsData.Inserting = False
       OptionsView.ColumnAutoWidth = True
       OptionsView.GroupByBox = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwClientesClienteID: TcxGridDBColumn
         Caption = 'Cliente'
         DataBinding.FieldName = 'ClienteID'
@@ -1075,6 +1084,7 @@ object DM: TDM
       OptionsData.Inserting = False
       OptionsView.ColumnAutoWidth = True
       OptionsView.GroupByBox = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwPacientesClienteID: TcxGridDBColumn
         DataBinding.FieldName = 'ClienteID'
       end
@@ -1099,6 +1109,7 @@ object DM: TDM
       OptionsData.Inserting = False
       OptionsView.ColumnAutoWidth = True
       OptionsView.GroupByBox = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwGrupoPruebaGrupoPruebaID: TcxGridDBColumn
         Caption = 'Grupo'
         DataBinding.FieldName = 'GRUPOPRUEBA'
@@ -1121,6 +1132,7 @@ object DM: TDM
       OptionsData.Inserting = False
       OptionsView.ColumnAutoWidth = True
       OptionsView.GroupByBox = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwPruebasPruebaID: TcxGridDBColumn
         Caption = 'Prueba'
         DataBinding.FieldName = 'PRUEBAID'
@@ -1144,6 +1156,7 @@ object DM: TDM
       OptionsData.Inserting = False
       OptionsView.ColumnAutoWidth = True
       OptionsView.GroupByBox = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwCiudadCiudadID: TcxGridDBColumn
         Caption = 'Ciudad'
         DataBinding.FieldName = 'CiudadID'
@@ -1167,6 +1180,7 @@ object DM: TDM
       OptionsData.Inserting = False
       OptionsView.ColumnAutoWidth = True
       OptionsView.GroupByBox = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwEspecialidadEspecialidadID: TcxGridDBColumn
         Caption = 'Especialidad'
         DataBinding.FieldName = 'EspecialidadID'
@@ -1191,6 +1205,7 @@ object DM: TDM
       OptionsData.Inserting = False
       OptionsView.ColumnAutoWidth = True
       OptionsView.GroupByBox = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwSegurosClienteID: TcxGridDBColumn
         Caption = 'Seguro'
         DataBinding.FieldName = 'ClienteID'
@@ -1213,6 +1228,7 @@ object DM: TDM
       OptionsData.Inserting = False
       OptionsView.ColumnAutoWidth = True
       OptionsView.GroupByBox = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwGastosVariosGastoVarioId: TcxGridDBColumn
         Caption = 'Gasto Vario'
         DataBinding.FieldName = 'GastoVarioId'
@@ -1234,6 +1250,7 @@ object DM: TDM
       OptionsData.Deleting = False
       OptionsData.Editing = False
       OptionsData.Inserting = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwTarjetaDescuentoTarjetaID: TcxGridDBColumn
         Caption = 'Tarjeta'
         DataBinding.FieldName = 'TarjetaID'
@@ -1254,6 +1271,7 @@ object DM: TDM
       OptionsData.Deleting = False
       OptionsData.Editing = False
       OptionsData.Inserting = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwDiasProcesamientoCodDiasProc: TcxGridDBColumn
         Caption = 'C'#243'digo'
         DataBinding.FieldName = 'CodDiasProc'
@@ -1277,6 +1295,7 @@ object DM: TDM
       OptionsData.Deleting = False
       OptionsData.Editing = False
       OptionsData.Inserting = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwUnidadesUnidad: TcxGridDBColumn
         DataBinding.FieldName = 'Unidad'
       end
@@ -1298,6 +1317,7 @@ object DM: TDM
       OptionsData.Deleting = False
       OptionsData.Editing = False
       OptionsData.Inserting = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwMaterialesMaterialId: TcxGridDBColumn
         Caption = 'Material'
         DataBinding.FieldName = 'MaterialId'
@@ -1320,6 +1340,7 @@ object DM: TDM
       OptionsData.Deleting = False
       OptionsData.Editing = False
       OptionsData.Inserting = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwDepartamentoDepid: TcxGridDBColumn
         Caption = 'Departamento'
         DataBinding.FieldName = 'Depid'
@@ -1343,6 +1364,7 @@ object DM: TDM
       OptionsData.Deleting = False
       OptionsData.Editing = False
       OptionsData.Inserting = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwMuestrasTIPOID: TcxGridDBColumn
         DataBinding.FieldName = 'TIPOID'
       end
@@ -1365,6 +1387,7 @@ object DM: TDM
       OptionsData.Inserting = False
       OptionsView.ColumnAutoWidth = True
       OptionsView.GroupByBox = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwConceptoNotasConceptoId: TcxGridDBColumn
         DataBinding.FieldName = 'ConceptoId'
       end
@@ -1382,6 +1405,7 @@ object DM: TDM
       DataController.Summary.FooterSummaryItems = <>
       DataController.Summary.SummaryGroups = <>
       OptionsView.NewItemRow = True
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwSucursalSucursalID: TcxGridDBColumn
         Caption = 'SucursalID'
         DataBinding.FieldName = 'SUCURSALID'
@@ -1404,6 +1428,7 @@ object DM: TDM
       OptionsData.Inserting = False
       OptionsView.ColumnAutoWidth = True
       OptionsView.GroupByBox = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwUsuarioSucursalUserID: TcxGridDBColumn
         DataBinding.FieldName = 'UserID'
       end
@@ -1425,6 +1450,7 @@ object DM: TDM
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>
       DataController.Summary.SummaryGroups = <>
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwDiagnosticoCod_Diag: TcxGridDBColumn
         DataBinding.FieldName = 'Cod_Diag'
       end
@@ -1446,6 +1472,7 @@ object DM: TDM
       OptionsData.DeletingConfirmation = False
       OptionsData.Editing = False
       OptionsData.Inserting = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwDocumentoTipoDocID: TcxGridDBColumn
         DataBinding.FieldName = 'TipoDocID'
       end
@@ -1463,6 +1490,7 @@ object DM: TDM
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>
       DataController.Summary.SummaryGroups = <>
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwUsuarioUserID: TcxGridDBColumn
         DataBinding.FieldName = 'UserID'
       end
@@ -1474,6 +1502,7 @@ object DM: TDM
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>
       DataController.Summary.SummaryGroups = <>
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwUsuarioMUserID: TcxGridDBColumn
         DataBinding.FieldName = 'UserID'
       end
@@ -1490,6 +1519,7 @@ object DM: TDM
       OptionsData.Editing = False
       OptionsData.Inserting = False
       OptionsView.GroupByBox = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwDocumentoSeguroDescripcion: TcxGridDBColumn
         DataBinding.FieldName = 'Descripcion'
       end
@@ -1506,6 +1536,7 @@ object DM: TDM
       OptionsData.Editing = False
       OptionsData.Inserting = False
       OptionsView.GroupByBox = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwNacionalidadCOD_NACION: TcxGridDBColumn
         DataBinding.FieldName = 'COD_NACION'
       end
@@ -1530,6 +1561,7 @@ object DM: TDM
       OptionsData.DeletingConfirmation = False
       OptionsData.Editing = False
       OptionsData.Inserting = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwEmpleadoEMPLID: TcxGridDBColumn
         DataBinding.FieldName = 'EMPLID'
       end
@@ -1548,6 +1580,7 @@ object DM: TDM
       OptionsData.DeletingConfirmation = False
       OptionsData.Editing = False
       OptionsData.Inserting = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwClienteClienteid: TcxGridDBColumn
         DataBinding.FieldName = 'Clienteid'
       end
@@ -1571,6 +1604,7 @@ object DM: TDM
       OptionsData.DeletingConfirmation = False
       OptionsData.Editing = False
       OptionsData.Inserting = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwBancoBankCode: TcxGridDBColumn
         DataBinding.FieldName = 'BankCode'
         Width = 70
@@ -1591,6 +1625,7 @@ object DM: TDM
       OptionsData.DeletingConfirmation = False
       OptionsData.Editing = False
       OptionsData.Inserting = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwGrupoClienteFactGRUPOCLIENTE: TcxGridDBColumn
         DataBinding.FieldName = 'GRUPOCLIENTE'
       end
@@ -1609,6 +1644,7 @@ object DM: TDM
       OptionsData.DeletingConfirmation = False
       OptionsData.Editing = False
       OptionsData.Inserting = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwGrupoClienteAcuGROUPID: TcxGridDBColumn
         DataBinding.FieldName = 'GROUPID'
       end
@@ -1631,6 +1667,7 @@ object DM: TDM
       OptionsData.DeletingConfirmation = False
       OptionsData.Editing = False
       OptionsData.Inserting = False
+      OptionsView.NewItemRowInfoText = 'Click here to add a new row'
       object vwGrupoClienteArsCodigoID: TcxGridDBColumn
         DataBinding.FieldName = 'CodigoID'
       end
@@ -4136,6 +4173,20 @@ object DM: TDM
     object qrParametroServidor_Sap: TStringField
       FieldName = 'Servidor_Sap'
       Size = 30
+    end
+    object qrParametroFecha_Valida_Comp: TDateTimeField
+      FieldName = 'Fecha_Valida_Comp'
+    end
+    object qrParametroFecha_Valida_Comp_Dos: TDateTimeField
+      FieldName = 'Fecha_Valida_Comp_Dos'
+    end
+    object qrParametroLink_Rnc: TStringField
+      FieldName = 'Link_Rnc'
+      Size = 50
+    end
+    object qrParametroNotaFacturaPacienteHiv: TStringField
+      FieldName = 'NotaFacturaPacienteHiv'
+      Size = 150
     end
   end
   object dsParametro: TDataSource
@@ -32948,10 +32999,10 @@ object DM: TDM
               TextAlignment = taRightJustified
               Transparent = True
               DataPipelineName = 'ppCorteSucursal'
-              mmHeight = 3440
-              mmLeft = 27781
+              mmHeight = 3429
+              mmLeft = 36660
               mmTop = 265
-              mmWidth = 25135
+              mmWidth = 16256
               BandType = 7
             end
             object ppLabel383: TppLabel
@@ -32991,10 +33042,10 @@ object DM: TDM
               TextAlignment = taRightJustified
               Transparent = True
               DataPipelineName = 'ppCorteSucursal'
-              mmHeight = 3440
-              mmLeft = 54769
+              mmHeight = 3429
+              mmLeft = 50843
               mmTop = 265
-              mmWidth = 23548
+              mmWidth = 27474
               BandType = 7
             end
             object ppDBCalc56: TppDBCalc
@@ -33015,10 +33066,10 @@ object DM: TDM
               TextAlignment = taRightJustified
               Transparent = True
               DataPipelineName = 'ppCorteSucursal'
-              mmHeight = 3439
-              mmLeft = 79904
+              mmHeight = 3429
+              mmLeft = 75459
               mmTop = 265
-              mmWidth = 23283
+              mmWidth = 27728
               BandType = 7
             end
             object ppDBCalc57: TppDBCalc
@@ -33039,10 +33090,10 @@ object DM: TDM
               TextAlignment = taRightJustified
               Transparent = True
               DataPipelineName = 'ppCorteSucursal'
-              mmHeight = 3440
-              mmLeft = 105040
+              mmHeight = 3429
+              mmLeft = 104489
               mmTop = 265
-              mmWidth = 23283
+              mmWidth = 23834
               BandType = 7
             end
             object ppDBCalc58: TppDBCalc
@@ -33063,10 +33114,10 @@ object DM: TDM
               TextAlignment = taRightJustified
               Transparent = True
               DataPipelineName = 'ppCorteSucursal'
-              mmHeight = 3440
-              mmLeft = 129646
+              mmHeight = 3429
+              mmLeft = 125942
               mmTop = 264
-              mmWidth = 22754
+              mmWidth = 26458
               BandType = 7
             end
             object ppDBCalc59: TppDBCalc
@@ -33087,10 +33138,10 @@ object DM: TDM
               TextAlignment = taRightJustified
               Transparent = True
               DataPipelineName = 'ppCorteSucursal'
-              mmHeight = 3440
-              mmLeft = 154252
+              mmHeight = 3429
+              mmLeft = 153205
               mmTop = 264
-              mmWidth = 22490
+              mmWidth = 23537
               BandType = 7
             end
             object ppDBCalc123: TppDBCalc
@@ -33111,10 +33162,10 @@ object DM: TDM
               TextAlignment = taRightJustified
               Transparent = True
               DataPipelineName = 'ppCorteSucursal'
-              mmHeight = 3440
-              mmLeft = 178594
+              mmHeight = 3429
+              mmLeft = 170656
               mmTop = 264
-              mmWidth = 22754
+              mmWidth = 30692
               BandType = 7
             end
           end
@@ -57015,8 +57066,10 @@ object DM: TDM
       '         WHEN '#39'14'#39' THEN '#39'Factura R'#233'gimen Especial'#39
       '         WHEN '#39'15'#39' THEN '#39'Factura R'#233'gimen Gubernamental'#39
       '       END) AS  NCFTYPEID,'
-      'Muestrano,EntradaID,NCFID,NCFNAME,RNC,FECHA'
-      'From AX2009.dbo.NCFTABLEPTV  (nolock)'
+      
+        'Muestrano,EntradaID,NCFID,NCFNAME,RNC,FECHA,'#39' '#39' as MENSAJE_VALID' +
+        'A'
+      'From NCFTABLEPTV  (nolock)'
       'Where DataAreaID='#39'ldr'#39)
     Left = 360
     Top = 392
@@ -57045,6 +57098,11 @@ object DM: TDM
     end
     object qrNCFFECHA: TDateTimeField
       FieldName = 'FECHA'
+    end
+    object qrNCFMENSAJE_VALIDA: TStringField
+      FieldName = 'MENSAJE_VALIDA'
+      ReadOnly = True
+      Size = 50
     end
   end
   object dsNCF: TDataSource

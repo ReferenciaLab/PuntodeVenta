@@ -75,6 +75,8 @@ type
     dxLayoutControl3Item6: TdxLayoutItem;
     dxLayoutControl3Group2: TdxLayoutGroup;
     dxLayoutControl3Group3: TdxLayoutGroup;
+    dxLayoutControl3Item7: TdxLayoutItem;
+    mdLongitud: TcxMaskEdit;
     procedure cboShellArchivoClick(Sender: TObject);
     procedure btaceptarcuadreClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -183,6 +185,7 @@ begin
 procedure TfrmCargaConcRec.btaceptarcuadreClick(Sender: TObject);
 Var StrArchivo,Num_Aprob,ID : String;
      Monto_Dif           : Currency;
+     Long_Auto           : Integer;
 begin
 Try
        If (cbExtGrupoArs.Text = EmptyStr) Then
@@ -217,6 +220,14 @@ Try
           Exit;
        end
        Else
+       If (Length(mdLongitud.EditText)= 0) then
+       Begin
+          EtMensajeDlg('Debe Seleccionar la longiutd de la autorizacion.  Verifique.',etConfirmacion,[etOk],1,dm.Imagenes.Items[5].Bitmap,true);
+          mdLongitud.SetFocus;
+          Exit;
+       end
+       Else
+
        If (Length(cbExtGrupoArs.Text) > 0) And (UpperCase(cboShellArchivo.EditText)<>'C:\CONCILIACIONARS') then
        begin
           StrArchivo:=cboShellArchivo.EditingValue;
@@ -289,6 +300,7 @@ Try
             begin
 
               Num_Aprob := JvCsvDataSet1NoAutorizacion.AsString;
+              Long_Auto := mdLongitud.EditValue;
               if (cbExtGrupoArs.EditingValue = 'ARS_HUM') Or (cbExtGrupoArs.EditingValue = 'ARS_PRI') then
               Begin
 //                if(Length(JvCsvDataSet1NoAutorizacion.AsString) > 9) and (chkHumano.Checked = True) Then
@@ -296,9 +308,9 @@ Try
 //                else If (Length(JvCsvDataSet1NoAutorizacion.AsString) > 9) and (chkHumano.Checked = False) Then
 //                   Num_Aprob := RightStr(JvCsvDataSet1NoAutorizacion.AsString,7)
 //                else
-                   Num_Aprob := RightStr(JvCsvDataSet1NoAutorizacion.AsString,7);
+                   Num_Aprob := RightStr(JvCsvDataSet1NoAutorizacion.AsString,Long_Auto);
 
-                If(Length(Num_Aprob) = 9) then
+                If(Length(Num_Aprob) = Long_Auto) then
                 Begin
                    qfind.Close;
                    qfind.SQL.Text := ' Select * from PedidoVenta p inner join ClienteArs c  on p.ClienteID=c.ClienteID'+
@@ -310,7 +322,7 @@ Try
                    begin
                        qfind.Close;
                        qfind.SQL.Text := ' Select * from PedidoVenta p inner join ClienteArs c  on p.ClienteID=c.ClienteID'+
-                                         ' Where c.Cod_Grupo='+#39+CodGrupo+#39+' and p.AprobacionNo Like '+#39+'%'+RightStr(JvCsvDataSet1NoAutorizacion.AsString,7)+#39+
+                                         ' Where c.Cod_Grupo='+#39+CodGrupo+#39+' and p.AprobacionNo Like '+#39+'%'+RightStr(JvCsvDataSet1NoAutorizacion.AsString,Long_Auto)+#39+
                                          ' and fecha between '+#39+FormatDateTime('yyyymmdd', dtfechainicio.Date)+#39+' and '+#39+FormatDateTime('yyyymmdd', dtfechafin.Date)+#39;
                        qfind.Open;
                    End
@@ -319,7 +331,7 @@ Try
                 begin
                        qfind.Close;
                        qfind.SQL.Text := ' Select * from PedidoVenta p inner join ClienteArs c  on p.ClienteID=c.ClienteID'+
-                                         ' Where c.Cod_Grupo='+#39+CodGrupo+#39+' and p.AprobacionNo like '+#39+'%'+RightStr(JvCsvDataSet1NoAutorizacion.AsString,7)+#39+
+                                         ' Where c.Cod_Grupo='+#39+CodGrupo+#39+' and p.AprobacionNo like '+#39+'%'+RightStr(JvCsvDataSet1NoAutorizacion.AsString,Long_Auto)+#39+
                                          ' and fecha between '+#39+FormatDateTime('yyyymmdd', dtfechainicio.Date)+#39+' and '+#39+FormatDateTime('yyyymmdd', dtfechafin.Date)+#39;
                        qfind.Open;
                 end
@@ -330,7 +342,7 @@ Try
                 begin
                    qfind.Close;
                    qfind.SQL.Text := ' Select * from PedidoVenta p inner join ClienteArs c  on p.ClienteID=c.ClienteID'+
-                                     ' Where c.Cod_Grupo='+#39+CodGrupo+#39+' and p.AprobacionNo like '+#39+'%'+RightStr(JvCsvDataSet1NoAutorizacion.AsString,7)+#39+
+                                     ' Where c.Cod_Grupo='+#39+CodGrupo+#39+' and p.AprobacionNo like '+#39+'%'+RightStr(JvCsvDataSet1NoAutorizacion.AsString,Long_Auto)+#39+
                                      ' and fecha between '+#39+FormatDateTime('yyyymmdd', dtfechainicio.Date)+#39+' and '+#39+FormatDateTime('yyyymmdd', dtfechafin.Date)+#39;
                    qfind.Open;
                 end
@@ -381,7 +393,7 @@ Try
                                      Clear;
                                      Add('  UPDATE PedidoVenta '+
                                          '  Set Estatus_Ars='+#39+'I'+#39+','+'Pagado_Ars='+FloatToStr(JvCsvDataSet1MontoPagado.AsFloat)+','+'ID_ARS='+#39+ID+#39+',ReConciliado='+'1'+
-                                         '  Where ClienteID='+#39+qFind.FieldByName('ClienteId').AsString+#39+' and AprobacionNo Like '+#39+'%'+RightStr(JvCsvDataSet1NoAutorizacion.AsString,7)+#39+
+                                         '  Where ClienteID='+#39+qFind.FieldByName('ClienteId').AsString+#39+' and AprobacionNo Like '+#39+'%'+RightStr(JvCsvDataSet1NoAutorizacion.AsString,Long_Auto)+#39+
                                          '  and fecha between '+#39+FormatDateTime('yyyymmdd', dtfechainicio.Date)+#39+' and '+#39+FormatDateTime('yyyymmdd', dtfechafin.Date)+#39);
                                      ExecSQL;
                                    end;
@@ -395,7 +407,7 @@ Try
                                      Add('  UPDATE PedidoVenta '+
                                          '  Set Estatus_Ars='+#39+'C'+#39+','+'Pagado_Ars='+FloatToStr(qfind.FieldByName('MontoFacturado').AsFloat)+','+
                                          '  ReConciliado='+'1'+','+'ID_ARS='+#39+ID+#39+
-                                         '  Where ClienteID='+#39+qFind.FieldByName('ClienteId').AsString+#39+' and AprobacionNo Like '+#39+'%'+RightStr(JvCsvDataSet1NoAutorizacion.AsString,7)+#39+
+                                         '  Where ClienteID='+#39+qFind.FieldByName('ClienteId').AsString+#39+' and AprobacionNo Like '+#39+'%'+RightStr(JvCsvDataSet1NoAutorizacion.AsString,Long_Auto)+#39+
                                          '  and fecha between '+#39+FormatDateTime('yyyymmdd', dtfechainicio.Date)+#39+' and '+#39+FormatDateTime('yyyymmdd', dtfechafin.Date)+#39);
                                      ExecSQL;
                                  end;
@@ -410,7 +422,7 @@ Try
                                    Add('  UPDATE PedidoVenta '+
                                        '  Set Estatus_Ars='+#39+'C'+#39+','+'Pagado_Ars='+FloatToStr(qfind.FieldByName('MontoFacturado').AsFloat)+','+
                                        '  ReConciliado='+'1'+','+'ID_ARS='+#39+ID+#39+
-                                       '  Where ClienteID='+#39+qFind.FieldByName('ClienteId').AsString+#39+' and AprobacionNo Like '+#39+'%'+RightStr(JvCsvDataSet1NoAutorizacion.AsString,7)+#39+
+                                       '  Where ClienteID='+#39+qFind.FieldByName('ClienteId').AsString+#39+' and AprobacionNo Like '+#39+'%'+RightStr(JvCsvDataSet1NoAutorizacion.AsString,Long_Auto)+#39+
                                        '  and fecha between '+#39+FormatDateTime('yyyymmdd', dtfechainicio.Date)+#39+' and '+#39+FormatDateTime('yyyymmdd', dtfechafin.Date)+#39);
                                    ExecSQL;
                                end;

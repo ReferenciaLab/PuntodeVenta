@@ -815,8 +815,8 @@ inherited frmTransferenciaCuadre_SAP: TfrmTransferenciaCuadre_SAP
     end
   end
   object spMensaje: TLMDSimplePanel [3]
-    Left = 243
-    Top = 69
+    Left = 235
+    Top = 244
     Width = 458
     Height = 133
     Bevel.StyleInner = bvFrameLowered

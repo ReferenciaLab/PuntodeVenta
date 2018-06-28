@@ -196,6 +196,11 @@ begin
 //     ppImpCuadreCaja.AutoSearchDialog := False;
 //     ppImpCuadreCaja.DeviceType := dtScreen;
 //     ppImpCuadreCaja.Print;
+// Verifica Unificación de Filtro 1 y Filtro 2
+      If dm.Verifica_Filtro_UnoDos(qrCuadres.FieldByName('SucursalId').AsString) then
+         DM.Filtro_UnoDos :=1
+      else
+         DM.Filtro_UnoDos :=0;
 
      DM.qrCorteCajaDetRep.Close;
      DM.qrCorteCajaDetRep.Parameters.ParamByName('cor').Value := qrCuadresCorteID.Value;
@@ -233,9 +238,8 @@ begin
         DM.ppCuadreSucursal2.DeviceType := dtScreen;
         DM.ppCuadreSucursal2.Print;
 
-        Texto := ' SELECT * FROM PTCobro C (nolock) , PTEntradaPaciente E (nolock) '+
-                 ' WHERE C.refrecid = E.RecId '+
-                 ' AND E.DataAreaId = ' + #39 + DM.CurEmpresa + #39 +
+        Texto := ' SELECT * FROM PTCobro C (nolock) Inner Join PTEntradaPaciente E (nolock) On C.refrecid = E.RecId '+
+                 ' WHERE E.DataAreaId = ' + #39 + DM.CurEmpresa + #39 +
                  ' AND C.Fecha = '+#39+FormatDateTime('yyyymmdd', qrCuadres.FieldByName('Fecha').AsDateTime)+#39+
                  ' AND C.SucursalId = :suc '+
                  ' AND C.CuadreGlobal = :cdr '+
@@ -243,9 +247,8 @@ begin
 
         //Imprimiendo el Deposito del Cuadre de Caja (FISCAL).
         DM.qrCobro.Close;
-        DM.qrCobro.SQL.Text := ' SELECT * FROM PTCobro C (nolock) , PTEntradaPaciente E (nolock) '+
-                               ' WHERE C.refrecid = E.RecId '+
-                               ' AND E.DataAreaId = ' + #39 + DM.CurEmpresa + #39 +
+        DM.qrCobro.SQL.Text := ' SELECT * FROM PTCobro C (nolock) Inner Join PTEntradaPaciente E (nolock) On C.refrecid = E.RecId '+
+                               ' WHERE E.DataAreaId = ' + #39 + DM.CurEmpresa + #39 +
                                ' AND C.SinPrFilter = 0 '+
                                ' AND C.Fecha = '+#39+FormatDateTime('yyyymmdd', qrCuadres.FieldByName('Fecha').AsDateTime)+#39+
                                ' AND C.SucursalId = :suc '+
@@ -294,16 +297,17 @@ begin
 
         //Imprimiendo el Deposito del Cuadre de Caja (FILTRO).
         DM.qrCobro.Close;
-        DM.qrCobro.SQL.Text := ' SELECT * FROM PTCobro C (nolock) , PTEntradaPaciente E (nolock) '+
-                               ' WHERE C.refrecid = E.RecId '+
-                               ' AND E.DataAreaId = ' + #39 + DM.CurEmpresa + #39 +
-                               ' AND C.SinPrFilter = 1 '+
-                               ' AND C.Fecha = '+#39+FormatDateTime('yyyymmdd', qrCuadres.FieldByName('Fecha').AsDateTime)+#39+
+        DM.qrCobro.SQL.Text := ' SELECT * FROM PTCobro C (nolock) Inner Join  PTEntradaPaciente E (nolock) On C.refrecid = E.RecId '+
+                               ' WHERE E.DataAreaId = ' + #39 + DM.CurEmpresa + #39;
+        if DM.Filtro_UnoDos = 1 then
+            DM.qrCobro.SQL.Text := DM.qrCobro.SQL.Text + ' AND C.SinPrFilter in (1,2) '
+        else
+            DM.qrCobro.SQL.Text := DM.qrCobro.SQL.Text + ' AND C.SinPrFilter = 1 ';
+        DM.qrCobro.SQL.Text := DM.qrCobro.SQL.Text + ' AND C.Fecha = '+#39+FormatDateTime('yyyymmdd', qrCuadres.FieldByName('Fecha').AsDateTime)+#39+
                                ' AND C.SucursalId = :suc '+
                                ' AND C.CuadreGlobal = :cdr '+
                                ' ORDER BY C.SucursalId, C.Fecha, C.UsuarioId, C.EntradaId, C.CobroId ';
         DM.qrCobro.Parameters.ParamByName('suc').Value := qrCuadres.FieldByName('SucursalId').AsString;
-//        DM.qrCobro.Parameters.ParamByName('fec').Value := FormatDateTime('yyyymmdd', qrCuadres.FieldByName('Fecha').Value);
         DM.qrCobro.Parameters.ParamByName('cdr').Value := qrCuadres.FieldByName('CorteId').AsString;
         DM.qrCobro.Open;
 
@@ -311,10 +315,14 @@ begin
         DM.qrCorteDetalle.SQL.Text := ' SELECT CorteID, Tipo, FormadePagoId, MonedaId, '+
                                       ' SUM(Valor) AS Valor, SUM(ValorMST) AS ValorMST '+
                                       ' FROM PTCorteCajaDet (nolock) '+
-                                      ' WHERE corteid = :cor And MonedaId='+#39+DM.qrParametroMonedaID.Value+#39+
-                                      ' AND SinPrFilter = 1 '+
-                                      ' GROUP BY CorteID, Tipo, FormadePagoId, MonedaId '+
-                                      ' ORDER BY CorteID, Tipo, FormadePagoId, MonedaId ';
+                                      ' WHERE corteid = :cor And MonedaId='+#39+DM.qrParametroMonedaID.Value+#39;
+        if DM.Filtro_UnoDos = 1 then
+            DM.qrCorteDetalle.SQL.Text := DM.qrCorteDetalle.SQL.Text + ' AND SinPrFilter in (1,2) '
+        else
+            DM.qrCorteDetalle.SQL.Text := DM.qrCorteDetalle.SQL.Text + ' AND SinPrFilter = 1 ';
+
+         DM.qrCorteDetalle.SQL.Text := DM.qrCorteDetalle.SQL.Text + ' GROUP BY CorteID, Tipo, FormadePagoId, MonedaId '+
+                                                                    ' ORDER BY CorteID, Tipo, FormadePagoId, MonedaId ';
         DM.qrCorteDetalle.Parameters.ParamByName('cor').Value := qrCuadres.FieldByName('CorteId').AsString;
         DM.qrCorteDetalle.Open;
 
@@ -322,10 +330,14 @@ begin
         DM.qrCorteSucursal.SQL.Text := ' SELECT CorteId, Usuario, '+
                                        ' SUM(Valor) AS Valor, SUM(ValorMST) AS ValorMST '+
                                        ' FROM PTCorteSucursal (nolock) '+
-                                       ' WHERE corteid = :cor '+
-                                       ' AND SinPrFilter = 1 '+
-                                       ' GROUP BY CorteID, Usuario '+
-                                       ' ORDER BY CorteID, Usuario ';
+                                       ' WHERE corteid = :cor ';
+        if DM.Filtro_UnoDos = 1 then
+            DM.qrCorteSucursal.SQL.Text  := DM.qrCorteSucursal.SQL.Text  + ' AND SinPrFilter in (1,2) '
+        else
+            DM.qrCorteSucursal.SQL.Text  := DM.qrCorteSucursal.SQL.Text  + ' AND SinPrFilter = 1 ';
+
+         DM.qrCorteSucursal.SQL.Text :=  DM.qrCorteSucursal.SQL.Text+' GROUP BY CorteID, Usuario '+
+                                                                     ' ORDER BY CorteID, Usuario ';
         DM.qrCorteSucursal.Parameters.ParamByName('cor').Value := qrCuadres.FieldByName('CorteId').AsString;
         DM.qrCorteSucursal.Open;
 
@@ -343,63 +355,66 @@ begin
           end;
 
         //Imprimiendo el Deposito del Cuadre de Caja (FILTRO_DOS).
-        DM.qrCobro.Close;
-        DM.qrCobro.SQL.Text := ' SELECT * FROM PTCobro C (nolock) , PTEntradaPaciente E (nolock) '+
-                               ' WHERE C.refrecid = E.RecId '+
-                               ' AND E.DataAreaId = ' + #39 + DM.CurEmpresa + #39 +
-                               ' AND C.SinPrFilter = 2 '+
-                               ' AND C.Fecha = '+#39+FormatDateTime('yyyymmdd', qrCuadres.FieldByName('Fecha').AsDateTime)+#39+
-                               ' AND C.SucursalId = :suc '+
-                               ' AND C.CuadreGlobal = :cdr '+
-                               ' ORDER BY C.SucursalId, C.Fecha, C.UsuarioId, C.EntradaId, C.CobroId ';
-        DM.qrCobro.Parameters.ParamByName('suc').Value := qrCuadres.FieldByName('SucursalId').AsString;
-//        DM.qrCobro.Parameters.ParamByName('fec').Value := FormatDateTime('yyyymmdd', qrCuadres.FieldByName('Fecha').Value);
-        DM.qrCobro.Parameters.ParamByName('cdr').Value := qrCuadres.FieldByName('CorteId').AsString;
-        DM.qrCobro.Open;
+        If DM.Filtro_UnoDos = 0 then
+        begin
+            DM.qrCobro.Close;
+            DM.qrCobro.SQL.Text := ' SELECT * FROM PTCobro C (nolock) Inner Join PTEntradaPaciente E (nolock) '+
+                                   ' ON C.refrecid = E.RecId '+
+                                   ' WHERE E.DataAreaId = ' + #39 + DM.CurEmpresa + #39+
+                                   ' AND C.SinPrFilter = 2 '+
+                                   ' AND C.Fecha = '+#39+FormatDateTime('yyyymmdd', qrCuadres.FieldByName('Fecha').AsDateTime)+#39+
+                                   ' AND C.SucursalId = :suc '+
+                                   ' AND C.CuadreGlobal = :cdr '+
+                                   ' ORDER BY C.SucursalId, C.Fecha, C.UsuarioId, C.EntradaId, C.CobroId ';
+            DM.qrCobro.Parameters.ParamByName('suc').Value := qrCuadres.FieldByName('SucursalId').AsString;
+    //        DM.qrCobro.Parameters.ParamByName('fec').Value := FormatDateTime('yyyymmdd', qrCuadres.FieldByName('Fecha').Value);
+            DM.qrCobro.Parameters.ParamByName('cdr').Value := qrCuadres.FieldByName('CorteId').AsString;
+            DM.qrCobro.Open;
 
-        DM.qrCorteDetalle.Close;
-        DM.qrCorteDetalle.SQL.Text := ' SELECT CorteID, Tipo, FormadePagoId, MonedaId, '+
-                                      ' SUM(Valor) AS Valor, SUM(ValorMST) AS ValorMST '+
-                                      ' FROM PTCorteCajaDet (nolock) '+
-                                      ' WHERE corteid = :cor And MonedaId='+#39+DM.qrParametroMonedaID.Value+#39+
-                                      ' AND SinPrFilter = 2 '+
-                                      ' GROUP BY CorteID, Tipo, FormadePagoId, MonedaId '+
-                                      ' ORDER BY CorteID, Tipo, FormadePagoId, MonedaId ';
-        DM.qrCorteDetalle.Parameters.ParamByName('cor').Value := qrCuadres.FieldByName('CorteId').AsString;
-        DM.qrCorteDetalle.Open;
+            DM.qrCorteDetalle.Close;
+            DM.qrCorteDetalle.SQL.Text := ' SELECT CorteID, Tipo, FormadePagoId, MonedaId, '+
+                                          ' SUM(Valor) AS Valor, SUM(ValorMST) AS ValorMST '+
+                                          ' FROM PTCorteCajaDet (nolock) '+
+                                          ' WHERE corteid = :cor And MonedaId='+#39+DM.qrParametroMonedaID.Value+#39+
+                                          ' AND SinPrFilter = 2 '+
+                                          ' GROUP BY CorteID, Tipo, FormadePagoId, MonedaId '+
+                                          ' ORDER BY CorteID, Tipo, FormadePagoId, MonedaId ';
+            DM.qrCorteDetalle.Parameters.ParamByName('cor').Value := qrCuadres.FieldByName('CorteId').AsString;
+            DM.qrCorteDetalle.Open;
 
-        DM.qrCorteSucursal.Close;
-        DM.qrCorteSucursal.SQL.Text := ' SELECT CorteId, Usuario, '+
-                                       ' SUM(Valor) AS Valor, SUM(ValorMST) AS ValorMST '+
-                                       ' FROM PTCorteSucursal (nolock) '+
-                                       ' WHERE corteid = :cor '+
-                                       ' AND SinPrFilter = 2 '+
-                                       ' GROUP BY CorteID, Usuario '+
-                                       ' ORDER BY CorteID, Usuario ';
-        DM.qrCorteSucursal.Parameters.ParamByName('cor').Value := qrCuadres.FieldByName('CorteId').AsString;
-        DM.qrCorteSucursal.Open;
+            DM.qrCorteSucursal.Close;
+            DM.qrCorteSucursal.SQL.Text := ' SELECT CorteId, Usuario, '+
+                                           ' SUM(Valor) AS Valor, SUM(ValorMST) AS ValorMST '+
+                                           ' FROM PTCorteSucursal (nolock) '+
+                                           ' WHERE corteid = :cor '+
+                                           ' AND SinPrFilter = 2 '+
+                                           ' GROUP BY CorteID, Usuario '+
+                                           ' ORDER BY CorteID, Usuario ';
+            DM.qrCorteSucursal.Parameters.ParamByName('cor').Value := qrCuadres.FieldByName('CorteId').AsString;
+            DM.qrCorteSucursal.Open;
 
-        DM.Cuadre_Imp := 'FILTRO_DOS';
+            DM.Cuadre_Imp := 'FILTRO_DOS';
 
-        If (DM.qrCobro.RecordCount > 0) then
-          begin
-            //Imprimiendo el Cuadre de Caja (FILTRO).
-            DM.ppCuadreSucursalTres.DeviceType := dtScreen;
-            DM.ppCuadreSucursalTres.Print;
+            If (DM.qrCobro.RecordCount > 0) then
+              begin
+                //Imprimiendo el Cuadre de Caja (FILTRO).
+                DM.ppCuadreSucursalTres.DeviceType := dtScreen;
+                DM.ppCuadreSucursalTres.Print;
 
-            //Imprimiendo el Deposito del Cuadre de Caja (FILTRO).
-            DM.ppImpCuadreDepositoFiltroDos.DeviceType := dtScreen;
-            DM.ppImpCuadreDepositoFiltroDos.Print;
-          end;
+                //Imprimiendo el Deposito del Cuadre de Caja (FILTRO).
+                DM.ppImpCuadreDepositoFiltroDos.DeviceType := dtScreen;
+                DM.ppImpCuadreDepositoFiltroDos.Print;
+              end;
+        end;
 
        end
      else
        Begin
          DM.Cobro_Var := 'Usuario';
 
-         Texto := ' SELECT * FROM PTCobro C (nolock), PTEntradaPaciente E (nolock) '+
-                  ' WHERE C.refrecid = E.RecId '+
-                  ' AND E.DataAreaId = ' + #39 + DM.CurEmpresa + #39 +
+         Texto := ' SELECT * FROM PTCobro C (nolock) Inner Join PTEntradaPaciente E (nolock) '+
+                  ' ON C.refrecid = E.RecId '+
+                  ' WHERE E.DataAreaId = ' + #39 + DM.CurEmpresa + #39 +
                   ' AND C.Fecha = '+#39+FormatDateTime('yyyymmdd', qrCuadres.FieldByName('Fecha').AsDateTime)+#39+
                   ' AND C.SucursalId = :suc '+
                   ' AND C.UsuarioId = :usr '+
@@ -411,9 +426,9 @@ begin
          DM.ppImpCuadreCajaUsuario.Print;
 
          DM.qrCobro.Close;
-         DM.qrCobro.SQL.Text := ' SELECT * FROM PTCobro C (nolock), PTEntradaPaciente E (nolock)'+
-                                ' WHERE C.refrecid = E.RecId '+
-                                ' AND E.DataAreaId = ' + #39 + DM.CurEmpresa + #39 +
+         DM.qrCobro.SQL.Text := ' SELECT * FROM PTCobro C (nolock) Inner Join PTEntradaPaciente E (nolock)'+
+                                ' ON C.refrecid = E.RecId '+
+                                ' WHERE E.DataAreaId = ' + #39 + DM.CurEmpresa + #39 +
                                 ' AND C.SinPrFilter = 0 '+
                                 ' AND C.Fecha = '+#39+FormatDateTime('yyyymmdd', qrCuadres.FieldByName('Fecha').AsDateTime)+#39+
                                 ' AND C.SucursalId = :suc '+
@@ -449,12 +464,17 @@ begin
            end;
 
          //Imprimiendo el Cuadre de Caja (FILTRO).
+
          DM.qrCobro.Close;
-         DM.qrCobro.SQL.Text := ' SELECT * FROM PTCobro C (nolock), PTEntradaPaciente E (nolock)'+
-                                ' WHERE C.refrecid = E.RecId '+
-                                ' AND E.DataAreaId = ' + #39 + DM.CurEmpresa + #39 +
-                                ' AND C.SinPrFilter = 1 '+
-                                ' AND C.Fecha = '+#39+FormatDateTime('yyyymmdd', qrCuadres.FieldByName('Fecha').AsDateTime)+#39+
+         DM.qrCobro.SQL.Text := ' SELECT * FROM PTCobro C (nolock) Inner Join PTEntradaPaciente E (nolock)'+
+                                ' ON C.refrecid = E.RecId '+
+                                ' WHERE E.DataAreaId = ' + #39 + DM.CurEmpresa + #39;
+        If DM.Filtro_UnoDos = 1 then
+            DM.qrCobro.SQL.Text := DM.qrCobro.SQL.Text + ' AND c.SinPrFilter in (1,2) '
+        else
+            DM.qrCobro.SQL.Text := DM.qrCobro.SQL.Text + ' AND c.SinPrFilter = 1 ';
+
+         DM.qrCobro.SQL.Text := DM.qrCobro.SQL.Text + ' AND C.Fecha = '+#39+FormatDateTime('yyyymmdd', qrCuadres.FieldByName('Fecha').AsDateTime)+#39+
                                 ' AND C.SucursalId = :suc '+
                                 ' AND C.UsuarioId = :usr '+
                                 ' AND C.CuadreUsuario = :cdr '+
@@ -469,9 +489,14 @@ begin
          DM.qrCorteDetalle.SQL.Text := ' SELECT CorteID, Tipo, FormadePagoId, MonedaId, '+
                                        ' SUM(Valor) AS Valor, SUM(ValorMST) AS ValorMST '+
                                        ' FROM PTCorteCajaDet (nolock) '+
-                                       ' WHERE corteid = :cor And MonedaId='+#39+DM.qrParametroMonedaID.Value+#39+
-                                       ' AND SinPrFilter = 1 '+
-                                       ' GROUP BY CorteID, Tipo, FormadePagoId, MonedaId '+
+                                       ' WHERE corteid = :cor And MonedaId='+#39+DM.qrParametroMonedaID.Value+#39;
+
+         if DM.Filtro_UnoDos = 1 then
+            DM.qrCorteDetalle.SQL.Text := DM.qrCorteDetalle.SQL.Text +' AND SinPrFilter in (1,2) '
+         else
+            DM.qrCorteDetalle.SQL.Text := DM.qrCorteDetalle.SQL.Text + ' AND SinPrFilter = 1 ';
+
+         DM.qrCorteDetalle.SQL.Text := DM.qrCorteDetalle.SQL.Text + ' GROUP BY CorteID, Tipo, FormadePagoId, MonedaId '+
                                        ' ORDER BY CorteID, Tipo, FormadePagoId, MonedaId ';
          DM.qrCorteDetalle.Parameters.ParamByName('cor').Value := qrCuadresCorteID.Value;
          DM.qrCorteDetalle.Open;
@@ -487,43 +512,46 @@ begin
              DM.ppImpCuadreDepositoFiltro.Print;
            end;
          //Imprimiendo el Cuadre de Caja (FILTRO DOS).
-         DM.qrCobro.Close;
-         DM.qrCobro.SQL.Text := ' SELECT * FROM PTCobro C (nolock), PTEntradaPaciente E (nolock)'+
-                                ' WHERE C.refrecid = E.RecId '+
-                                ' AND E.DataAreaId = ' + #39 + DM.CurEmpresa + #39 +
-                                ' AND C.SinPrFilter = 2 '+
-                                ' AND C.Fecha = '+#39+FormatDateTime('yyyymmdd', qrCuadres.FieldByName('Fecha').AsDateTime)+#39+
-                                ' AND C.SucursalId = :suc '+
-                                ' AND C.UsuarioId = :usr '+
-                                ' AND C.CuadreUsuario = :cdr '+
-                                ' ORDER BY C.SucursalId, C.Fecha, C.UsuarioId, C.EntradaId, C.CobroId ';
-         DM.qrCobro.Parameters.ParamByName('suc').Value := qrCuadres.FieldByName('SucursalId').AsString;
-//         DM.qrCobro.Parameters.ParamByName('fec').Value := FormatDateTime('yyyymmdd', qrCuadres.FieldByName('Fecha').Value);
-         DM.qrCobro.Parameters.ParamByName('usr').Value := qrCuadres.FieldByName('Usuario').AsString;
-         DM.qrCobro.Parameters.ParamByName('cdr').Value := qrCuadres.FieldByName('CorteId').AsString;
-         DM.qrCobro.Open;
+        If DM.Filtro_UnoDos = 0 then
+        begin
+           DM.qrCobro.Close;
+           DM.qrCobro.SQL.Text := ' SELECT * FROM PTCobro C (nolock) Inner Join PTEntradaPaciente E (nolock)'+
+                                  ' ON C.refrecid = E.RecId '+
+                                  ' WHERE E.DataAreaId = ' + #39 + DM.CurEmpresa + #39 +
+                                  ' AND C.SinPrFilter = 2 '+
+                                  ' AND C.Fecha = '+#39+FormatDateTime('yyyymmdd', qrCuadres.FieldByName('Fecha').AsDateTime)+#39+
+                                  ' AND C.SucursalId = :suc '+
+                                  ' AND C.UsuarioId = :usr '+
+                                  ' AND C.CuadreUsuario = :cdr '+
+                                  ' ORDER BY C.SucursalId, C.Fecha, C.UsuarioId, C.EntradaId, C.CobroId ';
+           DM.qrCobro.Parameters.ParamByName('suc').Value := qrCuadres.FieldByName('SucursalId').AsString;
+  //         DM.qrCobro.Parameters.ParamByName('fec').Value := FormatDateTime('yyyymmdd', qrCuadres.FieldByName('Fecha').Value);
+           DM.qrCobro.Parameters.ParamByName('usr').Value := qrCuadres.FieldByName('Usuario').AsString;
+           DM.qrCobro.Parameters.ParamByName('cdr').Value := qrCuadres.FieldByName('CorteId').AsString;
+           DM.qrCobro.Open;
 
-         DM.qrCorteDetalle.Close;
-         DM.qrCorteDetalle.SQL.Text := ' SELECT CorteID, Tipo, FormadePagoId, MonedaId, '+
-                                       ' SUM(Valor) AS Valor, SUM(ValorMST) AS ValorMST '+
-                                       ' FROM PTCorteCajaDet (nolock) '+
-                                       ' WHERE corteid = :cor And MonedaId='+#39+DM.qrParametroMonedaID.Value+#39+
-                                       ' AND SinPrFilter = 2 '+
-                                       ' GROUP BY CorteID, Tipo, FormadePagoId, MonedaId '+
-                                       ' ORDER BY CorteID, Tipo, FormadePagoId, MonedaId ';
-         DM.qrCorteDetalle.Parameters.ParamByName('cor').Value := qrCuadresCorteID.Value;
-         DM.qrCorteDetalle.Open;
+           DM.qrCorteDetalle.Close;
+           DM.qrCorteDetalle.SQL.Text := ' SELECT CorteID, Tipo, FormadePagoId, MonedaId, '+
+                                         ' SUM(Valor) AS Valor, SUM(ValorMST) AS ValorMST '+
+                                         ' FROM PTCorteCajaDet (nolock) '+
+                                         ' WHERE corteid = :cor And MonedaId='+#39+DM.qrParametroMonedaID.Value+#39+
+                                         ' AND SinPrFilter = 2 '+
+                                         ' GROUP BY CorteID, Tipo, FormadePagoId, MonedaId '+
+                                         ' ORDER BY CorteID, Tipo, FormadePagoId, MonedaId ';
+           DM.qrCorteDetalle.Parameters.ParamByName('cor').Value := qrCuadresCorteID.Value;
+           DM.qrCorteDetalle.Open;
 
-         If (DM.qrCobro.RecordCount > 0) then
-           begin
-             //Imprimiendo el Cuadre de Caja (FILTRO).
-             DM.ppImpCuadreUsuarioTres.DeviceType := dtScreen;
-             DM.ppImpCuadreUsuarioTres.Print;
+           If (DM.qrCobro.RecordCount > 0) then
+             begin
+               //Imprimiendo el Cuadre de Caja (FILTRO).
+               DM.ppImpCuadreUsuarioTres.DeviceType := dtScreen;
+               DM.ppImpCuadreUsuarioTres.Print;
 
-             //Imprimiendo el Deposito del Cuadre de Caja (FILTRO).
-             DM.ppImpCuadreDepositoFiltroDos.DeviceType := dtScreen;
-             DM.ppImpCuadreDepositoFiltroDos.Print;
-           end;
+               //Imprimiendo el Deposito del Cuadre de Caja (FILTRO).
+               DM.ppImpCuadreDepositoFiltroDos.DeviceType := dtScreen;
+               DM.ppImpCuadreDepositoFiltroDos.Print;
+             end;
+        end;
 
        end;
 

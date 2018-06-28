@@ -218,8 +218,8 @@ object frmCargaVPosSap: TfrmCargaVPosSap
     object Label1: TLabel
       Left = 14
       Top = 14
-      Width = 430
-      Height = 81
+      Width = 296
+      Height = 19
       Align = alClient
       Alignment = taCenter
       Caption = 'PROCESANDO POR FAVOR ESPERE...'
@@ -231,8 +231,6 @@ object frmCargaVPosSap: TfrmCargaVPosSap
       ParentFont = False
       Transparent = True
       Layout = tlCenter
-      ExplicitWidth = 296
-      ExplicitHeight = 19
     end
     object Panel1: TPanel
       Left = 14

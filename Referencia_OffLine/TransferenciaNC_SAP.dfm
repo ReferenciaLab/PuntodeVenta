@@ -582,8 +582,8 @@ inherited frmTransferenciaNC_SAP: TfrmTransferenciaNC_SAP
     object Label1: TLabel
       Left = 14
       Top = 14
-      Width = 430
-      Height = 81
+      Width = 383
+      Height = 24
       Align = alClient
       Alignment = taCenter
       Caption = 'PROCESANDO POR FAVOR ESPERE...'
@@ -595,8 +595,6 @@ inherited frmTransferenciaNC_SAP: TfrmTransferenciaNC_SAP
       ParentFont = False
       Transparent = True
       Layout = tlCenter
-      ExplicitWidth = 383
-      ExplicitHeight = 24
     end
     object Panel1: TPanel
       Left = 14

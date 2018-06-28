@@ -6,7 +6,7 @@ inherited frmOpcionesVenta: TfrmOpcionesVenta
   ClientHeight = 542
   ClientWidth = 907
   Position = poDesigned
-  ExplicitTop = -27
+  ExplicitTop = -107
   ExplicitWidth = 923
   ExplicitHeight = 580
   PixelsPerInch = 96
@@ -1286,7 +1286,7 @@ inherited frmOpcionesVenta: TfrmOpcionesVenta
           object cxDBMemo3: TcxDBMemo
             Left = 169
             Top = 293
-            DataBinding.DataField = 'NotaFacturaSeguroUniv'
+            DataBinding.DataField = 'NotaFacturaPacienteHiv'
             DataBinding.DataSource = dsDatos
             Style.BorderColor = clTeal
             Style.BorderStyle = ebsSingle
@@ -1364,7 +1364,7 @@ inherited frmOpcionesVenta: TfrmOpcionesVenta
                 ShowBorder = False
                 object dxLayoutControl2Item6: TdxLayoutItem
                   AutoAligns = [aaVertical]
-                  Caption = 'Nota Factura Pac. Ars. Univ.'
+                  Caption = 'Nota Factura Pac. Anti Hiv'
                   Control = cxDBMemo3
                   ControlOptions.ShowBorder = False
                 end
@@ -1694,6 +1694,10 @@ inherited frmOpcionesVenta: TfrmOpcionesVenta
     object qrParametrosNotaFacturaEnvase: TMemoField
       FieldName = 'NotaFacturaEnvase'
       BlobType = ftMemo
+    end
+    object qrParametrosNotaFacturaPacienteHiv: TStringField
+      FieldName = 'NotaFacturaPacienteHiv'
+      Size = 150
     end
   end
 end

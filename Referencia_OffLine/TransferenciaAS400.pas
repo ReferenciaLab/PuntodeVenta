@@ -733,7 +733,7 @@ begin
   With qfindCltParams, sql do
   begin
     Clear;
-    Add('SELECT Top 1 * FROM PTCliente (INDEX(IDX_CODIGO_AS400)NOLOCK) Where dbo.Rellena(CodigoIdAs400,8)='+
+    Add('SELECT Top 1 * FROM PTCliente (INDEX(IDX_CODIGO_AS400)NOLOCK) Where Rellena(CodigoIdAs400,8)='+
                                 FormatFloat('00000000',strtoint(_valor))+#39+') '+
                                 ' And DataAreaId = '+#39+DM.CurEmpresa+#39);
     Open;
@@ -1694,7 +1694,7 @@ begin
    Close;
    Clear;
    Add(' DECLARE	@return_value int,@r_result bigint,@r_result2 bigint,@r_result3 bit ');
-   Add(' EXEC	@return_value = [dbo].[Sec_Documentos] ');
+   Add(' EXEC	@return_value =[Sec_Documentos] ');
    Add(' @Tipo_Doc = N'+#39+tipodoc+#39+',');
    Add(' @SucursalID = N'+#39+qfindSucursal.FieldByName('SUCURSALID').AsString+#39+',');
    Add(' @r_result = @r_result OUTPUT, ');
@@ -2764,7 +2764,7 @@ begin
   qinter := DM.NewQuery;
   qinter.Close;
   qinter.SQL.Text := ' SELECT Top 1 * FROM PTCliente (INDEX(IDX_CODIGO_AS400)NOLOCK) '+
-                     ' WHERE dbo.Rellena(CodigoIDAs400,8) ='+#39+FormatFloat('00000000',strtoint(Cliente))+#39+')'+
+                     ' WHERE Rellena(CodigoIDAs400,8) ='+#39+FormatFloat('00000000',strtoint(Cliente))+#39+')'+
                      ' AND GrupoCliente <> '+#39+'03'+#39+
                      ' AND DataAreaId = ' + #39 + DM.CurEmpresa + #39;
   qinter.Open;

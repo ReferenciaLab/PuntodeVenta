@@ -147,7 +147,7 @@ begin
   begin
     Close;
     Clear;
-    Text :='Select Top 0 * from Azuldb.dbo.Pagos p left Join PtEntradaPaciente e '+
+    Text :='Select Top 0 * from Azuldb..Pagos p left Join PtEntradaPaciente e '+
            'On p.paciente=e.Muestrano';
     Open;
   end;
@@ -381,7 +381,7 @@ begin
       Exit;
  end;
 
- sqlString := 'Select p.Paciente,p.Fecha,e.NombrePaciente,p.Monto,p.Codigo_Autorizacion,p.Estatus From Azuldb.dbo.Pagos p Left join PtEntradaPaciente e On p.Paciente=e.Muestrano WHERE Isnull(e.RecId,'+#39+#39+')<>'+#39+#39;
+ sqlString := 'Select p.Paciente,p.Fecha,e.NombrePaciente,p.Monto,p.Codigo_Autorizacion,p.Estatus From Azuldb..Pagos p Left join PtEntradaPaciente e On p.Paciente=e.Muestrano WHERE Isnull(e.RecId,'+#39+#39+')<>'+#39+#39;
 
  If Not((dtFechaIni.Text = Emptystr) and (dtFechaIni.Text = Emptystr)) then
  begin

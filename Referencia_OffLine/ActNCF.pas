@@ -138,7 +138,7 @@ begin
     begin
       Close;
       Text := ' SELECT e.Transferido,e.NOMBREPACIENTE,e.NCFTYPEID,e.NCFID,e.NCFNAME,n.RNC,n.Fecha,n.Monto,n.UserID '+
-	            ' FROM ptEntradaPaciente e INNER JOIN dbo.NCFTABLEPTV n '+
+	            ' FROM ptEntradaPaciente e INNER JOIN NCFTABLEPTV n '+
 	            ' on e.MUESTRANO COLLATE SQL_AltDiction_CP850_CI_AI = n.MUESTRANO COLLATE SQL_AltDiction_CP850_CI_AI '+
               ' WHERE e.Muestrano = '+#39+Muestrano+#39+ ' And e.NCFID<>'+#39+#39;
       Open;
@@ -204,7 +204,7 @@ begin
             Close;
             Text := ' Update PtEntradaPaciente set NCFNAME = '+#39+#39+',NCFTYPEID = '+#39+#39+',NCFID = '+#39+#39+
                     ' Where Muestrano='+#39+txtMuestrano.Text+#39+
-                    ' Delete dbo.NCFTABLEPTV Where Muestrano='+#39+txtMuestrano.Text+#39;
+                    ' Delete NCFTABLEPTV Where Muestrano='+#39+txtMuestrano.Text+#39;
             ExecSQL;
           end;
           cxButton4Click(Sender);
@@ -225,7 +225,7 @@ begin
         Close;
         Text := ' Update PtEntradaPaciente set NCFNAME = '+#39+txtNombreCia.Text+#39+
                 ' Where Muestrano='+#39+txtMuestrano.Text+#39+
-                ' Update dbo.NCFTABLEPTV set RNC = '+#39+mskRNC.Text+#39+
+                ' Update NCFTABLEPTV set RNC = '+#39+mskRNC.Text+#39+
                 ' ,NCFNAME = '+#39+txtNombreCia.Text+#39+
                 ' Where Muestrano='+#39+txtMuestrano.Text+#39;
         ExecSQL;

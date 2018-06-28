@@ -363,10 +363,10 @@ begin
          qfind.Close;
          qfind.SQL.Text := ' SELECT NOMBRES,APELLIDO1,ISNULL(APELLIDO2,'+#39+#39+') AS APELLIDO2,FECHA_NAC,SEXO,COD_SANGRE,COD_NACION,P.COD_MUNICIPIO,P.COD_CIUDAD,'+
                            '  P.COD_SECTOR,ISNULL(CALLE,'+#39+#39+') AS CALLE,ISNULL(CASA,'+#39+#39+') AS CASA,ISNULL(EDIFICIO,'+#39+#39+') AS EDIFICIO, ISNULL(PISO,'+#39+#39+') AS PISO, ISNULL(APTO,'+#39+#39+') AS APTO,ISNULL(S.DESCRIPCION,'+#39+#39+') AS SECTOR,C.CIUDADID AS CIUDAD '+
-                           '   FROM Ced2016.dbo.CEDULADOS P (nolock) inner join Ced2016.dbo.SECTOR_PARAJE S (nolock) on  '+
+                           '   FROM Ced2016..CEDULADOS P (nolock) inner join Ced2016..SECTOR_PARAJE S (nolock) on  '+
                            '   		(S.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI)  '+
                            '   		AND (S.COD_SECTOR COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_SECTOR COLLATE SQL_AltDiction_CP850_CI_AI ) INNER JOIN   '+
-                           '     Ced2016.dbo.MUNICIPIO M (nolock) ON  '+
+                           '     Ced2016..MUNICIPIO M (nolock) ON  '+
                            '   		M.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI '+
                            '   		LEFT OUTER JOIN PTCIUDAD C (nolock) ON '+
                            '   		C.COD_NUM_PADRON COLLATE SQL_AltDiction_CP850_CI_AI = P.COD_MUNICIPIO COLLATE SQL_AltDiction_CP850_CI_AI '+
@@ -748,7 +748,7 @@ begin
       qfind := DM.NewQuery;
       qfind.Close;
       qfind.SQL.Text := ' SELECT NOMBRES,APELLIDO1,ISNULL(APELLIDO2,'+#39+#39+') AS APELLIDO2,FECHA_NAC,SEXO, '+
-                        ' COD_SANGRE FROM Ced2016.dbo.CEDULADOS (nolock) '+
+                        ' COD_SANGRE FROM Ced2016..CEDULADOS (nolock) '+
                         ' WHERE MUN_CED ='+#39+Copy(Limpio, 1, 3)+#39+
                         ' AND   SEQ_CED ='+#39+copy(Limpio, 4, 7)+#39+
                         ' AND   VER_CED ='+#39+copy(Limpio, 11, 1)+#39;

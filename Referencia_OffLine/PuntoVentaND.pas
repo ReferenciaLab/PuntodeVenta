@@ -3841,7 +3841,7 @@ begin
         btAutoriza.Enabled := True;
         qAutoriza := DM.NewQuery;
         qAutoriza.Close;
-        qAutoriza.SQL.Text := ' SELECT distinct CodProveedor,dbo.rellena(Right(a.CodProveedor,5),5) as CodProvUniv,a.WsArsid,p.Url,p.Password,p.Usuario,a.SucEx,a.proveedor,a.Monto_Limite '+
+        qAutoriza.SQL.Text := ' SELECT distinct CodProveedor,rellena(Right(a.CodProveedor,5),5) as CodProvUniv,a.WsArsid,p.Url,p.Password,p.Usuario,a.SucEx,a.proveedor,a.Monto_Limite '+
                             ' from ptars a (nolock) inner join ptcliente c (nolock) on c.CarnetNumero = a.CodProveedor inner join ptProveedor p (nolock) on a.proveedor=p.proveedorid '+
                             ' where clienteid='+#39+qrEntradaPacienteClienteID.Asstring+#39;
         qAutoriza.Open;
@@ -4756,9 +4756,38 @@ end;
 procedure TfrmPuntoVentaND.btpacienteClick(Sender: TObject);
 begin
   inherited;
+    If not ((Trim(qrEntradaPacienteEntradaid.value) ='') Or (Copy(qrEntradaPacienteEntradaid.value,1,3)='HOL')) then
+    begin
+           If dm.qrParametroServidor_AS400.value <> EmptyStr then
+           begin
+                if dm.PingHost(dm.qrParametroServidor_AS400.value,1) then
+                begin
+                   spMensaje.Visible := True;
+                   InterfaseAS400.ASConnection.Close;
+                   InterfaseAS400.ASConnection.Open;
+                   While not qrEntradaPacienteDetalle.Eof Do
+                   begin
+                                if Not((qrEntradaPacienteDetalleTipoPrueba.Value ='C') or
+                                        (qrEntradaPacienteDetalleExterior.Value = 1)) Then
+                                begin
+                                      If InterfaseAS400.Verifica_Resultado(qrEntradaPacienteMuestraNo.Value,DM.BuscaCodigoIDAs400(qrEntradaPacienteDetallePruebaID.Value)) Then
+                                      begin
+                                              InterfaseAS400.ASConnection.Close;
+                                              EtMensajeDlg('No puede cambiar paciente.  Tiene prueba(s) reportada(s).  Verifique Departamento Técnico.', etError, [etOk],0, dm.Imagenes.Items[4].Bitmap,true);
+                                              Abort;
+                                      end;
+                                end;
+                        qrEntradaPacienteDetalle.Next
+  		             end;
+		                InterfaseAS400.ASConnection.Close;
+                end;
+           end;
+      spMensaje.Visible := False;
+    end;
+
   frmMain.LanzaVentana(-7999);
   EdPaciente.SetFocus;
-//  actinterface;
+
 end;
 
 procedure TfrmPuntoVentaND.btpruebaClick(Sender: TObject);
@@ -7102,7 +7131,8 @@ begin
  With qsecdoc,sql do
  begin
    Close;
-   Clear;                                                                   Add(' DECLARE	@return_value int,@r_result bigint,@r_result2 bigint,@r_result3 bit ');
+   Clear;
+   Add(' DECLARE	@return_value int,@r_result bigint,@r_result2 bigint,@r_result3 bit ');
    Add(' EXEC	@return_value = [dbo].[Sec_Documentos] ');
    Add(' @Tipo_Doc = N'+#39+tipodoc+#39+',');
    Add(' @SucursalID = N'+#39+DM.CurSucursal+#39+',');

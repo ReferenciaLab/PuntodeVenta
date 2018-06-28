@@ -355,7 +355,7 @@ begin
    With qconsulta, sql do
    begin
       Close;
-      Text := ' SELECT ITEMCODE FROM '+DM.qrParametroServidor_Sap.AsString+'.dbo.OITM '+
+      Text := ' SELECT ITEMCODE FROM '+DM.qrParametroServidor_Sap.AsString+'..OITM '+
               ' WHERE   ItmsGrpCod in (125,118) AND U_CodAnt<>'+#39+'00000000'+#39+
               ' Group by ITEMCODE '+
               ' HAVING count(ITEMCODE)>1 ';
@@ -369,7 +369,7 @@ begin
              With qconsultad, sql do
              begin
                 Close;
-                Text := ' SELECT ItemCode,ItemName,U_CodAnt FROM '+ DM.qrParametroServidor_Sap.AsString+'.dbo.OITM '+
+                Text := ' SELECT ItemCode,ItemName,U_CodAnt FROM '+ DM.qrParametroServidor_Sap.AsString+'..OITM '+
                         ' WHERE   ItmsGrpCod in (125,118) AND U_CodAnt<>'+#39+'00000000'+#39+
                         ' AND ItemCode='+#39+qConsulta.Fieldbyname('ItemCode').AsString+#39;
                 Open;
@@ -403,7 +403,7 @@ begin
     Add(' PERMITECAMBIOPRECIO, CODIGOAXAPTA, PRECIODOLARES, COSTO, EXTERIOR, FACTURARCABECERA, PRUEBAS,');
     Add(' TIPO, ORINA, SANGRE, CONDPACIENTE, CONDMUESTRA, CODDIAPROC, DIASRESULTADO, UNIDAD, ABREVIACION,');
     Add(' MEDIO, COLOR, DEPID, TIPOAS400, CODIGOIDAS400, MEDIOAS400, NOPROCESAR, COMENTARIONOPROCESAR, TIPOMUESTRA,');
-    Add(' COMENTARIO_REQ, COD_SEC_PRUEBA, SEXO, AYUNA, FONT_BOLD, CLIENTEID, DATAAREAID, RECID, TRANSFER FROM dbo.PTPrueba (nolock) Where Estatus = '+#39+'1'+#39);
+    Add(' COMENTARIO_REQ, COD_SEC_PRUEBA, SEXO, AYUNA, FONT_BOLD, CLIENTEID, DATAAREAID, RECID, TRANSFER FROM PTPrueba (nolock) Where Estatus = '+#39+'1'+#39);
     Open;
   end;
   DM.qrSucursal.Close;
@@ -524,7 +524,7 @@ begin
           DPrueba :=qrPedidoDetallePruebaID.AsString+' '+qrPedidoDetalleDescripcion.AsString;
           qArticulo := DM.NewQuery;
           qArticulo.Close;
-          qArticulo.SQL.Text := ' Delete POSInterfaz.dbo.NotaCreditoDetalle '+
+          qArticulo.SQL.Text := ' Delete POSInterfaz..NotaCreditoDetalle '+
                                 ' Where RecID='+qrPedidoDetalleRecID.AsString+' And PruebaID ='+#39+qrPedidoDetallePruebaID.AsString+#39;
           qArticulo.ExecSQL;
           Buscar_NotaCredito(Get_Estado(qrPedidoEstado.AsString));
@@ -549,7 +549,7 @@ begin
              If qrPedidoDetalleSeleccionar.AsBoolean = True Then
              Begin
                 qrPed.Close;
-                qrPed.SQL.Text :=    ' Delete POSInterfaz.dbo.NotaCreditoDetalle '+
+                qrPed.SQL.Text :=    ' Delete POSInterfaz..NotaCreditoDetalle '+
                                      ' Where RecID='+qrPedidoDetalleRecID.AsString+' And PruebaID ='+#39+qrPedidoDetallePruebaID.AsString+#39;
                 qrPed.ExecSQL;
              end;
@@ -699,7 +699,7 @@ begin
                          '             When '+#39+'F'+#39+' Then '+#39+'Facturado'+#39+
                          '             When '+#39+'C'+#39+' Then '+#39+'Cancelado'+#39+' end As Estado,'+
                          '     MonedaID,Fecha_Desde,Fecha_Hasta,ClienteID_Gen,GrupoID_Gen,Comentario,Muestrano,RecID as ID,GrupoID,NombrePaciente,Muestrano,Num_Factura,SucursalD as SucursalID,MontoFacturado As Monto '+
-                         ' From dbo.NotaCredito '+
+                         ' From NotaCredito '+
                          ' WHERE Estado =   '+ #39 +TipoPedido+ #39;
 
     qrPedido.Open;
@@ -739,10 +739,10 @@ begin
                 spMensaje.Visible :=True;
 //                qPedidos := DM.NewQuery;
                 qrPed.Close;
-                qrPed.SQL.Text :=    ' Delete POSInterfaz.dbo.NotaCreditoDetalle '+
-                                     ' Where Recid in (Select RecID From POSInterfaz.dbo.NotaCredito Where ClienteID='+#39+qrPedidoClienteID.AsString+#39+')'+
+                qrPed.SQL.Text :=    ' Delete POSInterfaz..NotaCreditoDetalle '+
+                                     ' Where Recid in (Select RecID From POSInterfaz..NotaCredito Where ClienteID='+#39+qrPedidoClienteID.AsString+#39+')'+
                                      ' And Muestrano='+#39+qrPedidoMuestrano.Value+#39+
-                                     ' Delete POSInterfaz.dbo.NotaCredito '+
+                                     ' Delete POSInterfaz..NotaCredito '+
                                      ' Where MuesTrano='+#39+qrPedidoMuestrano.Value+#39+
                                      ' Update PtEntradaPaciente '+
                                      ' Set Estatus_Sap='+#39+'A'+#39+' Where Estatus='+#39+'4'+#39+
@@ -1217,7 +1217,7 @@ begin
    With qconsulta, sql do
    begin
       Close;
-      Text := ' Select Top 1 RecID from PosInterfaz.dbo.NotaCredito '+#13+
+      Text := ' Select Top 1 RecID from PosInterfaz..NotaCredito '+#13+
               ' Where Estado = '+#39+Estado+#39+' And ClienteID='#39+ClienteID+#39;
       Open;
    end;
@@ -1234,7 +1234,7 @@ begin
    With qconsulta, sql do
    begin
       Close;
-      Text := ' Select Top 1 Rate from '+DM.qrParametroServidor_Sap.AsString+'.dbo.ORTT Where RateDate='+#39+Fecha+#39;
+      Text := ' Select Top 1 Rate from '+DM.qrParametroServidor_Sap.AsString+'..ORTT Where RateDate='+#39+Fecha+#39;
       Open;
    end;
   if (qconsulta.RecordCount > 0) then

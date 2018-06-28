@@ -6,7 +6,6 @@ inherited frmDatosClientesDomicilio: TfrmDatosClientesDomicilio
   OnActivate = FormActivate
   OnPaint = nil
   OnShow = FormShow
-  ExplicitTop = -233
   ExplicitWidth = 962
   ExplicitHeight = 662
   PixelsPerInch = 96
@@ -40,8 +39,8 @@ inherited frmDatosClientesDomicilio: TfrmDatosClientesDomicilio
       object cxTabSheet1: TcxTabSheet
         Caption = 'cxTabSheet1'
         ImageIndex = 0
-        ExplicitWidth = 796
-        ExplicitHeight = 561
+        ExplicitWidth = 822
+        ExplicitHeight = 581
         object dxLayoutControl2: TdxLayoutControl
           Left = 0
           Top = 0
@@ -51,8 +50,8 @@ inherited frmDatosClientesDomicilio: TfrmDatosClientesDomicilio
           TabOrder = 0
           AutoContentSizes = [acsWidth, acsHeight]
           LookAndFeel = dmAppActions.lnfWeb
-          ExplicitWidth = 796
-          ExplicitHeight = 561
+          ExplicitWidth = 822
+          ExplicitHeight = 581
           object EdClienteDom: TcxDBTextEdit
             Tag = 99
             Left = 132
@@ -833,8 +832,8 @@ inherited frmDatosClientesDomicilio: TfrmDatosClientesDomicilio
     end
   end
   object spDetalleTransacciones: TLMDSimplePanel [3]
-    Left = 20
-    Top = 43
+    Left = 204
+    Top = 49
     Width = 434
     Height = 440
     Bevel.StyleInner = bvFrameLowered
@@ -1185,8 +1184,8 @@ inherited frmDatosClientesDomicilio: TfrmDatosClientesDomicilio
     end
   end
   object spCancelaVisita: TLMDSimplePanel [4]
-    Left = 32
-    Top = 92
+    Left = 206
+    Top = 40
     Width = 432
     Height = 203
     Bevel.StyleInner = bvFrameLowered
@@ -1319,8 +1318,8 @@ inherited frmDatosClientesDomicilio: TfrmDatosClientesDomicilio
     end
   end
   object spListadoVisita: TLMDSimplePanel [5]
-    Left = 0
-    Top = 118
+    Left = 206
+    Top = 49
     Width = 432
     Height = 179
     Bevel.StyleInner = bvFrameLowered
@@ -1548,13 +1547,13 @@ inherited frmDatosClientesDomicilio: TfrmDatosClientesDomicilio
       FieldName = 'Observacion_Cancela'
       Size = 200
     end
-    object qrClienteDomDetObservacion: TMemoField
-      FieldName = 'Observacion'
-      BlobType = ftMemo
-    end
     object qrClienteDomDetNumero_laboratorio: TStringField
       FieldName = 'Numero_laboratorio'
       Size = 30
+    end
+    object qrClienteDomDetObservacion: TStringField
+      FieldName = 'Observacion'
+      Size = 200
     end
   end
   object dsDatosTran: TDataSource
@@ -2036,10 +2035,6 @@ inherited frmDatosClientesDomicilio: TfrmDatosClientesDomicilio
       FieldName = 'Direccion'
       Size = 150
     end
-    object qrReporteObservacion: TMemoField
-      FieldName = 'Observacion'
-      BlobType = ftMemo
-    end
     object qrReportefecha_indicacion: TDateTimeField
       FieldName = 'fecha_indicacion'
     end
@@ -2059,6 +2054,10 @@ inherited frmDatosClientesDomicilio: TfrmDatosClientesDomicilio
       FieldName = 'Ars'
       ReadOnly = True
       Size = 80
+    end
+    object qrReporteObservacion: TStringField
+      FieldName = 'Observacion'
+      Size = 200
     end
   end
   object dsReporte: TDataSource

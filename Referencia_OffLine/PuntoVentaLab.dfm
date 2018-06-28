@@ -8,6 +8,7 @@ inherited frmPuntoVentaLab: TfrmPuntoVentaLab
   Position = poDesigned
   OnActivate = FormActivate
   OnKeyDown = FormKeyDown
+  ExplicitLeft = -235
   ExplicitWidth = 997
   ExplicitHeight = 612
   PixelsPerInch = 96
@@ -2174,6 +2175,58 @@ inherited frmPuntoVentaLab: TfrmPuntoVentaLab
       end
     end
   end
+  object spMensaje: TLMDSimplePanel [4]
+    Left = 309
+    Top = 140
+    Width = 458
+    Height = 133
+    Bevel.StyleInner = bvFrameLowered
+    Bevel.StyleOuter = bvFrameRaised
+    Bevel.BorderWidth = 8
+    Bevel.BorderInnerWidth = 2
+    Bevel.LightColor = 12582911
+    Bevel.Mode = bmCustom
+    Bevel.StandardStyle = lsLowered
+    Color = 10210492
+    TabOrder = 3
+    Visible = False
+    object Shape1: TShape
+      Left = 17
+      Top = 35
+      Width = 424
+      Height = 40
+      Brush.Color = 14743027
+      Shape = stRoundRect
+    end
+    object Label1: TLabel
+      Left = 14
+      Top = 14
+      Width = 430
+      Height = 81
+      Align = alClient
+      Alignment = taCenter
+      Caption = 'PROCESANDO POR FAVOR ESPERE...'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = 3766914
+      Font.Height = -21
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+      Layout = tlCenter
+      ExplicitWidth = 383
+      ExplicitHeight = 24
+    end
+    object Panel1: TPanel
+      Left = 14
+      Top = 95
+      Width = 430
+      Height = 24
+      Align = alBottom
+      Color = 11392730
+      TabOrder = 0
+    end
+  end
   inherited formStorage: TJvFormStorage
     Left = 288
     Top = 354
@@ -2186,18 +2239,18 @@ inherited frmPuntoVentaLab: TfrmPuntoVentaLab
     Left = 796
     Top = 300
   end
-  object dsPago: TDataSource [7]
+  object dsPago: TDataSource [8]
     DataSet = mdPago
     Left = 657
     Top = 304
   end
-  object dsEntradaPaciente: TDataSource [8]
+  object dsEntradaPaciente: TDataSource [9]
     DataSet = qrEntradaPaciente
     OnStateChange = dsEntradaPacienteStateChange
     Left = 104
     Top = 312
   end
-  object qrEntradaPacienteDetalle: TADOQuery [9]
+  object qrEntradaPacienteDetalle: TADOQuery [10]
     Connection = DM.DataBase
     CursorType = ctStatic
     BeforeInsert = qrEntradaPacienteDetalleBeforeInsert
@@ -2490,12 +2543,12 @@ inherited frmPuntoVentaLab: TfrmPuntoVentaLab
       Calculated = True
     end
   end
-  object dsEntradaPacienteDetalle: TDataSource [10]
+  object dsEntradaPacienteDetalle: TDataSource [11]
     DataSet = qrEntradaPacienteDetalle
     Left = 104
     Top = 360
   end
-  object ppImpFactura: TppReport [11]
+  object ppImpFactura: TppReport [12]
     AutoStop = False
     DataPipeline = ppEntradaPacienteDetalle
     PrinterSetup.BinName = 'Default'
@@ -3795,7 +3848,7 @@ inherited frmPuntoVentaLab: TfrmPuntoVentaLab
       end
     end
   end
-  object ppEntradaPaciente: TppDBPipeline [12]
+  object ppEntradaPaciente: TppDBPipeline [13]
     DataSource = dsEntradaPaciente
     UserName = 'EntradaPaciente'
     Left = 224
@@ -4658,13 +4711,13 @@ inherited frmPuntoVentaLab: TfrmPuntoVentaLab
       Position = 107
     end
   end
-  object ppEntradaPacienteDetalle: TppDBPipeline [13]
+  object ppEntradaPacienteDetalle: TppDBPipeline [14]
     DataSource = dsEntradaPacienteDetalle
     UserName = 'EntradaPacienteDetalle'
     Left = 224
     Top = 360
   end
-  object cxGridStyles: TcxStyleRepository [14]
+  object cxGridStyles: TcxStyleRepository [15]
     Left = 544
     Top = 300
     object stGrDatos: TcxStyle
@@ -4674,7 +4727,7 @@ inherited frmPuntoVentaLab: TfrmPuntoVentaLab
     object stGrEdit: TcxStyle
     end
   end
-  object menuImpresion: TPopupMenu [15]
+  object menuImpresion: TPopupMenu [16]
     Left = 872
     Top = 104
     object VolantedePruebasARS1: TMenuItem
@@ -4720,7 +4773,7 @@ inherited frmPuntoVentaLab: TfrmPuntoVentaLab
       OnClick = CodigodeBarra1Click
     end
   end
-  object ExtraOptions1: TExtraOptions [16]
+  object ExtraOptions1: TExtraOptions [17]
     About = 'TExtraDevices 2.6'
     HTML.ItemsToExport = [reText, reImage, reLine, reShape, reRTF, reBarCode, reCheckBox]
     HTML.BackLink = '&lt&lt'
@@ -4780,7 +4833,7 @@ inherited frmPuntoVentaLab: TfrmPuntoVentaLab
     Left = 856
     Top = 304
   end
-  object ppImpFacturaSeguro: TppReport [17]
+  object ppImpFacturaSeguro: TppReport [18]
     AutoStop = False
     DataPipeline = ppEntradaPacienteDetalle
     PrinterSetup.BinName = 'Default'
@@ -6088,7 +6141,7 @@ inherited frmPuntoVentaLab: TfrmPuntoVentaLab
     object ppParameterList1: TppParameterList
     end
   end
-  object ppImpFactPacienteConSeguro: TppReport [18]
+  object ppImpFactPacienteConSeguro: TppReport [19]
     AutoStop = False
     Columns = 2
     DataPipeline = ppEntradaPacienteDetalle
@@ -7299,7 +7352,7 @@ inherited frmPuntoVentaLab: TfrmPuntoVentaLab
     object ppParameterList2: TppParameterList
     end
   end
-  object ppImpFactPacienteSinSeguro: TppReport [19]
+  object ppImpFactPacienteSinSeguro: TppReport [20]
     AutoStop = False
     Columns = 2
     ColumnPositions.Strings = (
@@ -8633,9 +8686,9 @@ inherited frmPuntoVentaLab: TfrmPuntoVentaLab
       end
     end
   end
-  object MenuFunciones: TPopupMenu [20]
-    Left = 869
-    Top = 72
+  object MenuFunciones: TPopupMenu [21]
+    Left = 885
+    Top = 104
     object RegistrarNuevoPaciente1: TMenuItem
       Caption = 'Registrar Nuevo Paciente'
       OnClick = RegistrarNuevoPaciente1Click
@@ -8727,15 +8780,15 @@ inherited frmPuntoVentaLab: TfrmPuntoVentaLab
       OnClick = CancelarOrdenInterfaseAS4001Click
     end
   end
-  object MenuGrid: TPopupMenu [21]
-    Left = 902
-    Top = 72
+  object MenuGrid: TPopupMenu [22]
+    Left = 862
+    Top = 80
     object MenuItem1: TMenuItem
       Caption = 'Ver Cobertura Especial'
       OnClick = MenuItem1Click
     end
   end
-  object ppImpFacturaExterior: TppReport [22]
+  object ppImpFacturaExterior: TppReport [23]
     AutoStop = False
     DataPipeline = ppEntradaPacienteDetalle
     PrinterSetup.BinName = 'Default'
@@ -9648,7 +9701,7 @@ inherited frmPuntoVentaLab: TfrmPuntoVentaLab
       end
     end
   end
-  object ppReport1: TppReport [23]
+  object ppReport1: TppReport [24]
     AutoStop = False
     DataPipeline = ppEntradaPacienteDetalle
     PrinterSetup.BinName = 'Default'
@@ -10644,8 +10697,8 @@ inherited frmPuntoVentaLab: TfrmPuntoVentaLab
     Top = 362
   end
   object menuInternet: TPopupMenu
-    Left = 906
-    Top = 104
+    Left = 826
+    Top = 112
     object InternetPaciente1: TMenuItem
       Caption = 'Internet Paciente'
     end

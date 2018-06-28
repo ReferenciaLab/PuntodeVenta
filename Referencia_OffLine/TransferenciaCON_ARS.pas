@@ -458,7 +458,7 @@ begin
           spMensaje.Visible :=True;
           qArticulo := DM.NewQuery;
           qArticulo.Close;
-          qArticulo.SQL.Text := ' Delete POSInterfaz.dbo.ConciliacionArs '+
+          qArticulo.SQL.Text := ' Delete POSInterfaz..ConciliacionArs '+
                                 ' Where ID='+qrConciliacionID.AsString+' And Num_Aprobacion ='+#39+qrConciliacionNum_Aprobacion.AsString+#39;
           qArticulo.ExecSQL;
           Buscar_Pedidos(Get_Estado(qrConciliacion_HeadEstado.AsString));
@@ -646,11 +646,11 @@ begin
                 If qrConciliacion_HeadID.AsString <> EmptyStr then
                 begin
                     qrConc.Close;
-                    qrConc.SQL.Text :=   ' Delete POSInterfaz.dbo.ConciliacionArs '+
+                    qrConc.SQL.Text :=   ' Delete POSInterfaz..ConciliacionArs '+
                                          ' Where ID='+#39+qrConciliacion_HeadID.AsString+#39+
-                                         ' Delete POSInterfaz.dbo.ConciliacionArs_Head '+
+                                         ' Delete POSInterfaz..ConciliacionArs_Head '+
                                          ' Where ID ='+#39+qrConciliacion_HeadID.AsString+#39+
-                                         ' Update POSInterfaz.dbo.PedidoVenta '+
+                                         ' Update POSInterfaz..PedidoVenta '+
                                          ' Set Reconciliado=0 ,Pagado_Ars=0, Estatus_Ars=Null,ID_ARS=Null '+
                                          ' Where ID_ARS='+#39+qrConciliacion_HeadID.AsString+#39;
                     qrConc.ExecSQL;
@@ -761,10 +761,10 @@ begin
                begin
                   Cont := Cont+1;
                   qrConc.Close;
-                  qrConc.SQL.Text :=   ' Update POSInterfaz.dbo.ConciliacionArs_Head '+
+                  qrConc.SQL.Text :=   ' Update POSInterfaz..ConciliacionArs_Head '+
                                        ' Set Estado='#39+'P'+#39+
                                        ' Where ID='+#39+qrConciliacion_HeadID.Value+#39+
-                                       ' Update POSInterfaz.dbo.ConciliacionArs '+
+                                       ' Update POSInterfaz..ConciliacionArs '+
                                        ' Set Estatus='#39+'P'+#39+
                                        ' Where ID='+#39+qrConciliacion_HeadID.Value+#39;
                   qrConc.ExecSQL;
@@ -833,7 +833,7 @@ begin
                 SQL.Text := ' Select  c.Fecha,c.Muestrano, c.NombrePaciente, c.PolizaID, Num_Aprobacion, Monto_Reclamdo, Monto_Aprobado, Diferencia, c.ID,'+
                             ' Estatus,c.RecID,c.ClienteID, o.DocNum As Num_Fact From ConciliacionArs c Right join ConciliacionArs_Head h on '+
                             ' c.ID=h.ID left join PedidoVenta p on c.ClienteID=p.ClienteID And '+
-                            ' c.Num_Aprobacion=p.AprobacionNo And c.Muestrano=p.Muestrano Left Join '+ DM.qrParametroServidor_Sap.AsString+'.dbo.OINV o On '+
+                            ' c.Num_Aprobacion=p.AprobacionNo And c.Muestrano=p.Muestrano Left Join '+ DM.qrParametroServidor_Sap.AsString+'..OINV o On '+
                             ' p.ClienteID COLLATE SQL_Latin1_General_CP850_CI_AS=o.CardCode And '+
                             ' p.U_Numero COLLATE SQL_Latin1_General_CP850_CI_AS=o.U_PedNum '+
                             ' Where c.ID ='+#39+qrConciliacion_HeadID.AsString+#39+
@@ -856,7 +856,7 @@ begin
                 SQL.Text := ' Select  c.Fecha,c.Muestrano, c.NombrePaciente, c.PolizaID, Num_Aprobacion, Monto_Reclamdo, Monto_Aprobado, Diferencia, c.ID,'+
                             ' Estatus,c.RecID,c.ClienteID, o.DocNum As Num_Fact From ConciliacionArs c Right join ConciliacionArs_Head h on '+
                             ' c.ID=h.ID left join PedidoVenta p on c.ClienteID=p.ClienteID And '+
-                            ' c.Num_Aprobacion=p.AprobacionNo And c.Muestrano=p.Muestrano Left Join '+ DM.qrParametroServidor_Sap.AsString+'.dbo.OINV o On '+
+                            ' c.Num_Aprobacion=p.AprobacionNo And c.Muestrano=p.Muestrano Left Join '+ DM.qrParametroServidor_Sap.AsString+'..OINV o On '+
                             ' p.ClienteID COLLATE SQL_Latin1_General_CP850_CI_AS=o.CardCode And '+
                             ' p.U_Numero COLLATE SQL_Latin1_General_CP850_CI_AS=o.U_PedNum '+
                             ' Where c.ID ='+#39+qrConciliacion_HeadID.AsString+#39+
@@ -992,7 +992,7 @@ begin
               SQL.Text := ' Select  c.Fecha,c.Muestrano, c.NombrePaciente, c.PolizaID, Num_Aprobacion, Monto_Reclamdo, Monto_Aprobado, Diferencia, c.ID,'+
                             ' Estatus,c.RecID,c.ClienteID, o.DocNum As Num_Fact From ConciliacionArs c Right join ConciliacionArs_Head h on '+
                             ' c.ID=h.ID left join PedidoVenta p on c.ClienteID=p.ClienteID And '+
-                            ' c.Num_Aprobacion=p.AprobacionNo And c.Muestrano=p.Muestrano Left Join '+ DM.qrParametroServidor_Sap.AsString+'.dbo.OINV o On '+
+                            ' c.Num_Aprobacion=p.AprobacionNo And c.Muestrano=p.Muestrano Left Join '+ DM.qrParametroServidor_Sap.AsString+'..OINV o On '+
                             ' p.ClienteID COLLATE SQL_Latin1_General_CP850_CI_AS=o.CardCode And '+
                             ' p.U_Numero COLLATE SQL_Latin1_General_CP850_CI_AS=o.U_PedNum '+
                             ' Where c.ID ='+#39+qrConciliacion_HeadID.AsString+#39+
@@ -1014,7 +1014,7 @@ begin
               SQL.Text := ' Select  c.Fecha,c.Muestrano, c.NombrePaciente, c.PolizaID, Num_Aprobacion, Monto_Reclamdo, Monto_Aprobado, Diferencia, c.ID,'+
                             ' Estatus,c.RecID,c.ClienteID, o.DocNum As Num_Fact From ConciliacionArs c Right join ConciliacionArs_Head h on '+
                             ' c.ID=h.ID left join PedidoVenta p on c.ClienteID=p.ClienteID And '+
-                            ' c.Num_Aprobacion=p.AprobacionNo And c.Muestrano=p.Muestrano Left Join '+ DM.qrParametroServidor_Sap.AsString+'.dbo.OINV o On '+
+                            ' c.Num_Aprobacion=p.AprobacionNo And c.Muestrano=p.Muestrano Left Join '+ DM.qrParametroServidor_Sap.AsString+'..OINV o On '+
                             ' p.ClienteID COLLATE SQL_Latin1_General_CP850_CI_AS=o.CardCode And '+
                             ' p.U_Numero COLLATE SQL_Latin1_General_CP850_CI_AS=o.U_PedNum '+
                             ' Where c.ID ='+#39+qrConciliacion_HeadID.AsString+#39+
@@ -1052,7 +1052,7 @@ begin
                 SQL.Text := ' Select  c.Fecha,c.Muestrano, c.NombrePaciente, c.PolizaID, Num_Aprobacion, Monto_Reclamdo, Monto_Aprobado, Diferencia, c.ID,'+
                             ' Estatus,c.RecID,c.ClienteID, o.DocNum As Num_Fact From ConciliacionArs c Right join ConciliacionArs_Head h on '+
                             ' c.ID=h.ID left join PedidoVenta p on c.ClienteID=p.ClienteID And '+
-                            ' c.Num_Aprobacion=p.AprobacionNo And c.Muestrano=p.Muestrano Left Join '+ DM.qrParametroServidor_Sap.AsString+'.dbo.OINV o On '+
+                            ' c.Num_Aprobacion=p.AprobacionNo And c.Muestrano=p.Muestrano Left Join '+ DM.qrParametroServidor_Sap.AsString+'..OINV o On '+
                             ' p.ClienteID COLLATE SQL_Latin1_General_CP850_CI_AS=o.CardCode And '+
                             ' p.U_Numero COLLATE SQL_Latin1_General_CP850_CI_AS=o.U_PedNum '+
                             ' Where c.ID ='+#39+qrConciliacion_HeadID.AsString+#39+
@@ -1074,7 +1074,7 @@ begin
                 SQL.Text := ' Select  c.Fecha,c.Muestrano, c.NombrePaciente, c.PolizaID, Num_Aprobacion, Monto_Reclamdo, Monto_Aprobado, Diferencia, c.ID,'+
                             ' Estatus,c.RecID,c.ClienteID, o.DocNum As Num_Fact From ConciliacionArs c Right join ConciliacionArs_Head h on '+
                             ' c.ID=h.ID left join PedidoVenta p on c.ClienteID=p.ClienteID And '+
-                            ' c.Num_Aprobacion=p.AprobacionNo And c.Muestrano=p.Muestrano Left Join '+ DM.qrParametroServidor_Sap.AsString+'.dbo.OINV o On '+
+                            ' c.Num_Aprobacion=p.AprobacionNo And c.Muestrano=p.Muestrano Left Join '+ DM.qrParametroServidor_Sap.AsString+'..OINV o On '+
                             ' p.ClienteID COLLATE SQL_Latin1_General_CP850_CI_AS=o.CardCode And '+
                             ' p.U_Numero COLLATE SQL_Latin1_General_CP850_CI_AS=o.U_PedNum '+
                             ' Where c.ID ='+#39+qrConciliacion_HeadID.AsString+#39+
@@ -1134,7 +1134,7 @@ begin
    With qconsulta, sql do
    begin
       Close;
-      Text := ' Select Top 1 RecID from PosInterfaz.dbo.PedidoVenta '+#13+
+      Text := ' Select Top 1 RecID from PosInterfaz..PedidoVenta '+#13+
               ' Where Estado = '+#39+Estado+#39+' And ClienteID='#39+ClienteID+#39;
       Open;
    end;
@@ -1233,7 +1233,7 @@ begin
    With qconsulta, sql do
    begin
       Close;
-      Text := ' Select Top 1 Rate from '+ DM.qrParametroServidor_Sap.AsString+'.dbo.ORTT Where RateDate='+#39+Fecha+#39;
+      Text := ' Select Top 1 Rate from '+ DM.qrParametroServidor_Sap.AsString+'..ORTT Where RateDate='+#39+Fecha+#39;
       Open;
    end;
   if (qconsulta.RecordCount > 0) then

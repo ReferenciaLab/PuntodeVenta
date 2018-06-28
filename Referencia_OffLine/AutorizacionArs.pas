@@ -532,7 +532,7 @@ begin
     End
     else if (dm.GrupoArs = GrupoArsUniversal) then
     begin
-      if DM.Mensaje('Está seguro de anular la Autorización-=0i97-=`````````` ?',mb_yesno) = id_yes then
+      if DM.Mensaje('Está seguro de anular la Autorización?',mb_yesno) = id_yes then
       begin
         WebId          := TXSDecimal.Create;
         NumCancelacion := TXSDecimal.Create;

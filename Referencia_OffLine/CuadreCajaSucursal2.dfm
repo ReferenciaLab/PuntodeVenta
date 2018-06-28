@@ -194,8 +194,8 @@ object frmCuadreCajaSucursal2: TfrmCuadreCajaSucursal2
       'SELECT * FROM PTEntradaPaciente (nolock)'
       'WHERE EntradaId = :ent'
       'AND DataAreaId = '#39'ldr'#39)
-    Left = 176
-    Top = 18
+    Left = 256
+    Top = 10
     object qrEntradaPacienteENTRADAID: TStringField
       FieldName = 'ENTRADAID'
     end
@@ -653,8 +653,8 @@ object frmCuadreCajaSucursal2: TfrmCuadreCajaSucursal2
   object dsEntradaPaciente: TDataSource
     AutoEdit = False
     DataSet = qrEntradaPaciente
-    Left = 216
-    Top = 18
+    Left = 288
+    Top = 10
   end
   object qrEntradaPacienteDetalle: TADOQuery
     Connection = DM.DataBase
